@@ -1,0 +1,107 @@
+# Autonomous Yandex Games Starter Kit 0.4.2
+
+Версионируемая engineering/compliance инфраструктура для создания новых игр и
+безопасного обновления существующих зрелых проектов Яндекс Игр.
+
+## Два разных режима
+
+Новый проект:
+
+```powershell
+node tools/starter-kit/init-project.mjs `
+  --target E:\Work\YandexGames\new-game `
+  --profile new-project
+```
+
+`init` может создать `index.html`, `game-spec.yaml`, начальные project rules и
+example fixtures. После создания они становятся `project-owned` и больше не
+входят в managed baseline.
+
+Зрелый Phaser-проект:
+
+```powershell
+node tools/starter-kit/apply-update.mjs `
+  --target E:\Work\YandexGames\existing-game `
+  --profile mature-yandex-phaser `
+  --dry-run
+```
+
+Mature update не копирует product seeds, `src/**`, `public/**`, `index.html`,
+`game-spec.yaml` или project profile. `AGENTS.md` и совпадающие project skills
+получают semantic-merge proposal, но не перезаписываются.
+
+## Target profiles and ownership
+
+Profiles are validated by `config/target-profile.schema.json`. The manifest uses
+schema 2 from `config/starter-kit-manifest.schema.json` and requires an explicit
+ownership class for every entry:
+
+- `managed`;
+- `project-owned`;
+- `semantic-merge`;
+- `new-project-seed`;
+- `target-mapped`;
+- `ephemeral`.
+
+The mature profile maps reference skills from `.codex/skills` in this source
+package to `.agents/skills` in the target. When `allowSecondSkillRoot` is false,
+the updater refuses to create or tolerate a second active skill root.
+
+See `docs/MANIFEST_SCHEMA.md` and `docs/STARTER_KIT_UPDATES.md`.
+
+## Semantic conflicts
+
+Conflicting proposals are written to:
+
+```text
+.starter-kit/conflicts/<version>/<target>.new
+.starter-kit/conflicts/<version>/<target>.merge.md
+```
+
+The project file remains unchanged. After manual review and merge, record the
+resolution explicitly:
+
+```powershell
+node tools/starter-kit/apply-update.mjs `
+  --target E:\Work\YandexGames\existing-game `
+  --profile mature-yandex-phaser `
+  --resolve-semantic contract:AGENTS.md
+```
+
+There is no automatic accept-all conflict flag.
+
+## Codex engineering system
+
+Version 0.4.2 explicitly installs `$codex-engineering-system` and the managed `.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md` contract. The system remains engineering-only, routes work through `$implementation-cycle`, loads only relevant skills/context, uses targeted verification during iteration, and reserves full suites for task or release barriers. Existing same-name project skills use semantic merge.
+
+## Quality stack
+
+The kit contains the Codex engineering orchestration layer, five adapted external methods and seven production skills.
+`config/skill-policy.json` and `docs/SKILL_PRECEDENCE.md` enforce:
+
+`official Yandex requirements → Yandex validation → project contracts → production skills → adapted guidance`.
+
+No skill may self-approve compliance or a release candidate. PWA/service
+workers, CDN gameplay assets, WebGPU-only rendering, autoplay, and native
+app-store guidance remain forbidden by default.
+
+## Verification
+
+```powershell
+npm run starter-kit:manifest
+npm run starter-kit:self-test
+npm run test:updater
+npm run starter-kit:update-self-test
+npm run starter-kit:status -- --target E:\Path\To\initialized-target
+```
+
+Starter Kit 0.4.0 is **unsafe for mature-project update without the 0.4.1
+updater**. It remains a valid historical new-project baseline where its init
+flow is independently verified. See
+`migrations/0.4.1-target-aware-updater.md`.
+
+## Release boundary
+
+Infrastructure delivery never assigns Yandex compliance `PASS`, authorizes a
+release candidate, publishes a game, or creates a target-project release ZIP.
+Yandex validation must precede the independent release audit.

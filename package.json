@@ -1,0 +1,24 @@
+{
+  "name": "yandex-games-autonomous-starter-kit",
+  "private": true,
+  "version": "0.4.2",
+  "type": "module",
+  "starterKit": {
+    "targetScripts": [
+      "starter-kit:self-test",
+      "starter-kit:status",
+      "skills:validate"
+    ]
+  },
+  "scripts": {
+    "starter-kit:self-test": "node tools/starter-kit/self-test.mjs",
+    "starter-kit:manifest": "node tools/starter-kit/build-manifest.mjs",
+    "starter-kit:status": "node tools/starter-kit/status.mjs",
+    "starter-kit:init": "node tools/starter-kit/init-project.mjs",
+    "starter-kit:package": "node tools/starter-kit/package-kit.mjs",
+    "starter-kit:update": "node tools/starter-kit/apply-update.mjs",
+    "starter-kit:update-self-test": "node tools/starter-kit/update-self-test.mjs",
+    "test:updater": "node --test tests/starter-kit/*.test.mjs",
+    "skills:validate": "node tools/starter-kit/self-test.mjs"
+  }
+}

@@ -1,0 +1,12 @@
+schemaVersion: 1
+failures:
+  - id: yandex-context-menu-selection
+    prevention: mobile-game-ux and yandex moderation regression
+  - id: yandex-orientation-overlap
+    prevention: mobile-game-ux plus RU/EN orientation matrix
+  - id: generic-ai-visuals
+    prevention: visual-quality-gate three-pass review
+  - id: browser-scene-leak
+    prevention: web-game-playtest and game-performance-budget
+  - id: unlicensed-generated-asset
+    prevention: asset-provenance-and-rights ledger

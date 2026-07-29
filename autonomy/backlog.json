@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "items": [],
+  "rules": [
+    "vertical slice before mass content",
+    "targeted checks during implementation",
+    "full gates at release"
+  ]
+}

@@ -1,0 +1,20 @@
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+.cache/
+browser-profiles/
+browser_profiles/
+*.log
+*.zip
+*.sha256
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# Local and generated evidence must not enter the reusable starter kit.
+.loop/
+.tmp/
+artifacts/
+reports/

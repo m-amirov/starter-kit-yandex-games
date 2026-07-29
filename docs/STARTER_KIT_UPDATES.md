@@ -1,0 +1,121 @@
+# Target-aware Starter Kit updates
+
+## Safety boundary
+
+Never copy a newer Starter Kit over an existing project. Use a clean Git
+revision, an explicit target profile, and dry run first.
+
+Starter Kit 0.4.0 is unsafe for mature-project update without the 0.4.1 updater.
+Its `URL.pathname` root calculation fails on Windows, and its manifest does not
+separate mature product ownership from new-project seeds.
+
+## Modes
+
+### Initialize a new project
+
+```bash
+node tools/starter-kit/init-project.mjs \
+  --target ../new-game \
+  --profile new-project
+```
+
+Only `init` may create product seeds. Every created seed is written to
+`state.json` as project-owned and excluded from the managed baseline.
+`init` rejects a non-empty target; existing projects must use `update`.
+
+### Update a mature project
+
+```bash
+node tools/starter-kit/apply-update.mjs \
+  --target ../existing-game \
+  --profile mature-yandex-phaser \
+  --dry-run
+```
+
+An explicit profile is mandatory for a non-empty project unless the target
+already contains `.starter-kit/target.json`.
+
+## Ownership
+
+- `managed`: update only when the target hash matches its recorded baseline.
+- `project-owned`: never copy, replace, or baseline.
+- `semantic-merge`: keep the target and create a proposal plus merge notes.
+- `new-project-seed`: init only; project-owned immediately afterwards.
+- `target-mapped`: resolve through the configured target path such as
+  `{skillRoot}`.
+- `ephemeral`: never deliver or track.
+
+The mature Phaser profile protects `src/**`, `public/**`, `index.html`,
+`game-spec.yaml`, `project.profile.yaml`, package lock, runtime contracts, game
+content, saves, ads, leaderboards, assets, and project-specific tests.
+
+## Skill mapping
+
+Logical skill identity does not depend on source layout. The bundled reference
+copy may remain in `.codex/skills`, while the mature profile maps delivery to
+`.agents/skills`. Unknown project skills are preserved. A differing same-name
+skill becomes a semantic conflict.
+
+If `allowSecondSkillRoot` is false, an unexpected second active root blocks the
+plan. No double registration is performed.
+
+## Semantic merge and package.json
+
+For a conflicting entry, the updater preserves the project file and writes:
+
+```text
+.starter-kit/conflicts/<version>/<target>.new
+.starter-kit/conflicts/<version>/<target>.merge.md
+```
+
+After manual merge:
+
+```bash
+node tools/starter-kit/apply-update.mjs \
+  --target ../existing-game \
+  --profile mature-yandex-phaser \
+  --resolve-semantic <logical-id>
+```
+
+`package.json` uses a structural merge. Missing Starter Kit scripts may be
+added. Project scripts, name, version, package manager, and dependencies are
+preserved. A script-name collision becomes a conflict; dependency changes
+require an explicit migration. The updater never runs `npm install`.
+
+## State and status
+
+The target stores:
+
+- `.starter-kit/target.json`;
+- `.starter-kit/manifest.json`;
+- `.starter-kit/state.json`;
+- `.starter-kit/update-report.json`;
+- versioned conflict proposals.
+
+Status reports source/installed/target versions, updater schema, profile,
+project type, skill root, managed/project-owned/semantic files, conflicts,
+migrations, manifest/state hashes, idempotency, second-root violations, and
+managed product-runtime violations.
+
+```bash
+node tools/starter-kit/status.mjs --target ../existing-game
+```
+
+Status is non-zero for conflicts, drift, profile/schema errors, a forbidden
+second root, update-enabled mature seeds, or managed product runtime.
+
+## Migration and rollback
+
+Read every migration guide between the installed and target versions. The
+0.4.1 migration is `migrations/0.4.1-target-aware-updater.md`.
+
+Rollback uses Git:
+
+1. inspect the explicit infrastructure diff;
+2. restore the pre-update project commit through the project's normal Git
+   workflow;
+3. do not copy files from the Starter Kit manually;
+4. do not accept all conflicts automatically.
+
+Dry run performs no writes. Neither init/update status tooling nor dry run
+creates a target-project release ZIP.

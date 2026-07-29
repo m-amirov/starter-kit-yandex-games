@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yandex-games-starter-kit.local/schemas/starter-kit-manifest.schema.json",
+  "title": "Yandex Games Starter Kit manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "updaterSchemaVersion", "version", "entries"],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "updaterSchemaVersion": { "const": 2 },
+    "version": { "type": "string", "minLength": 1 },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "logicalId",
+          "ownership",
+          "modes",
+          "projectTypes",
+          "conflictPolicy",
+          "sha256"
+        ],
+        "properties": {
+          "source": { "type": "string", "minLength": 1 },
+          "logicalId": { "type": "string", "minLength": 1 },
+          "ownership": {
+            "enum": [
+              "managed",
+              "project-owned",
+              "semantic-merge",
+              "new-project-seed",
+              "target-mapped",
+              "ephemeral"
+            ]
+          },
+          "target": { "type": "string", "minLength": 1 },
+          "targetTemplate": { "type": "string", "minLength": 1 },
+          "modes": {
+            "type": "array",
+            "items": { "enum": ["init", "update"] },
+            "minItems": 1
+          },
+          "projectTypes": {
+            "type": "array",
+            "items": { "enum": ["new", "mature"] },
+            "minItems": 1
+          },
+          "conflictPolicy": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        },
+        "oneOf": [
+          { "required": ["target"] },
+          { "required": ["targetTemplate"] }
+        ]
+      }
+    }
+  }
+}

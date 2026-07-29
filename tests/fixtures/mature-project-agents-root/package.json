@@ -1,0 +1,12 @@
+{
+  "name": "mature-fixture",
+  "version": "9.0.0",
+  "packageManager": "npm@10.0.0",
+  "scripts": {
+    "build": "project-build",
+    "custom": "project-custom"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0"
+  }
+}

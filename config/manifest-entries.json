@@ -1,0 +1,953 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
+      "logicalId": "skill:asset-provenance-and-rights:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/asset-provenance-and-rights/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/game-accessibility/SKILL.md",
+      "logicalId": "skill:game-accessibility:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/game-accessibility/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/game-audio-quality/ORIGIN.md",
+      "logicalId": "skill:game-audio-quality:ORIGIN.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/game-audio-quality/ORIGIN.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/game-audio-quality/SKILL.md",
+      "logicalId": "skill:game-audio-quality:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/game-audio-quality/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/game-feel-polish/SKILL.md",
+      "logicalId": "skill:game-feel-polish:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/game-feel-polish/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/game-performance-budget/SKILL.md",
+      "logicalId": "skill:game-performance-budget:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/game-performance-budget/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/implementation-cycle/SKILL.md",
+      "logicalId": "skill:implementation-cycle:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/implementation-cycle/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/codex-engineering-system/SKILL.md",
+      "logicalId": "skill:codex-engineering-system:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/codex-engineering-system/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/level-design-quality/SKILL.md",
+      "logicalId": "skill:level-design-quality:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/level-design-quality/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/mobile-game-ux/ORIGIN.md",
+      "logicalId": "skill:mobile-game-ux:ORIGIN.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/mobile-game-ux/ORIGIN.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/mobile-game-ux/SKILL.md",
+      "logicalId": "skill:mobile-game-ux:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/mobile-game-ux/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/product-quality-review/ORIGIN.md",
+      "logicalId": "skill:product-quality-review:ORIGIN.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/product-quality-review/ORIGIN.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/product-quality-review/SKILL.md",
+      "logicalId": "skill:product-quality-review:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/product-quality-review/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/release-audit/SKILL.md",
+      "logicalId": "skill:release-audit:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/release-audit/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/visual-quality-gate/ORIGIN.md",
+      "logicalId": "skill:visual-quality-gate:ORIGIN.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/visual-quality-gate/ORIGIN.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/visual-quality-gate/SKILL.md",
+      "logicalId": "skill:visual-quality-gate:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/visual-quality-gate/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/web-game-playtest/ORIGIN.md",
+      "logicalId": "skill:web-game-playtest:ORIGIN.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/web-game-playtest/ORIGIN.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/web-game-playtest/SKILL.md",
+      "logicalId": "skill:web-game-playtest:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/web-game-playtest/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": ".codex/skills/yandex-release-validation/SKILL.md",
+      "logicalId": "skill:yandex-release-validation:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/yandex-release-validation/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": "AGENTS.md",
+      "logicalId": "contract:AGENTS.md",
+      "ownership": "semantic-merge",
+      "target": "AGENTS.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": "package.json",
+      "logicalId": "contract:package-json",
+      "ownership": "semantic-merge",
+      "target": "package.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "structural-merge"
+    },
+    {
+      "source": "index.html",
+      "logicalId": "seed:index-html",
+      "ownership": "new-project-seed",
+      "target": "index.html",
+      "modes": [
+        "init"
+      ],
+      "projectTypes": [
+        "new"
+      ],
+      "conflictPolicy": "create-only"
+    },
+    {
+      "source": "game-spec.yaml",
+      "logicalId": "seed:game-spec",
+      "ownership": "new-project-seed",
+      "target": "game-spec.yaml",
+      "modes": [
+        "init"
+      ],
+      "projectTypes": [
+        "new"
+      ],
+      "conflictPolicy": "create-only"
+    },
+    {
+      "source": "PROJECT_RULES.md",
+      "logicalId": "seed:project-rules",
+      "ownership": "new-project-seed",
+      "target": "PROJECT_RULES.md",
+      "modes": [
+        "init"
+      ],
+      "projectTypes": [
+        "new"
+      ],
+      "conflictPolicy": "create-only"
+    },
+    {
+      "source": "autonomy/backlog.json",
+      "logicalId": "seed:autonomy-backlog",
+      "ownership": "new-project-seed",
+      "target": "autonomy/backlog.json",
+      "modes": [
+        "init"
+      ],
+      "projectTypes": [
+        "new"
+      ],
+      "conflictPolicy": "create-only"
+    },
+    {
+      "source": "autonomy/state.json",
+      "logicalId": "seed:autonomy-state",
+      "ownership": "new-project-seed",
+      "target": "autonomy/state.json",
+      "modes": [
+        "init"
+      ],
+      "projectTypes": [
+        "new"
+      ],
+      "conflictPolicy": "create-only"
+    },
+    {
+      "source": "tests/e2e/yandex-moderation.spec.ts",
+      "logicalId": "seed:yandex-moderation-e2e",
+      "ownership": "new-project-seed",
+      "target": "tests/e2e/yandex-moderation.spec.ts",
+      "modes": [
+        "init"
+      ],
+      "projectTypes": [
+        "new"
+      ],
+      "conflictPolicy": "create-only"
+    },
+    {
+      "source": ".starter-kit/core/AGENTS_CORE.md",
+      "logicalId": "managed:agents-core",
+      "ownership": "managed",
+      "target": ".starter-kit/core/AGENTS_CORE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": ".starter-kit/core/CODEX_ENGINEERING_SYSTEM.md",
+      "logicalId": "managed:codex-engineering-system-core",
+      "ownership": "managed",
+      "target": ".starter-kit/core/CODEX_ENGINEERING_SYSTEM.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "VERSION",
+      "logicalId": "managed:version",
+      "ownership": "managed",
+      "target": ".starter-kit/VERSION",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "CHANGELOG.md",
+      "logicalId": "managed:changelog",
+      "ownership": "managed",
+      "target": ".starter-kit/docs/CHANGELOG.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "README.md",
+      "logicalId": "managed:starter-readme",
+      "ownership": "managed",
+      "target": ".starter-kit/docs/README.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "MASTER_PROMPT.md",
+      "logicalId": "managed:master-prompt",
+      "ownership": "managed",
+      "target": ".starter-kit/docs/MASTER_PROMPT.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/yandex-requirements.yaml",
+      "logicalId": "contract:yandex-requirements",
+      "ownership": "semantic-merge",
+      "target": "config/yandex-requirements.yaml",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": "docs/SKILL_PRECEDENCE.md",
+      "logicalId": "contract:skill-precedence",
+      "ownership": "semantic-merge",
+      "target": "docs/SKILL_PRECEDENCE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": "docs/YANDEX_REQUIREMENTS_CHECKLIST.md",
+      "logicalId": "contract:yandex-checklist",
+      "ownership": "semantic-merge",
+      "target": "docs/YANDEX_REQUIREMENTS_CHECKLIST.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": "config/skill-policy.json",
+      "logicalId": "managed:skill-policy",
+      "ownership": "managed",
+      "target": "config/skill-policy.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/EXTERNAL_SKILL_SOURCES.md",
+      "logicalId": "managed:external-skill-sources",
+      "ownership": "managed",
+      "target": "docs/EXTERNAL_SKILL_SOURCES.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/QUALITY_CONSTITUTION.md",
+      "logicalId": "managed:quality-constitution",
+      "ownership": "managed",
+      "target": "docs/QUALITY_CONSTITUTION.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/STARTER_KIT_UPDATES.md",
+      "logicalId": "managed:update-doc",
+      "ownership": "managed",
+      "target": "docs/STARTER_KIT_UPDATES.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "lessons/known-failures.yaml",
+      "logicalId": "managed:known-failures",
+      "ownership": "managed",
+      "target": "lessons/known-failures.yaml",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.3.0-yandex-requirements.md",
+      "logicalId": "migration:0.3.0-yandex-requirements",
+      "ownership": "managed",
+      "target": "migrations/0.3.0-yandex-requirements.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.4.0-production-skills.md",
+      "logicalId": "migration:0.4.0-production-skills",
+      "ownership": "managed",
+      "target": "migrations/0.4.0-production-skills.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.4.1-target-aware-updater.md",
+      "logicalId": "migration:0.4.1-target-aware-updater",
+      "ownership": "managed",
+      "target": "migrations/0.4.1-target-aware-updater.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.4.2-codex-engineering-system.md",
+      "logicalId": "migration:0.4.2-codex-engineering-system",
+      "ownership": "managed",
+      "target": "migrations/0.4.2-codex-engineering-system.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/MANIFEST_SCHEMA.md",
+      "logicalId": "managed:manifest-schema-doc",
+      "ownership": "managed",
+      "target": "docs/MANIFEST_SCHEMA.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/manifest-entries.json",
+      "logicalId": "managed:manifest-entry-config",
+      "ownership": "managed",
+      "target": "config/manifest-entries.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/starter-kit-manifest.schema.json",
+      "logicalId": "managed:manifest-json-schema",
+      "ownership": "managed",
+      "target": "config/starter-kit-manifest.schema.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/target-profile.schema.json",
+      "logicalId": "managed:target-profile-schema",
+      "ownership": "managed",
+      "target": "config/target-profile.schema.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/targets/new-project.json",
+      "logicalId": "managed:profile-new-project",
+      "ownership": "managed",
+      "target": "config/targets/new-project.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/targets/mature-yandex-phaser.json",
+      "logicalId": "managed:profile-mature-yandex-phaser",
+      "ownership": "managed",
+      "target": "config/targets/mature-yandex-phaser.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/apply-update.mjs",
+      "logicalId": "managed:tool-apply-update",
+      "ownership": "managed",
+      "target": "tools/starter-kit/apply-update.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/build-manifest.mjs",
+      "logicalId": "managed:tool-build-manifest",
+      "ownership": "managed",
+      "target": "tools/starter-kit/build-manifest.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/init-project.mjs",
+      "logicalId": "managed:tool-init-project",
+      "ownership": "managed",
+      "target": "tools/starter-kit/init-project.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/lib.mjs",
+      "logicalId": "managed:tool-lib",
+      "ownership": "managed",
+      "target": "tools/starter-kit/lib.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/manifest.mjs",
+      "logicalId": "managed:tool-manifest",
+      "ownership": "managed",
+      "target": "tools/starter-kit/manifest.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/package-kit.mjs",
+      "logicalId": "managed:tool-package-kit",
+      "ownership": "managed",
+      "target": "tools/starter-kit/package-kit.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/package-merge.mjs",
+      "logicalId": "managed:tool-package-merge",
+      "ownership": "managed",
+      "target": "tools/starter-kit/package-merge.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/profile.mjs",
+      "logicalId": "managed:tool-profile",
+      "ownership": "managed",
+      "target": "tools/starter-kit/profile.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/self-test.mjs",
+      "logicalId": "managed:tool-self-test",
+      "ownership": "managed",
+      "target": "tools/starter-kit/self-test.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/status.mjs",
+      "logicalId": "managed:tool-status",
+      "ownership": "managed",
+      "target": "tools/starter-kit/status.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/status-core.mjs",
+      "logicalId": "managed:tool-status-core",
+      "ownership": "managed",
+      "target": "tools/starter-kit/status-core.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/update-engine.mjs",
+      "logicalId": "managed:tool-update-engine",
+      "ownership": "managed",
+      "target": "tools/starter-kit/update-engine.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/update-self-test.mjs",
+      "logicalId": "managed:tool-update-self-test",
+      "ownership": "managed",
+      "target": "tools/starter-kit/update-self-test.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    }
+  ]
+}

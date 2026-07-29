@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "profileName": "new-project",
+  "projectType": "new",
+  "platform": "yandex-games",
+  "engine": "browser",
+  "skillRoot": ".codex/skills",
+  "codexConfigRoot": ".codex",
+  "allowSecondSkillRoot": false,
+  "applySeeds": true,
+  "ownershipOverrides": {
+    "index.html": "new-project-seed",
+    "AGENTS.md": "semantic-merge",
+    "PROJECT_RULES.md": "new-project-seed",
+    "game-spec.yaml": "new-project-seed",
+    "src/**": "new-project-seed",
+    "public/**": "new-project-seed"
+  }
+}

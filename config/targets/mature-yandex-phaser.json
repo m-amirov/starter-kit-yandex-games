@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "profileName": "mature-yandex-phaser",
+  "projectType": "mature",
+  "platform": "yandex-games",
+  "engine": "phaser",
+  "skillRoot": ".agents/skills",
+  "codexConfigRoot": ".codex",
+  "allowSecondSkillRoot": false,
+  "applySeeds": false,
+  "ownershipOverrides": {
+    "index.html": "project-owned",
+    "AGENTS.md": "semantic-merge",
+    "package.json": "semantic-merge",
+    "package-lock.json": "project-owned",
+    "project.profile.yaml": "project-owned",
+    "game-spec.yaml": "project-owned",
+    "src/**": "project-owned",
+    "public/**": "project-owned"
+  }
+}

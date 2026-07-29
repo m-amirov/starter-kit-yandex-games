@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yandex-games-starter-kit.local/schemas/target-profile.schema.json",
+  "title": "Yandex Games Starter Kit target profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "projectType",
+    "platform",
+    "engine",
+    "skillRoot",
+    "codexConfigRoot",
+    "allowSecondSkillRoot",
+    "applySeeds",
+    "ownershipOverrides"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profileName": { "type": "string", "minLength": 1 },
+    "projectType": { "enum": ["new", "mature"] },
+    "platform": { "type": "string", "minLength": 1 },
+    "engine": { "type": "string", "minLength": 1 },
+    "skillRoot": { "type": "string", "minLength": 1 },
+    "codexConfigRoot": { "type": "string", "minLength": 1 },
+    "allowSecondSkillRoot": { "type": "boolean" },
+    "applySeeds": { "type": "boolean" },
+    "ownershipOverrides": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "managed",
+          "project-owned",
+          "semantic-merge",
+          "new-project-seed",
+          "target-mapped",
+          "ephemeral"
+        ]
+      }
+    }
+  }
+}

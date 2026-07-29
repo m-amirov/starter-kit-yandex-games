@@ -1,0 +1,103 @@
+schemaVersion: 2
+project:
+  slug: sky-route-puzzle
+  title:
+    ru: Небесные маршруты
+    en: Sky Routes
+  platform: yandex-games
+  engine: phaser
+  target: release-candidate
+
+game:
+  genre: route-puzzle
+  audience: 8+
+  sessionMinutes: 5
+  orientation: responsive
+  description: >-
+    Игрок прокладывает безопасный маршрут воздушного курьера между островами,
+    избегая грозовых клеток и собирая почтовые марки.
+  coreLoop: [inspect-level, draw-route, start-flight, receive-result, unlock-next-level]
+  winCondition: Reach the destination and collect the required number of stamps.
+  loseCondition: Hit a storm cell or run out of energy.
+
+content:
+  campaignLevels: 12
+  tutorialLevels: 3
+  endlessMode: false
+  difficultyCurve: gentle
+  deterministicGeneration: true
+
+visual:
+  artDirection: cozy storybook sky logistics
+  assetCreation: codex
+  imageModelPreferred: true
+  proceduralFallback: true
+  firstGenerationMayBeFinal: false
+  marketing:
+    icon: true
+    cover: true
+    desktopScreenshots: 3
+    mobileScreenshots: 3
+
+audio:
+  enabled: true
+  autoplay: false
+  muteSetting: true
+  pauseForAds: true
+
+accessibility:
+  reducedMotion: true
+  colorOnlyCriticalStates: false
+  criticalInformationAudioOnly: false
+  minimumTouchTargetCssPx: 44
+
+localization:
+  languages: [ru, en]
+  autoDetectYandexLanguage: true
+  fallback: ru
+
+platform:
+  cloudSave: true
+  authentication: optional
+  leaderboards:
+    enabled: true
+    boards:
+      - id: campaignstarsv1
+        metric: campaign-stars
+  ads:
+    fullscreen: true
+    rewarded: true
+    fullscreenPolicy: result-navigation-only
+  gameplayApi: true
+  pwa: false
+  serviceWorker: false
+  externalRuntimeAssets: false
+  webGpuOnly: false
+
+quality:
+  viewports:
+    - { width: 360, height: 640 }
+    - { width: 390, height: 844 }
+    - { width: 412, height: 915 }
+    - { width: 844, height: 390 }
+    - { width: 768, height: 1024 }
+    - { width: 1024, height: 768 }
+    - { width: 1366, height: 768 }
+    - { width: 1920, height: 1080 }
+  budgets:
+    maxInitialDownloadMb: 12
+    maxZipUnpackedMb: 100
+    targetFps: 60
+    minimumFps: 30
+    maxFrameMs: 33
+    maxSceneListenerLeaks: 0
+    maxTimerLeaks: 0
+    maxRenderTextureLeaks: 0
+  zeroConsoleErrors: true
+  noOpenP0P1: true
+
+release:
+  publish: false
+  submitToModeration: false
+  zipRootMustContainIndex: true
+  includeSha256: true

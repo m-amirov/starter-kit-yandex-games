@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "starterKitVersion": "0.4.2",
+  "authorityOrder": [
+    "official-yandex-games-requirements",
+    "config/yandex-requirements.yaml",
+    "yandex-release-validation",
+    "AGENTS.md-and-PROJECT_RULES.md",
+    "game-spec.yaml",
+    "codex-engineering-system",
+    "production-skills",
+    "adapted-external-guidance"
+  ],
+  "globalRules": {
+    "yandexRequirementsMayNotBeWeakened": true,
+    "skillsMayNotSelfApproveCompliance": true,
+    "mandatoryEvidenceForRelease": true,
+    "externalRuntimeDependenciesDefault": "forbidden",
+    "pwaAndServiceWorkerDefault": "forbidden",
+    "cdnAssetsDefault": "forbidden",
+    "webGpuOnlyDefault": "forbidden",
+    "autoplayAudioDefault": "forbidden",
+    "appStoreGuidance": "not-applicable",
+    "releaseZipCreatedOnlyByReleasePass": true,
+    "codexEngineeringSystemRequired": true,
+    "relevantOnlyContextLoading": true,
+    "targetedTestsDuringIteration": true,
+    "fullSuitesOnlyAtTaskOrReleaseBarrier": true,
+    "freshEvidenceReuseSameCommitOnly": true,
+    "defaultReasoningLevel": "standard-or-medium",
+    "genericSubagentsDefault": "forbidden-unless-justified",
+    "maximumMaterialFixAttemptsPerRootCause": 3,
+    "largeLogPolicy": "summary-plus-artifact"
+  },
+  "skills": [
+    {
+      "name": "codex-engineering-system",
+      "kind": "core",
+      "activation": "every non-trivial engineering task",
+      "mandatory": true,
+      "routesThrough": [
+        "implementation-cycle"
+      ],
+      "contract": ".starter-kit/core/CODEX_ENGINEERING_SYSTEM.md"
+    },
+    {
+      "name": "implementation-cycle",
+      "kind": "core",
+      "activation": "every non-trivial engineering task",
+      "mandatory": true
+    },
+    {
+      "name": "product-quality-review",
+      "kind": "adapted",
+      "source": "game-design-v3",
+      "activation": "product thesis, vertical slice, progression or final product review",
+      "mandatoryAt": [
+        "vertical-slice",
+        "release-audit"
+      ]
+    },
+    {
+      "name": "visual-quality-gate",
+      "kind": "adapted",
+      "source": "game-art-v2",
+      "activation": "art direction, asset production, UI composition and final screenshots",
+      "mandatoryAt": [
+        "before-mass-asset-generation",
+        "release-audit"
+      ]
+    },
+    {
+      "name": "web-game-playtest",
+      "kind": "adapted",
+      "source": "web-games-v2",
+      "activation": "browser runtime, lifecycle, loading, memory or production smoke",
+      "mandatoryAt": [
+        "qa",
+        "release-audit"
+      ]
+    },
+    {
+      "name": "game-audio-quality",
+      "kind": "production",
+      "source": "game-audio-v2",
+      "activation": "music, SFX, mute, focus, ads or audio lifecycle",
+      "mandatoryWhen": "audio is shipped"
+    },
+    {
+      "name": "mobile-game-ux",
+      "kind": "production",
+      "source": "mobile-games-v2",
+      "activation": "touch controls, mobile layout, safe area or orientation",
+      "mandatoryWhen": "mobile platform is declared"
+    },
+    {
+      "name": "level-design-quality",
+      "kind": "production",
+      "activation": "levels, procedural sections, difficulty or content duration",
+      "mandatoryWhen": "game has levels or generated challenges"
+    },
+    {
+      "name": "game-feel-polish",
+      "kind": "production",
+      "activation": "input feedback, animation timing, juice or result presentation",
+      "mandatoryAt": [
+        "vertical-slice",
+        "polish"
+      ]
+    },
+    {
+      "name": "game-performance-budget",
+      "kind": "production",
+      "activation": "loading, runtime performance, memory, textures or cleanup",
+      "mandatoryAt": [
+        "vertical-slice",
+        "release-audit"
+      ]
+    },
+    {
+      "name": "asset-provenance-and-rights",
+      "kind": "production",
+      "activation": "any shipped visual, audio, font or marketing asset",
+      "mandatoryAt": [
+        "asset-import",
+        "release-audit"
+      ]
+    },
+    {
+      "name": "game-accessibility",
+      "kind": "production",
+      "activation": "controls, color, text, motion, sound or tutorial UX",
+      "mandatoryAt": [
+        "vertical-slice",
+        "release-audit"
+      ]
+    },
+    {
+      "name": "yandex-release-validation",
+      "kind": "platform",
+      "activation": "before any Yandex Games release candidate",
+      "mandatoryAt": [
+        "release-audit"
+      ]
+    },
+    {
+      "name": "release-audit",
+      "kind": "core",
+      "activation": "independent final release review",
+      "mandatoryAt": [
+        "release-audit"
+      ]
+    }
+  ],
+  "conflictRules": [
+    {
+      "topic": "PWA/service-worker/offline-install",
+      "rule": "Ignore external web-game recommendations unless PROJECT_RULES explicitly enables them and Yandex compliance evidence proves they are safe."
+    },
+    {
+      "topic": "CDN/runtime-external-assets",
+      "rule": "Do not load gameplay-critical runtime assets from external hosts. Package them in the game archive unless an official Yandex API requires otherwise."
+    },
+    {
+      "topic": "WebGPU",
+      "rule": "Never make WebGPU the sole rendering path. Declared Yandex browsers and devices must retain a tested compatible path."
+    },
+    {
+      "topic": "audio-autoplay",
+      "rule": "Audio must unlock through valid user interaction and obey Yandex ad, pause, focus and GameplayAPI lifecycle."
+    },
+    {
+      "topic": "mobile-app-store",
+      "rule": "Discard App Store, Google Play, native bundle and API-level guidance; this kit targets browser-hosted Yandex Games."
+    },
+    {
+      "topic": "visual-polish-vs-layout",
+      "rule": "Visual recommendations may not introduce clipping, overlap, unreadable text, hidden controls or orientation regressions."
+    },
+    {
+      "topic": "performance-optimization-vs-correctness",
+      "rule": "Do not remove required SDK calls, save barriers, accessibility, input guards or evidence solely to improve metrics."
+    },
+    {
+      "topic": "game-design-vs-draft-metadata",
+      "rule": "Genre and category recommendations must be justified by actual gameplay and revalidated against Yandex requirement 2.3."
+    }
+  ]
+}
