@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0 — 2026-07-29
+
+- Added the managed Concept Proof Gate and first-prototype complexity budget.
+- Added blind-playtest observation and decision templates with kill criteria.
+- Blocked mass content, meta systems, procedural modes, release ZIPs, audits,
+  and release-ready status until manual concept-proof approval.
+- Added the `$project-termination` workflow for terminal `STOP_PROJECT` decisions.
+- Added UI test-harness adjudication before production runtime changes.
+- Made silent single-agent execution, medium reasoning, targeted evidence, and
+  one final task barrier enforceable through self-tests and policy.
+- Added the 0.4.2 → 0.5.0 migration contract.
+
 ## 0.4.2 — 2026-07-28
 
 - Added explicit mandatory `$codex-engineering-system` orchestration instead of relying only on partial `$implementation-cycle` behavior.

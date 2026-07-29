@@ -1,4 +1,4 @@
-# Autonomous Yandex Games Starter Kit 0.4.2
+# Autonomous Yandex Games Starter Kit 0.5.0
 
 Версионируемая engineering/compliance инфраструктура для создания новых игр и
 безопасного обновления существующих зрелых проектов Яндекс Игр.
@@ -72,7 +72,22 @@ There is no automatic accept-all conflict flag.
 
 ## Codex engineering system
 
-Version 0.4.2 explicitly installs `$codex-engineering-system` and the managed `.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md` contract. The system remains engineering-only, routes work through `$implementation-cycle`, loads only relevant skills/context, uses targeted verification during iteration, and reserves full suites for task or release barriers. Existing same-name project skills use semantic merge.
+Version 0.5.0 installs `$codex-engineering-system` and the managed
+`.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md` contract. It defaults to silent
+single-agent execution with medium reasoning, targeted checks, one final task
+barrier, compact checkpoints, and evidence files. Existing same-name project
+skills use semantic merge.
+
+## Concept proof lifecycle
+
+Before mass production, use `.starter-kit/core/CONCEPT_PROOF_GATE.md` and the
+blind-playtest templates under `templates/product-validation/`. A vertical
+slice reaches `CONCEPT_PROOF_REVIEW_READY`, then the product owner records
+`CONTINUE_PRODUCTION`, `REDESIGN_CORE`, or `STOP_PROJECT`. Only the first
+decision permits production. `STOP_PROJECT` activates `$project-termination`.
+
+UI/E2E instability is adjudicated through
+`.starter-kit/core/TEST_HARNESS_ADJUDICATION.md` before runtime changes.
 
 ## Quality stack
 

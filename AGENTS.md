@@ -58,6 +58,11 @@ For every non-trivial task use `$codex-engineering-system`, which routes the wor
 
 Follow `.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md`: load only relevant skills and files, keep compact `.loop/` checkpoints, use the lowest sufficient reasoning level, run targeted checks during iteration, reuse only fresh same-commit evidence, and reserve full suites for task/release barriers.
 
+Before mass content or meta-system production, follow
+`.starter-kit/core/CONCEPT_PROOF_GATE.md`. `CONCEPT_PROOF_REVIEW_READY` only
+authorizes manual review. Production requires `CONTINUE_PRODUCTION`; an explicit
+`STOP_PROJECT` activates `$project-termination` and ends product repair loops.
+
 Maximum three materially different fix attempts for one root cause. Then create `artifacts/ESCALATION_REPORT.md`.
 
 ## External guidance filters
@@ -89,3 +94,12 @@ Do not introduce by default:
 ## Release candidate barrier
 
 `RELEASE_CANDIDATE_READY` requires all applicable production skills, full Yandex requirements audit, independent release audit, current evidence, no open P0/P1 defects, valid ZIP and SHA-256.
+
+## Silent execution
+
+Default to silent execution. Do not narrate routine reads, commands, phase
+changes, or next steps. Communicate only for a blocker, required approval,
+destructive action, explicit manual checkpoint, or final result. Use one agent
+and medium reasoning by default, targeted reading and tests, one final task
+barrier, no repeated green checks without state change, evidence files instead
+of long logs, and one compact checkpoint instead of re-reading history.

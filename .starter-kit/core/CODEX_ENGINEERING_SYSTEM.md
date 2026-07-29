@@ -30,8 +30,8 @@ A trivial task is a deterministic one-file change with no behavioral, build, sav
 
 ### Execution
 
-- Use the lowest reasoning level sufficient for the task. Routine scoped implementation defaults to standard/medium reasoning; higher reasoning is reserved for architecture, data-loss risk, concurrency/state-machine defects, security, unclear root causes, or escalation after failed attempts.
-- Prefer one primary agent and project-local skills. Do not spawn generic subagents, parallel reviewers, or multiple models for routine work when one scoped pass is sufficient.
+- Use the lowest reasoning level sufficient for the task. Routine scoped implementation defaults to medium reasoning; higher reasoning is reserved for architecture, data-loss risk, concurrency/state-machine defects, security, unclear root causes, or escalation after failed attempts.
+- Use one primary agent by default. Do not spawn generic subagents, parallel reviewers, or multiple models for routine work when one scoped pass is sufficient.
 - Batch related searches, reads, and checks. Avoid repeated preflight, repeated `git status`, repeated manifest scans, and repeated summaries when nothing relevant changed.
 - Do not rewrite the task as a long plan. Keep plans and progress reports proportional to the work.
 - Do not generate or inspect unrelated assets, content, viewports, browsers, or platform branches.
@@ -49,6 +49,9 @@ During implementation, run only checks affected by the change, in this order whe
 
 Do not run a full E2E suite after every edit. Do not repeat a green suite against the same commit and inputs unless the test is known to be flaky and the rerun is part of diagnosis.
 
+Use one final task barrier. Do not repeat a green check without a relevant
+change of state.
+
 ### Logs and evidence
 
 - Keep full logs in files when useful; report the command, verdict, duration when available, and the first actionable failure instead of pasting large logs into the working context.
@@ -60,3 +63,20 @@ Do not run a full E2E suite after every edit. Do not repeat a green suite agains
 - Official Yandex requirements, `AGENTS.md`, `PROJECT_RULES.md`, and project-specific protected systems remain authoritative.
 - Existing project-local `codex-engineering-system` files require semantic merge. Never overwrite them blindly or create a second active skill root.
 - The system coordinates engineering; it does not authorize `RELEASE_CANDIDATE_READY`. Yandex validation and independent release audit remain mandatory.
+
+## Silent execution and progress reporting
+
+Default to silent execution. Do not narrate routine file reads, commands,
+phase transitions, or next steps. Communicate during execution only for a
+blocker, required approval, destructive action, explicit manual checkpoint, or
+the final result.
+
+Use targeted reading and targeted tests, preserve detailed evidence in files
+instead of chat logs, and update one compact `.loop/` checkpoint instead of
+re-reading task history.
+
+## UI test harness adjudication
+
+Before changing production code because of an unstable UI or E2E test, follow
+`.starter-kit/core/TEST_HARNESS_ADJUDICATION.md`. Separate product defects from
+harness defects and preserve adjudication evidence.

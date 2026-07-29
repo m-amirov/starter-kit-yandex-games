@@ -122,6 +122,21 @@
       "conflictPolicy": "semantic-merge"
     },
     {
+      "source": ".codex/skills/project-termination/SKILL.md",
+      "logicalId": "skill:project-termination:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/project-termination/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
       "source": ".codex/skills/level-design-quality/SKILL.md",
       "logicalId": "skill:level-design-quality:SKILL.md",
       "ownership": "target-mapped",
@@ -425,6 +440,36 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": ".starter-kit/core/CONCEPT_PROOF_GATE.md",
+      "logicalId": "managed:concept-proof-gate",
+      "ownership": "managed",
+      "target": ".starter-kit/core/CONCEPT_PROOF_GATE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": ".starter-kit/core/TEST_HARNESS_ADJUDICATION.md",
+      "logicalId": "managed:test-harness-adjudication",
+      "ownership": "managed",
+      "target": ".starter-kit/core/TEST_HARNESS_ADJUDICATION.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "VERSION",
       "logicalId": "managed:version",
       "ownership": "managed",
@@ -654,6 +699,66 @@
       "logicalId": "migration:0.4.2-codex-engineering-system",
       "ownership": "managed",
       "target": "migrations/0.4.2-codex-engineering-system.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.5.0-concept-proof-lifecycle.md",
+      "logicalId": "migration:0.5.0-concept-proof-lifecycle",
+      "ownership": "managed",
+      "target": "migrations/0.5.0-concept-proof-lifecycle.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "templates/product-validation/BLIND_PLAYTEST.md",
+      "logicalId": "managed:blind-playtest-template",
+      "ownership": "managed",
+      "target": "templates/product-validation/BLIND_PLAYTEST.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "templates/product-validation/OBSERVATIONS.md",
+      "logicalId": "managed:blind-playtest-observations",
+      "ownership": "managed",
+      "target": "templates/product-validation/OBSERVATIONS.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "templates/product-validation/DECISION.md",
+      "logicalId": "managed:concept-proof-decision",
+      "ownership": "managed",
+      "target": "templates/product-validation/DECISION.md",
       "modes": [
         "init",
         "update"

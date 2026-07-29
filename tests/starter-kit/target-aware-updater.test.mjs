@@ -426,8 +426,8 @@ test('AGENTS semantic conflict creates proposal and merge notes on apply', async
       mode: 'update'
     });
     assert.equal(result.conflicts.some((item) => item.target === 'AGENTS.md'), true);
-    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.4.2', 'AGENTS.md.new')), true);
-    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.4.2', 'AGENTS.md.merge.md')), true);
+    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.5.0', 'AGENTS.md.new')), true);
+    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.5.0', 'AGENTS.md.merge.md')), true);
     assert.deepEqual(hashProduct(target), before);
   } finally {
     removeTemp(parent);
@@ -504,7 +504,7 @@ test('status exposes target profile, manifest and ownership data', async () => {
   try {
     await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile: 'new-project', mode: 'init' });
     const status = inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target });
-    assert.equal(status.sourceVersion, '0.4.2');
+    assert.equal(status.sourceVersion, '0.5.0');
     assert.equal(status.updaterSchemaVersion, 2);
     assert.equal(status.projectType, 'new');
     assert.equal(status.skillRoot, '.codex/skills');
@@ -522,6 +522,28 @@ test('status detects a locally modified managed file', async () => {
     const status = inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target });
     assert.equal(status.status, 'modified');
     assert.equal(status.modifiedManagedFiles.includes('tools/starter-kit/status.mjs'), true);
+  } finally {
+    removeTemp(parent);
+  }
+});
+
+test('explicit managed resolution replaces only a drifted baseline-managed file', async () => {
+  const { parent, target } = tempFixture('empty-new-project');
+  try {
+    await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile: 'new-project', mode: 'init' });
+    const managed = path.join(target, '.starter-kit', 'core', 'CODEX_ENGINEERING_SYSTEM.md');
+    fs.appendFileSync(managed, '\nlocal managed drift\n');
+    const result = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile: 'new-project',
+      mode: 'update',
+      resolveManaged: ['managed:codex-engineering-system-core']
+    });
+    assert.equal(result.conflicts.length, 0);
+    assert.equal(result.resolved.some((item) => item.resolution === 'replace-managed-drift'), true);
+    assert.equal(sha256File(managed), sha256File(path.join(ROOT, '.starter-kit', 'core', 'CODEX_ENGINEERING_SYSTEM.md')));
+    assert.equal(inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target }).status, 'clean');
   } finally {
     removeTemp(parent);
   }

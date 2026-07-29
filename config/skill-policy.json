@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "starterKitVersion": "0.4.2",
+  "starterKitVersion": "0.5.0",
   "authorityOrder": [
     "official-yandex-games-requirements",
     "config/yandex-requirements.yaml",
@@ -27,8 +27,17 @@
     "targetedTestsDuringIteration": true,
     "fullSuitesOnlyAtTaskOrReleaseBarrier": true,
     "freshEvidenceReuseSameCommitOnly": true,
-    "defaultReasoningLevel": "standard-or-medium",
+    "defaultReasoningLevel": "medium",
+    "onePrimaryAgentDefault": true,
     "genericSubagentsDefault": "forbidden-unless-justified",
+    "silentExecutionDefault": true,
+    "routineProgressNarration": "forbidden",
+    "singleFinalTaskBarrier": true,
+    "repeatGreenChecksWithoutStateChange": "forbidden",
+    "conceptProofRequiredBeforeProduction": true,
+    "blindPlaytestRequiredBeforeMassContent": true,
+    "stopProjectIsTerminal": true,
+    "testHarnessAdjudicationRequired": true,
     "maximumMaterialFixAttemptsPerRootCause": 3,
     "largeLogPolicy": "summary-plus-artifact"
   },
@@ -48,6 +57,13 @@
       "kind": "core",
       "activation": "every non-trivial engineering task",
       "mandatory": true
+    },
+    {
+      "name": "project-termination",
+      "kind": "core",
+      "activation": "after an explicit STOP_PROJECT decision",
+      "mandatoryWhen": "product owner stops the project",
+      "contract": ".starter-kit/core/CONCEPT_PROOF_GATE.md"
     },
     {
       "name": "product-quality-review",

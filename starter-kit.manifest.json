@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.4.2",
+  "version": "0.5.0",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -129,7 +129,23 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "fa31f052944f52b6b8af4fb536b05d8924d5a0c13903a9e6e0ea5b943af1d550"
+      "sha256": "2eb5ce88ce30d1ab65b14d299d4d570351b2429b416d237906a7a9b011853535"
+    },
+    {
+      "source": ".codex/skills/project-termination/SKILL.md",
+      "logicalId": "skill:project-termination:SKILL.md",
+      "ownership": "target-mapped",
+      "targetTemplate": "{skillRoot}/project-termination/SKILL.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge",
+      "sha256": "1f3c27fb1b909f5c527c057106a030bf8e14e54f5c1182b154530f78d1ae663d"
     },
     {
       "source": ".codex/skills/level-design-quality/SKILL.md",
@@ -321,7 +337,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "e10075418fe27a6636ede68e9a7e74c311e56fbcbf13cfe76da81eb0ba9984e5"
+      "sha256": "59d5709508760e569d9ed871e07a66768714c6cecc0629bb01d591ab68d198f9"
     },
     {
       "source": "package.json",
@@ -337,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "2ef860c9247a64e4aeeff251d35caea5fc9051497e941eb2eec63f909055685b"
+      "sha256": "ac3efba8749a8ac2224944b8b0a59cbbaa9b9194ecae19f882df50580d9f0252"
     },
     {
       "source": "index.html",
@@ -437,7 +453,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "079096a37e2230fadd0b951c77e76d912a7a4f2b6cf2f76ffc69d7acc3a0b31c"
+      "sha256": "16e5bb3ba31246d8cdab077bfa518ae38ba65a4cb70db9d8b139eb0d7ae37a08"
     },
     {
       "source": ".starter-kit/core/CODEX_ENGINEERING_SYSTEM.md",
@@ -453,7 +469,39 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "819cdab0e51c3275a230049d5325fd5f44683ba7bd415e298c1ffe65c7a412ff"
+      "sha256": "fccb1b484152eeab5520c37bc7a2dc35cfe2ecc161708ec505b9b7132f6e9c80"
+    },
+    {
+      "source": ".starter-kit/core/CONCEPT_PROOF_GATE.md",
+      "logicalId": "managed:concept-proof-gate",
+      "ownership": "managed",
+      "target": ".starter-kit/core/CONCEPT_PROOF_GATE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "e00f296c5ebd7add2414801c353a8b2b1fcb6e360aba033e4f53f26c020d7ff1"
+    },
+    {
+      "source": ".starter-kit/core/TEST_HARNESS_ADJUDICATION.md",
+      "logicalId": "managed:test-harness-adjudication",
+      "ownership": "managed",
+      "target": ".starter-kit/core/TEST_HARNESS_ADJUDICATION.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "d4c6a18a6db562b1c723ffa6cf2486c826636403d2c2e93f11be131dd0fad28d"
     },
     {
       "source": "VERSION",
@@ -469,7 +517,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "e2f7bb608ebc9e24092ffcb796ad0aa83f0015afe23635f017df52273150f00d"
+      "sha256": "a0ad50640139a524f86591157145bf1d4674ea9c065bfea21558f0f7b04430c8"
     },
     {
       "source": "CHANGELOG.md",
@@ -485,7 +533,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "0f06c870ce349a68b304b1538104994b9daba5250ac4f18ffbd34793c69c4e6d"
+      "sha256": "d8af2f309761ebde1386a08c30441157934907836ed142acc74e0667cd5ae851"
     },
     {
       "source": "README.md",
@@ -501,7 +549,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "ea9c3ce69b979cde67379b26537777f47f59284014b487bf2f37dd2d210a7eb3"
+      "sha256": "89edaa91ec1326a9f1b0adde74df2a3f34eaf1692e1d72b20a41f5e6dd629791"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -581,7 +629,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "f6b2ce8228dd2e8913dfc3fc8cb045fd076227496cd8b1050c08eb4035ab0fe9"
+      "sha256": "a4ebebe153744b687a597f34bd589ca9b010cabfeb362469611a2a6d709df1cb"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -712,6 +760,70 @@
       "sha256": "1642c5231c4e19fe4b8232ab71dd7ab0361f623f75da295f67b8de3ab632fd57"
     },
     {
+      "source": "migrations/0.5.0-concept-proof-lifecycle.md",
+      "logicalId": "migration:0.5.0-concept-proof-lifecycle",
+      "ownership": "managed",
+      "target": "migrations/0.5.0-concept-proof-lifecycle.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "2b1cd48a391775d30bc6ab3ee1c921435ac5f78c323e46b1a61674d1098c2a82"
+    },
+    {
+      "source": "templates/product-validation/BLIND_PLAYTEST.md",
+      "logicalId": "managed:blind-playtest-template",
+      "ownership": "managed",
+      "target": "templates/product-validation/BLIND_PLAYTEST.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "26c70482aa9ca4111051131fd221a1ecc43e07727acba528087f4fe811d6e8f2"
+    },
+    {
+      "source": "templates/product-validation/OBSERVATIONS.md",
+      "logicalId": "managed:blind-playtest-observations",
+      "ownership": "managed",
+      "target": "templates/product-validation/OBSERVATIONS.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "98f5972509bb94382730128499d6274838bfc7fc12f5c02acaa747ed76ae65fb"
+    },
+    {
+      "source": "templates/product-validation/DECISION.md",
+      "logicalId": "managed:concept-proof-decision",
+      "ownership": "managed",
+      "target": "templates/product-validation/DECISION.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "a4d36eb710608c5e51971290f4684e33d8757978f479ad3a56614a31333761df"
+    },
+    {
       "source": "docs/MANIFEST_SCHEMA.md",
       "logicalId": "managed:manifest-schema-doc",
       "ownership": "managed",
@@ -741,7 +853,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "c0158aa728b6a77996adb6b493312e61d54e937642dc584bf0df188e0771a64d"
+      "sha256": "9ba1b069cf3426360f01288c2770482e03a6da95525593d460eb3af59058e53f"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -821,7 +933,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "e3e61293b1f703d6c64e5c106b170347ba0148ed992d7a48ba532c32e8f886ca"
+      "sha256": "a4fea5f73f90c799368e3486fcf63b97e41e82f39fafa07c0d14df947a572cc7"
     },
     {
       "source": "tools/starter-kit/build-manifest.mjs",
@@ -949,7 +1061,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "f32e9d189069ab42f8cf402984b338005226867f472b668f831c6fe9628fc3ca"
+      "sha256": "a59262bf88f09df12b04da947bbc86d64e13a9cf020a4b0b59726bf50c116d36"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -997,7 +1109,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "22a7761396ee8a354d6167e1dedc4a20b5965470de8b7ce7835db8fb35e4044c"
+      "sha256": "489d85ee80f8663da5932fd1e8b956c9de7769f86bb8d112dec81c815c863ac0"
     },
     {
       "source": "tools/starter-kit/update-self-test.mjs",

@@ -42,13 +42,46 @@ function validatePolicy(root, skillRoot, errors) {
   if (!policy.globalRules?.targetedTestsDuringIteration) errors.push('targeted test policy is not enabled');
   if (!policy.globalRules?.fullSuitesOnlyAtTaskOrReleaseBarrier) errors.push('full-suite barrier policy is not enabled');
   if (!policy.globalRules?.freshEvidenceReuseSameCommitOnly) errors.push('fresh evidence policy is not enabled');
+  if (policy.globalRules?.defaultReasoningLevel !== 'medium') errors.push('default reasoning must be medium');
+  if (!policy.globalRules?.onePrimaryAgentDefault) errors.push('one primary agent policy is not enabled');
+  if (!policy.globalRules?.silentExecutionDefault) errors.push('silent execution policy is not enabled');
+  if (!policy.globalRules?.singleFinalTaskBarrier) errors.push('single final task barrier is not enabled');
+  if (policy.globalRules?.repeatGreenChecksWithoutStateChange !== 'forbidden') errors.push('repeat-green policy is not forbidden');
+  if (!policy.globalRules?.conceptProofRequiredBeforeProduction) errors.push('concept proof production barrier is not enabled');
+  if (!policy.globalRules?.blindPlaytestRequiredBeforeMassContent) errors.push('blind playtest barrier is not enabled');
+  if (!policy.globalRules?.stopProjectIsTerminal) errors.push('STOP_PROJECT terminal policy is not enabled');
+  if (!policy.globalRules?.testHarnessAdjudicationRequired) errors.push('test harness adjudication is not enabled');
   const coreContract = path.join(root, '.starter-kit', 'core', 'CODEX_ENGINEERING_SYSTEM.md');
   if (!fs.existsSync(coreContract)) errors.push('codex engineering system core contract is missing');
   else {
     const coreText = fs.readFileSync(coreContract, 'utf8');
-    for (const token of ['Token and context economy', 'Do not run a full E2E suite after every edit', 'lowest reasoning level sufficient', '.loop/']) {
+    for (const token of ['Token and context economy', 'Do not run a full E2E suite after every edit', 'lowest reasoning level sufficient', '.loop/', 'Default to silent execution', 'one final task barrier', 'TEST_HARNESS_ADJUDICATION.md']) {
       if (!coreText.includes(token)) errors.push(`engineering system contract token missing: ${token}`);
     }
+  }
+  const conceptGate = path.join(root, '.starter-kit', 'core', 'CONCEPT_PROOF_GATE.md');
+  const harnessContract = path.join(root, '.starter-kit', 'core', 'TEST_HARNESS_ADJUDICATION.md');
+  const requiredTemplates = [
+    'templates/product-validation/BLIND_PLAYTEST.md',
+    'templates/product-validation/OBSERVATIONS.md',
+    'templates/product-validation/DECISION.md'
+  ];
+  if (!fs.existsSync(conceptGate)) errors.push('concept proof gate is missing');
+  else {
+    const conceptText = fs.readFileSync(conceptGate, 'utf8');
+    for (const token of ['CONCEPT_PROOF_REVIEW_READY', 'CONTINUE_PRODUCTION', 'REDESIGN_CORE', 'STOP_PROJECT', 'release ZIP', 'Daily', 'solver']) {
+      if (!conceptText.includes(token)) errors.push(`concept proof token missing: ${token}`);
+    }
+  }
+  if (!fs.existsSync(harnessContract)) errors.push('test harness adjudication contract is missing');
+  else {
+    const harnessText = fs.readFileSync(harnessContract, 'utf8');
+    for (const token of ['minimal native fixture', 'elementFromPoint', 'product defect', 'harness defect', 'pointer, touch, and input']) {
+      if (!harnessText.includes(token)) errors.push(`harness adjudication token missing: ${token}`);
+    }
+  }
+  for (const relative of requiredTemplates) {
+    if (!fs.existsSync(path.join(root, relative))) errors.push(`product validation template missing: ${relative}`);
   }
   const yandexIndex = policy.skills.findIndex((skill) => skill.name === 'yandex-release-validation');
   const releaseIndex = policy.skills.findIndex((skill) => skill.name === 'release-audit');
@@ -70,7 +103,7 @@ let targetStatus;
 if (sourceMode) {
   version = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
   const packageVersion = readJson(path.join(ROOT, 'package.json')).version;
-  if (version !== '0.4.2' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
+  if (version !== '0.5.0' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
   manifest = loadManifest(ROOT);
   validateManifest(manifest, ROOT);
   if (manifest.version !== version) errors.push(`manifest version mismatch: ${manifest.version}`);

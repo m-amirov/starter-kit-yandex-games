@@ -26,15 +26,19 @@ Do not add this system to product runtime or the release ZIP. In a mature projec
 
 ## Token discipline
 
-- default to standard/medium reasoning for routine scoped work;
+- default to medium reasoning for routine scoped work;
 - use higher reasoning only for architecture, state/concurrency, security, data-loss risk, unclear root cause, or escalation;
 - do not repeatedly read unchanged files or stable architecture;
-- do not load the entire skill catalog, use generic subagents, or invoke multiple models by default;
+- use one primary agent by default; do not load the entire skill catalog, use generic subagents, or invoke multiple models by default;
 - batch related reads and commands;
 - run targeted tests during iteration and full suites only at the task or release barrier;
 - reuse fresh evidence only for the same commit, inputs, configuration, and unaffected scope;
 - summarize large logs and keep full output in an artifact when needed;
 - do not repeat preflight, worktree scans, or reports without a relevant state change.
+- default to silent execution and communicate only for blockers, approvals,
+  destructive actions, explicit manual checkpoints, or the final result;
+- run one final task barrier and do not repeat green checks without a relevant
+  state change.
 
 ## Required result
 

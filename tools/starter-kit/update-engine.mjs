@@ -210,6 +210,7 @@ function processEntry(context) {
     nextState,
     dryRun,
     resolveSemantic,
+    resolveManaged,
     report
   } = context;
   if (entry.logicalId === 'contract:package-json') {
@@ -238,6 +239,7 @@ function processEntry(context) {
     || entry.ownership === 'target-mapped'
     || entry.conflictPolicy === 'semantic-merge';
   const explicitResolution = resolveSemantic.has(entry.logicalId) || resolveSemantic.has(entry.target);
+  const explicitManagedResolution = resolveManaged.has(entry.logicalId) || resolveManaged.has(entry.target);
 
   if (!exists) {
     report.created.push({ logicalId: entry.logicalId, target: entry.target, ownership: entry.ownership });
@@ -297,6 +299,16 @@ function processEntry(context) {
     return;
   }
 
+  if (baseline && explicitManagedResolution && !semantic) {
+    report.resolved.push({ logicalId: entry.logicalId, target: entry.target, resolution: 'replace-managed-drift' });
+    if (!dryRun) {
+      copySource(sourceRoot, targetRoot, entry);
+      removeConflictFiles(targetRoot, manifest.version, entry.target);
+    }
+    nextState.baseline[entry.logicalId] = { target: entry.target, sourceHash: entry.sha256, targetHash: entry.sha256 };
+    return;
+  }
+
   const reason = baseline ? 'Managed file has local modifications' : 'Existing file has no managed baseline';
   report.conflicts.push(writeConflict(sourceRoot, targetRoot, manifest, entry, reason, dryRun));
 }
@@ -308,7 +320,8 @@ export async function executeUpdate(options) {
     profile: requestedProfile,
     mode = 'update',
     dryRun = false,
-    resolveSemantic = []
+    resolveSemantic = [],
+    resolveManaged = []
   } = options;
   if (!['init', 'update'].includes(mode)) throw new Error(`Unsupported updater mode: ${mode}`);
   const source = path.resolve(sourceRoot);
@@ -364,6 +377,7 @@ export async function executeUpdate(options) {
   };
 
   const resolutions = new Set(resolveSemantic);
+  const managedResolutions = new Set(resolveManaged);
   const resolvable = new Set(entries
     .filter((entry) => entry.ownership === 'semantic-merge'
       || entry.ownership === 'target-mapped'
@@ -372,6 +386,12 @@ export async function executeUpdate(options) {
     .flatMap((entry) => [entry.logicalId, entry.target]));
   for (const resolution of resolutions) {
     if (!resolvable.has(resolution)) throw new Error(`Unknown or non-semantic resolution: ${resolution}`);
+  }
+  const managedResolvable = new Set(entries
+    .filter((entry) => entry.ownership === 'managed' && entry.conflictPolicy === 'replace-if-baseline')
+    .flatMap((entry) => [entry.logicalId, entry.target]));
+  for (const resolution of managedResolutions) {
+    if (!managedResolvable.has(resolution)) throw new Error(`Unknown or non-managed resolution: ${resolution}`);
   }
   for (const entry of entries) {
     processEntry({
@@ -383,6 +403,7 @@ export async function executeUpdate(options) {
       nextState,
       dryRun,
       resolveSemantic: resolutions,
+      resolveManaged: managedResolutions.size ? managedResolutions : new Set(),
       report
     });
   }

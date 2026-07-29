@@ -6,6 +6,11 @@ This file is managed by the starter kit. Put game-specific rules in `PROJECT_RUL
 
 Read and obey `.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md`. Use `$codex-engineering-system` for every non-trivial engineering task; it must remain separate from product runtime and release artifacts.
 
+Before producing a campaign, meta-system, procedural modes, or release
+artifacts, satisfy `.starter-kit/core/CONCEPT_PROOF_GATE.md`. The status
+`CONCEPT_PROOF_REVIEW_READY` is not release readiness. An explicit
+`STOP_PROJECT` activates `$project-termination` and ends content production.
+
 ## Skill routing
 
 Read `config/skill-policy.json` and `docs/SKILL_PRECEDENCE.md` before selecting skills. Load only skills relevant to the current task. Use targeted checks during iteration and full suites only at the task or release barrier. Reuse evidence only when it is fresh for the same commit and inputs. Official Yandex requirements always take priority.
