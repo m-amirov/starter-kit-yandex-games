@@ -1,4 +1,4 @@
-# Autonomous Yandex Games Starter Kit 0.5.0
+# Autonomous Yandex Games Starter Kit 0.5.1
 
 Версионируемая engineering/compliance инфраструктура для создания новых игр и
 безопасного обновления существующих зрелых проектов Яндекс Игр.
@@ -88,6 +88,10 @@ decision permits production. `STOP_PROJECT` activates `$project-termination`.
 
 UI/E2E instability is adjudicated through
 `.starter-kit/core/TEST_HARNESS_ADJUDICATION.md` before runtime changes.
+
+## Screenshot Visual Gate
+
+`SCREENSHOT_VISUAL_GATE` is mandatory before accepting a production-visible gameplay, environment, enemy/boss, attack, VFX, Living Arena, UI, asset, responsive-layout, or meaningful visual-state pass. It captures the affected current-HEAD production runtime states, reviews them against the project's art contracts and accepted baseline, then permits the acceptance token only after any correction/recheck. The matrix is impact-based rather than a whole-project recapture; gameplay/UI changes include representative desktop and actual-touch mobile evidence. See `templates/visual-review/SCREENSHOT_VISUAL_GATE.md`.
 
 ## Quality stack
 

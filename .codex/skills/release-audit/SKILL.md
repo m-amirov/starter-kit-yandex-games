@@ -16,7 +16,7 @@ Do not trust the implementation summary. Re-run required commands and inspect th
 ## Order
 
 1. verify commit/worktree and starter-kit status;
-2. validate evidence freshness against the current build/commit;
+2. validate evidence freshness against the current build/commit, including current-HEAD `SCREENSHOT_VISUAL_GATE` evidence for every production-visible accepted pass;
 3. run the required automated gates;
 4. inspect P0/P1 defect status;
 5. execute `$yandex-release-validation` independently;
@@ -27,3 +27,4 @@ Do not trust the implementation summary. Re-run required commands and inspect th
 ## Prohibition
 
 Missing, stale, fabricated, skipped or manually assumed evidence blocks the release.
+Automated functional/E2E PASS does not replace actual-runtime screenshot review.

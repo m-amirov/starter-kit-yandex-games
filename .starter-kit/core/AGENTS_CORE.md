@@ -20,6 +20,7 @@ Read `config/skill-policy.json` and `docs/SKILL_PRECEDENCE.md` before selecting 
 `SPEC → PRODUCT THESIS → VERTICAL SLICE → CONTENT/ASSETS → PLATFORM → QA → YANDEX VALIDATION → INDEPENDENT RELEASE AUDIT → RC`
 
 A stage advances only with fresh evidence tied to the current commit/build.
+Every production-visible stage also requires `SCREENSHOT_VISUAL_GATE` under `$visual-quality-gate` before its success, acceptance, owner-review, visual or product-completion token; project-specific visual contracts may be stricter.
 
 ## No accidental release
 

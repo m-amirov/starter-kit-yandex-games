@@ -725,10 +725,40 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": "migrations/0.5.1-screenshot-visual-gate.md",
+      "logicalId": "migration:0.5.1-screenshot-visual-gate",
+      "ownership": "managed",
+      "target": "migrations/0.5.1-screenshot-visual-gate.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "templates/product-validation/BLIND_PLAYTEST.md",
       "logicalId": "managed:blind-playtest-template",
       "ownership": "managed",
       "target": "templates/product-validation/BLIND_PLAYTEST.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "templates/visual-review/SCREENSHOT_VISUAL_GATE.md",
+      "logicalId": "managed:screenshot-visual-gate-template",
+      "ownership": "managed",
+      "target": "templates/visual-review/SCREENSHOT_VISUAL_GATE.md",
       "modes": [
         "init",
         "update"

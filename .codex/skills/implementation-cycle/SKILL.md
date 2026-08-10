@@ -17,9 +17,10 @@ This skill is subordinate to the current official Yandex Games requirements, `co
 4. Diagnose the smallest root cause; do not patch symptoms with overlays, delays or weakened assertions.
 5. Implement one coherent change.
 6. Run targeted unit, browser and build checks relevant to the change.
-7. Add regression coverage.
-8. Inspect the diff, generated files and worktree.
-9. Escalate rather than claiming completion when a mandatory gate is unavailable or red.
+7. At an acceptance boundary for a production-visible pass, run `SCREENSHOT_VISUAL_GATE` through `$visual-quality-gate`: actual-runtime current-HEAD capture, impact-based visual inspection, correction/recheck, then acceptance token.
+8. Add regression coverage.
+9. Inspect the diff, generated files and worktree.
+10. Escalate rather than claiming completion when a mandatory gate is unavailable or red.
 
 ## Efficiency
 
@@ -33,3 +34,4 @@ Obey `.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md`. In particular:
 - default to the lowest sufficient reasoning level and avoid generic subagents or multiple models when a local skill and one primary pass cover the task;
 - summarize large logs and keep full output in artifacts rather than expanding working context;
 - keep product, engineering and generated evidence commits separated when project rules require it.
+- screenshot capture is not needed after each RED/GREEN iteration; it is required before acceptance of a production-visible change. Functional/E2E PASS alone is insufficient, and ambiguous classification is visual by default.

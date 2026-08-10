@@ -38,6 +38,9 @@
     "blindPlaytestRequiredBeforeMassContent": true,
     "stopProjectIsTerminal": true,
     "testHarnessAdjudicationRequired": true,
+    "screenshotVisualGateRequiredForProductionVisiblePasses": true,
+    "screenshotVisualGateAmbiguityPolicy": "required",
+    "visualAcceptanceRequiresCurrentHeadRuntimeScreenshots": true,
     "maximumMaterialFixAttemptsPerRootCause": 3,
     "largeLogPolicy": "summary-plus-artifact"
   },

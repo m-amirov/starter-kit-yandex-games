@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.1 — 2026-08-10
+
+- Added the canonical mandatory `SCREENSHOT_VISUAL_GATE` for production-visible passes, with actual current-HEAD runtime evidence and impact-based state matrices.
+- Wired the gate into the engineering acceptance sequence, visual and product barriers, release audit, policy, template rules, self-tests, and target-aware updater.
+- Blocked implementation, acceptance, owner-review, visual, and product completion tokens when the required visual evidence is absent or failing.
+- Added the 0.5.0 → 0.5.1 migration guide; managed drift remains explicit and project-owned visual rules remain preserved.
+
 ## 0.5.0 — 2026-07-29
 
 - Added the managed Concept Proof Gate and first-prototype complexity budget.

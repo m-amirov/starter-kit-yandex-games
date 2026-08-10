@@ -51,11 +51,14 @@ function validatePolicy(root, skillRoot, errors) {
   if (!policy.globalRules?.blindPlaytestRequiredBeforeMassContent) errors.push('blind playtest barrier is not enabled');
   if (!policy.globalRules?.stopProjectIsTerminal) errors.push('STOP_PROJECT terminal policy is not enabled');
   if (!policy.globalRules?.testHarnessAdjudicationRequired) errors.push('test harness adjudication is not enabled');
+  if (!policy.globalRules?.screenshotVisualGateRequiredForProductionVisiblePasses) errors.push('screenshot visual gate policy is not enabled');
+  if (policy.globalRules?.screenshotVisualGateAmbiguityPolicy !== 'required') errors.push('ambiguous visual changes must require the screenshot gate');
+  if (!policy.globalRules?.visualAcceptanceRequiresCurrentHeadRuntimeScreenshots) errors.push('current-head runtime screenshot policy is not enabled');
   const coreContract = path.join(root, '.starter-kit', 'core', 'CODEX_ENGINEERING_SYSTEM.md');
   if (!fs.existsSync(coreContract)) errors.push('codex engineering system core contract is missing');
   else {
     const coreText = fs.readFileSync(coreContract, 'utf8');
-    for (const token of ['Token and context economy', 'Do not run a full E2E suite after every edit', 'lowest reasoning level sufficient', '.loop/', 'Default to silent execution', 'one final task barrier', 'TEST_HARNESS_ADJUDICATION.md']) {
+    for (const token of ['Token and context economy', 'Do not run a full E2E suite after every edit', 'lowest reasoning level sufficient', '.loop/', 'Default to silent execution', 'one final task barrier', 'TEST_HARNESS_ADJUDICATION.md', 'SCREENSHOT_VISUAL_GATE', 'runtime screenshot capture']) {
       if (!coreText.includes(token)) errors.push(`engineering system contract token missing: ${token}`);
     }
   }
@@ -64,7 +67,8 @@ function validatePolicy(root, skillRoot, errors) {
   const requiredTemplates = [
     'templates/product-validation/BLIND_PLAYTEST.md',
     'templates/product-validation/OBSERVATIONS.md',
-    'templates/product-validation/DECISION.md'
+    'templates/product-validation/DECISION.md',
+    'templates/visual-review/SCREENSHOT_VISUAL_GATE.md'
   ];
   if (!fs.existsSync(conceptGate)) errors.push('concept proof gate is missing');
   else {
@@ -103,7 +107,7 @@ let targetStatus;
 if (sourceMode) {
   version = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
   const packageVersion = readJson(path.join(ROOT, 'package.json')).version;
-  if (version !== '0.5.0' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
+  if (version !== '0.5.1' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
   manifest = loadManifest(ROOT);
   validateManifest(manifest, ROOT);
   if (manifest.version !== version) errors.push(`manifest version mismatch: ${manifest.version}`);

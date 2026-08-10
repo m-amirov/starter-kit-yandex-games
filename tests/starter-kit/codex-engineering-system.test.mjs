@@ -31,6 +31,21 @@ test('token economy contract forbids repeated broad verification during iteratio
   assert.match(contract, /Do not repeat a green check/);
 });
 
+test('screenshot visual gate is a canonical acceptance barrier', () => {
+  const contract = read('.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md');
+  const visual = read('.codex/skills/visual-quality-gate/SKILL.md');
+  const template = read('templates/visual-review/SCREENSHOT_VISUAL_GATE.md');
+  assert.match(contract, /SCREENSHOT_VISUAL_GATE/);
+  assert.match(contract, /runtime screenshot capture → visual inspection → correction/i);
+  assert.match(visual, /SCREENSHOT_VISUAL_GATE/);
+  assert.match(visual, /FUNCTIONALLY_IMPLEMENTED/);
+  assert.match(visual, /actual touch path/i);
+  assert.match(template, /Current HEAD/);
+  assert.match(template, /Desktop/);
+  assert.match(template, /Mobile/);
+  assert.match(read('PROJECT_RULES.md'), /SCREENSHOT_VISUAL_GATE/);
+});
+
 test('concept proof blocks production until manual review', () => {
   const gate = read('.starter-kit/core/CONCEPT_PROOF_GATE.md');
   for (const token of [

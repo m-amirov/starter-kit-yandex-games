@@ -30,6 +30,20 @@ Before mass asset production create:
 
 The first generated image is never automatically final.
 
+## Screenshot Visual Gate
+
+`SCREENSHOT_VISUAL_GATE` is the mandatory acceptance part of this skill for every production-visible pass affecting gameplay, biome/environment, enemies/elites/bosses, attacks/telegraphs, VFX, Living Arena presentation, UI/HUD/screens, assets, responsive layout, or visually meaningful states/interactions. A purely non-visual rendered-output-neutral change may skip it only with evidence; ambiguity requires the gate.
+
+Capture screenshots from the actual current-HEAD production runtime, with each affected state/effect active. Do not accept isolated previews, mockups, editor or DEV-only scenes, or inactive effects. Test bootstrap is permitted only to reach a state and must be marked without replacing production semantics.
+
+Use an impact-based matrix: affected enemy work covers normal, pressure/attack, and affected elite/boss states; bosses cover introduction/readability, every materially different attack/phase, and crowded combat; biomes cover environment, ordinary combat, interaction, and pressure; UI covers normal, long RU/EN text, interactive, and relevant modal/result states. Gameplay/UI changes require a representative desktop and mobile viewport. Mobile gameplay evidence uses an actual touch path.
+
+Review against project-owned `ART_BIBLE`, `VISUAL_LANGUAGE`, asset manifests, and accepted baseline. Fail on placeholders/debug visuals, generic circles/lines/polygons as the main art language, technical geometry over finished art, indistinguishable role silhouettes, elite-as-tint/ring/glow, debug-like boss attacks, biome reskins without identity, flat environments, poor hierarchy, obscuring VFX, unreadable telegraphs, layout/localization or responsive defects, lost important objects, or style/baseline regressions.
+
+Save only the compact needed evidence: screenshot set, short verdict, checked states/viewports, and current HEAD; add a before/after contact sheet for rework when useful. An infrastructure timeout/failure is an evidence gap, not a visual PASS. Before the gate passes, do not issue `*_IMPLEMENTED`, `*_ACCEPTED`, `*_OWNER_REVIEW_READY`, or visual/product completion tokens. Use `FUNCTIONALLY_IMPLEMENTED` and `VISUAL_ACCEPTANCE: FAIL` where accurate.
+
+For games, a new enemy, elite, boss, biome, attack, or Living Arena effect is not production-ready merely because an asset exists, tests pass, collision works, or E2E reaches the state: inspect it in real combat context.
+
 ## Review criteria
 
 - coherent perspective, materials, lighting, outlines and scale;

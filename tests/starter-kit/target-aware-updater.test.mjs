@@ -426,8 +426,8 @@ test('AGENTS semantic conflict creates proposal and merge notes on apply', async
       mode: 'update'
     });
     assert.equal(result.conflicts.some((item) => item.target === 'AGENTS.md'), true);
-    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.5.0', 'AGENTS.md.new')), true);
-    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.5.0', 'AGENTS.md.merge.md')), true);
+    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.5.1', 'AGENTS.md.new')), true);
+    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.5.1', 'AGENTS.md.merge.md')), true);
     assert.deepEqual(hashProduct(target), before);
   } finally {
     removeTemp(parent);
@@ -504,7 +504,7 @@ test('status exposes target profile, manifest and ownership data', async () => {
   try {
     await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile: 'new-project', mode: 'init' });
     const status = inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target });
-    assert.equal(status.sourceVersion, '0.5.0');
+    assert.equal(status.sourceVersion, '0.5.1');
     assert.equal(status.updaterSchemaVersion, 2);
     assert.equal(status.projectType, 'new');
     assert.equal(status.skillRoot, '.codex/skills');
@@ -622,6 +622,24 @@ test('Windows project-with-spaces init and copied self-test pass', () => {
       path.join(target, 'tools', 'starter-kit', 'status.mjs')
     ], { cwd: target, encoding: 'utf8' });
     assert.equal(status.status, 0, `${status.stdout}\n${status.stderr}`);
+  } finally {
+    removeTemp(parent);
+  }
+});
+
+test('0.5.1 screenshot gate migration is delivered, baseline-updated and idempotent', async () => {
+  const { parent, target } = tempFixture('empty-new-project');
+  try {
+    const first = await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile: 'new-project', mode: 'init' });
+    assert.equal(first.conflicts.length, 0);
+    const migration = path.join(target, 'migrations', '0.5.1-screenshot-visual-gate.md');
+    assert.equal(fs.existsSync(migration), true);
+    assert.match(fs.readFileSync(migration, 'utf8'), /SCREENSHOT_VISUAL_GATE/);
+    const before = sha256Tree(target, { exclude: ['.starter-kit/update-report.json'] });
+    const second = await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile: 'new-project', mode: 'update' });
+    const after = sha256Tree(target, { exclude: ['.starter-kit/update-report.json'] });
+    assert.equal(second.conflicts.length, 0);
+    assert.equal(after, before);
   } finally {
     removeTemp(parent);
   }

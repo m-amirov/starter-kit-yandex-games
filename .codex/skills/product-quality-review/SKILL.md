@@ -50,6 +50,7 @@ Every declared Yandex genre/category must be supported by the actual core loop a
 ### 7. Vertical-slice barrier
 
 Do not mass-produce levels, assets or meta content until one representative slice passes the product, visual, feel, mobile, accessibility and performance gates.
+Production-visible product acceptance additionally requires the current-HEAD `SCREENSHOT_VISUAL_GATE` evidence from `$visual-quality-gate`; functional verification alone cannot issue a product completion token.
 
 ## Release blockers
 

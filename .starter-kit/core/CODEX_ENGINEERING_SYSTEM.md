@@ -15,8 +15,9 @@ A trivial task is a deterministic one-file change with no behavioral, build, sav
 3. Use RED evidence or an executable acceptance check where practical.
 4. Diagnose one root cause and implement one coherent change.
 5. Verify through the smallest sufficient test ladder.
-6. Record a compact checkpoint, inspect the final diff/worktree, and stop when the success token is satisfied.
-7. Escalate after three materially different failed attempts for the same root cause.
+6. At the acceptance boundary of a production-visible pass, complete `SCREENSHOT_VISUAL_GATE`: functional verification → runtime screenshot capture → visual inspection → correction when needed → screenshot recheck → acceptance token.
+7. Record a compact checkpoint, inspect the final diff/worktree, and stop when the success token is satisfied.
+8. Escalate after three materially different failed attempts for the same root cause.
 
 ## Token and context economy
 
@@ -57,6 +58,18 @@ change of state.
 - Keep full logs in files when useful; report the command, verdict, duration when available, and the first actionable failure instead of pasting large logs into the working context.
 - Preserve concise RED/GREEN evidence and final hashes, but do not duplicate the same evidence in multiple reports.
 - A skipped mandatory gate must be reported as blocked; token economy may reduce redundant work, never required release evidence.
+
+### Screenshot Visual Gate acceptance barrier
+
+`SCREENSHOT_VISUAL_GATE` is mandatory when a pass changes or adds a production-visible gameplay, biome/environment, enemy/elite/boss, attack/telegraph, VFX, Living Arena presentation, UI/HUD/screen, asset, responsive layout, or visually meaningful state/interaction. Unit, integration, and E2E PASS alone are not acceptance evidence for such a pass. Only a demonstrably non-visual change may skip it; when classification is ambiguous, run the gate.
+
+Before a success or acceptance token, capture current-HEAD screenshots from the actual production runtime with the affected effect or state active. A test bootstrap may reach the state only when marked as such; it cannot substitute DEV-only semantics, an isolated asset preview, mockup, editor image, or an inactive effect. Use an impact-based state matrix rather than retesting the entire game. Gameplay/UI changes require representative desktop and mobile viewports; mobile gameplay proof follows a real touch path, not a mouse/keyboard substitute. Platform-specific changes are checked on their relevant platform.
+
+The visual review follows project-owned `ART_BIBLE`, `VISUAL_LANGUAGE`, asset manifests, and accepted visual baseline. It rejects production-visible placeholders/debug presentation, generic geometry as the primary art language, unreadable role silhouettes, elite-as-tint/ring/glow, debug-like boss attacks, flat or indistinct biomes, hidden telegraphs or important objects, obscuring VFX, hierarchy/layout/localization/responsive regressions, or style/baseline regressions. Exact collision/hazard geometry may be internal but must not be the primary production visual.
+
+Store a compact evidence package with the screenshot set, short verdict, states/viewports, and current HEAD. Include a before/after contact sheet for rework only where useful. If capture infrastructure times out or fails, record the exact evidence gap and do not claim visual PASS.
+
+For a pass requiring this gate, do not issue `*_IMPLEMENTED`, `*_ACCEPTED`, `*_OWNER_REVIEW_READY`, or a visual/product completion token until it passes. `FUNCTIONALLY_IMPLEMENTED` with `VISUAL_ACCEPTANCE: FAIL` is a valid and preferred interim status.
 
 ## Boundaries
 
