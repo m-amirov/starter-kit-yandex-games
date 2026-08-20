@@ -36,4 +36,3 @@ decision, not a temporary blocker.
 
 The project remains stopped. Do not resume repair loops, produce new content,
 create a release ZIP, or reinterpret `STOP_PROJECT` as a transient failure.
-

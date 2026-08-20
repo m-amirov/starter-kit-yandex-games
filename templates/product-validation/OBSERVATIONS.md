@@ -19,4 +19,3 @@
 - Understood cause of error: yes/no
 - Stopped voluntarily: yes/no and time
 - One-sentence description:
-

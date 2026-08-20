@@ -21,4 +21,3 @@ Record timestamps and ask only after observation:
 7. When did it become boring?
 8. Did you want to continue?
 9. How would you describe the game in one sentence?
-

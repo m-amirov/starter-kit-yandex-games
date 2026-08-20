@@ -72,4 +72,3 @@ Also forbidden:
 - claiming leak freedom from constant metrics;
 - claiming viewport compatibility when the test opens only a menu;
 - continuing production after an explicit `STOP_PROJECT`.
-

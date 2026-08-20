@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.3",
+  "version": "0.5.4",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -145,7 +145,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "1f3c27fb1b909f5c527c057106a030bf8e14e54f5c1182b154530f78d1ae663d"
+      "sha256": "994781a48d044138eeeb876a0cb1b70618d6b6f328aafbe2041a0fa382bde658"
     },
     {
       "source": ".codex/skills/level-design-quality/SKILL.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "19936ec9a80b80c9257c062460447bb06b625b3585d63250f75aa0cf7761d972"
+      "sha256": "84fb6731e894e83dc76806af95e0f7e186f5adeb997f0949975546e58151a347"
     },
     {
       "source": "index.html",
@@ -423,7 +423,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "17aa0ea92b22d17d74c316fef40cf14d85055f11df5a05c72d981dd9c7a6e4e3"
+      "sha256": "f78923a886c6d0d25c24f936bc5bc394a49f526f8e0ee324b7f8e38f8c236bbb"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -485,7 +485,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "e00f296c5ebd7add2414801c353a8b2b1fcb6e360aba033e4f53f26c020d7ff1"
+      "sha256": "2781b973e0a030871531f95b56d54da55b4cec70a55485d04898a154cd59a7bc"
     },
     {
       "source": ".starter-kit/core/TEST_HARNESS_ADJUDICATION.md",
@@ -501,7 +501,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "d4c6a18a6db562b1c723ffa6cf2486c826636403d2c2e93f11be131dd0fad28d"
+      "sha256": "6ad653af0f7e606fa09c4873886cfafc46b3fa4b30e6b348d9073dc2e4b315be"
     },
     {
       "source": "VERSION",
@@ -517,7 +517,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "27ecff1fcdaf65ab46c1bb99c1072d6d134a0e8dd97dd95cfa88696b9ed453b2"
+      "sha256": "a7711142bc1fc55c16b9147a1503a4f2c4717be5c1e4437772a047f52ef81db2"
     },
     {
       "source": "CHANGELOG.md",
@@ -533,7 +533,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "67049eba5bc523ee431a44110faa73ef506bcb2338e1407446d1fa0c1144f5e0"
+      "sha256": "8d43377dcb05145944b4fccfc9d39cf3779de3aeb563ce563f15aad56cb24332"
     },
     {
       "source": "README.md",
@@ -549,7 +549,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "01787606684d76808b4612bf4cde0253bb02d345914a24e4a5bf8ea6bf2b6c02"
+      "sha256": "1eff822ef6d52ea49e5531f5fc4601da63ecde66d728b2abd3313ca1f7976345"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -629,7 +629,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "c98cd61b4538b91bd005d5e18c86d70c30b01337d3886ced6407f062adc3cf01"
+      "sha256": "f4e065cac7d65ab37fc3209be3ea69b68ae25fe3b3d342dbfb912509796301c9"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -822,7 +822,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "26c70482aa9ca4111051131fd221a1ecc43e07727acba528087f4fe811d6e8f2"
+      "sha256": "76642b48aa132e8ffc20511d9509f1e971865846992d1fec90e2a2fec93d9e14"
     },
     {
       "source": "templates/visual-review/SCREENSHOT_VISUAL_GATE.md",
@@ -854,7 +854,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "98f5972509bb94382730128499d6274838bfc7fc12f5c02acaa747ed76ae65fb"
+      "sha256": "41605cb4b985284257fbf463a376f8258e20c145af7c25eb2bda0c854d6494d5"
     },
     {
       "source": "templates/product-validation/DECISION.md",
@@ -870,7 +870,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "a4d36eb710608c5e51971290f4684e33d8757978f479ad3a56614a31333761df"
+      "sha256": "99e69d1581eb012ad81f0bcd3f6afaf14496b700cc7d28ba2b793680f13e4141"
     },
     {
       "source": "docs/MANIFEST_SCHEMA.md",
@@ -1110,7 +1110,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "a4fabd8540fe90943121e9916f4c3a5bd183f6e7498b7c65b4f9960ef25ab7c7"
+      "sha256": "2531308f333895549376803b1259b2ef8e6880453124cf82202added652f8b75"
     },
     {
       "source": "tools/starter-kit/status.mjs",

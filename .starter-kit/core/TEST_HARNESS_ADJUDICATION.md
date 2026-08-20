@@ -16,4 +16,3 @@ Before production code is changed because of an unstable UI or E2E test:
 Production changes require product-defect evidence. Harness defects are fixed
 in fixtures, drivers, environment selection, or assertions without weakening
 the product contract.
-

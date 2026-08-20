@@ -282,6 +282,13 @@ test('0.4.1 mature update materializes quality links, applies cleanly and stays 
   const { parent, target } = tempFixture('mature-project-agents-root');
   try {
     const qualityTarget = seedLegacy041QualityAcceptance(target);
+    const runGit = (args) => spawnSync('git', args, { cwd: target, encoding: 'utf8' });
+    assert.equal(runGit(['init', '--initial-branch=main']).status, 0);
+    assert.equal(runGit(['add', '--all']).status, 0);
+    assert.equal(
+      runGit(['-c', 'user.name=Starter Kit Test', '-c', 'user.email=starter-kit-test@example.invalid', 'commit', '-m', '0.4.1 fixture']).status,
+      0
+    );
     const productBefore = hashProduct(target);
     const first = await executeUpdate({
       sourceRoot: ROOT,
@@ -319,6 +326,9 @@ test('0.4.1 mature update materializes quality links, applies cleanly and stays 
     assert.equal(repeated.conflicts.length, 0);
     assert.equal(repeated.created.length, 0);
     assert.equal(repeated.updated.length, 0);
+    assert.equal(runGit(['add', '--all']).status, 0);
+    const diffCheck = runGit(['diff', '--cached', '--check']);
+    assert.equal(diffCheck.status, 0, `${diffCheck.stdout}\n${diffCheck.stderr}`);
   } finally {
     removeTemp(parent);
   }

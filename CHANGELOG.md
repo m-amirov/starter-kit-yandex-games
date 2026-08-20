@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.4 — 2026-08-20
+
+- Normalized six managed text files to one final LF so newly materialized mature-project files pass `git diff --check`.
+- Added a mature 0.4.1 update regression that checks the actual materialized Git diff for whitespace errors.
+
 ## 0.5.3 — 2026-08-20
 
 - Made managed text content profile-aware through explicit manifest `contentTemplate` materialization.
