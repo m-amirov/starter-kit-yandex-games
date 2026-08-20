@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.1",
+  "version": "0.5.2",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "94acd6592dfd1db0fa45e0e807beb38fde9fcc68c6aad7c90273214c064f00b0"
+      "sha256": "ed778203b4d34304bde2666ef04db215c29487a5c33955d048a1a64522f35e4c"
     },
     {
       "source": "index.html",
@@ -423,7 +423,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "1cd84d477ea6b95f0db387498f1134e3f2d6d0680a7254875e0176d08a468bbc"
+      "sha256": "9f0f216e4e2b257c2d48a652161db19ddbc65b139464b21e71343fdeba8dacfc"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -517,7 +517,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "aba951626c8690ce493cbc8f018205bb468003f61fbf00fd3d3c71cebabc0177"
+      "sha256": "26e0ab83aa1ff6bd0ae3882787a92663aa19db128e1241ffc99375fb9ca0c121"
     },
     {
       "source": "CHANGELOG.md",
@@ -533,7 +533,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "e8d709ffacab35fef9875ee79fe8a863d195947eefb84c6ff68297fd90889d4a"
+      "sha256": "ac7df54220eaf8efa75f3c3a063eb2167197ebd1c79dbe270838169f0888b826"
     },
     {
       "source": "README.md",
@@ -549,7 +549,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "8cd393d58799adc877bde51209bb538c419e3d2b4da5c9d660196f10f6ac58ba"
+      "sha256": "93d5afd11177d1ae198df714423784a53f684e025f33099bcf983350b0bf2d77"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -629,7 +629,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "96f0cbec62a8427a0480b3e1896c0ed6e1fc5ef314831d0c13f174f3a5f16dce"
+      "sha256": "01e332b88f28a769122ae3b64631f69e20e4253bedda195371032f7f700c0120"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -1093,7 +1093,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "16d04c3a6714a63cdd2b56d77cf1155b06b1b3b65e9ba6691236dc05566f57a6"
+      "sha256": "2e09eae4adb1ef49981e01519b1b4de257104bc018c15513b2daefd16c5085d7"
     },
     {
       "source": "tools/starter-kit/status.mjs",

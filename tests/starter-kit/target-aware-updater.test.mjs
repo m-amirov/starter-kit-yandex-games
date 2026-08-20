@@ -357,6 +357,22 @@ test('new-project seed is recorded as project-owned after init', async () => {
   }
 });
 
+test('autonomy seed declares the current kit version and survives fresh init', async () => {
+  const version = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
+  const seed = path.join(ROOT, 'autonomy', 'state.json');
+  const manifest = loadManifest(ROOT);
+  const entry = manifest.entries.find((item) => item.logicalId === 'seed:autonomy-state');
+  const { parent, target } = tempFixture('empty-new-project');
+  try {
+    assert.equal(JSON.parse(fs.readFileSync(seed, 'utf8')).starterKitVersion, version);
+    assert.equal(entry?.sha256, sha256File(seed));
+    await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile: 'new-project', mode: 'init' });
+    assert.equal(JSON.parse(fs.readFileSync(path.join(target, 'autonomy', 'state.json'), 'utf8')).starterKitVersion, version);
+  } finally {
+    removeTemp(parent);
+  }
+});
+
 test('mature dry run preserves product runtime hashes and project-specific skills', async () => {
   const { parent, target } = tempFixture('mature-project-agents-root');
   try {
@@ -418,6 +434,7 @@ test('same-name changed skill creates a semantic conflict', async () => {
 test('AGENTS semantic conflict creates proposal and merge notes on apply', async () => {
   const { parent, target } = tempFixture('mature-project-agents-root');
   try {
+    const version = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
     const before = hashProduct(target);
     const result = await executeUpdate({
       sourceRoot: ROOT,
@@ -426,8 +443,8 @@ test('AGENTS semantic conflict creates proposal and merge notes on apply', async
       mode: 'update'
     });
     assert.equal(result.conflicts.some((item) => item.target === 'AGENTS.md'), true);
-    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.5.1', 'AGENTS.md.new')), true);
-    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', '0.5.1', 'AGENTS.md.merge.md')), true);
+    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', version, 'AGENTS.md.new')), true);
+    assert.equal(fs.existsSync(path.join(target, '.starter-kit', 'conflicts', version, 'AGENTS.md.merge.md')), true);
     assert.deepEqual(hashProduct(target), before);
   } finally {
     removeTemp(parent);
@@ -504,7 +521,7 @@ test('status exposes target profile, manifest and ownership data', async () => {
   try {
     await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile: 'new-project', mode: 'init' });
     const status = inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target });
-    assert.equal(status.sourceVersion, '0.5.1');
+    assert.equal(status.sourceVersion, fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim());
     assert.equal(status.updaterSchemaVersion, 2);
     assert.equal(status.projectType, 'new');
     assert.equal(status.skillRoot, '.codex/skills');
@@ -600,6 +617,48 @@ test('source manifest hash is deterministic', () => {
   const first = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, 'starter-kit.manifest.json'))).digest('hex');
   const second = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, 'starter-kit.manifest.json'))).digest('hex');
   assert.equal(first, second);
+});
+
+test('Windows autocrlf checkout preserves canonical manifest bytes and binary files', () => {
+  const parent = fs.mkdtempSync(path.join(os.tmpdir(), 'yg-kit-eol-'));
+  const source = path.join(parent, 'source');
+  const canonical = path.join(parent, 'canonical');
+  const checkout = path.join(parent, 'windows-checkout');
+  const binary = path.join(source, 'fixtures', 'binary-eol-probe.png');
+  const binaryBytes = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0x00, 0x0d, 0x0a]);
+  const runGit = (cwd, args) => {
+    const result = spawnSync('git', args, { cwd, encoding: 'utf8' });
+    assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  };
+  try {
+    fs.cpSync(ROOT, source, {
+      recursive: true,
+      filter: (candidate) => path.basename(candidate) !== '.git'
+    });
+    fs.mkdirSync(path.dirname(binary), { recursive: true });
+    fs.writeFileSync(binary, binaryBytes);
+    runGit(source, ['init', '--initial-branch=main']);
+    runGit(source, ['add', '--all']);
+    runGit(source, ['-c', 'user.name=Starter Kit Test', '-c', 'user.email=starter-kit-test@example.invalid', 'commit', '-m', 'fixture']);
+    runGit(parent, ['-c', 'core.autocrlf=false', '-c', 'core.eol=lf', 'clone', source, canonical]);
+    const stateFile = path.join(canonical, 'autonomy', 'state.json');
+    const state = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+    state.starterKitVersion = fs.readFileSync(path.join(canonical, 'VERSION'), 'utf8').trim();
+    fs.writeFileSync(stateFile, `${JSON.stringify(state, null, 2)}\n`);
+    const manifest = spawnSync(process.execPath, [path.join(canonical, 'tools', 'starter-kit', 'build-manifest.mjs')], { cwd: canonical, encoding: 'utf8' });
+    assert.equal(manifest.status, 0, `${manifest.stdout}\n${manifest.stderr}`);
+    runGit(canonical, ['add', '--all']);
+    runGit(canonical, ['-c', 'user.name=Starter Kit Test', '-c', 'user.email=starter-kit-test@example.invalid', 'commit', '-m', 'canonical fixture']);
+    runGit(parent, ['-c', 'core.autocrlf=true', '-c', 'core.eol=crlf', 'clone', canonical, checkout]);
+    const eol = spawnSync('git', ['ls-files', '--eol', '--', 'AGENTS.md', 'starter-kit.manifest.json'], { cwd: checkout, encoding: 'utf8' });
+    assert.equal(eol.status, 0, `${eol.stdout}\n${eol.stderr}`);
+    assert.match(eol.stdout, /w\/lf/);
+    assert.deepEqual(fs.readFileSync(path.join(checkout, 'fixtures', 'binary-eol-probe.png')), binaryBytes);
+    const selfTest = spawnSync(process.execPath, [path.join(checkout, 'tools', 'starter-kit', 'self-test.mjs')], { cwd: checkout, encoding: 'utf8' });
+    assert.equal(selfTest.status, 0, `${selfTest.stdout}\n${selfTest.stderr}`);
+  } finally {
+    removeTemp(parent);
+  }
 });
 
 test('Windows project-with-spaces init and copied self-test pass', () => {

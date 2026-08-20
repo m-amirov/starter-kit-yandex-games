@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.2 — 2026-08-20
+
+- Fixed the stale `autonomy/state.json` new-project seed so its `starterKitVersion` matches the released Starter Kit version.
+- Regenerated the manifest from committed source so new-project bootstrap and manifest validation stay aligned.
+
 ## 0.5.1 — 2026-08-10
 
 - Added the canonical mandatory `SCREENSHOT_VISUAL_GATE` for production-visible passes, with actual current-HEAD runtime evidence and impact-based state matrices.
