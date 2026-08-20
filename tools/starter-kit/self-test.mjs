@@ -107,7 +107,7 @@ let targetStatus;
 if (sourceMode) {
   version = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
   const packageVersion = readJson(path.join(ROOT, 'package.json')).version;
-  if (version !== '0.5.2' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
+  if (version !== '0.5.3' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
   manifest = loadManifest(ROOT);
   validateManifest(manifest, ROOT);
   if (manifest.version !== version) errors.push(`manifest version mismatch: ${manifest.version}`);

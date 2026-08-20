@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.2",
+  "version": "0.5.3",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "ed778203b4d34304bde2666ef04db215c29487a5c33955d048a1a64522f35e4c"
+      "sha256": "19936ec9a80b80c9257c062460447bb06b625b3585d63250f75aa0cf7761d972"
     },
     {
       "source": "index.html",
@@ -423,7 +423,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "9f0f216e4e2b257c2d48a652161db19ddbc65b139464b21e71343fdeba8dacfc"
+      "sha256": "17aa0ea92b22d17d74c316fef40cf14d85055f11df5a05c72d981dd9c7a6e4e3"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -517,7 +517,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "26e0ab83aa1ff6bd0ae3882787a92663aa19db128e1241ffc99375fb9ca0c121"
+      "sha256": "27ecff1fcdaf65ab46c1bb99c1072d6d134a0e8dd97dd95cfa88696b9ed453b2"
     },
     {
       "source": "CHANGELOG.md",
@@ -533,7 +533,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "ac7df54220eaf8efa75f3c3a063eb2167197ebd1c79dbe270838169f0888b826"
+      "sha256": "67049eba5bc523ee431a44110faa73ef506bcb2338e1407446d1fa0c1144f5e0"
     },
     {
       "source": "README.md",
@@ -549,7 +549,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "93d5afd11177d1ae198df714423784a53f684e025f33099bcf983350b0bf2d77"
+      "sha256": "01787606684d76808b4612bf4cde0253bb02d345914a24e4a5bf8ea6bf2b6c02"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -629,7 +629,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "01e332b88f28a769122ae3b64631f69e20e4253bedda195371032f7f700c0120"
+      "sha256": "c98cd61b4538b91bd005d5e18c86d70c30b01337d3886ced6407f062adc3cf01"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -652,6 +652,7 @@
       "logicalId": "managed:quality-constitution",
       "ownership": "managed",
       "target": "docs/QUALITY_CONSTITUTION.md",
+      "contentTemplate": true,
       "modes": [
         "init",
         "update"
@@ -661,7 +662,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "3125543bf43b5ff3eec31d1a432d80a04e13875eba4931576f39ba4aca1bafc1"
+      "sha256": "c0ea696035929f119a9b9744931303872bc4563bea96170c6a3964c03dce557b"
     },
     {
       "source": "docs/STARTER_KIT_UPDATES.md",
@@ -677,7 +678,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "6bdcc811e108af9c1be4278e0023a9c139a558b10f39cc1d915538b75c950f6d"
+      "sha256": "82167531f42a007f864be162622ae6ff713bcab186a3681345a0245431bfa0ab"
     },
     {
       "source": "lessons/known-failures.yaml",
@@ -792,6 +793,22 @@
       "sha256": "e7c7e8f390336e0f8678f660d656b3ac2f246baaab25e512d6b006cf7d391fef"
     },
     {
+      "source": "migrations/0.5.3-profile-aware-quality-constitution.md",
+      "logicalId": "migration:0.5.3-profile-aware-quality-constitution",
+      "ownership": "managed",
+      "target": "migrations/0.5.3-profile-aware-quality-constitution.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "bcf5bcd4a9a6e9da4eef8f9c0304a7c5008b59888a25d7f42be71464760348de"
+    },
+    {
       "source": "templates/product-validation/BLIND_PLAYTEST.md",
       "logicalId": "managed:blind-playtest-template",
       "ownership": "managed",
@@ -869,7 +886,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "70767e4d0c6414388cd254f88a9db4c857a894cf4a2018b18ac4c621766eb41f"
+      "sha256": "a41c440010cecdb8774f3a30c457b8b5beae25b89eb8a32b18018218249673f8"
     },
     {
       "source": "config/manifest-entries.json",
@@ -885,7 +902,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "5f455c46220fcbd9e1e482dbefce9ce5c3b7bb0c38802d31caa79789d985fd9b"
+      "sha256": "b5f5cda591a52308ed7a1d75270379f09bdef7f22985bbce305bb629b11b10df"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -901,7 +918,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "45336cda732e52478f5ebd887942a36b8fca63bd4232550783541eb6aaf3a7d4"
+      "sha256": "7215d383079193ff537dcaafe2f235354b329c62a1bec672d1e159046cb78ae3"
     },
     {
       "source": "config/target-profile.schema.json",
@@ -1029,7 +1046,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "5bb7e95eea413636125efce792185a54a4588ade33664ee5c66ead5de16626e9"
+      "sha256": "bce09a57eaf9554997b9ee739767c39c633f85bfc003f12c34789b6213856d63"
     },
     {
       "source": "tools/starter-kit/package-kit.mjs",
@@ -1093,7 +1110,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "2e09eae4adb1ef49981e01519b1b4de257104bc018c15513b2daefd16c5085d7"
+      "sha256": "a4fabd8540fe90943121e9916f4c3a5bd183f6e7498b7c65b4f9960ef25ab7c7"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -1141,7 +1158,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "489d85ee80f8663da5932fd1e8b956c9de7769f86bb8d112dec81c815c863ac0"
+      "sha256": "7ae24e5fdce7d25c6f7945b2173c4f89684a4ea4e211f57186c632ade6703d45"
     },
     {
       "source": "tools/starter-kit/update-self-test.mjs",

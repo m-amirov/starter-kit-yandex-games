@@ -64,6 +64,40 @@ function matureProfile(overrides = {}) {
   });
 }
 
+function seedLegacy041QualityAcceptance(target) {
+  const qualitySource = fs.readFileSync(path.join(ROOT, 'docs', 'QUALITY_CONSTITUTION.md'), 'utf8');
+  const qualityTarget = path.join(target, 'docs', 'QUALITY_CONSTITUTION.md');
+  fs.mkdirSync(path.dirname(qualityTarget), { recursive: true });
+  fs.writeFileSync(
+    qualityTarget,
+    qualitySource
+      .replaceAll('{skillRoot}', '.agents/skills')
+      .replaceAll('.codex/skills/', '.agents/skills/')
+  );
+  const stateDirectory = path.join(target, '.starter-kit');
+  fs.mkdirSync(stateDirectory, { recursive: true });
+  fs.writeFileSync(path.join(stateDirectory, 'state.json'), `${JSON.stringify({
+    schemaVersion: 2,
+    updaterSchemaVersion: 2,
+    installedVersion: '0.4.1',
+    attemptedVersion: '0.4.1',
+    sourceManifestHash: 'legacy-0.4.1',
+    targetProfile: null,
+    baseline: {},
+    projectOwned: {},
+    semanticAcceptances: {
+      'managed:quality-constitution': {
+        target: 'docs/QUALITY_CONSTITUTION.md',
+        sourceHash: 'legacy-0.4.1-quality-constitution',
+        targetHash: sha256File(qualityTarget)
+      }
+    },
+    conflicts: [],
+    appliedMigrations: []
+  }, null, 2)}\n`);
+  return qualityTarget;
+}
+
 test('Windows module URL does not produce a double drive prefix', () => {
   const value = filePathFromModuleUrl('file:///E:/Work/YandexGames/starter/tools/lib.mjs');
   assert.doesNotMatch(value, /^[A-Za-z]:\\[A-Za-z]:\\/);
@@ -202,6 +236,14 @@ test('manifest validation rejects a source path outside the Starter Kit root', (
   assert.throws(() => validateManifest(broken, ROOT), /outside target root/i);
 });
 
+test('manifest validation rejects content templating without a supported profile token', () => {
+  const manifest = loadManifest(ROOT);
+  const broken = structuredClone(manifest);
+  const quality = broken.entries.find((entry) => entry.logicalId === 'managed:quality-constitution');
+  quality.source = 'README.md';
+  assert.throws(() => validateManifest(broken, ROOT), /no supported profile token/i);
+});
+
 test('skill mapping resolves starter skills into .agents/skills', () => {
   const entries = resolveManifestEntries(loadManifest(ROOT), matureProfile(), 'update');
   const skill = entries.find((entry) => entry.logicalId === 'skill:game-audio-quality:SKILL.md');
@@ -211,6 +253,75 @@ test('skill mapping resolves starter skills into .agents/skills', () => {
 test('forbidden second skill root is absent from the mature plan', () => {
   const entries = resolveManifestEntries(loadManifest(ROOT), matureProfile(), 'update');
   assert.equal(entries.some((entry) => entry.target.startsWith('.codex/skills/')), false);
+});
+
+test('0.4.1 semantic-accepted quality constitution becomes managed without a skill-root conflict', async () => {
+  const { parent, target } = tempFixture('mature-project-agents-root');
+  try {
+    const qualityTarget = seedLegacy041QualityAcceptance(target);
+    const before = sha256File(qualityTarget);
+    const result = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile: 'mature-yandex-phaser',
+      mode: 'update',
+      dryRun: true
+    });
+    assert.equal(
+      result.conflicts.some((item) => item.logicalId === 'managed:quality-constitution'),
+      false
+    );
+    assert.equal(result.preserved.some((item) => item.logicalId === 'managed:quality-constitution'), true);
+    assert.equal(sha256File(qualityTarget), before);
+  } finally {
+    removeTemp(parent);
+  }
+});
+
+test('0.4.1 mature update materializes quality links, applies cleanly and stays idempotent', async () => {
+  const { parent, target } = tempFixture('mature-project-agents-root');
+  try {
+    const qualityTarget = seedLegacy041QualityAcceptance(target);
+    const productBefore = hashProduct(target);
+    const first = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile: 'mature-yandex-phaser',
+      mode: 'update'
+    });
+    assert.equal(first.conflicts.some((item) => item.logicalId === 'managed:quality-constitution'), false);
+    await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile: 'mature-yandex-phaser',
+      mode: 'update',
+      resolveSemantic: [...new Set(first.conflicts.map((item) => item.logicalId))]
+    });
+
+    const quality = fs.readFileSync(qualityTarget, 'utf8');
+    const state = JSON.parse(fs.readFileSync(path.join(target, '.starter-kit', 'state.json'), 'utf8'));
+    assert.match(quality, /\.agents\/skills\/product-quality-review\/SKILL\.md/);
+    assert.doesNotMatch(quality, /\.codex\/skills|\{skillRoot\}/);
+    assert.equal(fs.existsSync(path.join(target, '.codex', 'skills')), false);
+    assert.equal(state.baseline['managed:quality-constitution'].target, 'docs/QUALITY_CONSTITUTION.md');
+    assert.equal(state.semanticAcceptances['managed:quality-constitution'], undefined);
+    assert.deepEqual(hashProduct(target), productBefore);
+    const status = inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target });
+    assert.equal(status.status, 'clean', JSON.stringify(status.unresolvedConflicts, null, 2));
+
+    const repeated = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile: 'mature-yandex-phaser',
+      mode: 'update',
+      dryRun: true
+    });
+    assert.equal(repeated.conflicts.length, 0);
+    assert.equal(repeated.created.length, 0);
+    assert.equal(repeated.updated.length, 0);
+  } finally {
+    removeTemp(parent);
+  }
 });
 
 test('existing forbidden second skill root blocks update', async () => {
@@ -352,6 +463,9 @@ test('new-project seed is recorded as project-owned after init', async () => {
     const packageJson = JSON.parse(fs.readFileSync(path.join(target, 'package.json'), 'utf8'));
     assert.equal(packageJson.scripts['starter-kit:status'] !== undefined, true);
     assert.equal(packageJson.scripts['starter-kit:package'], undefined);
+    const quality = fs.readFileSync(path.join(target, 'docs', 'QUALITY_CONSTITUTION.md'), 'utf8');
+    assert.match(quality, /\.codex\/skills\/product-quality-review\/SKILL\.md/);
+    assert.doesNotMatch(quality, /\.agents\/skills|\{skillRoot\}/);
   } finally {
     removeTemp(parent);
   }

@@ -609,6 +609,7 @@
       "logicalId": "managed:quality-constitution",
       "ownership": "managed",
       "target": "docs/QUALITY_CONSTITUTION.md",
+      "contentTemplate": true,
       "modes": [
         "init",
         "update"
@@ -729,6 +730,21 @@
       "logicalId": "migration:0.5.1-screenshot-visual-gate",
       "ownership": "managed",
       "target": "migrations/0.5.1-screenshot-visual-gate.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.5.3-profile-aware-quality-constitution.md",
+      "logicalId": "migration:0.5.3-profile-aware-quality-constitution",
+      "ownership": "managed",
+      "target": "migrations/0.5.3-profile-aware-quality-constitution.md",
       "modes": [
         "init",
         "update"

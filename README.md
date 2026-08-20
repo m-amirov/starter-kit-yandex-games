@@ -1,4 +1,4 @@
-# Autonomous Yandex Games Starter Kit 0.5.2
+# Autonomous Yandex Games Starter Kit 0.5.3
 
 Версионируемая engineering/compliance инфраструктура для создания новых игр и
 безопасного обновления существующих зрелых проектов Яндекс Игр.

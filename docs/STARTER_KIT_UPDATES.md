@@ -56,6 +56,11 @@ copy may remain in `.codex/skills`, while the mature profile maps delivery to
 `.agents/skills`. Unknown project skills are preserved. A differing same-name
 skill becomes a semantic conflict.
 
+Managed text that references profile-owned paths may declare
+`contentTemplate: true`. The updater then materializes `{skillRoot}` and
+`{codexConfigRoot}` from the same target profile used for path mapping. This is
+content configuration, not a profile-name branch in the updater.
+
 If `allowSecondSkillRoot` is false, an unexpected second active root blocks the
 plan. No double registration is performed.
 

@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { assertNoReparseBetween, posix, readJson, resolveInside } from './lib.mjs';
+import { assertNoReparseBetween, posix, readJson, resolveInside, sha256Buffer } from './lib.mjs';
 import { matchOwnershipOverride } from './profile.mjs';
 
 const OWNERSHIP = new Set([
@@ -32,6 +32,9 @@ export function validateManifest(manifest, root) {
     logicalIds.add(entry.logicalId);
     if (!OWNERSHIP.has(entry.ownership)) throw new Error(`Unknown ownership: ${entry.ownership}`);
     if (!entry.target && !entry.targetTemplate) throw new Error(`Manifest entry ${entry.logicalId} has no target`);
+    if (entry.contentTemplate !== undefined && typeof entry.contentTemplate !== 'boolean') {
+      throw new Error(`Manifest entry ${entry.logicalId} contentTemplate must be boolean`);
+    }
     if (!Array.isArray(entry.modes) || entry.modes.some((mode) => !['init', 'update'].includes(mode))) {
       throw new Error(`Invalid modes for ${entry.logicalId}`);
     }
@@ -54,19 +57,38 @@ export function validateManifest(manifest, root) {
       const source = resolveInside(root, entry.source);
       assertNoReparseBetween(root, source);
       if (!fs.existsSync(source)) throw new Error(`Manifest source missing: ${entry.source}`);
+      if (entry.contentTemplate) {
+        const template = fs.readFileSync(source, 'utf8');
+        if (!template.includes('{skillRoot}') && !template.includes('{codexConfigRoot}')) {
+          throw new Error(`Content template ${entry.logicalId} has no supported profile token`);
+        }
+      }
     }
     if (!/^[a-f0-9]{64}$/.test(entry.sha256)) throw new Error(`Invalid SHA-256 for ${entry.logicalId}`);
   }
   return manifest;
 }
 
+function renderProfileTemplate(value, profile) {
+  return value
+    .replaceAll('{skillRoot}', profile.skillRoot)
+    .replaceAll('{codexConfigRoot}', profile.codexConfigRoot);
+}
+
 function renderTarget(entry, profile) {
   const rendered = entry.targetTemplate
-    ? entry.targetTemplate
-      .replaceAll('{skillRoot}', profile.skillRoot)
-      .replaceAll('{codexConfigRoot}', profile.codexConfigRoot)
+    ? renderProfileTemplate(entry.targetTemplate, profile)
     : entry.target;
   return posix(path.normalize(rendered));
+}
+
+export function materializeEntrySource(root, entry, profile) {
+  const source = resolveInside(root, entry.source);
+  assertNoReparseBetween(root, source);
+  const bytes = fs.readFileSync(source);
+  if (!entry.contentTemplate) return { bytes, sha256: entry.sha256 };
+  const rendered = Buffer.from(renderProfileTemplate(bytes.toString('utf8'), profile));
+  return { bytes: rendered, sha256: sha256Buffer(rendered) };
 }
 
 export function resolveManifestEntries(manifest, profile, mode) {

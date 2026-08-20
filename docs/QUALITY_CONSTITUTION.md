@@ -51,7 +51,7 @@ Re-run the product and visual reviews against the final production build.
 - final screenshots contain overflow, overlaps, unreadable text or empty composition;
 - the agent marks its own first asset pass as final without integrated review.
 
-See `.codex/skills/product-quality-review/SKILL.md` and `.codex/skills/visual-quality-gate/SKILL.md`.
+See `{skillRoot}/product-quality-review/SKILL.md` and `{skillRoot}/visual-quality-gate/SKILL.md`.
 
 
 ## Production skill gates (0.4.x)

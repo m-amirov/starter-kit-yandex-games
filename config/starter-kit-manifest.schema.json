@@ -38,6 +38,7 @@
           },
           "target": { "type": "string", "minLength": 1 },
           "targetTemplate": { "type": "string", "minLength": 1 },
+          "contentTemplate": { "type": "boolean" },
           "modes": {
             "type": "array",
             "items": { "enum": ["init", "update"] },

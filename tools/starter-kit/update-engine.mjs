@@ -12,7 +12,7 @@ import {
   writeFileIfChanged,
   writeJson
 } from './lib.mjs';
-import { loadManifest, resolveManifestEntries } from './manifest.mjs';
+import { loadManifest, materializeEntrySource, resolveManifestEntries } from './manifest.mjs';
 import { planPackageMerge } from './package-merge.mjs';
 import { loadTargetProfile, validateTargetProfile } from './profile.mjs';
 
@@ -71,13 +71,12 @@ function conflictFiles(targetRoot, version, target) {
   };
 }
 
-function writeConflict(sourceRoot, targetRoot, manifest, entry, reason, dryRun) {
+function writeConflict(sourceRoot, targetRoot, manifest, entry, profile, reason, dryRun) {
   const files = conflictFiles(targetRoot, manifest.version, entry.target);
   if (!dryRun) {
-    const source = resolveInside(sourceRoot, entry.source);
     assertNoReparseBetween(targetRoot, files.candidate);
     fs.mkdirSync(path.dirname(files.candidate), { recursive: true });
-    fs.copyFileSync(source, files.candidate);
+    fs.writeFileSync(files.candidate, materializeEntrySource(sourceRoot, entry, profile).bytes);
     const notes = [
       `# Semantic merge required: ${entry.target}`,
       '',
@@ -119,12 +118,11 @@ function detectSecondSkillRoot(targetRoot, profile) {
   return roots.filter((root) => root !== profile.skillRoot && isDirectoryNonEmpty(path.join(targetRoot, root)));
 }
 
-function copySource(sourceRoot, targetRoot, entry) {
-  const source = resolveInside(sourceRoot, entry.source);
+function copySource(sourceRoot, targetRoot, entry, profile) {
   const target = resolveInside(targetRoot, entry.target);
   assertNoReparseBetween(targetRoot, target);
   fs.mkdirSync(path.dirname(target), { recursive: true });
-  fs.copyFileSync(source, target);
+  fs.writeFileSync(target, materializeEntrySource(sourceRoot, entry, profile).bytes);
 }
 
 function processPackageEntry({
@@ -213,6 +211,7 @@ function processEntry(context) {
     resolveManaged,
     report
   } = context;
+  const expectedHash = materializeEntrySource(sourceRoot, entry, context.profile).sha256;
   if (entry.logicalId === 'contract:package-json') {
     processPackageEntry(context);
     return;
@@ -226,11 +225,11 @@ function processEntry(context) {
   if (entry.ownership === 'new-project-seed') {
     if (!exists) {
       report.created.push({ logicalId: entry.logicalId, target: entry.target, ownership: 'project-owned-after-init' });
-      if (!dryRun) copySource(sourceRoot, targetRoot, entry);
+      if (!dryRun) copySource(sourceRoot, targetRoot, entry, context.profile);
     } else {
       report.preserved.push({ logicalId: entry.logicalId, target: entry.target, ownership: 'project-owned' });
     }
-    nextState.projectOwned[entry.logicalId] = { target: entry.target, sourceHashAtInit: entry.sha256 };
+    nextState.projectOwned[entry.logicalId] = { target: entry.target, sourceHashAtInit: expectedHash };
     delete nextState.baseline[entry.logicalId];
     return;
   }
@@ -243,27 +242,29 @@ function processEntry(context) {
 
   if (!exists) {
     report.created.push({ logicalId: entry.logicalId, target: entry.target, ownership: entry.ownership });
-    if (!dryRun) copySource(sourceRoot, targetRoot, entry);
+    if (!dryRun) copySource(sourceRoot, targetRoot, entry, context.profile);
     if (semantic) {
       nextState.semanticAcceptances[entry.logicalId] = {
         target: entry.target,
-        sourceHash: entry.sha256,
-        targetHash: entry.sha256
+        sourceHash: expectedHash,
+        targetHash: expectedHash
       };
       delete nextState.baseline[entry.logicalId];
     } else {
-      nextState.baseline[entry.logicalId] = { target: entry.target, sourceHash: entry.sha256, targetHash: entry.sha256 };
+      nextState.baseline[entry.logicalId] = { target: entry.target, sourceHash: expectedHash, targetHash: expectedHash };
+      delete nextState.semanticAcceptances[entry.logicalId];
     }
     return;
   }
 
-  if (targetHash === entry.sha256) {
+  if (targetHash === expectedHash) {
     report.preserved.push({ logicalId: entry.logicalId, target: entry.target });
     if (semantic) {
-      nextState.semanticAcceptances[entry.logicalId] = { target: entry.target, sourceHash: entry.sha256, targetHash };
+      nextState.semanticAcceptances[entry.logicalId] = { target: entry.target, sourceHash: expectedHash, targetHash };
       delete nextState.baseline[entry.logicalId];
     } else {
-      nextState.baseline[entry.logicalId] = { target: entry.target, sourceHash: entry.sha256, targetHash };
+      nextState.baseline[entry.logicalId] = { target: entry.target, sourceHash: expectedHash, targetHash };
+      delete nextState.semanticAcceptances[entry.logicalId];
     }
     return;
   }
@@ -272,7 +273,7 @@ function processEntry(context) {
     report.resolved.push({ logicalId: entry.logicalId, target: entry.target });
     nextState.semanticAcceptances[entry.logicalId] = {
       target: entry.target,
-      sourceHash: entry.sha256,
+      sourceHash: expectedHash,
       targetHash
     };
     delete nextState.baseline[entry.logicalId];
@@ -281,36 +282,38 @@ function processEntry(context) {
   }
 
   if (semantic) {
-    if (accepted && accepted.sourceHash === entry.sha256 && accepted.targetHash === targetHash) {
+    if (accepted && accepted.sourceHash === expectedHash && accepted.targetHash === targetHash) {
       report.preserved.push({ logicalId: entry.logicalId, target: entry.target, ownership: entry.ownership });
       return;
     }
     const reason = accepted
-      ? (accepted.sourceHash !== entry.sha256 ? 'Starter-owned proposal changed since explicit acceptance' : 'Project file changed since explicit acceptance')
+      ? (accepted.sourceHash !== expectedHash ? 'Starter-owned proposal changed since explicit acceptance' : 'Project file changed since explicit acceptance')
       : 'Existing project file differs from the Starter Kit proposal';
-    report.conflicts.push(writeConflict(sourceRoot, targetRoot, manifest, entry, reason, dryRun));
+    report.conflicts.push(writeConflict(sourceRoot, targetRoot, manifest, entry, context.profile, reason, dryRun));
     return;
   }
 
   if (baseline && baseline.targetHash === targetHash) {
     report.updated.push({ logicalId: entry.logicalId, target: entry.target });
-    if (!dryRun) copySource(sourceRoot, targetRoot, entry);
-    nextState.baseline[entry.logicalId] = { target: entry.target, sourceHash: entry.sha256, targetHash: entry.sha256 };
+    if (!dryRun) copySource(sourceRoot, targetRoot, entry, context.profile);
+    nextState.baseline[entry.logicalId] = { target: entry.target, sourceHash: expectedHash, targetHash: expectedHash };
+    delete nextState.semanticAcceptances[entry.logicalId];
     return;
   }
 
   if (baseline && explicitManagedResolution && !semantic) {
     report.resolved.push({ logicalId: entry.logicalId, target: entry.target, resolution: 'replace-managed-drift' });
     if (!dryRun) {
-      copySource(sourceRoot, targetRoot, entry);
+      copySource(sourceRoot, targetRoot, entry, context.profile);
       removeConflictFiles(targetRoot, manifest.version, entry.target);
     }
-    nextState.baseline[entry.logicalId] = { target: entry.target, sourceHash: entry.sha256, targetHash: entry.sha256 };
+    nextState.baseline[entry.logicalId] = { target: entry.target, sourceHash: expectedHash, targetHash: expectedHash };
+    delete nextState.semanticAcceptances[entry.logicalId];
     return;
   }
 
   const reason = baseline ? 'Managed file has local modifications' : 'Existing file has no managed baseline';
-  report.conflicts.push(writeConflict(sourceRoot, targetRoot, manifest, entry, reason, dryRun));
+  report.conflicts.push(writeConflict(sourceRoot, targetRoot, manifest, entry, context.profile, reason, dryRun));
 }
 
 export async function executeUpdate(options) {
@@ -399,6 +402,7 @@ export async function executeUpdate(options) {
       targetRoot: target,
       manifest,
       entry,
+      profile,
       state,
       nextState,
       dryRun,

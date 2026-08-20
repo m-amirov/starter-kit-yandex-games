@@ -16,6 +16,11 @@ Required fields:
 - `conflictPolicy` — the allowed delivery behavior;
 - `sha256` — hash of the source file.
 
+Optional `contentTemplate: true` marks a UTF-8 text source whose
+`{skillRoot}` and `{codexConfigRoot}` tokens are materialized from the selected
+target profile. The manifest hash remains the hash of canonical template bytes;
+the target baseline records the hash of the materialized bytes.
+
 ## Ownership behavior
 
 - `managed`: replace only when the target still matches its recorded baseline.

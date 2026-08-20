@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.3 — 2026-08-20
+
+- Made managed text content profile-aware through explicit manifest `contentTemplate` materialization.
+- Materialized `QUALITY_CONSTITUTION.md` links through each profile's configured `skillRoot`, preserving `.codex/skills` for new projects and `.agents/skills` for mature Phaser projects.
+- Made the 0.4.1 semantic-accepted to managed transition baseline-safe when the materialized target bytes already match, without creating a second skill root or touching product-owned runtime.
+- Added migration, init, apply, status, ownership-transition, and idempotency regression coverage.
+
 ## 0.5.2 — 2026-08-20
 
 - Fixed the stale `autonomy/state.json` new-project seed so its `starterKitVersion` matches the released Starter Kit version.
