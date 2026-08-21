@@ -1,4 +1,4 @@
-# Autonomous Yandex Games Starter Kit 0.5.4
+# Autonomous Yandex Games Starter Kit 0.5.5
 
 Версионируемая engineering/compliance инфраструктура для создания новых игр и
 безопасного обновления существующих зрелых проектов Яндекс Игр.
@@ -58,8 +58,8 @@ Conflicting proposals are written to:
 .starter-kit/conflicts/<version>/<target>.merge.md
 ```
 
-The project file remains unchanged. After manual review and merge, record the
-resolution explicitly:
+The project file remains unchanged. After manual review and merge, record
+acceptance of the current project version explicitly:
 
 ```powershell
 node tools/starter-kit/apply-update.mjs `
@@ -68,7 +68,19 @@ node tools/starter-kit/apply-update.mjs `
   --resolve-semantic contract:AGENTS.md
 ```
 
-There is no automatic accept-all conflict flag.
+To intentionally replace a semantic or target-mapped target with the
+profile-materialized incoming Starter Kit bytes, use the separate strategy:
+
+```powershell
+node tools/starter-kit/apply-update.mjs `
+  --target E:\Work\YandexGames\existing-game `
+  --profile mature-yandex-phaser `
+  --resolve-semantic-incoming skill:project-termination:SKILL.md
+```
+
+`--resolve-semantic` remains accept-current. Incoming resolution is not
+available for `package.json`, whose structural merge always preserves the
+explicitly accepted project version. There is no automatic accept-all flag.
 
 ## Codex engineering system
 

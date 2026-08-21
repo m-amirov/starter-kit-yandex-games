@@ -756,6 +756,21 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": "migrations/0.5.5-incoming-semantic-resolution.md",
+      "logicalId": "migration:0.5.5-incoming-semantic-resolution",
+      "ownership": "managed",
+      "target": "migrations/0.5.5-incoming-semantic-resolution.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "templates/product-validation/BLIND_PLAYTEST.md",
       "logicalId": "managed:blind-playtest-template",
       "ownership": "managed",

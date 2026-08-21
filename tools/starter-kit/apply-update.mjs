@@ -15,7 +15,7 @@ function value(name) {
 
 const targetArg = value('--target');
 if (!targetArg) {
-  throw new Error('Usage: node tools/starter-kit/apply-update.mjs --target <project> --profile <name-or-file> [--dry-run] [--resolve-semantic <logical-id>] [--resolve-managed <logical-id>]');
+  throw new Error('Usage: node tools/starter-kit/apply-update.mjs --target <project> --profile <name-or-file> [--dry-run] [--resolve-semantic <logical-id>] [--resolve-semantic-incoming <logical-id>] [--resolve-managed <logical-id>]');
 }
 
 const report = await executeUpdate({
@@ -25,6 +25,7 @@ const report = await executeUpdate({
   mode: 'update',
   dryRun: process.argv.includes('--dry-run'),
   resolveSemantic: values('--resolve-semantic'),
+  resolveSemanticIncoming: values('--resolve-semantic-incoming'),
   resolveManaged: values('--resolve-managed')
 });
 

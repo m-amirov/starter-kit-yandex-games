@@ -73,7 +73,7 @@ For a conflicting entry, the updater preserves the project file and writes:
 .starter-kit/conflicts/<version>/<target>.merge.md
 ```
 
-After manual merge:
+To accept the current project version after manual merge:
 
 ```bash
 node tools/starter-kit/apply-update.mjs \
@@ -81,6 +81,21 @@ node tools/starter-kit/apply-update.mjs \
   --profile mature-yandex-phaser \
   --resolve-semantic <logical-id>
 ```
+
+To intentionally accept the incoming Starter Kit version for a semantic or
+target-mapped entry, use the explicit incoming strategy:
+
+```bash
+node tools/starter-kit/apply-update.mjs \
+  --target ../existing-game \
+  --profile mature-yandex-phaser \
+  --resolve-semantic-incoming <logical-id>
+```
+
+The updater writes the profile-materialized incoming bytes and records their
+hash as the semantic acceptance. `--resolve-semantic` remains accept-current.
+`package.json` only supports accept-current because its structural merge keeps
+project-specific scripts and dependencies authoritative.
 
 `package.json` uses a structural merge. Missing Starter Kit scripts may be
 added. Project scripts, name, version, package manager, and dependencies are

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.5 — 2026-08-21
+
+- Added `--resolve-semantic-incoming` for explicit materialization of incoming
+  semantic and target-mapped entries while preserving `--resolve-semantic` as
+  accept-current.
+- Added incoming-resolution regression coverage for target-mapped,
+  profile-materialized, mixed package/skill, and final-LF cases.
+
 ## 0.5.4 — 2026-08-20
 
 - Normalized six managed text files to one final LF so newly materialized mature-project files pass `git diff --check`.

@@ -17,6 +17,7 @@ import {
 } from '../../tools/starter-kit/lib.mjs';
 import {
   loadManifest,
+  materializeEntrySource,
   resolveManifestEntries,
   validateManifest
 } from '../../tools/starter-kit/manifest.mjs';
@@ -46,6 +47,11 @@ function tempFixture(name) {
 
 function removeTemp(parent) {
   fs.rmSync(parent, { recursive: true, force: true });
+}
+
+function runGitCommand(cwd, args) {
+  const result = spawnSync('git', args, { cwd, encoding: 'utf8' });
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
 }
 
 function hashProduct(target) {
@@ -550,6 +556,198 @@ test('same-name changed skill creates a semantic conflict', async () => {
       result.conflicts.some((item) => item.target === '.agents/skills/implementation-cycle/SKILL.md'),
       true
     );
+  } finally {
+    removeTemp(parent);
+  }
+});
+
+test('incoming semantic resolution materializes target-mapped bytes and remains idempotent', async () => {
+  const { parent, target } = tempFixture('incoming-semantic-resolution');
+  try {
+    fs.writeFileSync(path.join(target, 'package.json'), `${JSON.stringify({ name: 'fixture', scripts: {} })}\n`);
+    const profile = matureProfile();
+    const initial = await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update' });
+    assert.equal(initial.conflicts.length, 0);
+
+    const entry = resolveManifestEntries(loadManifest(ROOT), profile, 'update')
+      .find((item) => item.logicalId === 'skill:project-termination:SKILL.md');
+    const skill = path.join(target, entry.target);
+    const expected = materializeEntrySource(ROOT, entry, profile);
+    fs.writeFileSync(skill, Buffer.concat([fs.readFileSync(skill), Buffer.from('\nlocal target content\n')]));
+    const first = await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update' });
+    assert.equal(first.conflicts.some((item) => item.logicalId === entry.logicalId), true);
+
+    const beforeDryRun = sha256File(skill);
+    const dryRun = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile,
+      mode: 'update',
+      dryRun: true,
+      resolveSemanticIncoming: [entry.logicalId]
+    });
+    assert.equal(dryRun.conflicts.length, 0);
+    assert.equal(sha256File(skill), beforeDryRun);
+
+    const applied = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile,
+      mode: 'update',
+      resolveSemanticIncoming: [entry.logicalId]
+    });
+    assert.equal(applied.conflicts.length, 0);
+    assert.deepEqual(fs.readFileSync(skill), expected.bytes);
+    assert.equal(inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target }).status, 'clean');
+    const repeated = await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update', dryRun: true });
+    assert.deepEqual({ created: repeated.created, updated: repeated.updated, conflicts: repeated.conflicts }, { created: [], updated: [], conflicts: [] });
+  } finally {
+    removeTemp(parent);
+  }
+});
+
+test('current semantic resolution preserves target-mapped bytes and remains idempotent', async () => {
+  const { parent, target } = tempFixture('current-semantic-resolution');
+  try {
+    fs.writeFileSync(path.join(target, 'package.json'), `${JSON.stringify({ name: 'fixture', scripts: {} })}\n`);
+    const profile = matureProfile();
+    await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update' });
+    const entry = resolveManifestEntries(loadManifest(ROOT), profile, 'update')
+      .find((item) => item.logicalId === 'skill:project-termination:SKILL.md');
+    const skill = path.join(target, entry.target);
+    fs.appendFileSync(skill, '\nlocal target content\n');
+    const before = fs.readFileSync(skill);
+    const result = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile,
+      mode: 'update',
+      resolveSemantic: [entry.logicalId]
+    });
+    assert.equal(result.conflicts.length, 0);
+    assert.equal(result.resolved.some((item) => item.resolution === 'accept-current'), true);
+    assert.deepEqual(fs.readFileSync(skill), before);
+    assert.equal(inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target }).status, 'clean');
+    const repeated = await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update', dryRun: true });
+    assert.deepEqual({ created: repeated.created, updated: repeated.updated, conflicts: repeated.conflicts }, { created: [], updated: [], conflicts: [] });
+  } finally {
+    removeTemp(parent);
+  }
+});
+
+test('incoming semantic resolution uses profile-materialized content bytes', async () => {
+  const { parent, target } = tempFixture('profile-aware-incoming-resolution');
+  const source = path.join(parent, 'profile-aware-source');
+  try {
+    fs.cpSync(ROOT, source, { recursive: true, filter: (candidate) => path.basename(candidate) !== '.git' });
+    const entriesFile = path.join(source, 'config', 'manifest-entries.json');
+    const configuration = JSON.parse(fs.readFileSync(entriesFile, 'utf8'));
+    const quality = configuration.entries.find((entry) => entry.logicalId === 'managed:quality-constitution');
+    quality.ownership = 'target-mapped';
+    quality.conflictPolicy = 'semantic-merge';
+    fs.writeFileSync(entriesFile, `${JSON.stringify(configuration, null, 2)}\n`);
+    const manifest = spawnSync(process.execPath, [path.join(source, 'tools', 'starter-kit', 'build-manifest.mjs')], { cwd: source, encoding: 'utf8' });
+    assert.equal(manifest.status, 0, `${manifest.stdout}\n${manifest.stderr}`);
+
+    fs.writeFileSync(path.join(target, 'package.json'), `${JSON.stringify({ name: 'fixture', scripts: {} })}\n`);
+    const profile = loadTargetProfile(source, 'mature-yandex-phaser', { mode: 'update' });
+    await executeUpdate({ sourceRoot: source, targetRoot: target, profile, mode: 'update' });
+    const entry = resolveManifestEntries(loadManifest(source), profile, 'update')
+      .find((item) => item.logicalId === 'managed:quality-constitution');
+    const qualityFile = path.join(target, entry.target);
+    const expected = materializeEntrySource(source, entry, profile);
+    fs.appendFileSync(qualityFile, '\nlocal target content\n');
+    const result = await executeUpdate({
+      sourceRoot: source,
+      targetRoot: target,
+      profile,
+      mode: 'update',
+      resolveSemanticIncoming: [entry.logicalId]
+    });
+    assert.equal(result.conflicts.length, 0);
+    assert.deepEqual(fs.readFileSync(qualityFile), expected.bytes);
+    assert.equal(sha256File(qualityFile), expected.sha256);
+    assert.match(fs.readFileSync(qualityFile, 'utf8'), /\.agents\/skills/);
+    assert.equal(inspectTargetStatus({ sourceRoot: source, targetRoot: target }).status, 'clean');
+  } finally {
+    removeTemp(parent);
+  }
+});
+
+test('mixed semantic resolutions accept incoming skill and keep current package script', async () => {
+  const { parent, target } = tempFixture('mixed-semantic-resolution');
+  try {
+    fs.writeFileSync(path.join(target, 'package.json'), `${JSON.stringify({ name: 'fixture', scripts: {} })}\n`);
+    const profile = matureProfile();
+    await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update' });
+    const entry = resolveManifestEntries(loadManifest(ROOT), profile, 'update')
+      .find((item) => item.logicalId === 'skill:project-termination:SKILL.md');
+    const skill = path.join(target, entry.target);
+    const expected = materializeEntrySource(ROOT, entry, profile);
+    fs.appendFileSync(skill, '\nlocal target content\n');
+    const packageFile = path.join(target, 'package.json');
+    const packageJson = JSON.parse(fs.readFileSync(packageFile, 'utf8'));
+    packageJson.scripts['skills:validate'] = 'project-yandex-validation';
+    fs.writeFileSync(packageFile, `${JSON.stringify(packageJson, null, 2)}\n`);
+    const protectedBefore = hashProduct(target);
+
+    const result = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile,
+      mode: 'update',
+      resolveSemantic: ['contract:package-json'],
+      resolveSemanticIncoming: [entry.logicalId]
+    });
+    assert.equal(result.conflicts.length, 0);
+    assert.deepEqual(fs.readFileSync(skill), expected.bytes);
+    assert.equal(JSON.parse(fs.readFileSync(packageFile, 'utf8')).scripts['skills:validate'], 'project-yandex-validation');
+    assert.deepEqual(hashProduct(target), protectedBefore);
+    assert.equal(inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target }).status, 'clean');
+    const repeated = await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update', dryRun: true });
+    assert.deepEqual({ created: repeated.created, updated: repeated.updated, conflicts: repeated.conflicts }, { created: [], updated: [], conflicts: [] });
+  } finally {
+    removeTemp(parent);
+  }
+});
+
+test('incoming CLI resolution removes an extra final LF without whitespace drift', async () => {
+  const { parent, target } = tempFixture('incoming-whitespace-resolution');
+  try {
+    fs.writeFileSync(path.join(target, 'package.json'), `${JSON.stringify({ name: 'fixture', scripts: {} })}\n`);
+    const profile = matureProfile();
+    await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update' });
+    const entry = resolveManifestEntries(loadManifest(ROOT), profile, 'update')
+      .find((item) => item.logicalId === 'skill:project-termination:SKILL.md');
+    const skill = path.join(target, entry.target);
+    const expected = materializeEntrySource(ROOT, entry, profile).bytes;
+    assert.deepEqual(fs.readFileSync(skill), expected);
+    assert.equal(expected.at(-1), 0x0a);
+    assert.notEqual(expected.at(-2), 0x0a);
+
+    runGitCommand(target, ['init']);
+    runGitCommand(target, ['config', 'user.email', 'test@example.invalid']);
+    runGitCommand(target, ['config', 'user.name', 'Starter Kit Test']);
+    runGitCommand(target, ['add', '-A']);
+    runGitCommand(target, ['commit', '-m', 'baseline']);
+    fs.appendFileSync(skill, Buffer.from([0x0a]));
+    const conflict = await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update' });
+    assert.equal(conflict.conflicts.some((item) => item.logicalId === entry.logicalId), true);
+
+    const cli = spawnSync(process.execPath, [
+      path.join(ROOT, 'tools', 'starter-kit', 'apply-update.mjs'),
+      '--target', target,
+      '--profile', 'mature-yandex-phaser',
+      '--resolve-semantic-incoming', entry.logicalId
+    ], { cwd: ROOT, encoding: 'utf8' });
+    assert.equal(cli.status, 0, `${cli.stdout}\n${cli.stderr}`);
+    assert.deepEqual(fs.readFileSync(skill), expected);
+    assert.equal(fs.readFileSync(skill).at(-1), 0x0a);
+    assert.notEqual(fs.readFileSync(skill).at(-2), 0x0a);
+    const diffCheck = spawnSync('git', ['diff', '--check'], { cwd: target, encoding: 'utf8' });
+    assert.equal(diffCheck.status, 0, `${diffCheck.stdout}\n${diffCheck.stderr}`);
+    const repeated = await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile, mode: 'update', dryRun: true });
+    assert.deepEqual({ created: repeated.created, updated: repeated.updated, conflicts: repeated.conflicts }, { created: [], updated: [], conflicts: [] });
   } finally {
     removeTemp(parent);
   }

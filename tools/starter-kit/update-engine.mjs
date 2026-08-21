@@ -88,7 +88,7 @@ function writeConflict(sourceRoot, targetRoot, manifest, entry, profile, reason,
       `- Proposed source is stored at: \`${posix(path.relative(targetRoot, files.candidate))}\``,
       '',
       'Review both files, preserve project-specific requirements, and apply the merge manually.',
-      'Then run the updater with `--resolve-semantic <logical-id>` to record explicit acceptance.',
+      'Then run the updater with `--resolve-semantic <logical-id>` to accept the current project version, or `--resolve-semantic-incoming <logical-id>` to materialize the incoming Starter Kit version.',
       'Yandex requirements and project-owned runtime remain authoritative.',
       ''
     ].join('\n');
@@ -208,6 +208,7 @@ function processEntry(context) {
     nextState,
     dryRun,
     resolveSemantic,
+    resolveSemanticIncoming,
     resolveManaged,
     report
   } = context;
@@ -238,6 +239,8 @@ function processEntry(context) {
     || entry.ownership === 'target-mapped'
     || entry.conflictPolicy === 'semantic-merge';
   const explicitResolution = resolveSemantic.has(entry.logicalId) || resolveSemantic.has(entry.target);
+  const explicitIncomingResolution = resolveSemanticIncoming.has(entry.logicalId)
+    || resolveSemanticIncoming.has(entry.target);
   const explicitManagedResolution = resolveManaged.has(entry.logicalId) || resolveManaged.has(entry.target);
 
   if (!exists) {
@@ -269,8 +272,23 @@ function processEntry(context) {
     return;
   }
 
+  if (explicitIncomingResolution && semantic) {
+    report.resolved.push({ logicalId: entry.logicalId, target: entry.target, resolution: 'accept-incoming' });
+    if (!dryRun) {
+      copySource(sourceRoot, targetRoot, entry, context.profile);
+      removeConflictFiles(targetRoot, manifest.version, entry.target);
+    }
+    nextState.semanticAcceptances[entry.logicalId] = {
+      target: entry.target,
+      sourceHash: expectedHash,
+      targetHash: expectedHash
+    };
+    delete nextState.baseline[entry.logicalId];
+    return;
+  }
+
   if (explicitResolution && semantic) {
-    report.resolved.push({ logicalId: entry.logicalId, target: entry.target });
+    report.resolved.push({ logicalId: entry.logicalId, target: entry.target, resolution: 'accept-current' });
     nextState.semanticAcceptances[entry.logicalId] = {
       target: entry.target,
       sourceHash: expectedHash,
@@ -324,6 +342,7 @@ export async function executeUpdate(options) {
     mode = 'update',
     dryRun = false,
     resolveSemantic = [],
+    resolveSemanticIncoming = [],
     resolveManaged = []
   } = options;
   if (!['init', 'update'].includes(mode)) throw new Error(`Unsupported updater mode: ${mode}`);
@@ -380,6 +399,7 @@ export async function executeUpdate(options) {
   };
 
   const resolutions = new Set(resolveSemantic);
+  const incomingResolutions = new Set(resolveSemanticIncoming);
   const managedResolutions = new Set(resolveManaged);
   const resolvable = new Set(entries
     .filter((entry) => entry.ownership === 'semantic-merge'
@@ -389,6 +409,16 @@ export async function executeUpdate(options) {
     .flatMap((entry) => [entry.logicalId, entry.target]));
   for (const resolution of resolutions) {
     if (!resolvable.has(resolution)) throw new Error(`Unknown or non-semantic resolution: ${resolution}`);
+  }
+  const incomingResolvable = new Set(entries
+    .filter((entry) => entry.logicalId !== 'contract:package-json'
+      && (entry.ownership === 'semantic-merge'
+        || entry.ownership === 'target-mapped'
+        || entry.conflictPolicy === 'semantic-merge'))
+    .flatMap((entry) => [entry.logicalId, entry.target]));
+  for (const resolution of incomingResolutions) {
+    if (!incomingResolvable.has(resolution)) throw new Error(`Unknown or non-incoming-semantic resolution: ${resolution}`);
+    if (resolutions.has(resolution)) throw new Error(`Conflicting semantic resolutions: ${resolution}`);
   }
   const managedResolvable = new Set(entries
     .filter((entry) => entry.ownership === 'managed' && entry.conflictPolicy === 'replace-if-baseline')
@@ -407,6 +437,7 @@ export async function executeUpdate(options) {
       nextState,
       dryRun,
       resolveSemantic: resolutions,
+      resolveSemanticIncoming: incomingResolutions,
       resolveManaged: managedResolutions.size ? managedResolutions : new Set(),
       report
     });
