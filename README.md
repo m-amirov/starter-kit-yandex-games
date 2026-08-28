@@ -126,6 +126,11 @@ npm run starter-kit:update-self-test
 npm run starter-kit:status -- --target E:\Path\To\initialized-target
 ```
 
+Deterministic suites use offline fixtures. Run `npm run yandex:docs:check`
+separately for the live official-documentation integration gate; it never edits
+the requirements registries. Accept a changed semantic snapshot only after
+review and green audits/tests with `npm run yandex:docs:accept-snapshot -- --reviewed-at YYYY-MM-DD --policy-reviewed`.
+
 Starter Kit 0.4.0 is **unsafe for mature-project update without the 0.4.1
 updater**. It remains a valid historical new-project baseline where its init
 flow is independently verified. See

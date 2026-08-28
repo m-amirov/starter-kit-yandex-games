@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.6 — 2026-08-28
+
+- Added a controlled official Yandex Games documentation watcher with canonical source allowlisting, timeout/retry, semantic normalization, detail-page discovery and fail-closed verdicts.
+- Added the reviewed semantic snapshot for Requirements, Draft field constraints, Moderation and 24 discovered official requirement detail pages.
+- Added offline watcher fixtures/regressions, explicit post-review snapshot acceptance and structured diff/update-task artifacts.
+- Integrated upstream freshness into Yandex validation, independent release audit, Starter Kit packaging and best-effort init/updater reports without changing game runtime or project-owned seeds.
+
 ## 0.5.5 — 2026-08-28
 
 - Synced the numbered Yandex Games registry to the official 18 August 2026 revision while retaining every repealed clause for traceability.

@@ -5,7 +5,7 @@
 ## Обязательный порядок
 
 1. Проверь starter-kit version/state, Git и отсутствие конфликтов обновления.
-2. Прочитай спецификацию, проектные правила, реестр навыков и требования Яндекса.
+2. Прочитай спецификацию, проектные правила, реестр навыков и требования Яндекса. Проверь reviewed semantic snapshot официальной документации и его соответствие authoritative registry.
 3. Используй `$codex-engineering-system` для каждой нетривиальной задачи; он маршрутизирует работу через `$implementation-cycle` и только релевантные локальные skills.
 4. Сформулируй продуктовую гипотезу и выполни `$product-quality-review`.
 5. Создай один vertical slice. До массового производства он должен пройти:
@@ -28,8 +28,9 @@
 16. После final production build и final screenshots для `first-publication` создай horizontal gameplay video из настоящего геймплея final production build. Цель — 20–25 секунд и желательно 100% gameplay; intro/outro минимальны. Не используй fake mockup, отдельную анимацию, dev/debug footage или runtime dependency. Для portrait-only допустима 16:9 композиция реальной portrait-записи с собственным artwork/background игры.
 17. Для каждого заявленного языка создай locale-specific video, если в gameplay есть локализованный текст. Один файл разрешён только при доказанном отсутствии language-dependent текста. Заполни `artifacts/evidence/final-gameplay-videos.json`, выполни ручной visual review доли real gameplay ≥70%, UI/локали/чёрных полей и запусти media validation.
 18. Создай проверяемый Yandex game ZIP без promotional MP4; dev-only recording/transcoding tooling не должно попадать в production bundle.
-19. Выполни полный compliance audit и `$yandex-release-validation`.
-20. Затем независимо выполни `$release-audit`, проверь ZIP и SHA-256. Не публикуй и не отправляй на модерацию.
+19. Перед реальной отправкой выполни live `yandex:docs:check`. `UNCHANGED`/`METADATA_ONLY` допускают продолжение; unresolved semantic diff блокирует с `BLOCK_YANDEX_DOCS_CHANGED_REVIEW_REQUIRED`. `FETCH_FAILED` требует явного ручного evidence review всех canonical sources и не является автоматическим PASS.
+20. Выполни полный compliance audit и `$yandex-release-validation`.
+21. Затем независимо выполни `$release-audit`, включая snapshot/registry alignment и отсутствие unresolved upstream changes; проверь ZIP и SHA-256. Не публикуй и не отправляй на модерацию.
 
 Допустимые итоги:
 

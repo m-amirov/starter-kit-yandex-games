@@ -6,6 +6,7 @@ import test from 'node:test';
 import { ROOT } from '../../tools/starter-kit/lib.mjs';
 import {
   auditConsoleRegistryText,
+  auditSnapshotRegistryAlignment,
   auditRequirementRegistryText,
   evaluateMonetization
 } from '../../tools/yandex/requirements-audit.mjs';
@@ -13,6 +14,7 @@ import {
   validateGameplayVideos,
   validatePromotionalVideoExclusion
 } from '../../tools/yandex/media-validation.mjs';
+import { loadSourceConfig } from '../../tools/yandex/docs-watch.mjs';
 
 const validReview = {
   realGameplay: { status: 'PASS', evidence: 'manual-review/gameplay.md' },
@@ -76,6 +78,36 @@ test('Console-only rules are separate and have no invented numbered requirement'
   const result = auditConsoleRegistryText(registry, { reviewedAt: '2026-08-28' });
   assert.deepEqual(result.errors, []);
   assert.deepEqual(result.ruleIds, ['CONSOLE-FIRST-PUBLICATION-HORIZONTAL-GAMEPLAY-VIDEO']);
+});
+
+test('reviewed upstream snapshot aligns with numbered and Console registries', () => {
+  const snapshotPath = process.env.YANDEX_DOC_SNAPSHOT_PATH
+    ? path.resolve(process.env.YANDEX_DOC_SNAPSHOT_PATH)
+    : path.join(ROOT, 'config', 'yandex-doc-snapshot.json');
+  const result = auditSnapshotRegistryAlignment({
+    requirementText: fs.readFileSync(path.join(ROOT, 'config', 'yandex-requirements.yaml'), 'utf8'),
+    consoleText: fs.readFileSync(path.join(ROOT, 'config', 'yandex-console-requirements.yaml'), 'utf8'),
+    snapshot: JSON.parse(fs.readFileSync(snapshotPath, 'utf8')),
+    sourceConfig: loadSourceConfig()
+  });
+  assert.equal(result.status, 'PASS');
+  assert.deepEqual(result.errors, []);
+  assert.equal(result.snapshotClauseCount, 160);
+  assert.equal(result.discoveredDetailPageCount, 24);
+});
+
+test('snapshot alignment blocks registry changes made after review', () => {
+  const requirementText = fs.readFileSync(path.join(ROOT, 'config', 'yandex-requirements.yaml'), 'utf8');
+  const consoleText = fs.readFileSync(path.join(ROOT, 'config', 'yandex-console-requirements.yaml'), 'utf8');
+  const snapshot = JSON.parse(fs.readFileSync(path.join(ROOT, 'config', 'yandex-doc-snapshot.json'), 'utf8'));
+  const result = auditSnapshotRegistryAlignment({
+    requirementText: requirementText.replace('SDK Яндекс Игр встроен', 'SDK встроен'),
+    consoleText,
+    snapshot,
+    sourceConfig: loadSourceConfig()
+  });
+  assert.equal(result.status, 'BLOCK');
+  assert.match(result.errors.join('\n'), /registry changed after snapshot review/);
 });
 
 test('requirement 1.12 accepts ads-only monetization', () => {

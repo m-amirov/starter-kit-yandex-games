@@ -573,6 +573,36 @@
       "conflictPolicy": "semantic-merge"
     },
     {
+      "source": "config/yandex-doc-sources.yaml",
+      "logicalId": "managed:yandex-doc-sources",
+      "ownership": "managed",
+      "target": "config/yandex-doc-sources.yaml",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/yandex-doc-snapshot.json",
+      "logicalId": "managed:yandex-doc-snapshot",
+      "ownership": "managed",
+      "target": "config/yandex-doc-snapshot.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "config/game-spec.schema.json",
       "logicalId": "managed:game-spec-schema",
       "ownership": "managed",
@@ -833,6 +863,21 @@
       "logicalId": "migration:0.5.4-to-0.5.5",
       "ownership": "managed",
       "target": "migrations/0.5.4-to-0.5.5.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.5.5-to-0.5.6.md",
+      "logicalId": "migration:0.5.5-to-0.5.6",
+      "ownership": "managed",
+      "target": "migrations/0.5.5-to-0.5.6.md",
       "modes": [
         "init",
         "update"
@@ -1208,6 +1253,21 @@
       "logicalId": "managed:tool-yandex-requirements-audit",
       "ownership": "managed",
       "target": "tools/yandex/requirements-audit.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/docs-watch.mjs",
+      "logicalId": "managed:tool-yandex-docs-watch",
+      "ownership": "managed",
+      "target": "tools/yandex/docs-watch.mjs",
       "modes": [
         "init",
         "update"

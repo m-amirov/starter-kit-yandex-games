@@ -3,6 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { ROOT } from './lib.mjs';
+import { assertNoUnresolvedUpstreamChanges, inspectLocalFreshness } from '../yandex/docs-watch.mjs';
+
+const upstreamFreshness = assertNoUnresolvedUpstreamChanges(inspectLocalFreshness(ROOT));
 
 execFileSync(process.execPath, [path.join(ROOT, 'tools', 'starter-kit', 'build-manifest.mjs')], { stdio: 'inherit' });
 execFileSync(process.execPath, [path.join(ROOT, 'tools', 'starter-kit', 'self-test.mjs')], { stdio: 'inherit' });
@@ -60,4 +63,4 @@ if (!packaged) throw new Error('Python 3 is required to build the Starter Kit ZI
 
 const sha256 = crypto.createHash('sha256').update(fs.readFileSync(output)).digest('hex');
 fs.writeFileSync(checksumFile, `${sha256}  ${path.basename(output)}\n`);
-console.log(JSON.stringify({ output, checksumFile, sha256, version }, null, 2));
+console.log(JSON.stringify({ output, checksumFile, sha256, version, upstreamFreshness }, null, 2));

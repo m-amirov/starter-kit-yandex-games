@@ -1,7 +1,7 @@
 {
   "name": "yandex-games-autonomous-starter-kit",
   "private": true,
-  "version": "0.5.5",
+  "version": "0.5.6",
   "type": "module",
   "starterKit": {
     "targetScripts": [
@@ -9,6 +9,9 @@
       "starter-kit:status",
       "skills:validate",
       "yandex:requirements:audit",
+      "yandex:console:audit",
+      "yandex:docs:check",
+      "yandex:docs:accept-snapshot",
       "yandex:media:validate"
     ]
   },
@@ -22,6 +25,9 @@
     "starter-kit:update-self-test": "node tools/starter-kit/update-self-test.mjs",
     "test:updater": "node --test tests/starter-kit/*.test.mjs",
     "yandex:requirements:audit": "node tools/yandex/requirements-audit.mjs",
+    "yandex:console:audit": "node tools/yandex/requirements-audit.mjs --console-only",
+    "yandex:docs:check": "node tools/yandex/docs-watch.mjs",
+    "yandex:docs:accept-snapshot": "node tools/yandex/docs-watch.mjs --accept-snapshot",
     "yandex:media:validate": "node tools/yandex/media-validation.mjs",
     "skills:validate": "node tools/starter-kit/self-test.mjs"
   }

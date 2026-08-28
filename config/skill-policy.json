@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "starterKitVersion": "0.5.5",
+  "starterKitVersion": "0.5.6",
   "authorityOrder": [
     "official-yandex-games-requirements",
     "config/yandex-requirements.yaml",
@@ -16,6 +16,9 @@
     "yandexRequirementsMayNotBeWeakened": true,
     "skillsMayNotSelfApproveCompliance": true,
     "mandatoryEvidenceForRelease": true,
+    "upstreamDocumentationFreshnessRequiredBeforeYandexSubmission": true,
+    "unresolvedUpstreamSemanticDiffBlocksRelease": true,
+    "fetchFailedRequiresExplicitManualCurrentDocumentReview": true,
     "firstPublicationHorizontalGameplayVideoRequired": true,
     "realGameplayRatioRequiresManualVisualEvidence": true,
     "promotionalMp4InGameReleaseZip": "forbidden",

@@ -3,13 +3,14 @@
 ## Mandatory authority order
 
 1. Current official Yandex Games requirements.
-2. `config/yandex-requirements.yaml` and `$yandex-release-validation`.
+2. Reviewed `config/yandex-doc-snapshot.json`, `config/yandex-requirements.yaml`, `config/yandex-console-requirements.yaml`, and `$yandex-release-validation`.
 3. `AGENTS.md`, `PROJECT_RULES.md`, and explicit product constraints.
 4. `game-spec.yaml`.
 5. Local production skills.
 6. Adapted external guidance.
 
 A lower layer may add stricter quality requirements, but it may never weaken, reinterpret away, or mark a Yandex requirement as passed.
+The snapshot is a reviewed comparison baseline, not permission to ignore a newer official page. Unresolved watcher changes or parse drift block release review.
 
 ## Conflict protocol
 

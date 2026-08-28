@@ -14,6 +14,7 @@ import {
 } from './lib.mjs';
 import { loadManifest, materializeEntrySource, resolveManifestEntries } from './manifest.mjs';
 import { planPackageMerge } from './package-merge.mjs';
+import { inspectLocalFreshness } from '../yandex/docs-watch.mjs';
 import { loadTargetProfile, validateTargetProfile } from './profile.mjs';
 
 const STATE_SCHEMA_VERSION = 2;
@@ -397,6 +398,7 @@ export async function executeUpdate(options) {
       .filter((entry) => entry.logicalId.startsWith('migration:') && entry.modes.includes(mode))
       .map((entry) => entry.target ?? entry.targetTemplate)
   };
+  report.upstreamFreshness = inspectLocalFreshness(source);
 
   const resolutions = new Set(resolveSemantic);
   const incomingResolutions = new Set(resolveSemanticIncoming);

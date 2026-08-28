@@ -458,6 +458,8 @@ test('new-project seed is applied only during init', () => {
 test('mature update delivers validation infrastructure without product runtime or evidence seeds', () => {
   const entries = resolveManifestEntries(loadManifest(ROOT), matureProfile(), 'update');
   assert.equal(entries.some((entry) => entry.logicalId === 'managed:tool-yandex-media-validation'), true);
+  assert.equal(entries.some((entry) => entry.logicalId === 'managed:tool-yandex-docs-watch'), true);
+  assert.equal(entries.some((entry) => entry.logicalId === 'managed:yandex-doc-snapshot'), true);
   assert.equal(entries.some((entry) => entry.logicalId === 'contract:yandex-console-requirements'), true);
   assert.equal(entries.some((entry) => entry.logicalId === 'managed:game-spec-schema'), true);
   assert.equal(entries.some((entry) => entry.logicalId === 'seed:final-gameplay-videos-evidence'), false);
@@ -491,7 +493,11 @@ test('new-project seed is recorded as project-owned after init', async () => {
     const packageJson = JSON.parse(fs.readFileSync(path.join(target, 'package.json'), 'utf8'));
     assert.equal(packageJson.scripts['starter-kit:status'] !== undefined, true);
     assert.equal(packageJson.scripts['yandex:requirements:audit'], 'node tools/yandex/requirements-audit.mjs');
+    assert.equal(packageJson.scripts['yandex:console:audit'], 'node tools/yandex/requirements-audit.mjs --console-only');
+    assert.equal(packageJson.scripts['yandex:docs:check'], 'node tools/yandex/docs-watch.mjs');
+    assert.equal(packageJson.scripts['yandex:docs:accept-snapshot'], 'node tools/yandex/docs-watch.mjs --accept-snapshot');
     assert.equal(packageJson.scripts['yandex:media:validate'], 'node tools/yandex/media-validation.mjs');
+    assert.equal(result.upstreamFreshness.snapshotReviewedAt, '2026-08-28');
     assert.equal(packageJson.scripts['starter-kit:package'], undefined);
     const spec = fs.readFileSync(path.join(target, 'game-spec.yaml'), 'utf8');
     assert.match(spec, /yandex:\s+publication:\s+type: first-publication/s);

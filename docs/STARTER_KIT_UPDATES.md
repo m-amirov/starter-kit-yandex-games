@@ -23,6 +23,12 @@ Only `init` may create product seeds. Every created seed is written to
 `state.json` as project-owned and excluded from the managed baseline.
 `init` rejects a non-empty target; existing projects must use `update`.
 
+Init and update reports include a best-effort offline `upstreamFreshness`
+indication from the reviewed Yandex documentation snapshot and the latest local
+live-check report, when present. The updater does not fetch the network, rewrite
+normative registries, create another framework or add product-owned seeds. Run
+`npm run yandex:docs:check` explicitly for live integration evidence.
+
 ### Update a mature project
 
 ```bash

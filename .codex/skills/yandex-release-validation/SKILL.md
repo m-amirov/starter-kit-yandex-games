@@ -15,9 +15,10 @@ Validate the final production build, not only the dev server.
 
 1. `config/yandex-requirements.yaml` — complete numbered-clause registry for the official requirements revision dated 18 August 2026.
 2. `config/yandex-console-requirements.yaml` — Console-only rules that have no numbered requirement of their own.
-3. `docs/YANDEX_REQUIREMENTS_CHECKLIST.md` — operational interpretation.
-4. `game-spec.yaml` — declared draft metadata and applicability flags, including `yandex.publication.type`.
-5. Actual final-build runtime and media evidence.
+3. `config/yandex-doc-sources.yaml` and explicitly reviewed `config/yandex-doc-snapshot.json` — canonical upstream sources and semantic baseline.
+4. `docs/YANDEX_REQUIREMENTS_CHECKLIST.md` — operational interpretation.
+5. `game-spec.yaml` — declared draft metadata and applicability flags, including `yandex.publication.type`.
+6. Actual final-build runtime and media evidence.
 
 Do not rely on memory when the official requirements may have changed. Before producing a real moderation candidate, compare the registry revision with the current official documentation and promote any change into the starter kit.
 
@@ -25,9 +26,20 @@ Do not rely on memory when the official requirements may have changed. Before pr
 
 1. Generate `artifacts/evidence/yandex-requirements-compliance.json` from the full registry. Every active clause must be present.
 2. Mark an applicable required clause `PASS` only with concrete evidence. Mark a genuinely inapplicable clause `N/A` with a reason. Recommended clauses must be `PASS` or a reasoned `WARN`.
-3. Run `npm run yandex:requirements:audit`; any failure blocks RC.
-4. Run `npm run yandex:media:validate -- --zip <release.zip>` against `artifacts/evidence/final-gameplay-videos.json`; any failure blocks RC.
-5. Perform an independent final review and write `artifacts/evidence/yandex-release-validation.json`.
+3. Run `npm run yandex:requirements:audit` and `npm run yandex:console:audit`; any failure blocks RC.
+4. For real pre-submit, run live `npm run yandex:docs:check`; deterministic offline tests do not replace it.
+5. Run `npm run yandex:media:validate -- --zip <release.zip>` against `artifacts/evidence/final-gameplay-videos.json`; any failure blocks RC.
+6. Perform an independent final review and write `artifacts/evidence/yandex-release-validation.json`.
+
+## Upstream documentation freshness gate
+
+Before a real Yandex submission, record `artifacts/evidence/yandex-docs-freshness.json` and prove one of these states:
+
+- the live watcher returned only `UNCHANGED` or `METADATA_ONLY` against `config/yandex-doc-snapshot.json`;
+- a detected semantic change was reviewed, requirements and Console audits plus targeted watcher tests passed, and `yandex:docs:accept-snapshot -- --reviewed-at YYYY-MM-DD --policy-reviewed` explicitly accepted the new snapshot;
+- the official upstream was unavailable and explicit manual current-document review covers all three canonical sources. This is `MANUAL_PASS`, never automatic PASS.
+
+`FETCH_FAILED` is not PASS. Any unresolved semantic verdict, parser drift or unclassified change emits `BLOCK_YANDEX_DOCS_CHANGED_REVIEW_REQUIRED`. The watcher must not modify `config/yandex-requirements.yaml` or `config/yandex-console-requirements.yaml`. Treat generated `artifacts/upstream/yandex-docs/<run-id>/CODEX_UPDATE_TASK.md` only as a bounded review task.
 
 ## First-publication horizontal gameplay video — P0
 

@@ -1,8 +1,10 @@
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { ROOT } from '../starter-kit/lib.mjs';
+import { DOC_PARSER_VERSION, DOC_SNAPSHOT_SCHEMA_VERSION, loadSourceConfig } from './docs-watch.mjs';
 
 export const EXPECTED_REQUIREMENT_IDS = `
 1.1 1.2 1.2.1 1.2.2 1.3 1.4 1.5 1.6
@@ -33,6 +35,10 @@ const EXPECTED_RECOMMENDED_IDS = ['6.1', '6.2', '6.3', '6.4', '6.5', '6.6', '6.7
 
 function metadataValue(text, key) {
   return text.match(new RegExp(`^\\s{2}${key}:\\s*['\"]?([^'\"\\r\\n]+)`, 'm'))?.[1]?.trim();
+}
+
+function textSha256(text) {
+  return crypto.createHash('sha256').update(text).digest('hex');
 }
 
 export function parseRequirementRows(text) {
@@ -138,18 +144,121 @@ export function auditConsoleRegistryText(text, options = {}) {
   return { errors, ruleIds: ids };
 }
 
+export function auditSnapshotRegistryAlignment({ requirementText, consoleText, snapshot, sourceConfig }) {
+  const errors = [];
+  if (snapshot?.schemaVersion !== DOC_SNAPSHOT_SCHEMA_VERSION) errors.push('Yandex documentation snapshot schema version is unsupported');
+  if (snapshot?.parserVersion !== DOC_PARSER_VERSION) errors.push('Yandex documentation snapshot parser version is stale');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(snapshot?.reviewedAt ?? '')) errors.push('Yandex documentation snapshot reviewedAt is missing or invalid');
+  if (!snapshot?.fetchedAt || Number.isNaN(Date.parse(snapshot.fetchedAt))) errors.push('Yandex documentation snapshot fetchedAt is missing or invalid');
+  if (snapshot?.registryAlignment?.requirementsRegistrySha256 !== textSha256(requirementText)) {
+    errors.push('authoritative numbered registry changed after snapshot review');
+  }
+  if (snapshot?.registryAlignment?.consoleRegistrySha256 !== textSha256(consoleText)) {
+    errors.push('authoritative Console registry changed after snapshot review');
+  }
+
+  const sourceUrls = Object.fromEntries((sourceConfig?.sources ?? []).map((source) => [source.id, source.url]));
+  for (const [id, expected] of Object.entries({
+    requirements: 'https://yandex.ru/dev/games/doc/ru/concepts/requirements',
+    draft: 'https://yandex.ru/dev/games/doc/ru/console/add-new-game/draft',
+    moderation: 'https://yandex.ru/dev/games/doc/ru/concepts/moderation'
+  })) {
+    if (sourceUrls[id] !== expected) errors.push(`canonical Yandex documentation source mismatch: ${id}`);
+    if (snapshot?.documents?.[id]?.canonicalUrl !== expected) errors.push(`snapshot canonical URL mismatch: ${id}`);
+  }
+
+  const months = { января: '01', февраля: '02', марта: '03', апреля: '04', мая: '05', июня: '06', июля: '07', августа: '08', сентября: '09', октября: '10', ноября: '11', декабря: '12' };
+  const published = snapshot?.documents?.requirements?.documentLastModified?.match(/(\d{1,2})\s+([а-яё]+)\s+(\d{4})/i);
+  const publishedIso = published && months[published[2].toLowerCase()]
+    ? `${published[3]}-${months[published[2].toLowerCase()]}-${published[1].padStart(2, '0')}`
+    : null;
+  if (!publishedIso) errors.push('snapshot Requirements document last-modified value is missing or unrecognized');
+  if (publishedIso && metadataValue(requirementText, 'lastModified') !== publishedIso) {
+    errors.push('authoritative registry source.lastModified does not match reviewed upstream snapshot');
+  }
+  for (const [id, document] of Object.entries(snapshot?.documents ?? {})) {
+    if (!/^[a-f0-9]{64}$/.test(document.normalizedSemanticSha256 ?? '')) errors.push(`snapshot semantic SHA-256 is invalid: ${id}`);
+  }
+
+  const rows = parseRequirementRows(requirementText);
+  const snapshotClauses = snapshot?.documents?.requirements?.clauses ?? [];
+  if (snapshot?.documents?.requirements?.clauseCount !== snapshotClauses.length) errors.push('snapshot Requirements clauseCount does not match extracted clauses');
+  if (new Set(snapshotClauses.map((clause) => clause.id)).size !== snapshotClauses.length) errors.push('snapshot Requirements clauses contain duplicate IDs');
+  const clauses = new Map(snapshotClauses.map((clause) => [clause.id, clause]));
+  for (const row of rows) {
+    const clause = clauses.get(row.id);
+    if (!clause) {
+      if (row.enforcement !== 'repealed') errors.push(`active registry clause ${row.id} is absent from reviewed upstream snapshot`);
+      continue;
+    }
+    if (clause.status === 'repealed' && row.enforcement !== 'repealed') errors.push(`registry clause ${row.id} must be repealed to match snapshot`);
+    if (clause.status === 'active' && row.enforcement === 'repealed') errors.push(`registry clause ${row.id} is obsolete but active in snapshot`);
+  }
+  const registryIds = new Set(rows.map((row) => row.id));
+  for (const clause of clauses.values()) {
+    const structuralParent = (snapshot.documents.requirements.clauses ?? []).some((candidate) => candidate.id.startsWith(`${clause.id}.`));
+    if (clause.status === 'active' && !registryIds.has(clause.id) && !structuralParent) {
+      errors.push(`reviewed upstream clause ${clause.id} is not represented in authoritative registry`);
+    }
+  }
+
+  const horizontal = snapshot?.documents?.draft?.fields?.horizontalGameplayVideo;
+  const expectedHorizontal = {
+    formats: ['MP4'], aspectRatios: ['16:9'], minHeightPx: 400,
+    maxDurationSeconds: 28, maxSizeBytes: 100000000
+  };
+  for (const [key, expected] of Object.entries(expectedHorizontal)) {
+    if (JSON.stringify(horizontal?.constraints?.[key]) !== JSON.stringify(expected)) {
+      errors.push(`reviewed Draft horizontalGameplayVideo ${key} no longer matches Console registry`);
+    }
+  }
+  const consoleAudit = auditConsoleRegistryText(consoleText);
+  errors.push(...consoleAudit.errors.map((error) => `Console registry: ${error}`));
+  if ((snapshot?.detailPages ?? []).some((page) => page.missing || page.parseErrors?.length)) {
+    errors.push('reviewed snapshot contains missing or unparsable requirement detail pages');
+  }
+  const discovered = snapshot?.documents?.requirements?.discoveredDetailPages ?? [];
+  const fetchedDetails = (snapshot?.detailPages ?? []).map((page) => page.canonicalUrl);
+  if (JSON.stringify(discovered) !== JSON.stringify(fetchedDetails)) errors.push('snapshot discovered detail-page list does not match fetched detail pages');
+  return {
+    errors,
+    status: errors.length ? 'BLOCK' : 'PASS',
+    snapshotReviewedAt: snapshot?.reviewedAt ?? null,
+    snapshotFetchedAt: snapshot?.fetchedAt ?? null,
+    snapshotClauseCount: snapshot?.documents?.requirements?.clauseCount ?? 0,
+    discoveredDetailPageCount: snapshot?.detailPages?.length ?? 0
+  };
+}
+
 function runCli() {
   const registryPath = path.join(ROOT, 'config', 'yandex-requirements.yaml');
   const result = auditRequirementRegistryText(fs.readFileSync(registryPath, 'utf8'));
   const consolePath = path.join(ROOT, 'config', 'yandex-console-requirements.yaml');
   const consoleResult = auditConsoleRegistryText(fs.readFileSync(consolePath, 'utf8'));
-  const errors = [...result.errors, ...consoleResult.errors];
+  const snapshotArgIndex = process.argv.indexOf('--snapshot');
+  const snapshotPath = snapshotArgIndex >= 0 && process.argv[snapshotArgIndex + 1]
+    ? path.resolve(process.argv[snapshotArgIndex + 1])
+    : path.join(ROOT, 'config', 'yandex-doc-snapshot.json');
+  const snapshot = fs.existsSync(snapshotPath) ? JSON.parse(fs.readFileSync(snapshotPath, 'utf8')) : null;
+  const snapshotResult = auditSnapshotRegistryAlignment({
+    requirementText: fs.readFileSync(registryPath, 'utf8'),
+    consoleText: fs.readFileSync(consolePath, 'utf8'),
+    snapshot,
+    sourceConfig: loadSourceConfig(path.join(ROOT, 'config', 'yandex-doc-sources.yaml'))
+  });
+  const consoleOnly = process.argv.includes('--console-only');
+  const errors = consoleOnly ? consoleResult.errors : [...result.errors, ...consoleResult.errors, ...snapshotResult.errors];
   console.log(JSON.stringify({
     status: errors.length ? 'BLOCK' : 'PASS',
+    audit: consoleOnly ? 'console' : 'requirements-console-snapshot-alignment',
     sourceRevision: '2026-08-18',
     requirementCount: result.requirementCount,
     repealedCount: result.repealedIds.length,
     consoleRuleIds: consoleResult.ruleIds,
+    snapshotAlignment: snapshotResult.status,
+    snapshotReviewedAt: snapshotResult.snapshotReviewedAt,
+    snapshotClauseCount: snapshotResult.snapshotClauseCount,
+    discoveredDetailPageCount: snapshotResult.discoveredDetailPageCount,
     errors
   }, null, 2));
   if (errors.length) process.exitCode = 1;

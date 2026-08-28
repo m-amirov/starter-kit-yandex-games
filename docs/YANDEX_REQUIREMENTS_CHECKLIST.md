@@ -4,7 +4,19 @@ Authoritative source: `https://yandex.ru/dev/games/doc/ru/concepts/requirements`
 Source revision reviewed by this kit: **18 August 2026** (audit: 28 August 2026).\
 Machine-readable registry: `config/yandex-requirements.yaml`.
 
+Controlled upstream watch sources are declared in `config/yandex-doc-sources.yaml`; the reviewed semantic baseline is `config/yandex-doc-snapshot.json`. The watcher follows only official Requirements detail links under `/dev/games/doc/ru/requirements/` and never treats third-party pages as authoritative.
+
 Console fields without their own numbered requirement are tracked separately in `config/yandex-console-requirements.yaml`; they are never assigned invented requirement numbers.
+
+## Upstream freshness before submission
+
+- Run `npm run yandex:docs:check` separately from deterministic offline self-tests.
+- `UNCHANGED` and `METADATA_ONLY` do not require normative registry changes.
+- Added, changed, repealed or reactivated clauses; Draft field/constraint changes; moderation/detail-page changes; parser drift and unknown semantic changes require review.
+- Unresolved semantic changes block with `BLOCK_YANDEX_DOCS_CHANGED_REVIEW_REQUIRED` and produce artifacts under `artifacts/upstream/yandex-docs/<run-id>/`.
+- `FETCH_FAILED` is not PASS. Continue toward a real submission only with explicit current-document manual review evidence covering Requirements, Draft and Moderation.
+- Snapshot acceptance is an explicit post-review action. When policy changed, requirements audit, Console audit and targeted watcher tests must be green and `--policy-reviewed` must be supplied. The snapshot records the reviewed registry hashes.
+- The watcher never rewrites the authoritative numbered or Console registries.
 
 Every active clause must be represented in `artifacts/evidence/yandex-requirements-compliance.json` as `PASS` or, only when truly inapplicable, `N/A` with an explicit reason. Recommended clauses must also be reviewed. Repealed clauses remain in the registry for traceability.
 
@@ -90,5 +102,6 @@ These are explicit P0 checks in this kit:
 - `artifacts/evidence/draft-metadata-checklist.json`
 - `artifacts/evidence/final-screenshots.json`
 - `artifacts/evidence/final-gameplay-videos.json`
+- `artifacts/evidence/yandex-docs-freshness.json` (generated for real pre-submit; not an init seed)
 
 The Yandex validation skill must not mark an item `PASS` based only on source-code intent. It must cite a command, runtime scenario, screenshot, trace or manually reviewed artifact from the final production build.

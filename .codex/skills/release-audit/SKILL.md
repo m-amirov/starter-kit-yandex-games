@@ -17,14 +17,17 @@ Do not trust the implementation summary. Re-run required commands and inspect th
 
 1. verify commit/worktree and starter-kit status;
 2. validate evidence freshness against the current build/commit, including current-HEAD `SCREENSHOT_VISUAL_GATE` evidence and `artifacts/evidence/final-gameplay-videos.json` when `yandex.publication.type` is `first-publication`;
-3. run the required automated gates;
-4. inspect P0/P1 defect status;
-5. execute `$yandex-release-validation` independently;
-6. inspect ZIP root, POSIX paths, size, `/sdk.js` handling and SHA-256; independently prove that no promotional MP4 is inside the game ZIP;
-7. confirm the game was not published or submitted;
-8. issue only `PASS` or `ESCALATE_BLOCKED`.
+3. inspect `config/yandex-doc-snapshot.json`: record parser/schema versions, reviewed/fetched timestamps and canonical URLs; run the requirements/Console snapshot-alignment audit;
+4. inspect the latest live `yandex:docs:check` evidence and confirm there are no unresolved semantic changes. `FETCH_FAILED` requires explicit current-document manual review evidence and is never automatic PASS;
+5. run the required automated gates;
+6. inspect P0/P1 defect status;
+7. execute `$yandex-release-validation` independently;
+8. inspect ZIP root, POSIX paths, size, `/sdk.js` handling and SHA-256; independently prove that no promotional MP4 is inside the game ZIP;
+9. confirm the game was not published or submitted;
+10. issue only `PASS` or `ESCALATE_BLOCKED`.
 
 ## Prohibition
 
 Missing, stale, fabricated, skipped or manually assumed evidence blocks the release.
 Automated functional/E2E PASS does not replace actual-runtime screenshot review.
+An unresolved watcher verdict blocks with `BLOCK_YANDEX_DOCS_CHANGED_REVIEW_REQUIRED`; unknown or parser-drift output may not be downgraded to PASS.

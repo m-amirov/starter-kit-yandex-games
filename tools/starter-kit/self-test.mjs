@@ -3,7 +3,8 @@ import path from 'node:path';
 import { ROOT, readJson, sha256File } from './lib.mjs';
 import { loadManifest, validateManifest } from './manifest.mjs';
 import { inspectTargetStatus } from './status-core.mjs';
-import { auditConsoleRegistryText, auditRequirementRegistryText } from '../yandex/requirements-audit.mjs';
+import { auditConsoleRegistryText, auditRequirementRegistryText, auditSnapshotRegistryAlignment } from '../yandex/requirements-audit.mjs';
+import { loadSourceConfig } from '../yandex/docs-watch.mjs';
 
 function arg(name) {
   const index = process.argv.indexOf(name);
@@ -56,6 +57,9 @@ function validatePolicy(root, skillRoot, errors) {
   if (policy.globalRules?.screenshotVisualGateAmbiguityPolicy !== 'required') errors.push('ambiguous visual changes must require the screenshot gate');
   if (!policy.globalRules?.visualAcceptanceRequiresCurrentHeadRuntimeScreenshots) errors.push('current-head runtime screenshot policy is not enabled');
   if (!policy.globalRules?.firstPublicationHorizontalGameplayVideoRequired) errors.push('first-publication horizontal gameplay video policy is not enabled');
+  if (!policy.globalRules?.upstreamDocumentationFreshnessRequiredBeforeYandexSubmission) errors.push('upstream documentation freshness policy is not enabled');
+  if (!policy.globalRules?.unresolvedUpstreamSemanticDiffBlocksRelease) errors.push('unresolved upstream semantic diff policy is not enabled');
+  if (!policy.globalRules?.fetchFailedRequiresExplicitManualCurrentDocumentReview) errors.push('FETCH_FAILED manual review policy is not enabled');
   if (!policy.globalRules?.realGameplayRatioRequiresManualVisualEvidence) errors.push('real gameplay ratio manual evidence policy is not enabled');
   if (policy.globalRules?.promotionalMp4InGameReleaseZip !== 'forbidden') errors.push('promotional MP4 release ZIP policy is not forbidden');
   const coreContract = path.join(root, '.starter-kit', 'core', 'CODEX_ENGINEERING_SYSTEM.md');
@@ -108,11 +112,27 @@ function validateYandexContracts(root, skillRoot, errors, sourceMode) {
   const consoleAudit = auditConsoleRegistryText(consoleRegistry, sourceMode ? { reviewedAt: '2026-08-28' } : {});
   errors.push(...consoleAudit.errors.map((error) => `Yandex Console registry: ${error}`));
 
+  for (const relative of ['config/yandex-doc-sources.yaml', 'config/yandex-doc-snapshot.json', 'tools/yandex/docs-watch.mjs']) {
+    if (!fs.existsSync(path.join(root, relative))) errors.push(`Yandex documentation watcher file is missing: ${relative}`);
+  }
+  if (fs.existsSync(path.join(root, 'config', 'yandex-doc-snapshot.json'))) {
+    const snapshotAudit = auditSnapshotRegistryAlignment({
+      requirementText: numbered,
+      consoleText: consoleRegistry,
+      snapshot: readJson(path.join(root, 'config', 'yandex-doc-snapshot.json')),
+      sourceConfig: loadSourceConfig(path.join(root, 'config', 'yandex-doc-sources.yaml'))
+    });
+    errors.push(...snapshotAudit.errors.map((error) => `Yandex snapshot alignment: ${error}`));
+  }
+
   for (const relative of ['config/game-spec.schema.json', 'config/final-gameplay-videos.schema.json']) {
     try { readJson(path.join(root, relative)); } catch (error) { errors.push(`invalid JSON schema ${relative}: ${error.message}`); }
   }
   const packageJson = readJson(path.join(root, 'package.json'));
   if (!packageJson.scripts?.['yandex:requirements:audit']) errors.push('yandex:requirements:audit script is missing');
+  if (!packageJson.scripts?.['yandex:console:audit']) errors.push('yandex:console:audit script is missing');
+  if (!packageJson.scripts?.['yandex:docs:check']) errors.push('yandex:docs:check script is missing');
+  if (!packageJson.scripts?.['yandex:docs:accept-snapshot']) errors.push('yandex:docs:accept-snapshot script is missing');
   if (!packageJson.scripts?.['yandex:media:validate']) errors.push('yandex:media:validate script is missing');
 
   const validationSkill = fs.readFileSync(path.join(root, skillRoot, 'yandex-release-validation', 'SKILL.md'), 'utf8');
@@ -121,7 +141,9 @@ function validateYandexContracts(root, skillRoot, errors, sourceMode) {
     'final-gameplay-videos.json',
     'yandex:media:validate',
     'Promotional MP4',
-    '20–25 seconds'
+    '20–25 seconds',
+    'BLOCK_YANDEX_DOCS_CHANGED_REVIEW_REQUIRED',
+    'yandex-doc-snapshot.json'
   ]) {
     if (!validationSkill.includes(token)) errors.push(`Yandex validation skill token missing: ${token}`);
   }
@@ -148,7 +170,7 @@ let targetStatus;
 if (sourceMode) {
   version = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
   const packageVersion = readJson(path.join(ROOT, 'package.json')).version;
-  if (version !== '0.5.5' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
+  if (version !== '0.5.6' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
   manifest = loadManifest(ROOT);
   validateManifest(manifest, ROOT);
   if (manifest.version !== version) errors.push(`manifest version mismatch: ${manifest.version}`);
