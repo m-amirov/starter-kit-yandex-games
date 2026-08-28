@@ -14,7 +14,7 @@ const python = String.raw`
 import os, sys, zipfile
 root = sys.argv[1]
 out = sys.argv[2]
-excluded_dirs = {'.git','node_modules','dist','coverage','playwright-report','test-results','.cache','.loop','.tmp','artifacts','reports'}
+excluded_dirs = {'.git','node_modules','dist','coverage','playwright-report','test-results','.cache','.loop','.tmp','reports'}
 excluded_suffixes = ('.zip','.sha256','.log')
 with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as archive:
     for base, dirs, files in os.walk(root):
@@ -26,6 +26,8 @@ with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as archive:
             if os.path.islink(file_path):
                 raise SystemExit('symlink is not allowed in archive')
             archive_name = os.path.relpath(file_path, root).replace(os.sep, '/')
+            if archive_name.startswith('artifacts/') and archive_name != 'artifacts/evidence/final-gameplay-videos.json':
+                continue
             info = zipfile.ZipInfo(archive_name, (1980, 1, 1, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16

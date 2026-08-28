@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/yandex-games-starter-kit/final-gameplay-videos.schema.json",
+  "title": "Final horizontal gameplay video evidence",
+  "type": "object",
+  "required": ["schemaVersion", "publicationType", "videos"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "publicationType": { "enum": ["first-publication", "update"] },
+    "languageIndependentTextReview": { "$ref": "#/$defs/review" },
+    "videos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["locale", "path", "dimensions", "durationSeconds", "sizeBytes", "gameplayRatio", "sha256", "manualReview"],
+        "properties": {
+          "locale": { "type": "string", "minLength": 2 },
+          "coversLocales": { "type": "array", "items": { "type": "string", "minLength": 2 }, "uniqueItems": true },
+          "path": { "type": "string", "pattern": "\\.mp4$" },
+          "dimensions": {
+            "type": "object",
+            "required": ["width", "height"],
+            "properties": {
+              "width": { "type": "integer", "minimum": 1 },
+              "height": { "type": "integer", "minimum": 400 }
+            },
+            "additionalProperties": false
+          },
+          "durationSeconds": { "type": "number", "exclusiveMinimum": 0, "maximum": 28 },
+          "sizeBytes": { "type": "integer", "minimum": 1, "maximum": 100000000 },
+          "gameplayRatio": { "type": "number", "minimum": 0.7, "maximum": 1 },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "manualReview": {
+            "type": "object",
+            "required": ["realGameplay", "systemUiAbsent", "yandexUiAbsent", "artificialBlackBarsAbsent", "localeMatchesDraft"],
+            "properties": {
+              "realGameplay": { "$ref": "#/$defs/review" },
+              "systemUiAbsent": { "$ref": "#/$defs/review" },
+              "yandexUiAbsent": { "$ref": "#/$defs/review" },
+              "artificialBlackBarsAbsent": { "$ref": "#/$defs/review" },
+              "localeMatchesDraft": { "$ref": "#/$defs/review" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "review": {
+      "type": "object",
+      "required": ["status", "evidence"],
+      "properties": {
+        "status": { "enum": ["PASS", "BLOCK", "NOT_REVIEWED"] },
+        "evidence": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

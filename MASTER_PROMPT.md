@@ -25,9 +25,11 @@
 13. Во время итераций запускай targeted tests; более широкую regression suite — один раз на task barrier, а полные cross-browser/viewports/compliance suites — на release barrier или когда задача прямо меняет эти поверхности.
 14. На acceptance boundary каждого production-visible pass выполни `SCREENSHOT_VISUAL_GATE`: actual-runtime screenshots current HEAD для затронутых states, visual inspection по ART_BIBLE/VISUAL_LANGUAGE, correction/recheck и только затем acceptance token. Для gameplay/UI обязательны desktop и настоящий touch-path mobile; unit/integration/E2E PASS не заменяют gate.
 15. Проверь RU/EN и все viewports/orientation sequences, long tap, context menu, selection, scroll and safe areas.
-16. Выполни полный compliance audit и `$yandex-release-validation`.
-17. Затем независимо выполни `$release-audit`.
-18. Только после зелёных аудитов создай ZIP и SHA-256. Не публикуй и не отправляй на модерацию.
+16. После final production build и final screenshots для `first-publication` создай horizontal gameplay video из настоящего геймплея final production build. Цель — 20–25 секунд и желательно 100% gameplay; intro/outro минимальны. Не используй fake mockup, отдельную анимацию, dev/debug footage или runtime dependency. Для portrait-only допустима 16:9 композиция реальной portrait-записи с собственным artwork/background игры.
+17. Для каждого заявленного языка создай locale-specific video, если в gameplay есть локализованный текст. Один файл разрешён только при доказанном отсутствии language-dependent текста. Заполни `artifacts/evidence/final-gameplay-videos.json`, выполни ручной visual review доли real gameplay ≥70%, UI/локали/чёрных полей и запусти media validation.
+18. Создай проверяемый Yandex game ZIP без promotional MP4; dev-only recording/transcoding tooling не должно попадать в production bundle.
+19. Выполни полный compliance audit и `$yandex-release-validation`.
+20. Затем независимо выполни `$release-audit`, проверь ZIP и SHA-256. Не публикуй и не отправляй на модерацию.
 
 Допустимые итоги:
 

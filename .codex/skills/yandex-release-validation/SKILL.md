@@ -13,10 +13,11 @@ Validate the final production build, not only the dev server.
 
 ## Sources of truth
 
-1. `config/yandex-requirements.yaml` — complete clause registry for the official requirements revision dated 1 July 2026.
-2. `docs/YANDEX_REQUIREMENTS_CHECKLIST.md` — operational interpretation.
-3. `game-spec.yaml` — declared draft metadata and applicability flags.
-4. Actual final-build runtime evidence.
+1. `config/yandex-requirements.yaml` — complete numbered-clause registry for the official requirements revision dated 18 August 2026.
+2. `config/yandex-console-requirements.yaml` — Console-only rules that have no numbered requirement of their own.
+3. `docs/YANDEX_REQUIREMENTS_CHECKLIST.md` — operational interpretation.
+4. `game-spec.yaml` — declared draft metadata and applicability flags, including `yandex.publication.type`.
+5. Actual final-build runtime and media evidence.
 
 Do not rely on memory when the official requirements may have changed. Before producing a real moderation candidate, compare the registry revision with the current official documentation and promote any change into the starter kit.
 
@@ -25,7 +26,25 @@ Do not rely on memory when the official requirements may have changed. Before pr
 1. Generate `artifacts/evidence/yandex-requirements-compliance.json` from the full registry. Every active clause must be present.
 2. Mark an applicable required clause `PASS` only with concrete evidence. Mark a genuinely inapplicable clause `N/A` with a reason. Recommended clauses must be `PASS` or a reasoned `WARN`.
 3. Run `npm run yandex:requirements:audit`; any failure blocks RC.
-4. Perform an independent final review and write `artifacts/evidence/yandex-release-validation.json`.
+4. Run `npm run yandex:media:validate -- --zip <release.zip>` against `artifacts/evidence/final-gameplay-videos.json`; any failure blocks RC.
+5. Perform an independent final review and write `artifacts/evidence/yandex-release-validation.json`.
+
+## First-publication horizontal gameplay video — P0
+
+`CONSOLE-FIRST-PUBLICATION-HORIZONTAL-GAMEPLAY-VIDEO` applies only when `yandex.publication.type` is `first-publication`. It is a release blocker. An `update` is not blocked solely because this Console-only video is absent.
+
+Validate automatically from the actual file: MP4 container/extension, 16:9, height at least 400 px, duration at most 28 seconds, size at most 100 MB, evidence metadata equality and SHA-256. Prefer 1920×1080 and 20–25 seconds. Never infer the real-gameplay share from duration metadata: at least 70% real gameplay, absence of system/Yandex Games UI, absence of artificial black bars and Draft-locale correctness require explicit manual visual evidence. Missing or `NOT_REVIEWED` evidence blocks first publication.
+
+For every Draft locale, create a locale-specific video when gameplay contains localized text. Reuse of one file is allowed only with evidence that gameplay contains no language-dependent text. Promotional MP4 files are external Console media and must not occur inside the Yandex game release ZIP.
+
+## Standard gameplay-video production task
+
+1. Run the final production build and record the actual production runtime with the existing browser/video tooling.
+2. Play the game for real and select a meaningful segment where the core mechanic is clearly visible. Target 20–25 seconds, preferably 100% gameplay, with no or minimal intro/outro.
+3. Do not use a mockup, synthetic animation, dev/debug build or substituted footage. Do not add a game runtime dependency. Dev-only transcoding to MP4 is allowed.
+4. For portrait-only games, a 16:9 composition may combine the real portrait recording with the game's own artwork/background; the gameplay recording itself must remain real and visually primary.
+5. Produce locale-specific files as required, then record locale, path, dimensions, duration, size, reviewed gameplay ratio and SHA-256 in `artifacts/evidence/final-gameplay-videos.json`.
+6. Complete the manual visual-review fields and run media validation before packaging. Keep every promotional MP4 outside the release ZIP.
 
 ## Stack Sort Lab moderation regressions — P0
 
@@ -47,7 +66,9 @@ Do not rely on memory when the official requirements may have changed. Before pr
 - Genre, categories, title, description, tags, age rating, controls and orientation match the final build.
 - Main content evidence exceeds 10 minutes and shows rising difficulty/no filler duplication.
 - Rights manifest is complete; no interactive AI, external links, third-party ads, YouTube player or prohibited content.
-- Marketing screenshots/video meet the 70% real-gameplay rule; icon/cover are dedicated art and meet media constraints.
+- Marketing screenshots/video meet the 70% real-gameplay rule; first-publication horizontal gameplay video has current file and manual evidence; icon/cover are dedicated art and meet media constraints.
+- Requirement 1.12 passes with ads or in-app purchases and blocks when neither monetization path exists.
 - Actual ZIP entries use forward slashes and ASCII names without spaces; `index.html` is at root; unpacked size is at most 100 MB.
+- No promotional MP4 from `final-gameplay-videos.json` is present in the game ZIP.
 
 Write `artifacts/evidence/yandex-release-validation.json` with status, build ID, commands, scenarios, evidence paths and open defects. Any failed mandatory item blocks RC.

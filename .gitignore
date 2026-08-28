@@ -18,3 +18,10 @@ Desktop.ini
 .tmp/
 artifacts/
 reports/
+
+# Tracked init-only evidence contract; generated project evidence remains project-owned.
+!artifacts/
+artifacts/*
+!artifacts/evidence/
+artifacts/evidence/*
+!artifacts/evidence/final-gameplay-videos.json

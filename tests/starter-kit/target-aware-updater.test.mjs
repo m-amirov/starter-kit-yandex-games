@@ -450,7 +450,18 @@ test('new-project seed is applied only during init', () => {
   const initEntries = resolveManifestEntries(manifest, profile, 'init');
   const updateEntries = resolveManifestEntries(manifest, profile, 'update');
   assert.equal(initEntries.some((entry) => entry.logicalId === 'seed:index-html'), true);
+  assert.equal(initEntries.some((entry) => entry.logicalId === 'seed:final-gameplay-videos-evidence'), true);
   assert.equal(updateEntries.some((entry) => entry.logicalId === 'seed:index-html'), false);
+  assert.equal(updateEntries.some((entry) => entry.logicalId === 'seed:final-gameplay-videos-evidence'), false);
+});
+
+test('mature update delivers validation infrastructure without product runtime or evidence seeds', () => {
+  const entries = resolveManifestEntries(loadManifest(ROOT), matureProfile(), 'update');
+  assert.equal(entries.some((entry) => entry.logicalId === 'managed:tool-yandex-media-validation'), true);
+  assert.equal(entries.some((entry) => entry.logicalId === 'contract:yandex-console-requirements'), true);
+  assert.equal(entries.some((entry) => entry.logicalId === 'managed:game-spec-schema'), true);
+  assert.equal(entries.some((entry) => entry.logicalId === 'seed:final-gameplay-videos-evidence'), false);
+  assert.equal(entries.some((entry) => entry.target === 'game-spec.yaml'), false);
 });
 
 test('init rejects a non-empty existing project', async () => {
@@ -473,12 +484,21 @@ test('new-project seed is recorded as project-owned after init', async () => {
     assert.equal(result.conflicts.length, 0);
     assert.equal(state.projectOwned['seed:index-html'].target, 'index.html');
     assert.equal(state.projectOwned['seed:game-spec'].target, 'game-spec.yaml');
+    assert.equal(state.projectOwned['seed:final-gameplay-videos-evidence'].target, 'artifacts/evidence/final-gameplay-videos.json');
     assert.equal(state.baseline['seed:index-html'], undefined);
     assert.equal(state.baseline['seed:game-spec'], undefined);
     assert.equal(state.baseline['contract:AGENTS.md'], undefined);
     const packageJson = JSON.parse(fs.readFileSync(path.join(target, 'package.json'), 'utf8'));
     assert.equal(packageJson.scripts['starter-kit:status'] !== undefined, true);
+    assert.equal(packageJson.scripts['yandex:requirements:audit'], 'node tools/yandex/requirements-audit.mjs');
+    assert.equal(packageJson.scripts['yandex:media:validate'], 'node tools/yandex/media-validation.mjs');
     assert.equal(packageJson.scripts['starter-kit:package'], undefined);
+    const spec = fs.readFileSync(path.join(target, 'game-spec.yaml'), 'utf8');
+    assert.match(spec, /yandex:\s+publication:\s+type: first-publication/s);
+    assert.match(spec, /horizontalGameplayVideo:/);
+    const videoEvidence = JSON.parse(fs.readFileSync(path.join(target, 'artifacts', 'evidence', 'final-gameplay-videos.json'), 'utf8'));
+    assert.equal(videoEvidence.publicationType, 'first-publication');
+    assert.deepEqual(videoEvidence.videos, []);
     const quality = fs.readFileSync(path.join(target, 'docs', 'QUALITY_CONSTITUTION.md'), 'utf8');
     assert.match(quality, /\.codex\/skills\/product-quality-review\/SKILL\.md/);
     assert.doesNotMatch(quality, /\.agents\/skills|\{skillRoot\}/);

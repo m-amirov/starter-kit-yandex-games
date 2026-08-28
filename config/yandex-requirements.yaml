@@ -2,8 +2,8 @@ schemaVersion: 1
 source:
   title: Требования к игре — Яндекс Игры
   url: https://yandex.ru/dev/games/doc/ru/concepts/requirements
-  lastModified: '2026-07-01'
-  reviewedAt: '2026-07-22'
+  lastModified: '2026-08-18'
+  reviewedAt: '2026-08-28'
 statuses:
   required: blocks release candidate when applicable and not PASS
   recommended: must be reviewed; unresolved failure is recorded as WARN unless elevated by project rules
@@ -45,7 +45,7 @@ requirements:
   - { id: '1.10.3', enforcement: required, summary: 'Тексты и внутренние элементы не накладываются и не перекрывают важные объекты.', applicability: always, verification: layout-contract-and-visual }
   - { id: '1.10.4', enforcement: required, summary: 'Основной геймплей доступен одной рукой без обязательной внешней прокрутки.', applicability: mobile, verification: product-and-e2e }
   - { id: '1.11', enforcement: required, summary: 'Использование облачных сохранений указано в черновике.', applicability: cloud-save, verification: draft-checklist }
-  - { id: '1.12', enforcement: required, summary: 'Подключена монетизация РСЯ.', applicability: ads, verification: draft-checklist }
+  - { id: '1.12', enforcement: required, summary: 'Подключена монетизация: в игре есть реклама или инап-покупки.', applicability: always, verification: monetization-contract }
   - { id: '1.13.1', enforcement: required, summary: 'Для покупок подключено консумирование.', applicability: purchases, verification: purchase-e2e }
   - { id: '1.13.2', enforcement: required, summary: 'Название и иконка портальной валюты получаются автоматически из SDK.', applicability: purchases, verification: sdk-runtime }
   - { id: '1.13.3', enforcement: required, summary: 'Прогресс покупок сохраняется на сервере и доступен с разных устройств.', applicability: purchases, verification: cloud-save-e2e }

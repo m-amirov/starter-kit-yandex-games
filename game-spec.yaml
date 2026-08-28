@@ -1,4 +1,8 @@
 schemaVersion: 2
+yandex:
+  publication:
+    type: first-publication
+
 project:
   slug: sky-route-puzzle
   title:
@@ -38,6 +42,10 @@ visual:
     cover: true
     desktopScreenshots: 3
     mobileScreenshots: 3
+    horizontalGameplayVideo:
+      languageDependentText: true
+      targetDurationSeconds: [20, 25]
+      gameplayRatioTarget: 1.0
 
 audio:
   enabled: true

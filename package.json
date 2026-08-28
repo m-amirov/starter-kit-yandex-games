@@ -7,7 +7,9 @@
     "targetScripts": [
       "starter-kit:self-test",
       "starter-kit:status",
-      "skills:validate"
+      "skills:validate",
+      "yandex:requirements:audit",
+      "yandex:media:validate"
     ]
   },
   "scripts": {
@@ -19,6 +21,8 @@
     "starter-kit:update": "node tools/starter-kit/apply-update.mjs",
     "starter-kit:update-self-test": "node tools/starter-kit/update-self-test.mjs",
     "test:updater": "node --test tests/starter-kit/*.test.mjs",
+    "yandex:requirements:audit": "node tools/yandex/requirements-audit.mjs",
+    "yandex:media:validate": "node tools/yandex/media-validation.mjs",
     "skills:validate": "node tools/starter-kit/self-test.mjs"
   }
 }

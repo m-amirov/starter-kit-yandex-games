@@ -1,7 +1,12 @@
 # Changelog
 
-## 0.5.5 — 2026-08-21
+## 0.5.5 — 2026-08-28
 
+- Synced the numbered Yandex Games registry to the official 18 August 2026 revision while retaining every repealed clause for traceability.
+- Corrected requirement 1.12 to accept monetization through ads or in-app purchases.
+- Added a separate Console requirements registry and the blocking first-publication horizontal gameplay-video contract.
+- Added locale-aware MP4/file evidence validation, manual real-gameplay review, release-ZIP exclusion and regression coverage.
+- Extended the new-project game specification, evidence schema, Master Prompt, Yandex validation, release audit and migration without changing mature-project runtime or project-owned materials.
 - Added `--resolve-semantic-incoming` for explicit materialization of incoming
   semantic and target-mapped entries while preserving `--resolve-semantic` as
   accept-current.

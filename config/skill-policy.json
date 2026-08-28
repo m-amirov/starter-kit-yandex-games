@@ -4,6 +4,7 @@
   "authorityOrder": [
     "official-yandex-games-requirements",
     "config/yandex-requirements.yaml",
+    "config/yandex-console-requirements.yaml",
     "yandex-release-validation",
     "AGENTS.md-and-PROJECT_RULES.md",
     "game-spec.yaml",
@@ -15,6 +16,9 @@
     "yandexRequirementsMayNotBeWeakened": true,
     "skillsMayNotSelfApproveCompliance": true,
     "mandatoryEvidenceForRelease": true,
+    "firstPublicationHorizontalGameplayVideoRequired": true,
+    "realGameplayRatioRequiresManualVisualEvidence": true,
+    "promotionalMp4InGameReleaseZip": "forbidden",
     "externalRuntimeDependenciesDefault": "forbidden",
     "pwaAndServiceWorkerDefault": "forbidden",
     "cdnAssetsDefault": "forbidden",

@@ -358,6 +358,19 @@
       "conflictPolicy": "create-only"
     },
     {
+      "source": "artifacts/evidence/final-gameplay-videos.json",
+      "logicalId": "seed:final-gameplay-videos-evidence",
+      "ownership": "new-project-seed",
+      "target": "artifacts/evidence/final-gameplay-videos.json",
+      "modes": [
+        "init"
+      ],
+      "projectTypes": [
+        "new"
+      ],
+      "conflictPolicy": "create-only"
+    },
+    {
       "source": "PROJECT_RULES.md",
       "logicalId": "seed:project-rules",
       "ownership": "new-project-seed",
@@ -545,6 +558,51 @@
       "conflictPolicy": "semantic-merge"
     },
     {
+      "source": "config/yandex-console-requirements.yaml",
+      "logicalId": "contract:yandex-console-requirements",
+      "ownership": "semantic-merge",
+      "target": "config/yandex-console-requirements.yaml",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": "config/game-spec.schema.json",
+      "logicalId": "managed:game-spec-schema",
+      "ownership": "managed",
+      "target": "config/game-spec.schema.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/final-gameplay-videos.schema.json",
+      "logicalId": "managed:final-gameplay-videos-schema",
+      "ownership": "managed",
+      "target": "config/final-gameplay-videos.schema.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "docs/SKILL_PRECEDENCE.md",
       "logicalId": "contract:skill-precedence",
       "ownership": "semantic-merge",
@@ -573,6 +631,21 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge"
+    },
+    {
+      "source": "docs/YANDEX_REQUIREMENTS_DIFF_2026-07-01_TO_2026-08-18.md",
+      "logicalId": "managed:yandex-requirements-diff-2026-08-18",
+      "ownership": "managed",
+      "target": "docs/YANDEX_REQUIREMENTS_DIFF_2026-07-01_TO_2026-08-18.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
     },
     {
       "source": "config/skill-policy.json",
@@ -756,10 +829,10 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
-      "source": "migrations/0.5.5-incoming-semantic-resolution.md",
-      "logicalId": "migration:0.5.5-incoming-semantic-resolution",
+      "source": "migrations/0.5.4-to-0.5.5.md",
+      "logicalId": "migration:0.5.4-to-0.5.5",
       "ownership": "managed",
-      "target": "migrations/0.5.5-incoming-semantic-resolution.md",
+      "target": "migrations/0.5.4-to-0.5.5.md",
       "modes": [
         "init",
         "update"
@@ -790,6 +863,21 @@
       "logicalId": "managed:screenshot-visual-gate-template",
       "ownership": "managed",
       "target": "templates/visual-review/SCREENSHOT_VISUAL_GATE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "templates/media/HORIZONTAL_GAMEPLAY_VIDEO.md",
+      "logicalId": "managed:horizontal-gameplay-video-task",
+      "ownership": "managed",
+      "target": "templates/media/HORIZONTAL_GAMEPLAY_VIDEO.md",
       "modes": [
         "init",
         "update"
@@ -1105,6 +1193,36 @@
       "logicalId": "managed:tool-update-self-test",
       "ownership": "managed",
       "target": "tools/starter-kit/update-self-test.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/requirements-audit.mjs",
+      "logicalId": "managed:tool-yandex-requirements-audit",
+      "ownership": "managed",
+      "target": "tools/yandex/requirements-audit.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/media-validation.mjs",
+      "logicalId": "managed:tool-yandex-media-validation",
+      "ownership": "managed",
+      "target": "tools/yandex/media-validation.mjs",
       "modes": [
         "init",
         "update"

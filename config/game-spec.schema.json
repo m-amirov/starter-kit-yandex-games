@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/yandex-games-starter-kit/game-spec.schema.json",
+  "title": "Yandex Games Starter Kit game specification",
+  "type": "object",
+  "required": ["schemaVersion", "project", "localization", "platform", "visual", "yandex", "release"],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "yandex": {
+      "type": "object",
+      "required": ["publication"],
+      "properties": {
+        "publication": {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "enum": ["first-publication", "update"] }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "visual": {
+      "type": "object",
+      "required": ["marketing"],
+      "properties": {
+        "marketing": {
+          "type": "object",
+          "required": ["horizontalGameplayVideo"],
+          "properties": {
+            "horizontalGameplayVideo": {
+              "type": "object",
+              "required": ["languageDependentText", "targetDurationSeconds", "gameplayRatioTarget"],
+              "properties": {
+                "languageDependentText": { "type": "boolean" },
+                "targetDurationSeconds": {
+                  "type": "array",
+                  "prefixItems": [{ "const": 20 }, { "const": 25 }],
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "gameplayRatioTarget": { "type": "number", "minimum": 0.7, "maximum": 1 }
+              },
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

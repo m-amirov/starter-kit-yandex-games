@@ -3,6 +3,7 @@ import path from 'node:path';
 import { ROOT, readJson, sha256File } from './lib.mjs';
 import { loadManifest, validateManifest } from './manifest.mjs';
 import { inspectTargetStatus } from './status-core.mjs';
+import { auditConsoleRegistryText, auditRequirementRegistryText } from '../yandex/requirements-audit.mjs';
 
 function arg(name) {
   const index = process.argv.indexOf(name);
@@ -54,6 +55,9 @@ function validatePolicy(root, skillRoot, errors) {
   if (!policy.globalRules?.screenshotVisualGateRequiredForProductionVisiblePasses) errors.push('screenshot visual gate policy is not enabled');
   if (policy.globalRules?.screenshotVisualGateAmbiguityPolicy !== 'required') errors.push('ambiguous visual changes must require the screenshot gate');
   if (!policy.globalRules?.visualAcceptanceRequiresCurrentHeadRuntimeScreenshots) errors.push('current-head runtime screenshot policy is not enabled');
+  if (!policy.globalRules?.firstPublicationHorizontalGameplayVideoRequired) errors.push('first-publication horizontal gameplay video policy is not enabled');
+  if (!policy.globalRules?.realGameplayRatioRequiresManualVisualEvidence) errors.push('real gameplay ratio manual evidence policy is not enabled');
+  if (policy.globalRules?.promotionalMp4InGameReleaseZip !== 'forbidden') errors.push('promotional MP4 release ZIP policy is not forbidden');
   const coreContract = path.join(root, '.starter-kit', 'core', 'CODEX_ENGINEERING_SYSTEM.md');
   if (!fs.existsSync(coreContract)) errors.push('codex engineering system core contract is missing');
   else {
@@ -93,6 +97,43 @@ function validatePolicy(root, skillRoot, errors) {
     errors.push('yandex-release-validation must precede release-audit');
   }
   return required.length;
+}
+
+function validateYandexContracts(root, skillRoot, errors, sourceMode) {
+  const numbered = fs.readFileSync(path.join(root, 'config', 'yandex-requirements.yaml'), 'utf8');
+  const numberedAudit = auditRequirementRegistryText(numbered, sourceMode ? { reviewedAt: '2026-08-28' } : {});
+  errors.push(...numberedAudit.errors.map((error) => `Yandex numbered registry: ${error}`));
+
+  const consoleRegistry = fs.readFileSync(path.join(root, 'config', 'yandex-console-requirements.yaml'), 'utf8');
+  const consoleAudit = auditConsoleRegistryText(consoleRegistry, sourceMode ? { reviewedAt: '2026-08-28' } : {});
+  errors.push(...consoleAudit.errors.map((error) => `Yandex Console registry: ${error}`));
+
+  for (const relative of ['config/game-spec.schema.json', 'config/final-gameplay-videos.schema.json']) {
+    try { readJson(path.join(root, relative)); } catch (error) { errors.push(`invalid JSON schema ${relative}: ${error.message}`); }
+  }
+  const packageJson = readJson(path.join(root, 'package.json'));
+  if (!packageJson.scripts?.['yandex:requirements:audit']) errors.push('yandex:requirements:audit script is missing');
+  if (!packageJson.scripts?.['yandex:media:validate']) errors.push('yandex:media:validate script is missing');
+
+  const validationSkill = fs.readFileSync(path.join(root, skillRoot, 'yandex-release-validation', 'SKILL.md'), 'utf8');
+  for (const token of [
+    'CONSOLE-FIRST-PUBLICATION-HORIZONTAL-GAMEPLAY-VIDEO',
+    'final-gameplay-videos.json',
+    'yandex:media:validate',
+    'Promotional MP4',
+    '20–25 seconds'
+  ]) {
+    if (!validationSkill.includes(token)) errors.push(`Yandex validation skill token missing: ${token}`);
+  }
+  if (sourceMode) {
+    const spec = fs.readFileSync(path.join(root, 'game-spec.yaml'), 'utf8');
+    for (const token of ['yandex:', 'type: first-publication', 'horizontalGameplayVideo:', 'languageDependentText:']) {
+      if (!spec.includes(token)) errors.push(`game-spec video contract token missing: ${token}`);
+    }
+    if (!fs.existsSync(path.join(root, 'artifacts', 'evidence', 'final-gameplay-videos.json'))) {
+      errors.push('final gameplay videos evidence seed is missing');
+    }
+  }
 }
 
 const errors = [];
@@ -137,6 +178,7 @@ if (sourceMode) {
 }
 
 const skillCount = skillRoot ? validatePolicy(ROOT, skillRoot, errors) : 0;
+if (skillRoot) validateYandexContracts(ROOT, skillRoot, errors, sourceMode);
 if (explicitTarget) {
   targetStatus = inspectTargetStatus({ sourceRoot: ROOT, targetRoot: path.resolve(explicitTarget) });
   if (targetStatus.status !== 'clean') errors.push(`target status is ${targetStatus.status}`);

@@ -241,7 +241,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "499f16686b4f11c87edf71547993e22962e266b33f9d7f39b9f6b166c9fe25c8"
+      "sha256": "77123a9123ba43e5a50cfefce09db1059f6495f70f91c6f623e8791ac393d962"
     },
     {
       "source": ".codex/skills/visual-quality-gate/ORIGIN.md",
@@ -321,7 +321,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "70850616de6d850f93ebf97ce3e20321704ec2d8926a455f234044e2c1d7a200"
+      "sha256": "3a788aad4183530266af114b05ce7d6ceee85388bda584667801fb0b69823ca3"
     },
     {
       "source": "AGENTS.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "0c40f09eadfe6c108f4c0cc4f27c774969e2433b0afb044123fed708d1ae2b17"
+      "sha256": "7c45a09ddddda540e41e8c98c54bc53b42b47c608e85fe0f475793ddb0cf4505"
     },
     {
       "source": "index.html",
@@ -381,7 +381,21 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "69ee9b072d24d2149f1b27c517add15dc4503b13a7b1dc909771762f3b275842"
+      "sha256": "03e7acfc8313b03a06495cce373e20c31dfd30ec19842ca536eb918355f6246c"
+    },
+    {
+      "source": "artifacts/evidence/final-gameplay-videos.json",
+      "logicalId": "seed:final-gameplay-videos-evidence",
+      "ownership": "new-project-seed",
+      "target": "artifacts/evidence/final-gameplay-videos.json",
+      "modes": [
+        "init"
+      ],
+      "projectTypes": [
+        "new"
+      ],
+      "conflictPolicy": "create-only",
+      "sha256": "edc241454b7b7ad00fd8bc4d40ba7b62f7f7714c224eddf8b48fb392cdfa25ed"
     },
     {
       "source": "PROJECT_RULES.md",
@@ -533,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "6f171d4d7385da823b22014928c0f3b31b6e04bce377fbbaacc8973ff6849390"
+      "sha256": "02332261bfd6bd388ce1318274b3471f6d8f9054c9cb9a4ec83351dd9eb967cd"
     },
     {
       "source": "README.md",
@@ -565,7 +579,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "887d0c3bb4e83059a9d6c254e267db1df8b5d3c5515298e9fe85a36a443505f7"
+      "sha256": "8d80b1ca91f9f247d68d5706003a9c1dde645547a73b38bc50351f9ee17d2ca4"
     },
     {
       "source": "config/yandex-requirements.yaml",
@@ -581,7 +595,55 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "36982467efe4143796c7f2649e80b33e53a1d9044acf6d6177b380971960bda2"
+      "sha256": "e36c86d2c92ad5d702a3b9014ff2ad713297246c6194e8a9d7043b190031f81a"
+    },
+    {
+      "source": "config/yandex-console-requirements.yaml",
+      "logicalId": "contract:yandex-console-requirements",
+      "ownership": "semantic-merge",
+      "target": "config/yandex-console-requirements.yaml",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "semantic-merge",
+      "sha256": "2ebf5807f4601c920e8fc54330c5e36b991c203d623e5ccd1d28d42c7418ec39"
+    },
+    {
+      "source": "config/game-spec.schema.json",
+      "logicalId": "managed:game-spec-schema",
+      "ownership": "managed",
+      "target": "config/game-spec.schema.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "b9f8ba724be76b4a727eba348e6f008046b0541b87ef406cd8f968db3c1da577"
+    },
+    {
+      "source": "config/final-gameplay-videos.schema.json",
+      "logicalId": "managed:final-gameplay-videos-schema",
+      "ownership": "managed",
+      "target": "config/final-gameplay-videos.schema.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "8154a6c7564cfe291257739419529ff4f40920ea18838dd3bd785d482a680beb"
     },
     {
       "source": "docs/SKILL_PRECEDENCE.md",
@@ -613,7 +675,23 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "2f41b432d8429001dfeb4b26295b533fd5a15e40a6cfecb870ca5a67d5060f8d"
+      "sha256": "89be85b2960af18c89541979b0ce3245dd766366a831e4f51d0040bcf45ed6c0"
+    },
+    {
+      "source": "docs/YANDEX_REQUIREMENTS_DIFF_2026-07-01_TO_2026-08-18.md",
+      "logicalId": "managed:yandex-requirements-diff-2026-08-18",
+      "ownership": "managed",
+      "target": "docs/YANDEX_REQUIREMENTS_DIFF_2026-07-01_TO_2026-08-18.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "26448e0f3786286c7c49c9765a7e474bd8ed0330f4d919a866823acb77cd4fd3"
     },
     {
       "source": "config/skill-policy.json",
@@ -629,7 +707,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "130f1cdd77244367041cab63736521f1b91277cdbce3e632622d4cdac58abfcd"
+      "sha256": "8773eff5ac61f9376b9b38349b203308b6f3c20be86339c0232e57542a70ba56"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -809,10 +887,10 @@
       "sha256": "bcf5bcd4a9a6e9da4eef8f9c0304a7c5008b59888a25d7f42be71464760348de"
     },
     {
-      "source": "migrations/0.5.5-incoming-semantic-resolution.md",
-      "logicalId": "migration:0.5.5-incoming-semantic-resolution",
+      "source": "migrations/0.5.4-to-0.5.5.md",
+      "logicalId": "migration:0.5.4-to-0.5.5",
       "ownership": "managed",
-      "target": "migrations/0.5.5-incoming-semantic-resolution.md",
+      "target": "migrations/0.5.4-to-0.5.5.md",
       "modes": [
         "init",
         "update"
@@ -822,7 +900,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "1589a5275639f3ec80f308ff8afb03dace6a866f6323d3a00fd56188aee91f62"
+      "sha256": "2a86a23426593f6cc7d6d80442e4567d8f97abc32f181c7af54196b80b9338e9"
     },
     {
       "source": "templates/product-validation/BLIND_PLAYTEST.md",
@@ -855,6 +933,22 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "a4ad95dce14d008b9219805c6bfae97ac90478f0e5b828f79ffe997567b6d264"
+    },
+    {
+      "source": "templates/media/HORIZONTAL_GAMEPLAY_VIDEO.md",
+      "logicalId": "managed:horizontal-gameplay-video-task",
+      "ownership": "managed",
+      "target": "templates/media/HORIZONTAL_GAMEPLAY_VIDEO.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "d07325264c05429e2b6b3105b8c6f2e91e60b22210f0790c0d922fd9f3eb8075"
     },
     {
       "source": "templates/product-validation/OBSERVATIONS.md",
@@ -918,7 +1012,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "fe761f56616c5a7275bbe684d36734699bfea87d39d22277188c3667a4e870a8"
+      "sha256": "b869ad0e0701781a16fcc35ae6d3120b240708dd6eca34155eb456540d85df34"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1078,7 +1172,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "a5e1d0e97339d35bb355281ebe19117b333bc06bf1a39d4b67235887bb5f9c6b"
+      "sha256": "d69ee7b09b8be5e3064a0d851fa8d0e79037841d8c3ffb03cb047a0437c9b409"
     },
     {
       "source": "tools/starter-kit/package-merge.mjs",
@@ -1126,7 +1220,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "22413b6ad1a632ae2033a041f9ff5e33609612593f0307a8f147ca986a704a8e"
+      "sha256": "1b1cc4b519f133b055fe7e26d2d08f3d330e0336aab87ca246cc7658bd84424d"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -1191,6 +1285,38 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "29821b4cc675a44bd220914d2d64fa272fe817a8828c2346b7b73a361f9ea977"
+    },
+    {
+      "source": "tools/yandex/requirements-audit.mjs",
+      "logicalId": "managed:tool-yandex-requirements-audit",
+      "ownership": "managed",
+      "target": "tools/yandex/requirements-audit.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "da9a1e33e2df287603f36e717929a13fbce876069e2f6c2f3a685421fc30e2ec"
+    },
+    {
+      "source": "tools/yandex/media-validation.mjs",
+      "logicalId": "managed:tool-yandex-media-validation",
+      "ownership": "managed",
+      "target": "tools/yandex/media-validation.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "d2451334e60c80ad2b08d6455871b4b78d8e2f33be2889b3501261ead2c3a981"
     }
   ]
 }

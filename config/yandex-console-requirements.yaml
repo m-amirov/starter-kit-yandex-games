@@ -1,0 +1,28 @@
+schemaVersion: 1
+source:
+  title: Заполнение черновика — Консоль разработчика Яндекс Игр
+  url: https://yandex.ru/dev/games/doc/ru/console/add-new-game/draft
+  reviewedAt: '2026-08-28'
+scope: console fields and constraints without their own numbered game requirement
+rules:
+  - id: CONSOLE-FIRST-PUBLICATION-HORIZONTAL-GAMEPLAY-VIDEO
+    enforcement: required
+    applicability: first-publication
+    summary: Первая публикация блокируется без горизонтального видео реального геймплея.
+    linkedRequirementIds: ['5.1.1.3', '5.1.2', '5.3', '8.2.3', '8.3.1', '8.3.2', '8.3.4']
+    technical:
+      format: MP4
+      aspectRatio: '16:9'
+      minimumHeightPx: 400
+      maximumDurationSeconds: 28
+      maximumSizeBytes: 100000000
+      preferredResolution: '1920x1080'
+    content:
+      minimumRealGameplayRatio: 0.70
+      realGameplayVerification: manual-visual-review
+      systemUiAllowed: false
+      yandexGamesUiAllowed: false
+      artificialBlackBarsAllowed: false
+      localeMustMatchDraft: true
+    production:
+      promotionalMp4AllowedInReleaseZip: false

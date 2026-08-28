@@ -1,8 +1,10 @@
 # Yandex Games Requirements Checklist
 
 Authoritative source: `https://yandex.ru/dev/games/doc/ru/concepts/requirements`\
-Source revision reviewed by this kit: **1 July 2026**.\
+Source revision reviewed by this kit: **18 August 2026** (audit: 28 August 2026).\
 Machine-readable registry: `config/yandex-requirements.yaml`.
+
+Console fields without their own numbered requirement are tracked separately in `config/yandex-console-requirements.yaml`; they are never assigned invented requirement numbers.
 
 Every active clause must be represented in `artifacts/evidence/yandex-requirements-compliance.json` as `PASS` or, only when truly inapplicable, `N/A` with an explicit reason. Recommended clauses must also be reviewed. Repealed clauses remain in the registry for traceability.
 
@@ -40,6 +42,7 @@ Every active clause must be represented in `artifacts/evidence/yandex-requiremen
 
 ### Ads, purchases and links
 
+- Requirement 1.12 requires monetization through ads **or** in-app purchases. Ads-only and IAP-only are valid; neither path is a release blocker.
 - Ads are only from the Yandex SDK and shown only in logical pauses.
 - Fullscreen ads pause audio and gameplay; return restores the exact state.
 - Rewarded ads are voluntary, disclose the exact reward and never gate basic continuation.
@@ -53,6 +56,18 @@ Every active clause must be represented in `artifacts/evidence/yandex-requiremen
 - Icon and cover are dedicated marketing art, not gameplay screenshots.
 - Screenshots show at least 70% real gameplay; videos show at least 70% real gameplay duration.
 - Media has no compression defects, accidental generated text, external frames, rounded outer corners, system UI or Yandex Games UI.
+
+### Console first-publication video
+
+- `CONSOLE-FIRST-PUBLICATION-HORIZONTAL-GAMEPLAY-VIDEO` blocks `first-publication`; it does not block an `update` solely because the video is absent.
+- File contract: MP4, 16:9, height ≥ 400 px, duration ≤ 28 seconds, size ≤ 100 MB; 1920×1080 and 20–25 seconds are preferred.
+- At least 70% of duration is manually verified real gameplay. File metadata cannot auto-approve this requirement.
+- Manual evidence also confirms no system UI, Yandex Games UI or artificial black bars and confirms that gameplay/UI language matches the Draft locale.
+- Localized gameplay text requires one video per declared locale. A shared file requires evidence that no language-dependent gameplay text exists.
+- Record only the final production build with real interaction. Mockups, fake animation, dev/debug footage and substituted gameplay are prohibited.
+- Portrait-only gameplay may use a 16:9 composition with the game's own artwork/background, but the embedded gameplay recording remains real.
+- Promotional MP4 files are Console media and must remain outside the Yandex game ZIP. Transcoding tools are development-only and must not enter the production bundle.
+- Linked numbered clauses: 5.1.1.3, 5.1.2, 5.3, 8.2.3, 8.3.1, 8.3.2 and 8.3.4.
 
 ## Regression requirements from Stack Sort Lab moderation
 
@@ -74,5 +89,6 @@ These are explicit P0 checks in this kit:
 - `artifacts/evidence/rights-manifest.json`
 - `artifacts/evidence/draft-metadata-checklist.json`
 - `artifacts/evidence/final-screenshots.json`
+- `artifacts/evidence/final-gameplay-videos.json`
 
 The Yandex validation skill must not mark an item `PASS` based only on source-code intent. It must cite a command, runtime scenario, screenshot, trace or manually reviewed artifact from the final production build.
