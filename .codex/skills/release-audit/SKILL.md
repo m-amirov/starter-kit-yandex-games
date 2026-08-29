@@ -23,11 +23,16 @@ Do not trust the implementation summary. Re-run required commands and inspect th
 6. inspect P0/P1 defect status;
 7. execute `$yandex-release-validation` independently;
 8. inspect ZIP root, POSIX paths, size, `/sdk.js` handling and SHA-256; independently prove that no promotional MP4 is inside the game ZIP;
-9. confirm the game was not published or submitted;
-10. issue only `PASS` or `ESCALATE_BLOCKED`.
+9. when external runtime evidence is present, independently verify the pinned provider version, validated and actual manifest hashes, every runtimeClosure hash, provenance metadata, game OOPIF identity, zero mutation ledger, redaction status, full/partial stage history and every FAIL/WARN conflict;
+10. prove that the game ZIP contains no Harness, observer, provider module, `debugcheck.js`, `YGDebugChecker`, raw provider report/evidence, or browser profile;
+11. confirm the game was not published or submitted;
+12. issue only `PASS` or `ESCALATE_BLOCKED`.
 
 ## Prohibition
 
 Missing, stale, fabricated, skipped or manually assumed evidence blocks the release.
 Automated functional/E2E PASS does not replace actual-runtime screenshot review.
 An unresolved watcher verdict blocks with `BLOCK_YANDEX_DOCS_CHANGED_REVIEW_REQUIRED`; unknown or parser-drift output may not be downgraded to PASS.
+External evidence is advisory and optional. Its absence alone does not block,
+but supplied evidence must pass integrity and conflict audit. Never run an
+authenticated Draft browser implicitly during this audit.

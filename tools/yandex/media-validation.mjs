@@ -4,6 +4,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import zlib from 'node:zlib';
+import { inspectZipForExternalEvidence } from './external-evidence.mjs';
 
 const MAX_SIZE_BYTES = 100_000_000;
 const MAX_DURATION_SECONDS = 28;
@@ -291,11 +292,15 @@ async function runCli() {
       videos: evidence.videos ?? []
     })
     : { status: 'PASS', blockers: [], matches: [], note: 'ZIP not supplied; archive exclusion was not checked.' };
-  const blockers = [...media.blockers, ...archive.blockers];
+  const externalProviderArchive = zipPath
+    ? inspectZipForExternalEvidence(path.resolve(rootDir, zipPath))
+    : { status: 'NOT_CHECKED', blockers: [], matches: [], note: 'ZIP not supplied; provider contamination was not checked.' };
+  const blockers = [...media.blockers, ...archive.blockers, ...externalProviderArchive.blockers];
   console.log(JSON.stringify({
     status: blockers.length ? 'BLOCK' : 'PASS',
     media,
     archive,
+    externalProviderArchive,
     blockers
   }, null, 2));
   if (blockers.length) process.exitCode = 1;

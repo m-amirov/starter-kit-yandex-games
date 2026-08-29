@@ -18,6 +18,14 @@ Console fields without their own numbered requirement are tracked separately in 
 - Snapshot acceptance is an explicit post-review action. When policy changed, requirements audit, Console audit and targeted watcher tests must be green and `--policy-reviewed` must be supplied. The snapshot records the reviewed registry hashes.
 - The watcher never rewrites the authoritative numbered or Console registries.
 
+External provider integrity is a separate gate. `yandex:docs:check` verifies
+official documentation freshness; `yandex:external:verify` checks only the
+pinned advisory provider. After Draft upload, authenticated external runtime
+evidence is an explicit optional step and never runs during ordinary release
+validation. When evidence exists, normalize it, apply the conflict policy, and
+pass it to the independent audit. Missing optional evidence alone is not a
+release blocker.
+
 Every active clause must be represented in `artifacts/evidence/yandex-requirements-compliance.json` as `PASS` or, only when truly inapplicable, `N/A` with an explicit reason. Recommended clauses must also be reviewed. Repealed clauses remain in the registry for traceability.
 
 ## Mandatory release groups

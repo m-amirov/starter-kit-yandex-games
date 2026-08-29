@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yandex-games-starter-kit.local/schemas/yandex-external-evidence.schema.json",
+  "title": "Normalized external Yandex runtime evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "providerId",
+    "providerVersion",
+    "normalizedStatus",
+    "providerRawStatus",
+    "classification",
+    "requirementMapping",
+    "heuristic",
+    "provenance",
+    "artifactPaths",
+    "artifactCompleteness",
+    "runtimeTargetIdentity",
+    "oopifProof",
+    "mutationLedger",
+    "stageHistory",
+    "stagesComplete",
+    "redactionStatus",
+    "advisory",
+    "optional"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "providerId": { "const": "yandex-draft-runtime-hardened" },
+    "providerVersion": { "const": "hardened-draft-runtime-harness-1.3.0" },
+    "normalizedStatus": {
+      "enum": [
+        "EXTERNAL_EVIDENCE_PASS",
+        "EXTERNAL_EVIDENCE_WARN",
+        "EXTERNAL_EVIDENCE_FAIL",
+        "EXTERNAL_EVIDENCE_NOT_VERIFIED",
+        "EXTERNAL_EVIDENCE_UNAVAILABLE",
+        "EXTERNAL_EVIDENCE_ERROR"
+      ]
+    },
+    "providerRawStatus": { "type": "string", "minLength": 1 },
+    "classification": { "type": "string", "minLength": 1 },
+    "requirementMapping": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["requirementId", "status", "classification", "heuristic", "evidence"],
+        "properties": {
+          "requirementId": { "type": "string", "minLength": 1 },
+          "status": { "type": "string", "minLength": 1 },
+          "classification": { "enum": ["advisory", "heuristic"] },
+          "heuristic": { "type": "boolean" },
+          "evidence": {}
+        },
+        "additionalProperties": false
+      }
+    },
+    "heuristic": { "type": "boolean" },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "providerId", "providerVersion", "validatedManifestSha256", "actualManifestSha256",
+        "upstreamRepository", "upstreamCommit", "upstreamCandidate", "starterKitVersion",
+        "project", "appId", "sanitizedDraftUrl", "releaseBuildSha256", "browserVersion",
+        "profileMode", "locale", "viewport", "targetId", "cdpSessionId", "executionContextId",
+        "gameOrigin", "observerOrigin", "gameSessionSha256", "mutationLedger", "stages", "startedAt", "completedAt", "verdict"
+      ],
+      "properties": {
+        "providerId": { "type": "string" },
+        "providerVersion": { "type": "string" },
+        "validatedManifestSha256": { "$ref": "#/$defs/sha256" },
+        "actualManifestSha256": { "anyOf": [{ "$ref": "#/$defs/sha256" }, { "type": "null" }] },
+        "upstreamRepository": { "type": "string" },
+        "upstreamCommit": { "type": "string" },
+        "upstreamCandidate": { "type": "string" },
+        "starterKitVersion": { "type": ["string", "null"] },
+        "project": { "type": ["string", "null"] },
+        "appId": { "type": ["string", "null"] },
+        "sanitizedDraftUrl": { "type": ["string", "null"] },
+        "releaseBuildSha256": { "anyOf": [{ "$ref": "#/$defs/sha256" }, { "type": "null" }] },
+        "browserVersion": { "type": ["string", "null"] },
+        "profileMode": { "enum": ["ephemeral", "dedicated-auth", null] },
+        "locale": { "type": ["string", "null"] },
+        "viewport": {},
+        "targetId": { "type": ["string", "null"] },
+        "cdpSessionId": { "type": ["string", "null"] },
+        "executionContextId": { "type": ["integer", "null"] },
+        "gameOrigin": { "type": ["string", "null"] },
+        "observerOrigin": { "type": ["string", "null"] },
+        "gameSessionSha256": { "anyOf": [{ "$ref": "#/$defs/sha256" }, { "type": "null" }] },
+        "mutationLedger": { "type": "object" },
+        "stages": { "type": "object" },
+        "startedAt": { "type": ["string", "null"] },
+        "completedAt": { "type": ["string", "null"] },
+        "verdict": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "artifactPaths": { "type": "object", "additionalProperties": { "type": "string" } },
+    "artifactCompleteness": { "enum": ["full", "partial"] },
+    "runtimeTargetIdentity": { "type": ["object", "null"] },
+    "oopifProof": { "type": "boolean" },
+    "mutationLedger": { "type": "object" },
+    "stageHistory": { "type": "object" },
+    "stagesComplete": { "type": "boolean" },
+    "redactionStatus": { "enum": ["PASS", "BLOCK"] },
+    "redactionBlockers": { "type": "array", "items": { "type": "string" } },
+    "advisory": { "const": true },
+    "optional": { "const": true }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

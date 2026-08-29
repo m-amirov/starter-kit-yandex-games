@@ -31,6 +31,25 @@ Do not rely on memory when the official requirements may have changed. Before pr
 5. Run `npm run yandex:media:validate -- --zip <release.zip>` against `artifacts/evidence/final-gameplay-videos.json`; any failure blocks RC.
 6. Perform an independent final review and write `artifacts/evidence/yandex-release-validation.json`.
 
+## Optional external Draft runtime evidence
+
+`yandex-draft-runtime-hardened` is an advisory, optional, non-official provider
+for post-upload Draft evidence. Never start its authenticated browser as a side
+effect of this procedure. Recommend the visible `yandex:external:run` step before
+submission; the default is `ephemeral`, while a real authenticated Draft uses
+only the Harness-owned `dedicated-auth` profile.
+
+When external evidence is supplied, run `yandex:external:verify`, normalize the
+existing reports, and apply the documented conflict policy. Provider integrity,
+actual manifest/runtimeClosure hashes, OOPIF identity, zero mutation ledger,
+redaction and stage history must pass before an external PASS is accepted.
+Outer `yandex.ru` shell evidence is never game-runtime proof. External PASS is
+supporting only: it cannot override official failures or incomplete manual
+clauses. External FAIL/WARN against Starter PASS requires review; provider ERROR
+is a separate tooling problem; optional UNAVAILABLE/not-run does not block by
+itself. `yandex:docs:check` remains independent and authoritative for docs
+freshness.
+
 ## Upstream documentation freshness gate
 
 Before a real Yandex submission, record `artifacts/evidence/yandex-docs-freshness.json` and prove one of these states:

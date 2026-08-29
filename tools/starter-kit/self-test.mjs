@@ -62,6 +62,11 @@ function validatePolicy(root, skillRoot, errors) {
   if (!policy.globalRules?.fetchFailedRequiresExplicitManualCurrentDocumentReview) errors.push('FETCH_FAILED manual review policy is not enabled');
   if (!policy.globalRules?.realGameplayRatioRequiresManualVisualEvidence) errors.push('real gameplay ratio manual evidence policy is not enabled');
   if (policy.globalRules?.promotionalMp4InGameReleaseZip !== 'forbidden') errors.push('promotional MP4 release ZIP policy is not forbidden');
+  if (policy.globalRules?.externalEvidenceProviderAuthority !== 'advisory') errors.push('external evidence provider must remain advisory');
+  if (!policy.globalRules?.externalEvidenceProviderOptional) errors.push('external evidence provider must remain optional');
+  if (policy.globalRules?.authenticatedExternalRun !== 'explicit-only') errors.push('authenticated external provider run must be explicit-only');
+  if (policy.globalRules?.externalProviderFloatingRefs !== 'forbidden') errors.push('external provider floating refs must be forbidden');
+  if (policy.globalRules?.externalProviderRuntimeInGameZip !== 'forbidden') errors.push('external provider runtime must be forbidden in the game ZIP');
   const coreContract = path.join(root, '.starter-kit', 'core', 'CODEX_ENGINEERING_SYSTEM.md');
   if (!fs.existsSync(coreContract)) errors.push('codex engineering system core contract is missing');
   else {
@@ -125,7 +130,7 @@ function validateYandexContracts(root, skillRoot, errors, sourceMode) {
     errors.push(...snapshotAudit.errors.map((error) => `Yandex snapshot alignment: ${error}`));
   }
 
-  for (const relative of ['config/game-spec.schema.json', 'config/final-gameplay-videos.schema.json']) {
+  for (const relative of ['config/game-spec.schema.json', 'config/final-gameplay-videos.schema.json', 'config/yandex-external-evidence.schema.json']) {
     try { readJson(path.join(root, relative)); } catch (error) { errors.push(`invalid JSON schema ${relative}: ${error.message}`); }
   }
   const packageJson = readJson(path.join(root, 'package.json'));
@@ -134,6 +139,40 @@ function validateYandexContracts(root, skillRoot, errors, sourceMode) {
   if (!packageJson.scripts?.['yandex:docs:check']) errors.push('yandex:docs:check script is missing');
   if (!packageJson.scripts?.['yandex:docs:accept-snapshot']) errors.push('yandex:docs:accept-snapshot script is missing');
   if (!packageJson.scripts?.['yandex:media:validate']) errors.push('yandex:media:validate script is missing');
+  for (const command of ['verify', 'run', 'normalize', 'audit']) {
+    if (!packageJson.scripts?.[`yandex:external:${command}`]) errors.push(`yandex:external:${command} script is missing`);
+  }
+
+  const providerRegistryFile = path.join(root, 'config', 'yandex-external-evidence-providers.yaml');
+  const providerToolFile = path.join(root, 'tools', 'yandex', 'external-evidence.mjs');
+  const providerRoot = path.join(root, 'tools', 'yandex', 'external-runtime-provider');
+  for (const required of [providerRegistryFile, providerToolFile, path.join(providerRoot, 'integrity-manifest.json'), path.join(providerRoot, 'validation-record.json')]) {
+    if (!fs.existsSync(required)) errors.push(`external evidence provider file is missing: ${path.relative(root, required)}`);
+  }
+  if (fs.existsSync(providerRegistryFile)) {
+    const registry = fs.readFileSync(providerRegistryFile, 'utf8');
+    for (const token of [
+      'id: yandex-draft-runtime-hardened', 'authority: advisory', 'optional: true',
+      'authenticatedRun: explicit', 'providerVersion: hardened-draft-runtime-harness-1.3.0',
+      'validatedManifestSha256: 3a73a9feb15de4b38f2ecd57bec167f5c280d8e0780f394b7d5a122e45a3755a',
+      'officialYandexTool: false'
+    ]) if (!registry.includes(token)) errors.push(`external provider registry token missing: ${token}`);
+  }
+  const providerManifest = path.join(providerRoot, 'integrity-manifest.json');
+  if (fs.existsSync(providerManifest) && sha256File(providerManifest) !== '3a73a9feb15de4b38f2ecd57bec167f5c280d8e0780f394b7d5a122e45a3755a') {
+    errors.push('external provider validated manifest pin changed');
+  }
+  if (fs.existsSync(providerManifest)) {
+    const integrityManifest = readJson(providerManifest);
+    for (const entry of integrityManifest.runtimeClosure ?? []) {
+      const runtimeFile = path.join(providerRoot, entry.path);
+      if (!fs.existsSync(runtimeFile)) errors.push(`external provider runtimeClosure file is missing: ${entry.path}`);
+      else if (sha256File(runtimeFile) !== entry.sha256) errors.push(`external provider runtimeClosure hash mismatch: ${entry.path}`);
+    }
+    for (const entry of integrityManifest.provenanceInputs ?? []) {
+      if (fs.existsSync(path.join(providerRoot, entry.historicalPath))) errors.push(`external provider provenance input was vendored: ${entry.historicalPath}`);
+    }
+  }
 
   const validationSkill = fs.readFileSync(path.join(root, skillRoot, 'yandex-release-validation', 'SKILL.md'), 'utf8');
   for (const token of [
@@ -143,7 +182,8 @@ function validateYandexContracts(root, skillRoot, errors, sourceMode) {
     'Promotional MP4',
     '20–25 seconds',
     'BLOCK_YANDEX_DOCS_CHANGED_REVIEW_REQUIRED',
-    'yandex-doc-snapshot.json'
+    'yandex-doc-snapshot.json',
+    'Optional external Draft runtime evidence'
   ]) {
     if (!validationSkill.includes(token)) errors.push(`Yandex validation skill token missing: ${token}`);
   }
@@ -170,7 +210,7 @@ let targetStatus;
 if (sourceMode) {
   version = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
   const packageVersion = readJson(path.join(ROOT, 'package.json')).version;
-  if (version !== '0.5.6' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
+  if (version !== '0.5.7' || packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
   manifest = loadManifest(ROOT);
   validateManifest(manifest, ROOT);
   if (manifest.version !== version) errors.push(`manifest version mismatch: ${manifest.version}`);

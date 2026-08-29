@@ -1292,6 +1292,150 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/yandex-external-evidence-providers.yaml",
+      "logicalId": "managed:yandex-external-evidence-providers",
+      "ownership": "managed",
+      "target": "config/yandex-external-evidence-providers.yaml",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/yandex-external-evidence.schema.json",
+      "logicalId": "managed:yandex-external-evidence-schema",
+      "ownership": "managed",
+      "target": "config/yandex-external-evidence.schema.json",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/YANDEX_EXTERNAL_RUNTIME_EVIDENCE.md",
+      "logicalId": "managed:yandex-external-runtime-evidence-doc",
+      "ownership": "managed",
+      "target": "docs/YANDEX_EXTERNAL_RUNTIME_EVIDENCE.md",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.5.6-to-0.5.7.md",
+      "logicalId": "migration:0.5.6-to-0.5.7",
+      "ownership": "managed",
+      "target": "migrations/0.5.6-to-0.5.7.md",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-evidence.mjs",
+      "logicalId": "managed:tool-yandex-external-evidence",
+      "ownership": "managed",
+      "target": "tools/yandex/external-evidence.mjs",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/.gitignore",
+      "logicalId": "managed:yandex-external-runtime-provider-gitignore",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/.gitignore",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/.gitattributes",
+      "logicalId": "managed:yandex-external-runtime-provider-gitattributes",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/.gitattributes",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/integrity-manifest.json",
+      "logicalId": "managed:yandex-external-runtime-provider-manifest",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/integrity-manifest.json",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/integrity-manifest.schema.json",
+      "logicalId": "managed:yandex-external-runtime-provider-manifest-schema",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/integrity-manifest.schema.json",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/validation-record.json",
+      "logicalId": "managed:yandex-external-runtime-provider-validation-record",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/validation-record.json",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/hardened-live-observer.js",
+      "logicalId": "managed:yandex-external-runtime-provider-observer",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/hardened-live-observer.js",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/hardened-harness.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-harness",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/hardened-harness.mjs",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/lib/security.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-security",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/lib/security.mjs",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/lib/cdp-runtime.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-cdp-runtime",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/lib/cdp-runtime.mjs",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/lib/game-session.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-game-session",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/lib/game-session.mjs",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/lib/reporting.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-reporting",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/lib/reporting.mjs",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
     }
   ]
 }

@@ -25,3 +25,7 @@ artifacts/*
 !artifacts/evidence/
 artifacts/evidence/*
 !artifacts/evidence/final-gameplay-videos.json
+
+# Optional external runtime provider state is local-sensitive and never shipped.
+tools/yandex/external-runtime-provider/.state/
+tools/yandex/external-runtime-provider/evidence/

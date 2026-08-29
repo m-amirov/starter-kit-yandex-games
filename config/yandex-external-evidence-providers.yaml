@@ -1,0 +1,32 @@
+schemaVersion: 1
+providers:
+  - id: yandex-draft-runtime-hardened
+    displayName: Hardened Yandex Draft runtime evidence provider
+    authority: advisory
+    mode: post-upload-draft-runtime
+    optional: true
+    authenticatedRun: explicit
+    officialYandexTool: false
+    providerVersion: hardened-draft-runtime-harness-1.3.0
+    validatedManifestSha256: 3a73a9feb15de4b38f2ecd57bec167f5c280d8e0780f394b7d5a122e45a3755a
+    manifestPath: tools/yandex/external-runtime-provider/integrity-manifest.json
+    upstream:
+      repository: Nioris/yandex-games-debug-checker
+      commit: 0bc5ef9123f471b43c0a2683afb990fe0793f9a5
+      candidate: v1.2.8-test
+    liveValidated: true
+    liveValidatedAt: '2026-08-29T03:32:17.794Z'
+    validatedRunId: 2026-08-29T03-32-01-617Z-551358
+    validatedProviderVerdict: PASS_LIVE_HARDENED_PROVIDER_VALIDATION
+    defaultProfileMode: ephemeral
+    authenticatedProfileMode: dedicated-auth
+    evidenceRoot: artifacts/evidence/external/yandex-runtime
+    supportedEvidenceCategories:
+      - oopif-runtime-identity
+      - sdk-initialization
+      - loading-api-ready
+      - gameplay-lifecycle
+      - localization
+      - browser-interaction-guards
+      - scroll-and-swipe-refresh
+      - ad-lifecycle

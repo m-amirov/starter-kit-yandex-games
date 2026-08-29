@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.6",
+  "version": "0.5.7",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -241,7 +241,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "eb12619efc177c8a483733285e0bf5e3880dbc3c1f8f6563d66c9c4b748a56c2"
+      "sha256": "c4e844fbc8bb0252947f2237e1ea3b8dd3449721d292faa869c3ccd7f5f3aa4f"
     },
     {
       "source": ".codex/skills/visual-quality-gate/ORIGIN.md",
@@ -321,7 +321,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "a78a3d6f5f96381a303027d227cd8c52104b6b431bec9c860235cf78b88676c0"
+      "sha256": "8e1ed83252674f9c957db5a94dc3d236563928472b58d5e44226e31a4056c06d"
     },
     {
       "source": "AGENTS.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "bc1f7e4e2213b130c5460988e55165c4dff0cf3f88576860ad2d175cc5e63255"
+      "sha256": "ed55b39b7c69ae3f455ce281c349211e42e1d4419f9046ee777044f2732ffbef"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "95dfd74ddddf78c4d0cb033dd19c85604c320c278cc3e67ed8d8f59216b20d4a"
+      "sha256": "7232413c8da2c183b90a75e24242c8d3175220b0d741ac02669bb986e7d08503"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -531,7 +531,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "f669b5e9183901b78b0952eb71f8fe54bdcff9cc3d155710c61e25be7b35b058"
+      "sha256": "79d7614c17275d8e26f7c386169e65f3073bfcf583757b84bcda201134e628b4"
     },
     {
       "source": "CHANGELOG.md",
@@ -547,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "a90c5820e9741c34944afef5293a38e804fdb7db4764eb8925a9cffa1ea613e8"
+      "sha256": "2d5ce7824ff3df803ad999404816e9a1ff948233515c936a273168a6e85894c6"
     },
     {
       "source": "README.md",
@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "ba606ed2559eac09498015eda9e81ee4bcf5088ccfd28669b520247871ac1dd3"
+      "sha256": "9f6ea2ace8064a5295bd4607415c28c8e7f7c5d25823d72e820f884a24565132"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -579,7 +579,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "3be685a41bea80d248219efff8f1f6a33922370926966c1e48a7f149d25a3879"
+      "sha256": "3f5683e9d36a1d1ce8ba9287b303e604bb493629b7bb50c49cd3315346e8faf0"
     },
     {
       "source": "config/yandex-requirements.yaml",
@@ -707,7 +707,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "1cf3a0a75c0af49bdfd4c3a66475f87beb77c5e77077f753d71f3df78198ceef"
+      "sha256": "2bdc3939564b59018de2c3720001f052a3cf24cba24028b16eaf53320428bb85"
     },
     {
       "source": "docs/YANDEX_REQUIREMENTS_DIFF_2026-07-01_TO_2026-08-18.md",
@@ -739,7 +739,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "9546c7d00acfec1005c4857b09a1c1689d3059fd4a23dcc59bb54639bc6a2316"
+      "sha256": "9b04a368051afa8e615061650ffd5c8a5983511405aafd6fd0902bd8c1a6d495"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -788,7 +788,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "fbc115c07d0a557a3cb18fcc312fb0ab17383235b01c827d045cd7d9cb4e98ec"
+      "sha256": "2b99aaab19f7904d231851952c257907cdc7b9db62a339f64951e87df19f1621"
     },
     {
       "source": "lessons/known-failures.yaml",
@@ -1060,7 +1060,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "f2220517e2d705e7fee671fd4f7eab9e0d57f2fad52f216cf350196d14b17192"
+      "sha256": "692e6acb46f819be4db7ab8564d1bd8d51a10b51907b5816b0afabd4dad89914"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1268,7 +1268,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "aca0f556f452c8dd1c2ecec41f69c7d85341201dda4e0d50967210650ccaeb39"
+      "sha256": "7b40879dc089a98917c718746a11c847c2f3cefcd98ac6b27a1b0a4a9113ed10"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -1348,7 +1348,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "541983c3652329874d7db9ca2aac63c5bc27720f7a329e0d5d2603ad30370d65"
+      "sha256": "68bf440ecb2ce94470f4883c9f8024fd3b619f5d07dd0df008c35761ef61b1f8"
     },
     {
       "source": "tools/yandex/docs-watch.mjs",
@@ -1380,7 +1380,263 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "d2451334e60c80ad2b08d6455871b4b78d8e2f33be2889b3501261ead2c3a981"
+      "sha256": "fc21961b459dfa5a7a66f7bcb2df216b55659d7d923f1fa526dd75360ba970e8"
+    },
+    {
+      "source": "config/yandex-external-evidence-providers.yaml",
+      "logicalId": "managed:yandex-external-evidence-providers",
+      "ownership": "managed",
+      "target": "config/yandex-external-evidence-providers.yaml",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "c041be92f71ddd1e733620ce9e0161fea529445a006045e38dff7405a3045e1a"
+    },
+    {
+      "source": "config/yandex-external-evidence.schema.json",
+      "logicalId": "managed:yandex-external-evidence-schema",
+      "ownership": "managed",
+      "target": "config/yandex-external-evidence.schema.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "6f900215b2fa5c033d29ac1ee86e8c474c43c6c7f4338f5af2dfd37d939c880e"
+    },
+    {
+      "source": "docs/YANDEX_EXTERNAL_RUNTIME_EVIDENCE.md",
+      "logicalId": "managed:yandex-external-runtime-evidence-doc",
+      "ownership": "managed",
+      "target": "docs/YANDEX_EXTERNAL_RUNTIME_EVIDENCE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "ce160b276e99a183aa532811061816be378dd76176ebce2ba67808258d53716c"
+    },
+    {
+      "source": "migrations/0.5.6-to-0.5.7.md",
+      "logicalId": "migration:0.5.6-to-0.5.7",
+      "ownership": "managed",
+      "target": "migrations/0.5.6-to-0.5.7.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "0f9726e4844ef2b5a093b30b6e226f39a0d89e39994194f7fbafa4859a7fe34f"
+    },
+    {
+      "source": "tools/yandex/external-evidence.mjs",
+      "logicalId": "managed:tool-yandex-external-evidence",
+      "ownership": "managed",
+      "target": "tools/yandex/external-evidence.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "09d50bc117730725dd8b80f97343479a4fc96cfdc7fef8223519a50b558d3798"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/.gitignore",
+      "logicalId": "managed:yandex-external-runtime-provider-gitignore",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/.gitignore",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "d90547da2f1de9a14269542d4360cc616f451260c9ac7215cef238aab269b241"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/.gitattributes",
+      "logicalId": "managed:yandex-external-runtime-provider-gitattributes",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/.gitattributes",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "5d24d183fbb8f9bb9e16f601c938fb6bedecc382fccc275760b31ec5aac780fa"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/integrity-manifest.json",
+      "logicalId": "managed:yandex-external-runtime-provider-manifest",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/integrity-manifest.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "3a73a9feb15de4b38f2ecd57bec167f5c280d8e0780f394b7d5a122e45a3755a"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/integrity-manifest.schema.json",
+      "logicalId": "managed:yandex-external-runtime-provider-manifest-schema",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/integrity-manifest.schema.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "9010f9e9500b5f21cfd13ec35ca8540d1d9839b7f220b7941d2e954c43abbecc"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/validation-record.json",
+      "logicalId": "managed:yandex-external-runtime-provider-validation-record",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/validation-record.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "97c71ef06252b9375420bb28a99533bf13234278aeaf9e92bb507afbf4bb0ae4"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/hardened-live-observer.js",
+      "logicalId": "managed:yandex-external-runtime-provider-observer",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/hardened-live-observer.js",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "46c7fcba8be67d2590334c84262d119dea075b857c4bc92479224c8c3ffe04e9"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/hardened-harness.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-harness",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/hardened-harness.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "8ea26e3a6557ac12126977686d83bbefcc770a255fea8e8bf5cd587d060589c1"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/lib/security.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-security",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/lib/security.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "633a4c5ebd93ad5125697fa89ab372609e81009a204a555570918a286b9889dd"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/lib/cdp-runtime.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-cdp-runtime",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/lib/cdp-runtime.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "cac3abe23e74fe2e1098d5fb324c70486476fae617f286e77a19bd5fb48529f1"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/lib/game-session.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-game-session",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/lib/game-session.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "cf31050a3eafcaf3424ee912d81eb3edb07d207dfcfe6a8e4b492f3d05075d3e"
+    },
+    {
+      "source": "tools/yandex/external-runtime-provider/lib/reporting.mjs",
+      "logicalId": "managed:yandex-external-runtime-provider-reporting",
+      "ownership": "managed",
+      "target": "tools/yandex/external-runtime-provider/lib/reporting.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "afef22563d2c42f37c577f3e12d27113d979280f36d20dd70e08ca4dd172657e"
     }
   ]
 }

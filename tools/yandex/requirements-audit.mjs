@@ -5,6 +5,14 @@ import { fileURLToPath } from 'node:url';
 
 import { ROOT } from '../starter-kit/lib.mjs';
 import { DOC_PARSER_VERSION, DOC_SNAPSHOT_SCHEMA_VERSION, loadSourceConfig } from './docs-watch.mjs';
+import {
+  VALIDATED_MANIFEST_SHA256,
+  auditNormalizedEvidence,
+  loadExternalRun,
+  normalizeExternalEvidence,
+  resolveExternalEvidenceConflict,
+  verifyProviderIntegrity
+} from './external-evidence.mjs';
 
 export const EXPECTED_REQUIREMENT_IDS = `
 1.1 1.2 1.2.1 1.2.2 1.3 1.4 1.5 1.6
@@ -230,7 +238,7 @@ export function auditSnapshotRegistryAlignment({ requirementText, consoleText, s
   };
 }
 
-function runCli() {
+async function runCli() {
   const registryPath = path.join(ROOT, 'config', 'yandex-requirements.yaml');
   const result = auditRequirementRegistryText(fs.readFileSync(registryPath, 'utf8'));
   const consolePath = path.join(ROOT, 'config', 'yandex-console-requirements.yaml');
@@ -248,6 +256,41 @@ function runCli() {
   });
   const consoleOnly = process.argv.includes('--console-only');
   const errors = consoleOnly ? consoleResult.errors : [...result.errors, ...consoleResult.errors, ...snapshotResult.errors];
+  const externalRunIndex = process.argv.indexOf('--external-run');
+  let externalEvidence = {
+    status: 'EXTERNAL_EVIDENCE_UNAVAILABLE',
+    optional: true,
+    recommendation: 'After Draft upload, explicitly run the pinned provider and preserve normalized evidence before submission.'
+  };
+  if (!consoleOnly && externalRunIndex >= 0) {
+    const externalRun = process.argv[externalRunIndex + 1];
+    if (!externalRun) errors.push('--external-run requires an evidence directory');
+    else {
+      try {
+        const integrity = await verifyProviderIntegrity();
+        const normalized = normalizeExternalEvidence({
+          ...loadExternalRun(path.resolve(externalRun)),
+          metadata: {
+            starterKitVersion: fs.existsSync(path.join(ROOT, 'VERSION'))
+              ? fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim()
+              : fs.readFileSync(path.join(ROOT, '.starter-kit', 'VERSION'), 'utf8').trim(),
+            project: path.basename(ROOT)
+          },
+          actualManifestSha256: integrity.actualManifestSha256 ?? VALIDATED_MANIFEST_SHA256
+        });
+        const audit = auditNormalizedEvidence(normalized);
+        const conflict = resolveExternalEvidenceConflict({
+          starterStatus: 'PASS',
+          externalStatus: normalized.normalizedStatus
+        });
+        externalEvidence = { ...normalized, integrity: integrity.status, audit, conflict };
+        errors.push(...audit.blockers.map((error) => `External evidence: ${error}`));
+        if (conflict.status === 'REVIEW_REQUIRED') errors.push('External evidence conflicts with Starter PASS and requires review');
+      } catch (error) {
+        errors.push(`External provider integrity: ${error.classification ?? error.message}`);
+      }
+    }
+  }
   console.log(JSON.stringify({
     status: errors.length ? 'BLOCK' : 'PASS',
     audit: consoleOnly ? 'console' : 'requirements-console-snapshot-alignment',
@@ -259,9 +302,11 @@ function runCli() {
     snapshotReviewedAt: snapshotResult.snapshotReviewedAt,
     snapshotClauseCount: snapshotResult.snapshotClauseCount,
     discoveredDetailPageCount: snapshotResult.discoveredDetailPageCount,
+    externalEvidence,
+    authenticatedExternalRunStarted: false,
     errors
   }, null, 2));
   if (errors.length) process.exitCode = 1;
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) runCli();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await runCli();

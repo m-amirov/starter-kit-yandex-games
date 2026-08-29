@@ -29,8 +29,8 @@
 17. Для каждого заявленного языка создай locale-specific video, если в gameplay есть локализованный текст. Один файл разрешён только при доказанном отсутствии language-dependent текста. Заполни `artifacts/evidence/final-gameplay-videos.json`, выполни ручной visual review доли real gameplay ≥70%, UI/локали/чёрных полей и запусти media validation.
 18. Создай проверяемый Yandex game ZIP без promotional MP4; dev-only recording/transcoding tooling не должно попадать в production bundle.
 19. Перед реальной отправкой выполни live `yandex:docs:check`. `UNCHANGED`/`METADATA_ONLY` допускают продолжение; unresolved semantic diff блокирует с `BLOCK_YANDEX_DOCS_CHANGED_REVIEW_REQUIRED`. `FETCH_FAILED` требует явного ручного evidence review всех canonical sources и не является автоматическим PASS.
-20. Выполни полный compliance audit и `$yandex-release-validation`.
-21. Затем независимо выполни `$release-audit`, включая snapshot/registry alignment и отсутствие unresolved upstream changes; проверь ZIP и SHA-256. Не публикуй и не отправляй на модерацию.
+20. Выполни полный authoritative compliance audit и `$yandex-release-validation`. Перед финальной submission отдельно проверь docs freshness. После загрузки Draft рекомендуется явно запустить только pinned validated external provider, сохранить normalized evidence и передать его `$release-audit`; authenticated browser никогда не запускается скрытым side effect.
+21. Затем независимо выполни `$release-audit`, включая snapshot/registry alignment, отсутствие unresolved upstream changes, external evidence conflicts и provider/report/profile contamination; проверь ZIP и SHA-256. Не публикуй и не отправляй на модерацию.
 
 Допустимые итоги:
 

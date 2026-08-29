@@ -295,6 +295,17 @@ test('0.4.1 mature update materializes quality links, applies cleanly and stays 
       runGit(['-c', 'user.name=Starter Kit Test', '-c', 'user.email=starter-kit-test@example.invalid', 'commit', '-m', '0.4.1 fixture']).status,
       0
     );
+    const preservedFiles = [
+      ['artifacts/evidence/external/yandex-runtime/project-run/report.json', '{"project":"owned"}\n'],
+      ['tools/yandex/external-runtime-provider/.state/dedicated-auth-profile/Preferences', '{"profile":"local"}\n'],
+      ['config/local-runtime.json', '{"local":true}\n']
+    ];
+    for (const [relative, content] of preservedFiles) {
+      const file = path.join(target, relative);
+      fs.mkdirSync(path.dirname(file), { recursive: true });
+      fs.writeFileSync(file, content);
+    }
+    const preservedHashes = Object.fromEntries(preservedFiles.map(([relative]) => [relative, sha256File(path.join(target, relative))]));
     const productBefore = hashProduct(target);
     const first = await executeUpdate({
       sourceRoot: ROOT,
@@ -319,6 +330,9 @@ test('0.4.1 mature update materializes quality links, applies cleanly and stays 
     assert.equal(state.baseline['managed:quality-constitution'].target, 'docs/QUALITY_CONSTITUTION.md');
     assert.equal(state.semanticAcceptances['managed:quality-constitution'], undefined);
     assert.deepEqual(hashProduct(target), productBefore);
+    assert.equal(fs.existsSync(path.join(target, 'tools/yandex/external-runtime-provider/hardened-harness.mjs')), true);
+    assert.equal(fs.existsSync(path.join(target, 'config/yandex-external-evidence-providers.yaml')), true);
+    for (const [relative, hash] of Object.entries(preservedHashes)) assert.equal(sha256File(path.join(target, relative)), hash);
     const status = inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target });
     assert.equal(status.status, 'clean', JSON.stringify(status.unresolvedConflicts, null, 2));
 
@@ -462,6 +476,11 @@ test('mature update delivers validation infrastructure without product runtime o
   assert.equal(entries.some((entry) => entry.logicalId === 'managed:yandex-doc-snapshot'), true);
   assert.equal(entries.some((entry) => entry.logicalId === 'contract:yandex-console-requirements'), true);
   assert.equal(entries.some((entry) => entry.logicalId === 'managed:game-spec-schema'), true);
+  assert.equal(entries.some((entry) => entry.logicalId === 'managed:tool-yandex-external-evidence'), true);
+  assert.equal(entries.some((entry) => entry.logicalId === 'managed:yandex-external-runtime-provider-harness'), true);
+  assert.equal(entries.some((entry) => entry.logicalId === 'managed:yandex-external-evidence-providers'), true);
+  assert.equal(entries.some((entry) => entry.target.startsWith('artifacts/evidence/external/')), false);
+  assert.equal(entries.some((entry) => entry.target.includes('dedicated-auth-profile')), false);
   assert.equal(entries.some((entry) => entry.logicalId === 'seed:final-gameplay-videos-evidence'), false);
   assert.equal(entries.some((entry) => entry.target === 'game-spec.yaml'), false);
 });
@@ -497,6 +516,8 @@ test('new-project seed is recorded as project-owned after init', async () => {
     assert.equal(packageJson.scripts['yandex:docs:check'], 'node tools/yandex/docs-watch.mjs');
     assert.equal(packageJson.scripts['yandex:docs:accept-snapshot'], 'node tools/yandex/docs-watch.mjs --accept-snapshot');
     assert.equal(packageJson.scripts['yandex:media:validate'], 'node tools/yandex/media-validation.mjs');
+    assert.equal(packageJson.scripts['yandex:external:verify'], 'node tools/yandex/external-evidence.mjs verify');
+    assert.equal(packageJson.scripts['yandex:external:run'], 'node tools/yandex/external-evidence.mjs run');
     assert.equal(result.upstreamFreshness.snapshotReviewedAt, '2026-08-28');
     assert.equal(packageJson.scripts['starter-kit:package'], undefined);
     const spec = fs.readFileSync(path.join(target, 'game-spec.yaml'), 'utf8');

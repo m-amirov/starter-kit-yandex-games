@@ -1,4 +1,4 @@
-# Autonomous Yandex Games Starter Kit 0.5.5
+# Autonomous Yandex Games Starter Kit 0.5.7
 
 Версионируемая engineering/compliance инфраструктура для создания новых игр и
 безопасного обновления существующих зрелых проектов Яндекс Игр.
@@ -116,6 +116,17 @@ No skill may self-approve compliance or a release candidate. PWA/service
 workers, CDN gameplay assets, WebGPU-only rendering, autoplay, and native
 app-store guidance remain forbidden by default.
 
+## Optional Draft runtime evidence
+
+Version 0.5.7 vendors the validated `hardened-draft-runtime-harness-1.3.0`
+runtime closure as pinned, advisory release tooling. It is not an official
+Yandex tool and cannot override authoritative or manual gates. Verify it with
+`npm run yandex:external:verify`; after uploading a Draft, run the authenticated
+Harness only as an explicit `yandex:external:run -- --dedicated-auth` step.
+Normalized local-sensitive evidence stays under
+`artifacts/evidence/external/yandex-runtime/` and must not enter the game ZIP.
+See `docs/YANDEX_EXTERNAL_RUNTIME_EVIDENCE.md`.
+
 ## Verification
 
 ```powershell
@@ -123,6 +134,7 @@ npm run starter-kit:manifest
 npm run starter-kit:self-test
 npm run test:updater
 npm run starter-kit:update-self-test
+npm run yandex:external:verify
 npm run starter-kit:status -- --target E:\Path\To\initialized-target
 ```
 

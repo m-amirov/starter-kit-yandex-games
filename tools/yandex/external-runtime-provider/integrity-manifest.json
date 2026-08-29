@@ -1,0 +1,89 @@
+{
+  "$schema": "./integrity-manifest.schema.json",
+  "schemaVersion": 2,
+  "manifestKind": "hardened-yandex-draft-runtime-provider",
+  "providerVersion": "hardened-draft-runtime-harness-1.3.0",
+  "securityPolicyVersion": "1.3.0",
+  "hashPolicy": "raw-bytes-sha256-v1",
+  "upstream": {
+    "repository": "Nioris/yandex-games-debug-checker",
+    "commit": "0bc5ef9123f471b43c0a2683afb990fe0793f9a5",
+    "candidate": "v1.2.8-test",
+    "auditedDate": "2026-08-28"
+  },
+  "repin": {
+    "previousProviderVersion": "hardened-draft-runtime-harness-1.2.0",
+    "previousValidatedManifestSha256": "6fb633f59e0d76d5e863f24ff36172b01551562efefa6627d1138b206372f989",
+    "reason": "RUNTIME_INTEGRITY_CLOSURE_REFINEMENT"
+  },
+  "runtimeClosure": [
+    {
+      "id": "observer",
+      "path": "hardened-live-observer.js",
+      "sha256": "46c7fcba8be67d2590334c84262d119dea075b857c4bc92479224c8c3ffe04e9",
+      "role": "executable-observer",
+      "required": true
+    },
+    {
+      "id": "harness",
+      "path": "hardened-harness.mjs",
+      "sha256": "8ea26e3a6557ac12126977686d83bbefcc770a255fea8e8bf5cd587d060589c1",
+      "role": "executable-harness",
+      "required": true
+    },
+    {
+      "id": "security",
+      "path": "lib/security.mjs",
+      "sha256": "633a4c5ebd93ad5125697fa89ab372609e81009a204a555570918a286b9889dd",
+      "role": "security-integrity-redaction",
+      "required": true
+    },
+    {
+      "id": "cdp-runtime",
+      "path": "lib/cdp-runtime.mjs",
+      "sha256": "cac3abe23e74fe2e1098d5fb324c70486476fae617f286e77a19bd5fb48529f1",
+      "role": "cdp-runtime",
+      "required": true
+    },
+    {
+      "id": "game-session",
+      "path": "lib/game-session.mjs",
+      "sha256": "cf31050a3eafcaf3424ee912d81eb3edb07d207dfcfe6a8e4b492f3d05075d3e",
+      "role": "game-session-orchestration",
+      "required": true
+    },
+    {
+      "id": "reporting",
+      "path": "lib/reporting.mjs",
+      "sha256": "afef22563d2c42f37c577f3e12d27113d979280f36d20dd70e08ca4dd172657e",
+      "role": "reporting-redaction",
+      "required": true
+    }
+  ],
+  "provenanceInputs": [
+    {
+      "id": "upstream-debugcheck-candidate",
+      "repository": "Nioris/yandex-games-debug-checker",
+      "commit": "0bc5ef9123f471b43c0a2683afb990fe0793f9a5",
+      "candidate": "v1.2.8-test",
+      "historicalPath": "reviewed-input/debugcheck-v1.2.8-test.js",
+      "originalFileName": "debugcheck-v1.2.8-test.js",
+      "sha256": "3e675eb2e4ff07ac68705ee3a3f7a2dff7b1ad5f6ed81c4968794f41dd25d9c1",
+      "auditedDate": "2026-08-28",
+      "relationship": "Audited upstream checker input used to derive the hardened observer; immutable provenance metadata only.",
+      "runtimeRequired": false
+    },
+    {
+      "id": "upstream-experimental-harness",
+      "repository": "Nioris/yandex-games-debug-checker",
+      "commit": "0bc5ef9123f471b43c0a2683afb990fe0793f9a5",
+      "candidate": "v1.2.8-test",
+      "historicalPath": "reviewed-input/yg-yandex-draft-harness-passive.mjs",
+      "originalFileName": "yg-yandex-draft-harness-passive.mjs",
+      "sha256": "e5f88c7152d3900e077dad5259995aafbdda007b70b04cfe00e222542b1d0d71",
+      "auditedDate": "2026-08-28",
+      "relationship": "Audited upstream experimental launcher input used during hardening; immutable provenance metadata only.",
+      "runtimeRequired": false
+    }
+  ]
+}

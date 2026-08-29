@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "starterKitVersion": "0.5.6",
+  "starterKitVersion": "0.5.7",
   "authorityOrder": [
     "official-yandex-games-requirements",
     "config/yandex-requirements.yaml",
@@ -23,6 +23,11 @@
     "realGameplayRatioRequiresManualVisualEvidence": true,
     "promotionalMp4InGameReleaseZip": "forbidden",
     "externalRuntimeDependenciesDefault": "forbidden",
+    "externalEvidenceProviderAuthority": "advisory",
+    "externalEvidenceProviderOptional": true,
+    "authenticatedExternalRun": "explicit-only",
+    "externalProviderFloatingRefs": "forbidden",
+    "externalProviderRuntimeInGameZip": "forbidden",
     "pwaAndServiceWorkerDefault": "forbidden",
     "cdnAssetsDefault": "forbidden",
     "webGpuOnlyDefault": "forbidden",

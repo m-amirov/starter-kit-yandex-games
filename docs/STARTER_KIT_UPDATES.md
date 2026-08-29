@@ -145,3 +145,18 @@ Rollback uses Git:
 
 Dry run performs no writes. Neither init/update status tooling nor dry run
 creates a target-project release ZIP.
+
+## Optional external runtime provider
+
+Version 0.5.7 delivers only the managed pinned provider tooling, integrity
+metadata, registry/schema and documentation. Mature updates never overwrite or
+seed `artifacts/evidence/external/yandex-runtime/`, never touch the local
+Harness-owned `.state/dedicated-auth-profile/`, never update the pin from
+upstream, and never start an authenticated browser. Product runtime,
+`game-spec.yaml`, `src/`, `public/`, `index.html`, package lock, project evidence
+and local configuration remain protected by the existing profile boundary.
+
+The provider subtree contains a local `.gitignore` for `.state/` and temporary
+provider-side `evidence/`; completed runs are moved to the project-owned evidence
+root by the explicit command. Reapplying the same managed 0.5.7 inputs is
+idempotent. See `migrations/0.5.6-to-0.5.7.md`.

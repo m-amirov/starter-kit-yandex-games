@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.7 — 2026-08-29
+
+- Added the byte-identical six-file runtime closure for validated optional provider `hardened-draft-runtime-harness-1.3.0`, pinned by manifest SHA-256 `3a73a9feb15de4b38f2ecd57bec167f5c280d8e0780f394b7d5a122e45a3755a`.
+- Added fail-closed provider integrity/distribution checks, explicit run/normalize/audit commands, normalized evidence schema, OOPIF/mutation/stage/redaction rules, and advisory conflict handling.
+- Added release-ZIP contamination checks, provider update policy, deterministic regressions, and mature updater coverage without changing product runtime or distributing provenance inputs, reports, or profiles.
+
 ## 0.5.6 — 2026-08-28
 
 - Added a controlled official Yandex Games documentation watcher with canonical source allowlisting, timeout/retry, semantic normalization, detail-page discovery and fail-closed verdicts.

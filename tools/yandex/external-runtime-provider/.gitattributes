@@ -1,0 +1,5 @@
+hardened-live-observer.js -text
+hardened-harness.mjs -text
+integrity-manifest.json -text
+integrity-manifest.schema.json -text
+lib/*.mjs -text
