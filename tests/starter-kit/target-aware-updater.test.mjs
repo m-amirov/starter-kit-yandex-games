@@ -183,6 +183,15 @@ test('AGENTS.md resolves as semantic-merge for a mature update', () => {
   assert.notEqual(agents.conflictPolicy, 'overwrite');
 });
 
+test('project extension registries remain semantic-merge targets', () => {
+  const entries = loadManifest(ROOT).entries;
+  for (const logicalId of ['managed:skill-policy', 'managed:manifest-entry-config']) {
+    const entry = entries.find((item) => item.logicalId === logicalId);
+    assert.equal(entry.ownership, 'semantic-merge');
+    assert.equal(entry.conflictPolicy, 'semantic-merge');
+  }
+});
+
 test('manifest validation rejects managed index.html', () => {
   const manifest = {
     schemaVersion: 2,

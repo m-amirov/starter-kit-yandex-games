@@ -728,7 +728,7 @@
     {
       "source": "config/skill-policy.json",
       "logicalId": "managed:skill-policy",
-      "ownership": "managed",
+      "ownership": "semantic-merge",
       "target": "config/skill-policy.json",
       "modes": [
         "init",
@@ -738,7 +738,7 @@
         "new",
         "mature"
       ],
-      "conflictPolicy": "replace-if-baseline",
+      "conflictPolicy": "semantic-merge",
       "sha256": "fb6f70df330f1471bd7c62e9f29d3cb245f360cb3d27cdb339baedeed71c5fd2"
     },
     {
@@ -1049,7 +1049,7 @@
     {
       "source": "config/manifest-entries.json",
       "logicalId": "managed:manifest-entry-config",
-      "ownership": "managed",
+      "ownership": "semantic-merge",
       "target": "config/manifest-entries.json",
       "modes": [
         "init",
@@ -1059,8 +1059,8 @@
         "new",
         "mature"
       ],
-      "conflictPolicy": "replace-if-baseline",
-      "sha256": "692e6acb46f819be4db7ab8564d1bd8d51a10b51907b5816b0afabd4dad89914"
+      "conflictPolicy": "semantic-merge",
+      "sha256": "3ff42a20c08d0ad57a369817f43bad79f9daa5634169cf37c2b3c0eb18839339"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",

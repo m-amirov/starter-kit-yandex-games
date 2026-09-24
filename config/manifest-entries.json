@@ -680,7 +680,7 @@
     {
       "source": "config/skill-policy.json",
       "logicalId": "managed:skill-policy",
-      "ownership": "managed",
+      "ownership": "semantic-merge",
       "target": "config/skill-policy.json",
       "modes": [
         "init",
@@ -690,7 +690,7 @@
         "new",
         "mature"
       ],
-      "conflictPolicy": "replace-if-baseline"
+      "conflictPolicy": "semantic-merge"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -981,7 +981,7 @@
     {
       "source": "config/manifest-entries.json",
       "logicalId": "managed:manifest-entry-config",
-      "ownership": "managed",
+      "ownership": "semantic-merge",
       "target": "config/manifest-entries.json",
       "modes": [
         "init",
@@ -991,7 +991,7 @@
         "new",
         "mature"
       ],
-      "conflictPolicy": "replace-if-baseline"
+      "conflictPolicy": "semantic-merge"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
