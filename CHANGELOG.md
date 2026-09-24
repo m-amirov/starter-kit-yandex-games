@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.8 — 2026-09-24
+
+- Added a confirmed-defect postmortem registry and regression contract for pixel-backed independent visual acceptance, edge-to-edge/no-scroll/readability/overlap checks, authored cue-to-event mapping, fresh coverage ledgers, capture failures, and honest PASS/FAIL/BLOCKED separation.
+- Added mandatory proof that actual screenshot and reference-image pixels reach an independent multimodal reviewer; text-only capture claims and DOM checks cannot produce visual PASS.
+- Updated the visual gate and policy metadata without adding a second skill root or game-specific assets/content.
+
 ## 0.5.7 — 2026-08-29
 
 - Added the byte-identical six-file runtime closure for validated optional provider `hardened-draft-runtime-harness-1.3.0`, pinned by manifest SHA-256 `3a73a9feb15de4b38f2ecd57bec167f5c280d8e0780f394b7d5a122e45a3755a`.

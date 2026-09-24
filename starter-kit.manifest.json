@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.7",
+  "version": "0.5.8",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -273,7 +273,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "f3b5ac263a5c07ca686c191dbe005a48a78ca841ff9c4580aecc743fa93f1177"
+      "sha256": "7842ce786aa85653479e3357849ea4bad7c7104ad6f74b9c0301a8e91a18806d"
     },
     {
       "source": ".codex/skills/web-game-playtest/ORIGIN.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "ed55b39b7c69ae3f455ce281c349211e42e1d4419f9046ee777044f2732ffbef"
+      "sha256": "c3a012abe201582590a783a259ecc577ecba1386132e3bf4872a761e3ecd456c"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "7232413c8da2c183b90a75e24242c8d3175220b0d741ac02669bb986e7d08503"
+      "sha256": "c69f9a7ae075d4f0ede638818bec45ffede5163878ac260d3ec12848845b7ef3"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -531,7 +531,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "79d7614c17275d8e26f7c386169e65f3073bfcf583757b84bcda201134e628b4"
+      "sha256": "9a5e04d55ade7d167d2c3717946fb945d2036ac644486074f77df2bf1942b9db"
     },
     {
       "source": "CHANGELOG.md",
@@ -547,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "2d5ce7824ff3df803ad999404816e9a1ff948233515c936a273168a6e85894c6"
+      "sha256": "db99628a4ee59f23945e07e7ffcb341a5b2ff964e71ce933ee2a9ca70a6f4802"
     },
     {
       "source": "README.md",
@@ -595,7 +595,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "e36c86d2c92ad5d702a3b9014ff2ad713297246c6194e8a9d7043b190031f81a"
+      "sha256": "1120a2cef628badd3d3b61cadd61e85b12afcffbb51b986ac8f3669c86ab550e"
     },
     {
       "source": "config/yandex-console-requirements.yaml",
@@ -611,7 +611,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "2ebf5807f4601c920e8fc54330c5e36b991c203d623e5ccd1d28d42c7418ec39"
+      "sha256": "1c400f322f038e5834f279f73704eda3d72e8d5ff2cb701dcde04bfb7e23b112"
     },
     {
       "source": "config/yandex-doc-sources.yaml",
@@ -643,7 +643,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "286c527794b4943502ca55887d3ca1bbd041aa9caafdef54c7a38f4d6615018f"
+      "sha256": "8f65e6217e0556f88d12853d5a20abc430f4c1ed7eb3467d0156b3a2d271443d"
     },
     {
       "source": "config/game-spec.schema.json",
@@ -739,7 +739,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "9b04a368051afa8e615061650ffd5c8a5983511405aafd6fd0902bd8c1a6d495"
+      "sha256": "fb6f70df330f1471bd7c62e9f29d3cb245f360cb3d27cdb339baedeed71c5fd2"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -980,7 +980,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "a4ad95dce14d008b9219805c6bfae97ac90478f0e5b828f79ffe997567b6d264"
+      "sha256": "9342e811694fb166589916bd3e2605ce1a890a2f09acb24a738be6fa2ad2a2a0"
     },
     {
       "source": "templates/media/HORIZONTAL_GAMEPLAY_VIDEO.md",
@@ -1268,7 +1268,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "7b40879dc089a98917c718746a11c847c2f3cefcd98ac6b27a1b0a4a9113ed10"
+      "sha256": "4fc1b95be5310e9b30cde3dc63ed668f46f38cd16b6a3178fdaff9b6ce1516fe"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -1348,7 +1348,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "68bf440ecb2ce94470f4883c9f8024fd3b619f5d07dd0df008c35761ef61b1f8"
+      "sha256": "2b0d48d9874b1df711a46669f7f75adf0b2ceb08a5971dd6f7da5ec0347ff383"
     },
     {
       "source": "tools/yandex/docs-watch.mjs",

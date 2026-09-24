@@ -36,11 +36,15 @@ The first generated image is never automatically final.
 
 Capture screenshots from the actual current-HEAD production runtime, with each affected state/effect active. Do not accept isolated previews, mockups, editor or DEV-only scenes, or inactive effects. Test bootstrap is permitted only to reach a state and must be marked without replacing production semantics.
 
+Before independent visual review, prove that the reviewer received the actual screenshot/reference pixels (image content or readable files with hash, bytes and dimensions). A path, filename, DOM dump, OCR, or "screenshot created" message is not evidence. If pixel transfer is unavailable, classify visual acceptance as `BLOCKED`.
+
 Use an impact-based matrix: affected enemy work covers normal, pressure/attack, and affected elite/boss states; bosses cover introduction/readability, every materially different attack/phase, and crowded combat; biomes cover environment, ordinary combat, interaction, and pressure; UI covers normal, long RU/EN text, interactive, and relevant modal/result states. Gameplay/UI changes require a representative desktop and mobile viewport. Mobile gameplay evidence uses an actual touch path.
 
 Review against project-owned `ART_BIBLE`, `VISUAL_LANGUAGE`, asset manifests, and accepted baseline. Fail on placeholders/debug visuals, generic circles/lines/polygons as the main art language, technical geometry over finished art, indistinguishable role silhouettes, elite-as-tint/ring/glow, debug-like boss attacks, biome reskins without identity, flat environments, poor hierarchy, obscuring VFX, unreadable telegraphs, layout/localization or responsive defects, lost important objects, or style/baseline regressions.
 
 Save only the compact needed evidence: screenshot set, short verdict, checked states/viewports, and current HEAD; add a before/after contact sheet for rework when useful. An infrastructure timeout/failure is an evidence gap, not a visual PASS. Before the gate passes, do not issue `*_IMPLEMENTED`, `*_ACCEPTED`, `*_OWNER_REVIEW_READY`, or visual/product completion tokens. Use `FUNCTIONALLY_IMPLEMENTED` and `VISUAL_ACCEPTANCE: FAIL` where accurate.
+
+Record edge-to-edge measurements on all four viewport edges, document/internal scroll state, text readability, primary-action overlap, and before/after authored visual-event ids. Coverage must reference a current ledger hash/version; stale or missing ledgers are evidence gaps. Playwright hangs, unavailable browsers and inaccessible captures are `BLOCKED`, not PASS.
 
 For games, a new enemy, elite, boss, biome, attack, or Living Arena effect is not production-ready merely because an asset exists, tests pass, collision works, or E2E reaches the state: inspect it in real combat context.
 

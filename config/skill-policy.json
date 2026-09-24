@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "starterKitVersion": "0.5.7",
+  "starterKitVersion": "0.5.8",
   "authorityOrder": [
     "official-yandex-games-requirements",
     "config/yandex-requirements.yaml",
@@ -53,6 +53,11 @@
     "screenshotVisualGateRequiredForProductionVisiblePasses": true,
     "screenshotVisualGateAmbiguityPolicy": "required",
     "visualAcceptanceRequiresCurrentHeadRuntimeScreenshots": true,
+    "visualAcceptanceRequiresPixelTransferProof": true,
+    "visualEvidenceRequiresEdgeToEdgeNoScrollReadability": true,
+    "visualCueRequiresFreshLedgerAndBeforeAfterEventMapping": true,
+    "captureTimeoutOrInaccessiblePixels": "blocked",
+    "functionalChecksCannotPromoteVisualAcceptance": true,
     "maximumMaterialFixAttemptsPerRootCause": 3,
     "largeLogPolicy": "summary-plus-artifact"
   },
