@@ -110,11 +110,11 @@ function validatePolicy(root, skillRoot, errors) {
 
 function validateYandexContracts(root, skillRoot, errors, sourceMode) {
   const numbered = fs.readFileSync(path.join(root, 'config', 'yandex-requirements.yaml'), 'utf8');
-  const numberedAudit = auditRequirementRegistryText(numbered, sourceMode ? { reviewedAt: '2026-09-19' } : {});
+  const numberedAudit = auditRequirementRegistryText(numbered, sourceMode ? { reviewedAt: '2026-09-30' } : {});
   errors.push(...numberedAudit.errors.map((error) => `Yandex numbered registry: ${error}`));
 
   const consoleRegistry = fs.readFileSync(path.join(root, 'config', 'yandex-console-requirements.yaml'), 'utf8');
-  const consoleAudit = auditConsoleRegistryText(consoleRegistry, sourceMode ? { reviewedAt: '2026-09-19' } : {});
+  const consoleAudit = auditConsoleRegistryText(consoleRegistry, sourceMode ? { reviewedAt: '2026-09-30' } : {});
   errors.push(...consoleAudit.errors.map((error) => `Yandex Console registry: ${error}`));
 
   for (const relative of ['config/yandex-doc-sources.yaml', 'config/yandex-doc-snapshot.json', 'tools/yandex/docs-watch.mjs']) {

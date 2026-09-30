@@ -62,20 +62,20 @@ function validate(videos, options = {}) {
   });
 }
 
-test('official numbered registry matches the 18 August 2026 revision and preserves repealed clauses', () => {
+test('official numbered registry matches the 29 September 2026 revision and preserves repealed clauses', () => {
   const registry = fs.readFileSync(path.join(ROOT, 'config', 'yandex-requirements.yaml'), 'utf8');
-  const result = auditRequirementRegistryText(registry, { reviewedAt: '2026-09-19' });
+  const result = auditRequirementRegistryText(registry, { reviewedAt: '2026-09-30' });
   assert.deepEqual(result.errors, []);
-  assert.equal(result.requirementCount, 148);
+  assert.equal(result.requirementCount, 149);
   assert.deepEqual(result.repealedIds, [
     '1.5', '1.6.1.3', '1.6.1.4', '1.6.2.3', '1.17', '2.5', '2.6', '2.10', '2.11', '2.12', '3.1', '3.2',
-    '3.3', '3.4.1', '3.7.3', '3.8', '5.5', '5.7', '5.8', '5.10', '7'
+    '3.3', '3.4.1', '3.7.1', '3.7.2', '3.7.3', '3.8', '5.5', '5.7', '5.8', '5.10', '7'
   ]);
 });
 
 test('Console-only rules are separate and have no invented numbered requirement', () => {
   const registry = fs.readFileSync(path.join(ROOT, 'config', 'yandex-console-requirements.yaml'), 'utf8');
-  const result = auditConsoleRegistryText(registry, { reviewedAt: '2026-09-19' });
+  const result = auditConsoleRegistryText(registry, { reviewedAt: '2026-09-30' });
   assert.deepEqual(result.errors, []);
   assert.deepEqual(result.ruleIds, ['CONSOLE-FIRST-PUBLICATION-HORIZONTAL-GAMEPLAY-VIDEO']);
 });
@@ -92,7 +92,7 @@ test('reviewed upstream snapshot aligns with numbered and Console registries', (
   });
   assert.equal(result.status, 'PASS');
   assert.deepEqual(result.errors, []);
-  assert.equal(result.snapshotClauseCount, 160);
+  assert.equal(result.snapshotClauseCount, 157);
   assert.equal(result.discoveredDetailPageCount, 24);
 });
 

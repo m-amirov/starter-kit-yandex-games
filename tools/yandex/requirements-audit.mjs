@@ -25,7 +25,7 @@ export const EXPECTED_REQUIREMENT_IDS = `
 1.20 1.20.1 1.20.2 1.20.3 1.20.4 1.21 1.22 1.23 1.24
 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9 2.10 2.11 2.12 2.13 2.14
 3.1 3.2 3.3 3.4.1 3.4.2 3.4.3 3.4.4 3.4.5 3.4.6 3.5 3.6
-3.7.1 3.7.2 3.7.3 3.8 3.9
+3.7 3.7.1 3.7.2 3.7.3 3.8 3.9
 4.1 4.2 4.3 4.4 4.5 4.5.1 4.5.2 4.6.1 4.6.2 4.7
 5.1.1 5.1.1.1 5.1.1.2 5.1.1.3 5.1.2 5.1.3 5.2 5.3 5.4 5.5
 5.6 5.7 5.8 5.9 5.10 5.11 5.12
@@ -37,7 +37,7 @@ export const EXPECTED_REQUIREMENT_IDS = `
 
 export const EXPECTED_REPEALED_IDS = [
   '1.5', '1.6.1.3', '1.6.1.4', '1.6.2.3', '1.17', '2.5', '2.6', '2.10', '2.11', '2.12', '3.1', '3.2',
-  '3.3', '3.4.1', '3.7.3', '3.8', '5.5', '5.7', '5.8', '5.10', '7'
+  '3.3', '3.4.1', '3.7.1', '3.7.2', '3.7.3', '3.8', '5.5', '5.7', '5.8', '5.10', '7'
 ];
 const EXPECTED_RECOMMENDED_IDS = ['6.1', '6.2', '6.3', '6.4', '6.5', '6.6', '6.7', '6.8', '6.9'];
 
@@ -74,8 +74,8 @@ export function auditRequirementRegistryText(text, options = {}) {
   if (missing.length) errors.push(`official registry is missing: ${missing.join(', ')}`);
   if (extra.length) errors.push(`official registry has unknown IDs: ${extra.join(', ')}`);
 
-  if (metadataValue(text, 'lastModified') !== '2026-08-18') {
-    errors.push('source.lastModified must be 2026-08-18');
+  if (metadataValue(text, 'lastModified') !== '2026-09-29') {
+    errors.push('source.lastModified must be 2026-09-29');
   }
   if (options.reviewedAt && metadataValue(text, 'reviewedAt') !== options.reviewedAt) {
     errors.push(`source.reviewedAt must be ${options.reviewedAt}`);
@@ -240,7 +240,8 @@ export function auditSnapshotRegistryAlignment({ requirementText, consoleText, s
 
 async function runCli() {
   const registryPath = path.join(ROOT, 'config', 'yandex-requirements.yaml');
-  const result = auditRequirementRegistryText(fs.readFileSync(registryPath, 'utf8'));
+  const requirementsText = fs.readFileSync(registryPath, 'utf8');
+  const result = auditRequirementRegistryText(requirementsText);
   const consolePath = path.join(ROOT, 'config', 'yandex-console-requirements.yaml');
   const consoleResult = auditConsoleRegistryText(fs.readFileSync(consolePath, 'utf8'));
   const snapshotArgIndex = process.argv.indexOf('--snapshot');
@@ -294,7 +295,7 @@ async function runCli() {
   console.log(JSON.stringify({
     status: errors.length ? 'BLOCK' : 'PASS',
     audit: consoleOnly ? 'console' : 'requirements-console-snapshot-alignment',
-    sourceRevision: '2026-08-18',
+    sourceRevision: metadataValue(requirementsText, 'lastModified'),
     requirementCount: result.requirementCount,
     repealedCount: result.repealedIds.length,
     consoleRuleIds: consoleResult.ruleIds,

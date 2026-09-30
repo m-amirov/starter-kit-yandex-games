@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.8",
+  "version": "0.5.9",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "c3a012abe201582590a783a259ecc577ecba1386132e3bf4872a761e3ecd456c"
+      "sha256": "479ea5808ed959183e6c884dfa8f3471adf60aaff117831de33d547e77c8b4f6"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "c69f9a7ae075d4f0ede638818bec45ffede5163878ac260d3ec12848845b7ef3"
+      "sha256": "8c36c36aa4c61b2db5b01ece003ff8807d7aaa1623618a89b0e09f737abc9def"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -531,7 +531,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "9a5e04d55ade7d167d2c3717946fb945d2036ac644486074f77df2bf1942b9db"
+      "sha256": "dcdecbc7866cc9413935ee7a76b92beba1e4494f63aa0df5d8b5afe979d16260"
     },
     {
       "source": "CHANGELOG.md",
@@ -547,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "db99628a4ee59f23945e07e7ffcb341a5b2ff964e71ce933ee2a9ca70a6f4802"
+      "sha256": "eec9d6ec477975bd6d082a9c400e8aaef4c59e440cea59dc9fea817973901b64"
     },
     {
       "source": "README.md",
@@ -595,7 +595,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "1120a2cef628badd3d3b61cadd61e85b12afcffbb51b986ac8f3669c86ab550e"
+      "sha256": "97bd79057de121a53fcf2f41dfa4c75c4a2d81d25f01b1f53e380e5e5b5d47fd"
     },
     {
       "source": "config/yandex-console-requirements.yaml",
@@ -611,7 +611,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "1c400f322f038e5834f279f73704eda3d72e8d5ff2cb701dcde04bfb7e23b112"
+      "sha256": "8e54325ae0f1f969e28063b75e82af87c2bbd51fb50b4f030a1846db2bd879ce"
     },
     {
       "source": "config/yandex-doc-sources.yaml",
@@ -643,7 +643,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "8f65e6217e0556f88d12853d5a20abc430f4c1ed7eb3467d0156b3a2d271443d"
+      "sha256": "7d2605723ba7439abeb30d12c7fb6b54776f12ac45f1b1e7f4bec4244d02fb68"
     },
     {
       "source": "config/game-spec.schema.json",
@@ -1268,7 +1268,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "4fc1b95be5310e9b30cde3dc63ed668f46f38cd16b6a3178fdaff9b6ce1516fe"
+      "sha256": "046a89b932b7050eb9d83b92d6a2f14b43c5b84cfe7624171de23d3de6115345"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -1348,7 +1348,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "2b0d48d9874b1df711a46669f7f75adf0b2ceb08a5971dd6f7da5ec0347ff383"
+      "sha256": "6fc65ef1014b6d363e9607db4454e3ae7ad9a37da54abb5b426f57f23f76adb3"
     },
     {
       "source": "tools/yandex/docs-watch.mjs",
