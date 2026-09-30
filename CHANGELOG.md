@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.9 — 2026-09-30
+
+- Updated the official Yandex Games requirements snapshot and registries after the 29 September 2026 documentation revision.
+- Preserved repealed requirements 3.7.1 and 3.7.2 for traceability and updated the requirements audit to derive its source revision from the authoritative registry.
+
 ## 0.5.8 — 2026-09-24
 
 - Added a confirmed-defect postmortem registry and regression contract for pixel-backed independent visual acceptance, edge-to-edge/no-scroll/readability/overlap checks, authored cue-to-event mapping, fresh coverage ledgers, capture failures, and honest PASS/FAIL/BLOCKED separation.

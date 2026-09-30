@@ -527,7 +527,7 @@ test('new-project seed is recorded as project-owned after init', async () => {
     assert.equal(packageJson.scripts['yandex:media:validate'], 'node tools/yandex/media-validation.mjs');
     assert.equal(packageJson.scripts['yandex:external:verify'], 'node tools/yandex/external-evidence.mjs verify');
     assert.equal(packageJson.scripts['yandex:external:run'], 'node tools/yandex/external-evidence.mjs run');
-    assert.equal(result.upstreamFreshness.snapshotReviewedAt, '2026-09-19');
+    assert.equal(result.upstreamFreshness.snapshotReviewedAt, '2026-09-30');
     assert.equal(packageJson.scripts['starter-kit:package'], undefined);
     const spec = fs.readFileSync(path.join(target, 'game-spec.yaml'), 'utf8');
     assert.match(spec, /yandex:\s+publication:\s+type: first-publication/s);

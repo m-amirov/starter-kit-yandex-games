@@ -2,7 +2,7 @@ schemaVersion: 1
 source:
   title: Заполнение черновика — Консоль разработчика Яндекс Игр
   url: https://yandex.ru/dev/games/doc/ru/console/add-new-game/draft
-  reviewedAt: '2026-09-19'
+  reviewedAt: '2026-09-30'
 scope: console fields and constraints without their own numbered game requirement
 rules:
   - id: CONSOLE-FIRST-PUBLICATION-HORIZONTAL-GAMEPLAY-VIDEO

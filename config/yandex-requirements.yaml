@@ -2,8 +2,8 @@ schemaVersion: 1
 source:
   title: Требования к игре — Яндекс Игры
   url: https://yandex.ru/dev/games/doc/ru/concepts/requirements
-  lastModified: '2026-08-18'
-  reviewedAt: '2026-09-19'
+  lastModified: '2026-09-29'
+  reviewedAt: '2026-09-30'
 statuses:
   required: blocks release candidate when applicable and not PASS
   recommended: must be reviewed; unresolved failure is recorded as WARN unless elevated by project rules
@@ -88,18 +88,19 @@ requirements:
   - { id: '3.2', enforcement: repealed, summary: 'Упразднен; см. раздел 8.', applicability: never, verification: none }
   - { id: '3.3', enforcement: repealed, summary: 'Упразднен; см. раздел 8.', applicability: never, verification: none }
   - { id: '3.4.1', enforcement: repealed, summary: 'Упразднен; см. раздел 8.', applicability: never, verification: none }
-  - { id: '3.4.2', enforcement: required, summary: 'Нет эзотерики и гаданий.', applicability: always, verification: content-review }
-  - { id: '3.4.3', enforcement: required, summary: 'Нет реалистичного насилия или жестокого обращения с детьми и животными.', applicability: always, verification: content-review }
+  - { id: '3.4.2', enforcement: required, summary: 'Нет материалов о черной магии; нет инап-покупок в играх с гаданиями.', applicability: always, verification: content-review }
+  - { id: '3.4.3', enforcement: required, summary: 'Нет реалистичного насилия или жестокого обращения с животными, детьми или пожилыми людьми.', applicability: always, verification: content-review }
   - { id: '3.4.4', enforcement: required, summary: 'Нет изображений и отсылок к политике, конфликтам и войнам.', applicability: always, verification: content-review }
   - { id: '3.4.5', enforcement: required, summary: 'Нет изображений и отсылок к религии и религиозной атрибутике.', applicability: always, verification: content-review }
   - { id: '3.4.6', enforcement: required, summary: 'Нет предсказаний о жизни, здоровье, заболеваниях или смерти игрока.', applicability: always, verification: content-review }
   - { id: '3.5', enforcement: required, summary: 'Права на все материалы подтверждены; документы при необходимости встроены текстом.', applicability: always, verification: rights-manifest }
-  - { id: '3.6', enforcement: required, summary: 'Игра не копирует чужие игры и не дублирует игры этого разработчика.', applicability: always, verification: originality-review }
-  - { id: '3.7.1', enforcement: required, summary: 'Нет выигрыша или вывода реальных денег и внешних призов.', applicability: always, verification: product-review }
-  - { id: '3.7.2', enforcement: required, summary: 'Игра не является магазином, азартной игрой или онлайн-лотереей.', applicability: always, verification: product-review }
+  - { id: '3.6', enforcement: required, summary: 'Игра не копирует полностью или частично другую игру из каталога Яндекс Игр и не дублирует игры разработчика; продолжение публикуется отдельно только при полной переработке сеттинга или механик.', applicability: always, verification: originality-review }
+  - { id: '3.7', enforcement: required, summary: 'В игре нельзя выиграть, купить или получить реальные деньги, физические призы, товары, промокоды и другие ценности из реального мира.', applicability: always, verification: product-review }
+  - { id: '3.7.1', enforcement: repealed, summary: 'Упразднен; объединен в 3.7.', applicability: never, verification: none }
+  - { id: '3.7.2', enforcement: repealed, summary: 'Упразднен; объединен в 3.7.', applicability: never, verification: none }
   - { id: '3.7.3', enforcement: repealed, summary: 'Упразднен; см. 1.4.', applicability: never, verification: none }
   - { id: '3.8', enforcement: repealed, summary: 'Упразднен; см. 1.13.2.', applicability: never, verification: none }
-  - { id: '3.9', enforcement: required, summary: 'Видео не позволяет переходить на внешние ресурсы; YouTube-плеер не используется.', applicability: media, verification: source-and-e2e }
+  - { id: '3.9', enforcement: required, summary: 'Видео встроено без переходов на внешние ресурсы через плеер; YouTube не используется.', applicability: media, verification: source-and-e2e }
   - { id: '4.1', enforcement: required, summary: 'Реклама вызывается только через SDK Яндекс Игр; сторонней рекламы нет.', applicability: ads, verification: source-and-runtime }
   - { id: '4.2', enforcement: required, summary: 'Игровой процесс сохраняется после перехода по рекламе и возврата.', applicability: ads, verification: ad-e2e }
   - { id: '4.3', enforcement: required, summary: 'Ориентация рекламных блоков соответствует ориентации игры.', applicability: ads, verification: ad-e2e-manual }
