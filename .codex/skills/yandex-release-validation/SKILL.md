@@ -26,7 +26,7 @@ Do not rely on memory when the official requirements may have changed. Before pr
 
 1. Generate `artifacts/evidence/yandex-requirements-compliance.json` from the full registry. Every active clause must be present.
 2. Mark an applicable required clause `PASS` only with concrete evidence. Mark a genuinely inapplicable clause `N/A` with a reason. Recommended clauses must be `PASS` or a reasoned `WARN`.
-3. Run `npm run yandex:requirements:audit` and `npm run yandex:console:audit`; any failure blocks RC.
+3. Run `npm run yandex:sdk:validate`, `npm run yandex:requirements:audit` and `npm run yandex:console:audit`; any failure blocks RC.
 4. For real pre-submit, run live `npm run yandex:docs:check`; deterministic offline tests do not replace it.
 5. Run `npm run yandex:media:validate -- --zip <release.zip>` against `artifacts/evidence/final-gameplay-videos.json`; any failure blocks RC.
 6. Perform an independent final review and write `artifacts/evidence/yandex-release-validation.json`.
@@ -87,7 +87,7 @@ For every Draft locale, create a locale-specific video when gameplay contains lo
 
 ## Required checks
 
-- Official `/sdk.js` reference; `sdk.js` absent from dist/ZIP; relative asset paths; local fallback.
+- Explicit production `<script src="/sdk.js"></script>` appears before application module execution; `YaGames.init()` is reachable exactly once; any dynamic loader is duplicate-safe; production SDK failure is fail-closed while localhost/file fallback remains allowed; `sdk.js` itself is absent from dist/ZIP.
 - `LoadingAPI.ready()` once after an interactive screen exists.
 - `ysdk.environment.i18n.lang` read at startup for all games, including single-language games; fallback tested.
 - Gameplay start/stop, pause/resume, audio, ads, focus loss and scene transitions follow actual control state.
