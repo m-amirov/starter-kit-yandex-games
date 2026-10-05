@@ -54,10 +54,15 @@ jobs:
           node-version: 22
       - name: Package Starter Kit
         run: npm run starter-kit:package
+      - name: Stage package artifact
+        shell: bash
+        run: |
+          cp ../yandex-games-autonomous-starter-kit-*.zip .
+          cp ../yandex-games-autonomous-starter-kit-*.zip.sha256 .
       - name: Upload package
         uses: actions/upload-artifact@v4
         with:
           name: starter-kit-package
           path: |
-            ../yandex-games-autonomous-starter-kit-*.zip
-            ../yandex-games-autonomous-starter-kit-*.zip.sha256
+            yandex-games-autonomous-starter-kit-*.zip
+            yandex-games-autonomous-starter-kit-*.zip.sha256
