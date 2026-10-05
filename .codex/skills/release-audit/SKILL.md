@@ -15,7 +15,7 @@ Do not trust the implementation summary. Re-run required commands and inspect th
 
 ## Order
 
-1. verify commit/worktree and starter-kit status;
+1. verify commit/worktree and starter-kit status; run `npm run yandex:contract:validate` and block stale release declarations;
 2. validate evidence freshness against the current build/commit, including current-HEAD `SCREENSHOT_VISUAL_GATE` evidence and `artifacts/evidence/final-gameplay-videos.json` when `yandex.publication.type` is `first-publication`;
 3. inspect `config/yandex-doc-snapshot.json`: record parser/schema versions, reviewed/fetched timestamps and canonical URLs; run the requirements/Console snapshot-alignment audit;
 4. inspect the latest live `yandex:docs:check` evidence and confirm there are no unresolved semantic changes. `FETCH_FAILED` requires explicit current-document manual review evidence and is never automatic PASS;
