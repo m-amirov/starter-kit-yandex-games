@@ -1414,6 +1414,21 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": "migrations/0.5.9-to-0.5.10.md",
+      "logicalId": "migration:0.5.9-to-0.5.10",
+      "ownership": "managed",
+      "target": "migrations/0.5.9-to-0.5.10.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "tools/yandex/external-evidence.mjs",
       "logicalId": "managed:tool-yandex-external-evidence",
       "ownership": "managed",
