@@ -590,7 +590,7 @@
     {
       "source": "config/yandex-doc-snapshot.json",
       "logicalId": "managed:yandex-doc-snapshot",
-      "ownership": "managed",
+      "ownership": "semantic-merge",
       "target": "config/yandex-doc-snapshot.json",
       "modes": [
         "init",
@@ -600,7 +600,7 @@
         "new",
         "mature"
       ],
-      "conflictPolicy": "replace-if-baseline"
+      "conflictPolicy": "semantic-merge"
     },
     {
       "source": "config/game-spec.schema.json",
@@ -1163,6 +1163,21 @@
       "logicalId": "managed:tool-profile",
       "ownership": "managed",
       "target": "tools/starter-kit/profile.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/starter-kit/semantic-acceptance.mjs",
+      "logicalId": "managed:tool-semantic-acceptance",
+      "ownership": "managed",
+      "target": "tools/starter-kit/semantic-acceptance.mjs",
       "modes": [
         "init",
         "update"
