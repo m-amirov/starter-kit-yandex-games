@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const SCRIPT_RE = /<script\b([^>]*)>/gi;
 
 function attribute(attrs, name) {
-  for (const match of attrs.matchAll(/\\b([A-Za-z_:][\\w:.-]*)\\s*=\\s*(?:"([^"]*)"|'([^']*)')/g)) {
+  for (const match of attrs.matchAll(/\b([A-Za-z_:][\w:.-]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)) {
     if (match[1].toLowerCase() === String(name).toLowerCase()) return match[2] ?? match[3] ?? null;
   }
   return null;
