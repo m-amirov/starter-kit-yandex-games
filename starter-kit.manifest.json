@@ -1380,7 +1380,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "c8da1e53a528210c6e56bcc1a0cd9732ed95a805848db9851fbcaafda6633c99"
+      "sha256": "9b6392697ea6a427355e9ac0c67ab949d602a421c1efe88d10e7d814f04d4aa3"
     },
     {
       "source": "tools/yandex/project-contract-validation.mjs",
