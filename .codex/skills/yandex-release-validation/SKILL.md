@@ -22,6 +22,16 @@ Validate the final production build, not only the dev server.
 
 Do not rely on memory when the official requirements may have changed. Before producing a real moderation candidate, compare the registry revision with the current official documentation and promote any change into the starter kit.
 
+
+
+## FINAL_RELEASE_HEAD and HEAD-bound evidence
+
+Finish all source/config/tool repairs before the final freeze. Commit them, define `FINAL_RELEASE_HEAD`, push it, and verify local release HEAD equals the remote release HEAD. From that point create no more commits. Generate HEAD-bound runtime/art/media evidence only after the freeze; committing such evidence afterward invalidates its HEAD binding.
+
+Release verification must inspect the actual packaged RC ZIP/runtime from `FINAL_RELEASE_HEAD`, not only the source tree. Keep external Yandex Draft evidence as a separate gate from bounded local-freeze acceptance.
+
+See `docs/HEAD_BOUND_RELEASE_EVIDENCE.md`.
+
 ## Mandatory procedure
 
 1. Generate `artifacts/evidence/yandex-requirements-compliance.json` from the full registry. Every active clause must be present.
