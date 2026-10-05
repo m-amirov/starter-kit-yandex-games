@@ -273,6 +273,18 @@ function processEntry(context) {
     return;
   }
 
+  if (semantic && baseline && baseline.targetHash === targetHash && !accepted) {
+    report.updated.push({ logicalId: entry.logicalId, target: entry.target, ownership: 'managed-to-semantic' });
+    if (!dryRun) copySource(sourceRoot, targetRoot, entry, context.profile);
+    nextState.semanticAcceptances[entry.logicalId] = {
+      target: entry.target,
+      sourceHash: expectedHash,
+      targetHash: expectedHash
+    };
+    delete nextState.baseline[entry.logicalId];
+    return;
+  }
+
   if (explicitIncomingResolution && semantic) {
     report.resolved.push({ logicalId: entry.logicalId, target: entry.target, resolution: 'accept-incoming' });
     if (!dryRun) {

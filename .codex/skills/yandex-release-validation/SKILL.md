@@ -22,11 +22,21 @@ Validate the final production build, not only the dev server.
 
 Do not rely on memory when the official requirements may have changed. Before producing a real moderation candidate, compare the registry revision with the current official documentation and promote any change into the starter kit.
 
+
+
+## FINAL_RELEASE_HEAD and HEAD-bound evidence
+
+Finish all source/config/tool repairs before the final freeze. Commit them, define `FINAL_RELEASE_HEAD`, push it, and verify local release HEAD equals the remote release HEAD. From that point create no more commits. Generate HEAD-bound runtime/art/media evidence only after the freeze; committing such evidence afterward invalidates its HEAD binding.
+
+Release verification must inspect the actual packaged RC ZIP/runtime from `FINAL_RELEASE_HEAD`, not only the source tree. Keep external Yandex Draft evidence as a separate gate from bounded local-freeze acceptance.
+
+See `docs/HEAD_BOUND_RELEASE_EVIDENCE.md`.
+
 ## Mandatory procedure
 
 1. Generate `artifacts/evidence/yandex-requirements-compliance.json` from the full registry. Every active clause must be present.
 2. Mark an applicable required clause `PASS` only with concrete evidence. Mark a genuinely inapplicable clause `N/A` with a reason. Recommended clauses must be `PASS` or a reasoned `WARN`.
-3. Run `npm run yandex:requirements:audit` and `npm run yandex:console:audit`; any failure blocks RC.
+3. Run `npm run yandex:sdk:validate`, `npm run yandex:contract:validate`, `npm run yandex:requirements:audit` and `npm run yandex:console:audit`; any failure blocks RC.
 4. For real pre-submit, run live `npm run yandex:docs:check`; deterministic offline tests do not replace it.
 5. Run `npm run yandex:media:validate -- --zip <release.zip>` against `artifacts/evidence/final-gameplay-videos.json`; any failure blocks RC.
 6. Perform an independent final review and write `artifacts/evidence/yandex-release-validation.json`.
@@ -64,13 +74,13 @@ Before a real Yandex submission, record `artifacts/evidence/yandex-docs-freshnes
 
 `CONSOLE-FIRST-PUBLICATION-HORIZONTAL-GAMEPLAY-VIDEO` applies only when `yandex.publication.type` is `first-publication`. It is a release blocker. An `update` is not blocked solely because this Console-only video is absent.
 
-Validate automatically from the actual file: MP4 container/extension, 16:9, height at least 400 px, duration at most 28 seconds, size at most 100 MB, evidence metadata equality and SHA-256. Prefer 1920×1080 and 20–25 seconds. Never infer the real-gameplay share from duration metadata: at least 70% real gameplay, absence of system/Yandex Games UI, absence of artificial black bars and Draft-locale correctness require explicit manual visual evidence. Missing or `NOT_REVIEWED` evidence blocks first publication.
+Validate automatically from the actual file: MP4 container/extension, 16:9, height at least 400 px, duration at most 28 seconds, size at most 100 MB, evidence metadata equality and SHA-256. Bind video evidence to the exact current Git `sourceHead`; stale capture provenance blocks. Prefer 1920×1080 and 20–25 seconds. Never infer the real-gameplay share from duration metadata: at least 70% real gameplay, absence of system/Yandex Games UI, absence of artificial black bars and Draft-locale correctness require explicit manual visual evidence. Missing or `NOT_REVIEWED` evidence blocks first publication. Explicitly review the opening frame (`manualReview.openingFrameReady`) so blank/loading/debug/system frames cannot be passed as a gameplay-ready start.
 
 For every Draft locale, create a locale-specific video when gameplay contains localized text. Reuse of one file is allowed only with evidence that gameplay contains no language-dependent text. Promotional MP4 files are external Console media and must not occur inside the Yandex game release ZIP.
 
 ## Standard gameplay-video production task
 
-1. Run the final production build and record the actual production runtime with the existing browser/video tooling.
+1. Run the final production build and record the actual production runtime with the existing browser/video tooling. When CEOS is installed, use its `video-production` skill in `gameplay-evidence` mode; Descript or another editor may assist with bounded editing but is never the release-evidence authority.
 2. Play the game for real and select a meaningful segment where the core mechanic is clearly visible. Target 20–25 seconds, preferably 100% gameplay, with no or minimal intro/outro.
 3. Do not use a mockup, synthetic animation, dev/debug build or substituted footage. Do not add a game runtime dependency. Dev-only transcoding to MP4 is allowed.
 4. For portrait-only games, a 16:9 composition may combine the real portrait recording with the game's own artwork/background; the gameplay recording itself must remain real and visually primary.
@@ -85,9 +95,13 @@ For every Draft locale, create a locale-specific video when gameplay contains lo
 - **1.6.2.7 Desktop context menu/selection:** right click, select-start and drag-start on the game surface must be prevented.
 - **1.6.1.8 Mobile long tap:** long press must not select content or open the native context menu.
 
+## Release declaration consistency
+
+Before RC, `artifacts/evidence/release-contract.json` must prove that mutable product declarations in `game-spec.yaml` still match the actual build: episode/content count when declared, every declared locale has complete localization evidence, and enabled production features such as audio have corresponding production evidence. First-publication localized gameplay media must cover every declared locale. Stale declarations block rather than being silently normalized.
+
 ## Required checks
 
-- Official `/sdk.js` reference; `sdk.js` absent from dist/ZIP; relative asset paths; local fallback.
+- Explicit production `<script src="/sdk.js"></script>` appears before application module execution; `YaGames.init()` is reachable exactly once; any dynamic loader is duplicate-safe; production SDK failure is fail-closed while localhost/file fallback remains allowed; `sdk.js` itself is absent from dist/ZIP.
 - `LoadingAPI.ready()` once after an interactive screen exists.
 - `ysdk.environment.i18n.lang` read at startup for all games, including single-language games; fallback tested.
 - Gameplay start/stop, pause/resume, audio, ads, focus loss and scene transitions follow actual control state.

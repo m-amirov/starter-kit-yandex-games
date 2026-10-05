@@ -17,6 +17,10 @@ Use this task after the final production build and final screenshots when `yande
 
 ## Evidence and validation
 
+- Record the exact production `sourceHead` (40-character Git SHA) and optional build ID that produced the capture. Media evidence is stale when `sourceHead` differs from the current release HEAD.
+- Review the opening frame explicitly. Blank/loading/debug/system frames are not an acceptable start when evidence claims gameplay is already ready; record `manualReview.openingFrameReady` with concrete frame/time evidence.
+- When gameplay text is localized, RU/EN (or other locale) renders must be genuinely distinct media. Renaming/copying identical bytes does not satisfy locale coverage.
+
 - Record locale, path, width/height, duration, size, reviewed gameplay ratio and SHA-256 in `artifacts/evidence/final-gameplay-videos.json`.
 - Manually review real gameplay share (minimum 70%), system/Yandex Games UI absence, artificial black bars and Draft-locale correctness.
 - Run `npm run yandex:media:validate -- --zip <release.zip>`.

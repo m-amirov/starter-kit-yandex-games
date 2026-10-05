@@ -32,7 +32,7 @@ Every active clause must be represented in `artifacts/evidence/yandex-requiremen
 
 ### Technical and platform
 
-- Official `/sdk.js` integration, correct initialization and local failure handling.
+- Explicit production `/sdk.js` script before application modules; exactly one `YaGames.init()`; duplicate-safe fallback loader; production SDK failures fail closed; localhost/file fallback remains testable.
 - `LoadingAPI.ready()` only after the first interactive screen is usable.
 - Correct GameplayAPI and platform pause/resume lifecycle when those APIs are used.
 - Save progress immediately at meaningful boundaries and preserve it after reload.

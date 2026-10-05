@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.9",
+  "version": "0.5.10",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -241,7 +241,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "c4e844fbc8bb0252947f2237e1ea3b8dd3449721d292faa869c3ccd7f5f3aa4f"
+      "sha256": "5aec56290205a9098f1457733c51c0480ee5f0e80be41a97a6fb6b5cb5e47438"
     },
     {
       "source": ".codex/skills/visual-quality-gate/ORIGIN.md",
@@ -321,7 +321,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "8e1ed83252674f9c957db5a94dc3d236563928472b58d5e44226e31a4056c06d"
+      "sha256": "01287d270bbdd7eb58f3a62eb9b7d605333b348c99b6e4d8c28234362027a814"
     },
     {
       "source": "AGENTS.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "479ea5808ed959183e6c884dfa8f3471adf60aaff117831de33d547e77c8b4f6"
+      "sha256": "cc5d1fe9326ac590c7a28f6940819e8d745feddc63faa8fb26513821694f553e"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "8c36c36aa4c61b2db5b01ece003ff8807d7aaa1623618a89b0e09f737abc9def"
+      "sha256": "2c9b50b519c00576a6af9d3031e3ea5e6fbb3375db55256b92c0a7f597f43a0e"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -483,7 +483,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "082f8cb09df7fae79ad736f9fa3d995a3cc20a0bf6e607d65cc84262a21b99c8"
+      "sha256": "084d0a9237a87d00fa3426cdd43d584dc3d62ba87408afc52491581f8f4e6505"
     },
     {
       "source": ".starter-kit/core/CONCEPT_PROOF_GATE.md",
@@ -531,7 +531,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "dcdecbc7866cc9413935ee7a76b92beba1e4494f63aa0df5d8b5afe979d16260"
+      "sha256": "e892e5a6bf8447fc190e9de0f3d137179a620124f84e057cc0ca5ae95cb724a6"
     },
     {
       "source": "CHANGELOG.md",
@@ -547,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "eec9d6ec477975bd6d082a9c400e8aaef4c59e440cea59dc9fea817973901b64"
+      "sha256": "4d56467013edb4fad567dda7c9ca2373eab3ba6ae0b5ce3e23981bc4ec1f36d8"
     },
     {
       "source": "README.md",
@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "9f6ea2ace8064a5295bd4607415c28c8e7f7c5d25823d72e820f884a24565132"
+      "sha256": "113c2b1c6febb259ccb7ed9e16d8682ae0b33e3f0671f2ed74c97e2d971adb37"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -632,7 +632,7 @@
     {
       "source": "config/yandex-doc-snapshot.json",
       "logicalId": "managed:yandex-doc-snapshot",
-      "ownership": "managed",
+      "ownership": "semantic-merge",
       "target": "config/yandex-doc-snapshot.json",
       "modes": [
         "init",
@@ -642,7 +642,7 @@
         "new",
         "mature"
       ],
-      "conflictPolicy": "replace-if-baseline",
+      "conflictPolicy": "semantic-merge",
       "sha256": "7d2605723ba7439abeb30d12c7fb6b54776f12ac45f1b1e7f4bec4244d02fb68"
     },
     {
@@ -675,7 +675,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "8154a6c7564cfe291257739419529ff4f40920ea18838dd3bd785d482a680beb"
+      "sha256": "d75803a7b7b7756ab89859f6da703431b4ff7c8f1bb03b1ccec13ab8c2e5ff1d"
     },
     {
       "source": "docs/SKILL_PRECEDENCE.md",
@@ -707,7 +707,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "2bdc3939564b59018de2c3720001f052a3cf24cba24028b16eaf53320428bb85"
+      "sha256": "4a80f986d308bdfc86d17d5a3675e879deb5919beb92c51896cad17fad83fa8c"
     },
     {
       "source": "docs/YANDEX_REQUIREMENTS_DIFF_2026-07-01_TO_2026-08-18.md",
@@ -775,6 +775,22 @@
       "sha256": "c0ea696035929f119a9b9744931303872bc4563bea96170c6a3964c03dce557b"
     },
     {
+      "source": "docs/HEAD_BOUND_RELEASE_EVIDENCE.md",
+      "logicalId": "managed:head-bound-release-evidence-doc",
+      "ownership": "managed",
+      "target": "docs/HEAD_BOUND_RELEASE_EVIDENCE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "91e210a551c7ca735ab17daad967da9e7cfc9e1da6b524a658ddf2d9a5ebf342"
+    },
+    {
       "source": "docs/STARTER_KIT_UPDATES.md",
       "logicalId": "managed:update-doc",
       "ownership": "managed",
@@ -788,7 +804,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "2b99aaab19f7904d231851952c257907cdc7b9db62a339f64951e87df19f1621"
+      "sha256": "2112e1f0f597aeedbb4d07016e1e78a33ce2046776433eb2f476792b120a6136"
     },
     {
       "source": "lessons/known-failures.yaml",
@@ -996,7 +1012,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "d07325264c05429e2b6b3105b8c6f2e91e60b22210f0790c0d922fd9f3eb8075"
+      "sha256": "7a021353867e232d6f5eceed390e9f32baac2308ea4c46c2cf25f1a0662ffc0b"
     },
     {
       "source": "templates/product-validation/OBSERVATIONS.md",
@@ -1060,7 +1076,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "3ff42a20c08d0ad57a369817f43bad79f9daa5634169cf37c2b3c0eb18839339"
+      "sha256": "10b4db0162f762eaecb1bcc6f1a0579669f475366d7a2ed54f2d439d2e0aee0d"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1255,6 +1271,22 @@
       "sha256": "9f0012b917ae2f9e8e9a5a1ac75e1a95d66fa66bce039db426d93908b0ef26be"
     },
     {
+      "source": "tools/starter-kit/semantic-acceptance.mjs",
+      "logicalId": "managed:tool-semantic-acceptance",
+      "ownership": "managed",
+      "target": "tools/starter-kit/semantic-acceptance.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "60312146a1a45d12c7d0d98d39daea0835774203870eb727fd71305a19b518c7"
+    },
+    {
       "source": "tools/starter-kit/self-test.mjs",
       "logicalId": "managed:tool-self-test",
       "ownership": "managed",
@@ -1268,7 +1300,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "046a89b932b7050eb9d83b92d6a2f14b43c5b84cfe7624171de23d3de6115345"
+      "sha256": "4db9a6b2542048eaab6378995d0fc8f73452968853539c453d4c83f02edfc071"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -1300,7 +1332,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "8e0868a05fdb4bc6be926fb53bb31643af563bfcfe45adde032e06a148fc322b"
+      "sha256": "9c1e4007dfd7bd3ecf3889f7af6c7bee8bf9904fd966513342fce068886dd3e7"
     },
     {
       "source": "tools/starter-kit/update-engine.mjs",
@@ -1316,7 +1348,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "490af1fe467111c859d55d319f4c931254d28723ef8aaeda1ae0313ae0e785bb"
+      "sha256": "e5a414ffc36d9499cba14a78da46f0a3013c0908daf765f3a468471f60e553ab"
     },
     {
       "source": "tools/starter-kit/update-self-test.mjs",
@@ -1333,6 +1365,38 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "29821b4cc675a44bd220914d2d64fa272fe817a8828c2346b7b73a361f9ea977"
+    },
+    {
+      "source": "tools/yandex/sdk-validation.mjs",
+      "logicalId": "managed:tool-yandex-sdk-validation",
+      "ownership": "managed",
+      "target": "tools/yandex/sdk-validation.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "9b6392697ea6a427355e9ac0c67ab949d602a421c1efe88d10e7d814f04d4aa3"
+    },
+    {
+      "source": "tools/yandex/project-contract-validation.mjs",
+      "logicalId": "managed:tool-yandex-project-contract-validation",
+      "ownership": "managed",
+      "target": "tools/yandex/project-contract-validation.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "66d9d1f1496e1671f6e910a3ed0bb232e7c86cc1f103775463dbd37a4fe186be"
     },
     {
       "source": "tools/yandex/requirements-audit.mjs",
@@ -1364,7 +1428,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "d0cad57c734e2c8ba4363d6fe1faf330a9ddc61f977d3c2100d6ccfb50dc9a7e"
+      "sha256": "5c2f1cd78e953bdc5df7574399fe77191a02275e2f376adebb350e806fc225a3"
     },
     {
       "source": "tools/yandex/media-validation.mjs",
@@ -1380,7 +1444,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "fc21961b459dfa5a7a66f7bcb2df216b55659d7d923f1fa526dd75360ba970e8"
+      "sha256": "ab956723213ffdc9f3d2e13e9ceb9a4934b351170096c8fe3d637e89797d956a"
     },
     {
       "source": "config/yandex-external-evidence-providers.yaml",
@@ -1445,6 +1509,22 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "0f9726e4844ef2b5a093b30b6e226f39a0d89e39994194f7fbafa4859a7fe34f"
+    },
+    {
+      "source": "migrations/0.5.9-to-0.5.10.md",
+      "logicalId": "migration:0.5.9-to-0.5.10",
+      "ownership": "managed",
+      "target": "migrations/0.5.9-to-0.5.10.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "8d0baf18cfc2de79cf41dfe842fce2c2225dfef5ebf50c733f60297d8b63dfbf"
     },
     {
       "source": "tools/yandex/external-evidence.mjs",

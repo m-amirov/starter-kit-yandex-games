@@ -1,4 +1,4 @@
-# Autonomous Yandex Games Starter Kit 0.5.7
+# Autonomous Yandex Games Starter Kit 0.5.10
 
 Версионируемая engineering/compliance инфраструктура для создания новых игр и
 безопасного обновления существующих зрелых проектов Яндекс Игр.
@@ -134,6 +134,8 @@ npm run starter-kit:manifest
 npm run starter-kit:self-test
 npm run test:updater
 npm run starter-kit:update-self-test
+npm run yandex:sdk:validate
+npm run yandex:contract:validate
 npm run yandex:external:verify
 npm run starter-kit:status -- --target E:\Path\To\initialized-target
 ```

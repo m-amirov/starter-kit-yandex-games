@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.10 — 2026-10-05
+
+- Added an explicit Yandex SDK bootstrap validator for pre-app `/sdk.js`, single `YaGames.init()`, duplicate-safe fallback loading and fail-closed production behavior.
+- Made reviewed Yandex documentation snapshots semantics-aware so supported snapshot acceptance no longer appears as unmanaged Starter Kit drift.
+- Added release-contract drift validation for declared episode/localization/audio/media state, and formalized FINAL_RELEASE_HEAD ordering for HEAD-bound runtime/art/media evidence.
+- Hardened first-publication gameplay-video evidence with source-HEAD provenance, opening-frame review, locale-distinct media checks and final-file hash validation.
+- Added cross-platform Starter Kit CI covering updater tests, self-test and committed manifest reproducibility.
+
 ## 0.5.9 — 2026-09-30
 
 - Updated the official Yandex Games requirements snapshot and registries after the 29 September 2026 documentation revision.

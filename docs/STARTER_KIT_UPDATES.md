@@ -160,3 +160,10 @@ The provider subtree contains a local `.gitignore` for `.state/` and temporary
 provider-side `evidence/`; completed runs are moved to the project-owned evidence
 root by the explicit command. Reapplying the same managed 0.5.7 inputs is
 idempotent. See `migrations/0.5.6-to-0.5.7.md`.
+
+
+## Reviewed mutable contracts
+
+Some Starter Kit contracts are intentionally updated by an explicit project review flow. They must not be modeled as immutable managed files.
+
+`config/yandex-doc-snapshot.json` is semantic-merge state. The supported `yandex:docs:accept-snapshot` command records the reviewed target hash in `.starter-kit/state.json`. A later unreviewed edit is reported by `starter-kit:status` as semantic drift. An unchanged legacy managed baseline migrates to semantic ownership during the next canonical updater run; a locally modified legacy snapshot still requires an explicit semantic resolution.
