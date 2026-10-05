@@ -134,6 +134,8 @@ npm run starter-kit:manifest
 npm run starter-kit:self-test
 npm run test:updater
 npm run starter-kit:update-self-test
+npm run yandex:sdk:validate
+npm run yandex:contract:validate
 npm run yandex:external:verify
 npm run starter-kit:status -- --target E:\Path\To\initialized-target
 ```
