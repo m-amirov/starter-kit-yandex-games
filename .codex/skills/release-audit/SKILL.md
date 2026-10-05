@@ -9,6 +9,16 @@ description: Use as an independent final review after all product, platform and 
 
 This skill is subordinate to the current official Yandex Games requirements, `config/yandex-requirements.yaml`, `$yandex-release-validation`, `AGENTS.md`, and `PROJECT_RULES.md`. It may add stricter quality checks, but it may not weaken platform requirements, mark compliance as passed, or authorize a release candidate.
 
+
+
+## FINAL_RELEASE_HEAD and HEAD-bound evidence
+
+Finish all source/config/tool repairs before the final freeze. Commit them, define `FINAL_RELEASE_HEAD`, push it, and verify local release HEAD equals the remote release HEAD. From that point create no more commits. Generate HEAD-bound runtime/art/media evidence only after the freeze; committing such evidence afterward invalidates its HEAD binding.
+
+Release verification must inspect the actual packaged RC ZIP/runtime from `FINAL_RELEASE_HEAD`, not only the source tree. Keep external Yandex Draft evidence as a separate gate from bounded local-freeze acceptance.
+
+See `docs/HEAD_BOUND_RELEASE_EVIDENCE.md`.
+
 ## Independence
 
 Do not trust the implementation summary. Re-run required commands and inspect the production build, evidence files, ZIP entries and current worktree.
