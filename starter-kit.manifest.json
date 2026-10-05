@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "576d8856d7a4dc594f0dbd358239117b9110c8691becfe7c5901ec911e71198d"
+      "sha256": "113c2b1c6febb259ccb7ed9e16d8682ae0b33e3f0671f2ed74c97e2d971adb37"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -1300,7 +1300,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "046a89b932b7050eb9d83b92d6a2f14b43c5b84cfe7624171de23d3de6115345"
+      "sha256": "4db9a6b2542048eaab6378995d0fc8f73452968853539c453d4c83f02edfc071"
     },
     {
       "source": "tools/starter-kit/status.mjs",
