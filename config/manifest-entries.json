@@ -724,6 +724,21 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": "docs/HEAD_BOUND_RELEASE_EVIDENCE.md",
+      "logicalId": "managed:head-bound-release-evidence-doc",
+      "ownership": "managed",
+      "target": "docs/HEAD_BOUND_RELEASE_EVIDENCE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "docs/STARTER_KIT_UPDATES.md",
       "logicalId": "managed:update-doc",
       "ownership": "managed",
