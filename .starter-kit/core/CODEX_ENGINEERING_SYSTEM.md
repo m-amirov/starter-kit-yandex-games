@@ -93,3 +93,12 @@ re-reading task history.
 Before changing production code because of an unstable UI or E2E test, follow
 `.starter-kit/core/TEST_HARNESS_ADJUDICATION.md`. Separate product defects from
 harness defects and preserve adjudication evidence.
+
+
+## Release freeze evidence ordering
+
+At a release barrier, finish and commit all source/config/tool changes first, then define and push `FINAL_RELEASE_HEAD`. Do not create another commit after that point. Generate HEAD-bound runtime, art and media evidence only after the final HEAD is frozen, then package and verify the actual RC ZIP from that same HEAD.
+
+A bounded local freeze and external provider evidence are separate verdict scopes. When all local gates pass, an outstanding external Yandex Draft/runtime evidence requirement may remain as an external blocker; it must not turn the local freeze PASS into a false FAIL, and the local PASS must not be presented as moderation or publication readiness.
+
+See `docs/HEAD_BOUND_RELEASE_EVIDENCE.md`.
