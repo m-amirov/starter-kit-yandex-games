@@ -26,7 +26,7 @@ Do not rely on memory when the official requirements may have changed. Before pr
 
 1. Generate `artifacts/evidence/yandex-requirements-compliance.json` from the full registry. Every active clause must be present.
 2. Mark an applicable required clause `PASS` only with concrete evidence. Mark a genuinely inapplicable clause `N/A` with a reason. Recommended clauses must be `PASS` or a reasoned `WARN`.
-3. Run `npm run yandex:sdk:validate`, `npm run yandex:requirements:audit` and `npm run yandex:console:audit`; any failure blocks RC.
+3. Run `npm run yandex:sdk:validate`, `npm run yandex:contract:validate`, `npm run yandex:requirements:audit` and `npm run yandex:console:audit`; any failure blocks RC.
 4. For real pre-submit, run live `npm run yandex:docs:check`; deterministic offline tests do not replace it.
 5. Run `npm run yandex:media:validate -- --zip <release.zip>` against `artifacts/evidence/final-gameplay-videos.json`; any failure blocks RC.
 6. Perform an independent final review and write `artifacts/evidence/yandex-release-validation.json`.
@@ -84,6 +84,10 @@ For every Draft locale, create a locale-specific video when gameplay contains lo
 - **1.10.3 Overlap after rotation:** execute both orientation-transition sequences in one session; relayout must complete after each resize.
 - **1.6.2.7 Desktop context menu/selection:** right click, select-start and drag-start on the game surface must be prevented.
 - **1.6.1.8 Mobile long tap:** long press must not select content or open the native context menu.
+
+## Release declaration consistency
+
+Before RC, `artifacts/evidence/release-contract.json` must prove that mutable product declarations in `game-spec.yaml` still match the actual build: episode/content count when declared, every declared locale has complete localization evidence, and enabled production features such as audio have corresponding production evidence. First-publication localized gameplay media must cover every declared locale. Stale declarations block rather than being silently normalized.
 
 ## Required checks
 
