@@ -74,13 +74,13 @@ Before a real Yandex submission, record `artifacts/evidence/yandex-docs-freshnes
 
 `CONSOLE-FIRST-PUBLICATION-HORIZONTAL-GAMEPLAY-VIDEO` applies only when `yandex.publication.type` is `first-publication`. It is a release blocker. An `update` is not blocked solely because this Console-only video is absent.
 
-Validate automatically from the actual file: MP4 container/extension, 16:9, height at least 400 px, duration at most 28 seconds, size at most 100 MB, evidence metadata equality and SHA-256. Prefer 1920×1080 and 20–25 seconds. Never infer the real-gameplay share from duration metadata: at least 70% real gameplay, absence of system/Yandex Games UI, absence of artificial black bars and Draft-locale correctness require explicit manual visual evidence. Missing or `NOT_REVIEWED` evidence blocks first publication.
+Validate automatically from the actual file: MP4 container/extension, 16:9, height at least 400 px, duration at most 28 seconds, size at most 100 MB, evidence metadata equality and SHA-256. Bind video evidence to the exact current Git `sourceHead`; stale capture provenance blocks. Prefer 1920×1080 and 20–25 seconds. Never infer the real-gameplay share from duration metadata: at least 70% real gameplay, absence of system/Yandex Games UI, absence of artificial black bars and Draft-locale correctness require explicit manual visual evidence. Missing or `NOT_REVIEWED` evidence blocks first publication. Explicitly review the opening frame (`manualReview.openingFrameReady`) so blank/loading/debug/system frames cannot be passed as a gameplay-ready start.
 
 For every Draft locale, create a locale-specific video when gameplay contains localized text. Reuse of one file is allowed only with evidence that gameplay contains no language-dependent text. Promotional MP4 files are external Console media and must not occur inside the Yandex game release ZIP.
 
 ## Standard gameplay-video production task
 
-1. Run the final production build and record the actual production runtime with the existing browser/video tooling.
+1. Run the final production build and record the actual production runtime with the existing browser/video tooling. When CEOS is installed, use its `video-production` skill in `gameplay-evidence` mode; Descript or another editor may assist with bounded editing but is never the release-evidence authority.
 2. Play the game for real and select a meaningful segment where the core mechanic is clearly visible. Target 20–25 seconds, preferably 100% gameplay, with no or minimal intro/outro.
 3. Do not use a mockup, synthetic animation, dev/debug build or substituted footage. Do not add a game runtime dependency. Dev-only transcoding to MP4 is allowed.
 4. For portrait-only games, a 16:9 composition may combine the real portrait recording with the game's own artwork/background; the gameplay recording itself must remain real and visually primary.
