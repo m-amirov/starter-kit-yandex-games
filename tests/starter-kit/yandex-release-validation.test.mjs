@@ -33,7 +33,7 @@ function video(locale = 'ru', overrides = {}) {
     durationSeconds: 24,
     sizeBytes: 8_000_000,
     gameplayRatio: 1,
-    sha256: 'a'.repeat(64),
+    sha256: locale === 'ru' ? 'a'.repeat(64) : 'b'.repeat(64),
     manualReview: validReview,
     ...overrides
   };
@@ -60,7 +60,7 @@ function validate(videos, options = {}) {
     videos,
     sourceHead: 'f'.repeat(40),
     currentHead: 'f'.repeat(40),
-    inspectMedia: async (entry) => options.factsByLocale?.[entry.locale] ?? facts(),
+    inspectMedia: async (entry) => options.factsByLocale?.[entry.locale] ?? facts({ sha256: entry.locale === 'ru' ? 'a'.repeat(64) : 'b'.repeat(64) }),
     ...options
   });
 }
