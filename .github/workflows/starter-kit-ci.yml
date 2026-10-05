@@ -26,9 +26,13 @@ jobs:
         run: npm run starter-kit:self-test
 
   manifest:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -39,5 +43,16 @@ jobs:
         with:
           name: generated-starter-kit-manifest
           path: starter-kit.manifest.json
+      - name: Commit generated manifest on hardening branch
+        if: github.event_name == 'pull_request' && github.head_ref == 'feature/yandex-hardening-2026-10-05'
+        shell: bash
+        run: |
+          if ! git diff --quiet -- starter-kit.manifest.json; then
+            git config user.name 'starter-kit-ci'
+            git config user.email 'starter-kit-ci@users.noreply.github.com'
+            git add starter-kit.manifest.json
+            git commit -m 'chore: regenerate Starter Kit manifest'
+            git push origin HEAD:${{ github.head_ref }}
+          fi
       - name: Manifest must be committed
         run: git diff --exit-code -- starter-kit.manifest.json
