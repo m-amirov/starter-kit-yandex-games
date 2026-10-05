@@ -21,7 +21,8 @@ const validReview = {
   systemUiAbsent: { status: 'PASS', evidence: 'manual-review/gameplay.md' },
   yandexUiAbsent: { status: 'PASS', evidence: 'manual-review/gameplay.md' },
   artificialBlackBarsAbsent: { status: 'PASS', evidence: 'manual-review/gameplay.md' },
-  localeMatchesDraft: { status: 'PASS', evidence: 'manual-review/gameplay.md' }
+  localeMatchesDraft: { status: 'PASS', evidence: 'manual-review/gameplay.md' },
+  openingFrameReady: { status: 'PASS', evidence: 'manual-review/gameplay.md#opening-frame' }
 };
 
 function video(locale = 'ru', overrides = {}) {
@@ -57,6 +58,8 @@ function validate(videos, options = {}) {
     declaredLocales: ['ru', 'en'],
     languageDependentText: true,
     videos,
+    sourceHead: 'f'.repeat(40),
+    currentHead: 'f'.repeat(40),
     inspectMedia: async (entry) => options.factsByLocale?.[entry.locale] ?? facts(),
     ...options
   });
@@ -184,4 +187,51 @@ test('renamed promotional MP4 inside the game ZIP is blocked by SHA-256', () => 
     videos: [video('ru')]
   });
   assert.equal(result.status, 'BLOCK');
+});
+
+
+test('stale gameplay video source HEAD is blocked', async () => {
+  const result = await validate([video('ru'), video('en')], {
+    sourceHead: 'a'.repeat(40),
+    currentHead: 'b'.repeat(40)
+  });
+  assert.equal(result.status, 'BLOCK');
+  assert.match(result.blockers.join('\n'), /source HEAD.*current HEAD/i);
+});
+
+test('renamed duplicate locale videos are blocked by identical media hash', async () => {
+  const result = await validate([
+    video('ru', { path: 'artifacts/marketing/ru.mp4' }),
+    video('en', { path: 'artifacts/marketing/en.mp4' })
+  ], {
+    factsByLocale: {
+      ru: facts({ sha256: 'c'.repeat(64) }),
+      en: facts({ sha256: 'c'.repeat(64) })
+    }
+  });
+  assert.equal(result.status, 'BLOCK');
+  assert.match(result.blockers.join('\n'), /same media.*multiple locales|identical.*localized/i);
+});
+
+test('opening frame requires explicit reviewed evidence', async () => {
+  const pending = video('ru', {
+    manualReview: {
+      ...validReview,
+      openingFrameReady: { status: 'NOT_REVIEWED', evidence: null }
+    }
+  });
+  const result = await validate([pending, video('en')]);
+  assert.equal(result.status, 'BLOCK');
+  assert.match(result.blockers.join('\n'), /opening frame/i);
+});
+
+test('video evidence SHA mismatch remains blocking', async () => {
+  const result = await validate([
+    video('ru', { sha256: 'd'.repeat(64) }),
+    video('en')
+  ], {
+    factsByLocale: { ru: facts({ sha256: 'e'.repeat(64) }), en: facts() }
+  });
+  assert.equal(result.status, 'BLOCK');
+  assert.match(result.blockers.join('\n'), /SHA-256 does not match/i);
 });
