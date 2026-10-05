@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const SCRIPT_RE = /<script\b([^>]*)>/gi;
 
 function attribute(attrs, name) {
-  const pattern = new RegExp('\\b' + name + '\\s*=\\s*["\\']([^"\\']+)["\\']', 'i');
+  const pattern = new RegExp("\\b" + name + "\\s*=\\s*[\\"']([^\\"']+)[\\"']", "i");
   return attrs.match(pattern)?.[1] ?? null;
 }
 
