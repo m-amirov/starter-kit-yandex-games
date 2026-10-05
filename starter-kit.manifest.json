@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.9",
+  "version": "0.5.10",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "636655fb26ee804a11c994fc4235e29cd18a1a8446669180ce2d9a402c0d4b26"
+      "sha256": "cc5d1fe9326ac590c7a28f6940819e8d745feddc63faa8fb26513821694f553e"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "b5362079843800562ab5f25ac546e8d7cd6759282efee0b3be5f907a910dc07f"
+      "sha256": "2c9b50b519c00576a6af9d3031e3ea5e6fbb3375db55256b92c0a7f597f43a0e"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -531,7 +531,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "dcdecbc7866cc9413935ee7a76b92beba1e4494f63aa0df5d8b5afe979d16260"
+      "sha256": "e892e5a6bf8447fc190e9de0f3d137179a620124f84e057cc0ca5ae95cb724a6"
     },
     {
       "source": "CHANGELOG.md",
@@ -547,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "eec9d6ec477975bd6d082a9c400e8aaef4c59e440cea59dc9fea817973901b64"
+      "sha256": "4d56467013edb4fad567dda7c9ca2373eab3ba6ae0b5ce3e23981bc4ec1f36d8"
     },
     {
       "source": "README.md",
@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "9f6ea2ace8064a5295bd4607415c28c8e7f7c5d25823d72e820f884a24565132"
+      "sha256": "576d8856d7a4dc594f0dbd358239117b9110c8691becfe7c5901ec911e71198d"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -1076,7 +1076,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "3406f845ed3aa6ffdcdb971afef002494cede943c6e7f4d102ffcec228bd382a"
+      "sha256": "10b4db0162f762eaecb1bcc6f1a0579669f475366d7a2ed54f2d439d2e0aee0d"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1509,6 +1509,22 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "0f9726e4844ef2b5a093b30b6e226f39a0d89e39994194f7fbafa4859a7fe34f"
+    },
+    {
+      "source": "migrations/0.5.9-to-0.5.10.md",
+      "logicalId": "migration:0.5.9-to-0.5.10",
+      "ownership": "managed",
+      "target": "migrations/0.5.9-to-0.5.10.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "8d0baf18cfc2de79cf41dfe842fce2c2225dfef5ebf50c733f60297d8b63dfbf"
     },
     {
       "source": "tools/yandex/external-evidence.mjs",
