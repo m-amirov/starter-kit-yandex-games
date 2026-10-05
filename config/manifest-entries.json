@@ -1279,6 +1279,21 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": "tools/yandex/project-contract-validation.mjs",
+      "logicalId": "managed:tool-yandex-project-contract-validation",
+      "ownership": "managed",
+      "target": "tools/yandex/project-contract-validation.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "tools/yandex/requirements-audit.mjs",
       "logicalId": "managed:tool-yandex-requirements-audit",
       "ownership": "managed",
