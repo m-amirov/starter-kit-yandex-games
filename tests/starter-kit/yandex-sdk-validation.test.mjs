@@ -97,3 +97,33 @@ test('localhost and file fallback guards are allowed', () => {
   `;
   assert.equal(auditYandexSdkSource(source).status, 'PASS');
 });
+
+
+test('accepts guarded SDK_PATH loader and isLocalDevelopment fail-closed pattern', () => {
+  const source = `
+    const SDK_PATH = '/sdk.js';
+    export function isLocalDevelopment(location = globalThis.location) {
+      return location.protocol === 'file:' || ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+    }
+    function loadSdkScript({ document, window }) {
+      if (window?.YaGames) return Promise.resolve(window.YaGames);
+      const existing = document.querySelector?.(\`script[src="\${SDK_PATH}"]\`);
+      const script = existing || document.createElement('script');
+      if (!existing) {
+        script.src = SDK_PATH;
+        document.head.append(script);
+      }
+      return Promise.resolve(window.YaGames);
+    }
+    async function init({ location, window, document }) {
+      let YaGames;
+      try { YaGames = await loadSdkScript({ document, window }); }
+      catch (error) {
+        if (isLocalDevelopment(location)) return { mode: 'local-fallback' };
+        throw error;
+      }
+      return YaGames.init();
+    }
+  `;
+  assert.equal(auditYandexSdkSource(source).status, 'PASS');
+});
