@@ -22,6 +22,10 @@ failures:
     prevention: adjudicate fixture vs product defect before changing runtime
   - id: unstable-ui-harness
     prevention: TEST_HARNESS_ADJUDICATION with minimal fixture, hit target and event evidence
+  - id: runtime-control-recreates-root
+    prevention: settings/input changes preserve runtime root, scene and pointer continuity unless recreation is explicitly required
+  - id: persistent-ui-obscures-gameplay
+    prevention: runtime visual gate checks critical gameplay visibility against persistent HUD/panels
   - id: narrow-pass-promotion
     prevention: keep functional, visual, authored-content, platform, media and release evidence separate
   - id: visual-pass-without-pixels
