@@ -16,7 +16,8 @@
       "yandex:external:verify",
       "yandex:external:run",
       "yandex:external:normalize",
-      "yandex:external:audit"
+      "yandex:external:audit",
+      "yandex:release:evidence"
     ]
   },
   "scripts": {
@@ -37,6 +38,7 @@
     "yandex:external:run": "node tools/yandex/external-evidence.mjs run",
     "yandex:external:normalize": "node tools/yandex/external-evidence.mjs normalize",
     "yandex:external:audit": "node tools/yandex/external-evidence.mjs audit",
-    "skills:validate": "node tools/starter-kit/self-test.mjs"
+    "skills:validate": "node tools/starter-kit/self-test.mjs",
+    "yandex:release:evidence": "node tools/yandex/release-evidence-gate.mjs"
   }
 }

@@ -1026,7 +1026,7 @@ test('Windows autocrlf checkout preserves canonical manifest bytes and binary fi
     const manifest = spawnSync(process.execPath, [path.join(canonical, 'tools', 'starter-kit', 'build-manifest.mjs')], { cwd: canonical, encoding: 'utf8' });
     assert.equal(manifest.status, 0, `${manifest.stdout}\n${manifest.stderr}`);
     runGit(canonical, ['add', '--all']);
-    runGit(canonical, ['-c', 'user.name=Starter Kit Test', '-c', 'user.email=starter-kit-test@example.invalid', 'commit', '-m', 'canonical fixture']);
+    runGit(canonical, ['-c', 'user.name=Starter Kit Test', '-c', 'user.email=starter-kit-test@example.invalid', 'commit', '--allow-empty', '-m', 'canonical fixture']);
     runGit(parent, ['-c', 'core.autocrlf=true', '-c', 'core.eol=crlf', 'clone', canonical, checkout]);
     const eol = spawnSync('git', ['ls-files', '--eol', '--', 'AGENTS.md', 'starter-kit.manifest.json'], { cwd: checkout, encoding: 'utf8' });
     assert.equal(eol.status, 0, `${eol.stdout}\n${eol.stderr}`);

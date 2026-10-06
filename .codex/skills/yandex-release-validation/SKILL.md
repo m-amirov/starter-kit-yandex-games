@@ -30,6 +30,32 @@ Do not rely on memory when the official requirements may have changed. Before pr
 4. For real pre-submit, run live `npm run yandex:docs:check`; deterministic offline tests do not replace it.
 5. Run `npm run yandex:media:validate -- --zip <release.zip>` against `artifacts/evidence/final-gameplay-videos.json`; any failure blocks RC.
 6. Perform an independent final review and write `artifacts/evidence/yandex-release-validation.json`.
+7. Aggregate release evidence with `npm run yandex:release:evidence -- --file artifacts/evidence/yandex-release-readiness.json`. `LOCAL_RC_READY` is only local readiness; only `PRE_SUBMIT_READY` may be used after explicit manual/external platform-runtime evidence.
+
+## Aggregated release verdict — P0
+
+Free-form `RELEASE_READY` claims are forbidden. Use the machine-readable contract in
+`docs/PRODUCTION_INCIDENT_HARDENING.md` and the release evidence gate.
+
+The aggregator keeps functional desktop, mobile touch input, desktop visual, mobile visual,
+production-art, package/media, hardware-performance, feature-necessity, docs freshness and
+independent-review evidence separate. One dimension cannot infer another.
+
+- `UNKNOWN`, `UNPROVEN`, `NOT_RUN`, `UNAVAILABLE`, `WARN`, and `BLOCKED` are non-PASS.
+- automated PASS requires executed assertions and complete declared coverage;
+- every positive gate is tied to the exact current release source HEAD;
+- the aggregator CLI independently verifies actual Git HEAD/dirty state and hashes the actual `source.releaseBuildPath`;
+- release aggregation requires a clean worktree and matching release-build SHA-256;
+- `pre-submit` requires `source.remoteRef`, and current HEAD must be contained by that remote-tracking ref;
+- desktop evidence never satisfies mobile gates;
+- DOM/test success never satisfies visual pixel gates;
+- synthetic/SwiftShader measurements never satisfy hardware performance;
+- production-art PASS requires complete manifest, physical files, runtime mapping/use and integrated visual acceptance;
+- a natural victory does not prove a mechanic unless telemetry/assertion evidence shows it was exercised;
+- local automated evidence cannot satisfy the pre-submit `platform-runtime` gate.
+
+The optional hardened Draft provider remains advisory. A provider PASS cannot manufacture
+`PRE_SUBMIT_READY` unless the explicit platform-runtime gate is satisfied under the release contract.
 
 ## Optional external Draft runtime evidence
 

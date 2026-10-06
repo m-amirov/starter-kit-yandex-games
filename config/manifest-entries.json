@@ -1436,6 +1436,33 @@
       "modes": ["init", "update"],
       "projectTypes": ["new", "mature"],
       "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/yandex-release-evidence.schema.json",
+      "logicalId": "managed:yandex-release-evidence-schema",
+      "ownership": "managed",
+      "target": "config/yandex-release-evidence.schema.json",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/release-evidence-gate.mjs",
+      "logicalId": "managed:yandex-release-evidence-gate",
+      "ownership": "managed",
+      "target": "tools/yandex/release-evidence-gate.mjs",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/PRODUCTION_INCIDENT_HARDENING.md",
+      "logicalId": "managed:production-incident-hardening",
+      "ownership": "managed",
+      "target": "docs/PRODUCTION_INCIDENT_HARDENING.md",
+      "modes": ["init", "update"],
+      "projectTypes": ["new", "mature"],
+      "conflictPolicy": "replace-if-baseline"
     }
   ]
 }

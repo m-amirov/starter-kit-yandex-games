@@ -10,3 +10,29 @@ failures:
     prevention: web-game-playtest and game-performance-budget
   - id: unlicensed-generated-asset
     prevention: asset-provenance-and-rights ledger
+  - id: fake-pass-zero-assertions
+    prevention: CEOS evidence contract plus yandex release evidence aggregator
+  - id: partial-coverage-full-scope-pass
+    prevention: explicit complete coverage contract
+  - id: evidence-head-mismatch
+    prevention: source HEAD provenance gate
+  - id: release-recovery-base-mismatch
+    prevention: release ancestry check before recovery
+  - id: desktop-pass-inferred-as-mobile
+    prevention: separate mobile touch and mobile visual gates
+  - id: functional-pass-inferred-as-visual
+    prevention: current-runtime pixel-backed visual gate
+  - id: production-art-manifest-only
+    prevention: manifest plus file existence plus runtime mapping/reachability plus visual acceptance
+  - id: local-evidence-substituted-for-platform
+    prevention: pre-submit platform-runtime manual/external gate
+  - id: synthetic-performance-as-hardware
+    prevention: hardwareMeasured evidence or explicit N/A reason
+  - id: victory-without-required-mechanic
+    prevention: feature-necessity telemetry assertions
+  - id: stale-yandex-doc-snapshot
+    prevention: live docs freshness or explicit current manual review
+  - id: missing-script-as-product-failure
+    prevention: configuration-error taxonomy
+  - id: stale-capability-session
+    prevention: CEOS run/session/turn capability attestation

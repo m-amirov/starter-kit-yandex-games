@@ -321,7 +321,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "8e1ed83252674f9c957db5a94dc3d236563928472b58d5e44226e31a4056c06d"
+      "sha256": "6c6d528fd9d6733d72e79ab0091f56f48bd2608705fd05252a1d90dc4fc4f69f"
     },
     {
       "source": "AGENTS.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "479ea5808ed959183e6c884dfa8f3471adf60aaff117831de33d547e77c8b4f6"
+      "sha256": "87b4876baffb1e117150b44006bc3cfce522ea7738c3f9770297b28343c75612"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "8c36c36aa4c61b2db5b01ece003ff8807d7aaa1623618a89b0e09f737abc9def"
+      "sha256": "b5362079843800562ab5f25ac546e8d7cd6759282efee0b3be5f907a910dc07f"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -804,7 +804,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "a9b01daae6e0e338cb4624b75450234ca503d617719455351b83b85531dc8afa"
+      "sha256": "362daadd9fcd8639f01d90e0737fa536843fc55aade12794ec53cf5b3b1e851f"
     },
     {
       "source": "migrations/0.3.0-yandex-requirements.md",
@@ -1060,7 +1060,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "3ff42a20c08d0ad57a369817f43bad79f9daa5634169cf37c2b3c0eb18839339"
+      "sha256": "a165f3baacabc64255fbd3bd94045977e9b8fe18754880d53f083797bc9be544"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1268,7 +1268,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "046a89b932b7050eb9d83b92d6a2f14b43c5b84cfe7624171de23d3de6115345"
+      "sha256": "867d1ced24cf328c222458b61895a63d7dc289340add1ff313bdb9280e7be34e"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -1637,6 +1637,54 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "afef22563d2c42f37c577f3e12d27113d979280f36d20dd70e08ca4dd172657e"
+    },
+    {
+      "source": "config/yandex-release-evidence.schema.json",
+      "logicalId": "managed:yandex-release-evidence-schema",
+      "ownership": "managed",
+      "target": "config/yandex-release-evidence.schema.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "5f84ad1c0f40184c7e1f01f17c2ab77cc646289be1b40cb401c9955ef53eacf8"
+    },
+    {
+      "source": "tools/yandex/release-evidence-gate.mjs",
+      "logicalId": "managed:yandex-release-evidence-gate",
+      "ownership": "managed",
+      "target": "tools/yandex/release-evidence-gate.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "fb64996a5df243f7f434b9016d25100311c0103f57004926346264d49ba256e0"
+    },
+    {
+      "source": "docs/PRODUCTION_INCIDENT_HARDENING.md",
+      "logicalId": "managed:production-incident-hardening",
+      "ownership": "managed",
+      "target": "docs/PRODUCTION_INCIDENT_HARDENING.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "a93431216676e6bd68034b673f35d620815d5de57f37a9cf6cecbc40a8a74ec7"
     }
   ]
 }

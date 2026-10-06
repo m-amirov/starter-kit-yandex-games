@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yandex-games-starter-kit.local/schemas/yandex-release-evidence.schema.json",
+  "title": "Yandex Games release evidence aggregation input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "phase",
+    "source",
+    "gates"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "phase": {
+      "enum": [
+        "local-rc",
+        "pre-submit"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "head",
+        "clean",
+        "releaseBuildPath",
+        "releaseBuildSha256"
+      ],
+      "properties": {
+        "head": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{7,64}$"
+        },
+        "clean": {
+          "const": true
+        },
+        "releaseBuildSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "releaseBuildPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "remoteRef": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "id",
+          "kind",
+          "status",
+          "sourceHead",
+          "evidenceRefs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "automated",
+              "manual",
+              "external"
+            ]
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "MANUAL_PASS",
+              "EXTERNAL_PASS",
+              "N/A",
+              "FAIL",
+              "BLOCKED",
+              "UNKNOWN",
+              "UNPROVEN",
+              "NOT_RUN",
+              "UNAVAILABLE",
+              "WARN"
+            ]
+          },
+          "sourceHead": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "assertionsExecuted": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "coverage": {
+            "type": "object"
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "metadata": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}
