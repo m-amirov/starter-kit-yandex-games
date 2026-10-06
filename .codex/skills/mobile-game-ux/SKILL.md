@@ -29,8 +29,12 @@ Derived from the useful touch and mobile-performance concepts in `mobile-games-v
 - browser scroll, overscroll and pull-to-refresh do not interrupt play;
 - portrait ↔ landscape transitions work without reload;
 - safe areas do not cover controls;
-- 360×640 remains usable in RU and EN.
+- 360×640 remains usable in RU and EN;
+- 390×844 is verified for portrait/full-bleed changes that can alter crop, safe-area or action/text composition;
+- every orientation the game actually declares is tested; do not require unsupported orientation transitions.
 
 ## Evidence
+
+For affected full-bleed/responsive surfaces record four-edge coverage, document/internal scroll state, primary-action overlap, text readability and the actual input path. Do not infer crop quality from DOM bounds alone.
 
 Run mobile-emulated Chromium plus WebKit where available and record `artifacts/evidence/mobile-ux-review.json`.
