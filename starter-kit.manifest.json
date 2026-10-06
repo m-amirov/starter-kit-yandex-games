@@ -1639,22 +1639,6 @@
       "sha256": "afef22563d2c42f37c577f3e12d27113d979280f36d20dd70e08ca4dd172657e"
     },
     {
-      "source": "tools/yandex/release-evidence-gate.mjs",
-      "logicalId": "managed:yandex-release-evidence-gate",
-      "ownership": "managed",
-      "target": "tools/yandex/release-evidence-gate.mjs",
-      "modes": [
-        "init",
-        "update"
-      ],
-      "projectTypes": [
-        "new",
-        "mature"
-      ],
-      "conflictPolicy": "replace-if-baseline",
-      "sha256": "526fa801e000564f1f48b6307623ea54ff9c20597f8bdb5ed8d880e7d60fd850"
-    },
-    {
       "source": "config/yandex-release-evidence.schema.json",
       "logicalId": "managed:yandex-release-evidence-schema",
       "ownership": "managed",
@@ -1669,6 +1653,22 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "5032692c2189531df01722f6c999f2a07493bd0f1c912dcf18b0dd9eeb388643"
+    },
+    {
+      "source": "tools/yandex/release-evidence-gate.mjs",
+      "logicalId": "managed:yandex-release-evidence-gate",
+      "ownership": "managed",
+      "target": "tools/yandex/release-evidence-gate.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "526fa801e000564f1f48b6307623ea54ff9c20597f8bdb5ed8d880e7d60fd850"
     },
     {
       "source": "docs/PRODUCTION_INCIDENT_HARDENING.md",
