@@ -51,7 +51,7 @@ function base(phase = 'local-rc') {
   return {
     schemaVersion: 1,
     phase,
-    source: { head: HEAD, clean: true, releaseBuildSha256: BUILD },
+    source: { head: HEAD, clean: true, releaseBuildPath: 'release-artifacts/game.zip', releaseBuildSha256: BUILD, ...(phase === 'pre-submit' ? { remoteRef: 'origin/release' } : {}) },
     gates
   };
 }
@@ -118,4 +118,50 @@ test('feature victory without telemetry assertions is unproven', () => {
 test('pre-submit passes only with the explicit platform gate', () => {
   const result = evaluateYandexReleaseEvidence(base('pre-submit'));
   assert.equal(result.verdict, 'PRE_SUBMIT_READY');
+});
+
+test('actual Git HEAD overrides a forged declared source HEAD', () => {
+  const input = base();
+  const result = evaluateYandexReleaseEvidence(input, {
+    actualSource: {
+      available: true,
+      head: 'c'.repeat(40),
+      clean: true,
+      releaseBuildSha256: BUILD,
+      remoteContainsHead: null
+    }
+  });
+  assert.equal(result.verdict, 'BLOCKED_YANDEX_RELEASE_EVIDENCE');
+  assert.ok(result.blockers.some((line) => /EVIDENCE_PROVENANCE_MISMATCH source=/.test(line)));
+});
+
+test('actual release artifact hash must match declared SHA-256', () => {
+  const input = base();
+  const result = evaluateYandexReleaseEvidence(input, {
+    actualSource: {
+      available: true,
+      head: HEAD,
+      clean: true,
+      releaseBuildSha256: 'c'.repeat(64),
+      remoteContainsHead: null
+    }
+  });
+  assert.equal(result.verdict, 'BLOCKED_YANDEX_RELEASE_EVIDENCE');
+  assert.ok(result.blockers.some((line) => /release artifact SHA-256/.test(line)));
+});
+
+test('pre-submit requires current HEAD on declared remote tracking ref', () => {
+  const input = base('pre-submit');
+  const result = evaluateYandexReleaseEvidence(input, {
+    actualSource: {
+      available: true,
+      head: HEAD,
+      clean: true,
+      releaseBuildSha256: BUILD,
+      remoteContainsHead: false,
+      remoteReason: 'current HEAD is not contained in origin/release'
+    }
+  });
+  assert.equal(result.verdict, 'BLOCKED_YANDEX_RELEASE_EVIDENCE');
+  assert.ok(result.blockers.some((line) => /origin\/release/.test(line)));
 });
