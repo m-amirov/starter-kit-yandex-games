@@ -71,6 +71,16 @@ Store a compact evidence package with the screenshot set, short verdict, states/
 
 For a pass requiring this gate, do not issue `*_IMPLEMENTED`, `*_ACCEPTED`, `*_OWNER_REVIEW_READY`, or a visual/product completion token until it passes. `FUNCTIONALLY_IMPLEMENTED` with `VISUAL_ACCEPTANCE: FAIL` is a valid and preferred interim status.
 
+## Failure prevention and incident promotion
+
+Use `lessons/known-failures.yaml` and `docs/DEVELOPMENT_POSTMORTEM_2026-09.md` as reusable engineering memory. When a new recurring defect is confirmed, complete the promotion loop: reproduce → classify → root cause → repair → regression coverage → durable rule/gate → fresh verification. Unknown root cause stays UNKNOWN.
+
+Never collapse CONFIGURATION_ERROR, TEST_FAILURE, COMMAND_FAILURE, HARNESS_DEFECT and PRODUCT_DEFECT into one generic failure. Before changing production code for a browser/UI automation failure, use `TEST_HARNESS_ADJUDICATION.md`.
+
+At release/recovery boundaries freeze repository/worktree/branch/HEAD and required base ancestry. A base mismatch is BLOCKED; do not switch/reset/stash away parallel work to manufacture continuity.
+
+Keep functional/tests, runtime, visual, authored-content, platform/manual, media and package/release evidence separate. Narrow green checks cannot promote a broader PASS.
+
 ## Boundaries
 
 - Official Yandex requirements, `AGENTS.md`, `PROJECT_RULES.md`, and project-specific protected systems remain authoritative.
