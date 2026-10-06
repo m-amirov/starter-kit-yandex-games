@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "8c36c36aa4c61b2db5b01ece003ff8807d7aaa1623618a89b0e09f737abc9def"
+      "sha256": "b5362079843800562ab5f25ac546e8d7cd6759282efee0b3be5f907a910dc07f"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -1060,7 +1060,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "3ff42a20c08d0ad57a369817f43bad79f9daa5634169cf37c2b3c0eb18839339"
+      "sha256": "a165f3baacabc64255fbd3bd94045977e9b8fe18754880d53f083797bc9be544"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
