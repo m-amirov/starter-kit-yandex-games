@@ -65,6 +65,12 @@ authorizes manual review. Production requires `CONTINUE_PRODUCTION`; an explicit
 
 Maximum three materially different fix attempts for one root cause. Then create `artifacts/ESCALATION_REPORT.md`.
 
+## Failure memory
+
+Before non-trivial repair, migration, visual acceptance or release work, consult `lessons/known-failures.yaml` and the development postmortem for relevant recurring failure classes. A confirmed reusable defect is not closed by a workaround alone: record the root cause (or UNKNOWN), add regression coverage where deterministic, strengthen the nearest rule/gate, and refresh evidence.
+
+Do not promote a local/narrow PASS across evidence domains. Functional/tests, runtime, visual pixels, authored content, Yandex/manual platform evidence, media and release artifacts remain separate proof surfaces.
+
 ## External guidance filters
 
 Do not introduce by default:
