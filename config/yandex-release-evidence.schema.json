@@ -26,6 +26,7 @@
       "required": [
         "head",
         "clean",
+        "releaseBuildPath",
         "releaseBuildSha256"
       ],
       "properties": {
@@ -39,6 +40,16 @@
         "releaseBuildSha256": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
+        },
+        "releaseBuildPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "remoteRef": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },
