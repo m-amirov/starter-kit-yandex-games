@@ -193,7 +193,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "658fb9165bc4d7d26a1f0e021618c36932a6f3441706c180cb685947cfa82455"
+      "sha256": "699f7e2deafe4b4ffb532537de26c7c4143ed9a532d19d75bce402aa25db332a"
     },
     {
       "source": ".codex/skills/product-quality-review/ORIGIN.md",
@@ -241,7 +241,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "c4e844fbc8bb0252947f2237e1ea3b8dd3449721d292faa869c3ccd7f5f3aa4f"
+      "sha256": "12c52b312e9e5f8c469145f5a383b1d050837d97407f798c31e648b40458abbc"
     },
     {
       "source": ".codex/skills/visual-quality-gate/ORIGIN.md",
@@ -273,7 +273,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "7842ce786aa85653479e3357849ea4bad7c7104ad6f74b9c0301a8e91a18806d"
+      "sha256": "d9d12d269370067a48cba5b3826e44fec005211c00dd58a2da102d2d931927d2"
     },
     {
       "source": ".codex/skills/web-game-playtest/ORIGIN.md",
@@ -321,7 +321,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "8e1ed83252674f9c957db5a94dc3d236563928472b58d5e44226e31a4056c06d"
+      "sha256": "13499ae5329dbb0d4f79dfd16510c47680cc76e695bc1ee924abef9a5f5a1cbe"
     },
     {
       "source": "AGENTS.md",
@@ -337,7 +337,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "59d5709508760e569d9ed871e07a66768714c6cecc0629bb01d591ab68d198f9"
+      "sha256": "aad7867386d2ffcb865844fae6cf8ecaca85d0e248cb960ef91c73b863dda155"
     },
     {
       "source": "package.json",
@@ -483,7 +483,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "082f8cb09df7fae79ad736f9fa3d995a3cc20a0bf6e607d65cc84262a21b99c8"
+      "sha256": "262f868d6404a69ef86a10200ddc80a0e7b4f2c35751effa4a0b5e332873d884"
     },
     {
       "source": ".starter-kit/core/CONCEPT_PROOF_GATE.md",
@@ -515,7 +515,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "6ad653af0f7e606fa09c4873886cfafc46b3fa4b30e6b348d9073dc2e4b315be"
+      "sha256": "2f213baac44cfa0a5d914a66b7c997d9b6a05ce4a94a09c374c81d72813e1271"
     },
     {
       "source": "VERSION",
@@ -547,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "eec9d6ec477975bd6d082a9c400e8aaef4c59e440cea59dc9fea817973901b64"
+      "sha256": "a3a17b020335339d5641d7cff7bfd775f9229e7a7a704728dadd12b2def49fab"
     },
     {
       "source": "README.md",
@@ -804,7 +804,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "a9b01daae6e0e338cb4624b75450234ca503d617719455351b83b85531dc8afa"
+      "sha256": "98298c4b8f361e09c28b2bc667da71099647e5969faae5050a6baa33577d8075"
     },
     {
       "source": "migrations/0.3.0-yandex-requirements.md",

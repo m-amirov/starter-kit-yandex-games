@@ -1,12 +1,74 @@
 schemaVersion: 1
 failures:
-  - id: yandex-context-menu-selection
-    prevention: mobile-game-ux and yandex moderation regression
+  - id: wrong-project-profile
+    prevention: resolve profile before gates; wrong profile is CONFIGURATION_ERROR
+  - id: unavailable-skill-or-capability-claimed
+    prevention: prove installed/callable skill, route or capability in the current environment
+  - id: unsafe-mature-project-update
+    prevention: explicit mature profile, non-mutating dry-run and ownership-aware updater
+  - id: duplicate-skill-root
+    prevention: one configured skillRoot; second active root blocks integration
+  - id: managed-file-drift
+    prevention: explicit conflict resolution; never replace hashes or roll back policy to get green status
+  - id: cross-platform-text-byte-drift
+    prevention: deterministic LF/final-newline policy plus migration regression coverage
+  - id: release-base-mismatch
+    prevention: freeze repository/worktree/branch/HEAD and prove required ancestry before recovery
+  - id: missing-test-command
+    prevention: classify as CONFIGURATION_ERROR before spawning the command
+  - id: locale-assuming-test
+    prevention: assert the active locale/configuration and reproduce baseline
+  - id: stale-test-fixture
+    prevention: adjudicate fixture vs product defect before changing runtime
+  - id: unstable-ui-harness
+    prevention: TEST_HARNESS_ADJUDICATION with minimal fixture, hit target and event evidence
+  - id: runtime-control-recreates-root
+    prevention: settings/input changes preserve runtime root, scene and pointer continuity unless recreation is explicitly required
+  - id: persistent-ui-obscures-gameplay
+    prevention: runtime visual gate checks critical gameplay visibility against persistent HUD/panels
+  - id: narrow-pass-promotion
+    prevention: keep functional, visual, authored-content, platform, media and release evidence separate
+  - id: visual-pass-without-pixels
+    prevention: current-runtime image bytes plus independent pixel receipt or BLOCKED
+  - id: fullscreen-blank-band
+    prevention: four-edge screenshot/mechanical coverage plus no-scroll checks
+  - id: compact-viewport-overlap
+    prevention: primary-action overlap/readability/internal-scroll checks at declared compact viewports
   - id: yandex-orientation-overlap
-    prevention: mobile-game-ux plus RU/EN orientation matrix
+    prevention: mobile-game-ux supported orientation transition matrix
+  - id: cover-crop-loses-subject
+    prevention: distinguish global layout from source-asset/focal-point crop and verify actual target viewport
+  - id: generated-asset-not-integrated
+    prevention: file existence, mapping, runtime visibility and visual acceptance are separate gates
   - id: generic-ai-visuals
-    prevention: visual-quality-gate three-pass review
-  - id: browser-scene-leak
-    prevention: web-game-playtest and game-performance-budget
-  - id: unlicensed-generated-asset
-    prevention: asset-provenance-and-rights ledger
+    prevention: visual-quality-gate three-pass review and anti-neuroslop blockers
+  - id: stale-authored-coverage-ledger
+    prevention: current ledger hash plus expected/observed event id and asset hash
+  - id: browser-capture-unavailable
+    prevention: classify as BLOCKED/EVIDENCE_GAP, never visual PASS
+  - id: default-path-only-narrative-audit
+    prevention: branch-complete semantic audit for all materially affected reachable branches
+  - id: reader-comprehension-missed-by-structure
+    prevention: cold-read comprehension gate separate from counts/reachability
+  - id: locale-coupled-save-state
+    prevention: SDK locale authority with locale-independent progression/save contract
+  - id: web-route-assumed-local-tools
+    prevention: Web reasoning-only over supplied evidence; native repository/tool proof
+  - id: web-transport-failure
+    prevention: classify rate-limit/attachment/bridge transport separately from semantic verdict
+  - id: stale-native-capability-attestation
+    prevention: fresh run/session/turn capability challenge before production generation
+  - id: external-provider-pass-promoted
+    prevention: provider evidence is supporting and cannot override official/manual Yandex failures
+  - id: yandex-docs-drift
+    prevention: live watcher plus explicit semantic review/acceptance; FETCH_FAILED is not PASS
+  - id: first-publication-video-evidence-gap
+    prevention: file/hash validation plus manual gameplay/locale/frame review
+  - id: release-zip-contamination
+    prevention: enumerate final ZIP and exclude harness/provider/debug/profile/promotional media
+  - id: incomplete-release-artifacts
+    prevention: final ZIP, SHA-256, media, exact source identity and all mandatory release domains
+  - id: infrastructure-outage-misclassified
+    prevention: report external outage as BLOCKED separately from product correctness
+  - id: repeated-broad-verification
+    prevention: targeted iteration checks, compact checkpoints and one final barrier after state change
