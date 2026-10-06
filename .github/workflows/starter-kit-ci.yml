@@ -1,0 +1,32 @@
+name: Starter Kit CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Starter Kit regression tests
+        run: npm run test:updater
+      - name: Starter Kit self-test
+        run: npm run starter-kit:self-test
+      - name: Yandex requirement registries
+        run: |
+          npm run yandex:requirements:audit
+          npm run yandex:console:audit
+      - name: Syntax gate
+        run: |
+          node --check tools/yandex/release-evidence-gate.mjs
+          node --check tools/starter-kit/self-test.mjs
