@@ -36,9 +36,7 @@ runtime reachability/use, and integrated visual acceptance. Manifest-only eviden
 
 ## Provenance
 
-Every positive required gate is tied to the exact source HEAD used for the release build. Release
-aggregation requires a clean worktree and release-build SHA-256. Evidence from a previous HEAD must
-be regenerated.
+Every positive required gate is tied to the exact source HEAD used for the release build. The CLI independently reads the actual Git HEAD and dirty state, hashes the actual `source.releaseBuildPath`, and rejects disagreement with the declared SHA-256. For `pre-submit`, `source.remoteRef` is required and the CLI proves current HEAD is contained by that remote-tracking ref. Evidence from a previous HEAD or a local-only commit must be regenerated/pushed and reverified.
 
 ## External/manual isolation
 
