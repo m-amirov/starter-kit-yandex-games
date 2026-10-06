@@ -804,7 +804,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "b4fff0b8ef1d4ae52e417e268b91dea6d3a57fa19fc87bfea79c98fd8bd659e4"
+      "sha256": "98298c4b8f361e09c28b2bc667da71099647e5969faae5050a6baa33577d8075"
     },
     {
       "source": "migrations/0.3.0-yandex-requirements.md",
