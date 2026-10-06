@@ -321,7 +321,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "56acd46434ccdb5dce57d1978a30ba94d56651bc58b73db26eb7393f231014a7"
+      "sha256": "6c6d528fd9d6733d72e79ab0091f56f48bd2608705fd05252a1d90dc4fc4f69f"
     },
     {
       "source": "AGENTS.md",
@@ -1652,7 +1652,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "5032692c2189531df01722f6c999f2a07493bd0f1c912dcf18b0dd9eeb388643"
+      "sha256": "5f84ad1c0f40184c7e1f01f17c2ab77cc646289be1b40cb401c9955ef53eacf8"
     },
     {
       "source": "tools/yandex/release-evidence-gate.mjs",
@@ -1668,7 +1668,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "526fa801e000564f1f48b6307623ea54ff9c20597f8bdb5ed8d880e7d60fd850"
+      "sha256": "fb64996a5df243f7f434b9016d25100311c0103f57004926346264d49ba256e0"
     },
     {
       "source": "docs/PRODUCTION_INCIDENT_HARDENING.md",
@@ -1684,7 +1684,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "aa7de1cc59fe1c3329e7a2c0636e665f7818ab25ad212ae675a872a19306ed8e"
+      "sha256": "a93431216676e6bd68034b673f35d620815d5de57f37a9cf6cecbc40a8a74ec7"
     }
   ]
 }
