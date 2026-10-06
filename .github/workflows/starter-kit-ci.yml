@@ -18,6 +18,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Generated manifest drift gate
+        run: |
+          npm run starter-kit:manifest
+          git diff -- starter-kit.manifest.json
+          git diff --exit-code -- starter-kit.manifest.json
       - name: Starter Kit regression tests
         run: npm run test:updater
       - name: Starter Kit self-test
