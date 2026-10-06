@@ -81,3 +81,25 @@ test('mature profile maps engineering system into the configured single skill ro
   assert.equal(system?.conflictPolicy, 'semantic-merge');
   assert.equal(entries.some((entry) => entry.target.startsWith('.codex/skills/')), false);
 });
+
+
+test('failure memory is a regression-backed contract', () => {
+  const agents = read('AGENTS.md');
+  const contract = read('.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md');
+  const harness = read('.starter-kit/core/TEST_HARNESS_ADJUDICATION.md');
+  const mobile = read('.codex/skills/mobile-game-ux/SKILL.md');
+  const visual = read('.codex/skills/visual-quality-gate/SKILL.md');
+  const release = read('.codex/skills/release-audit/SKILL.md');
+  const postmortem = read('docs/DEVELOPMENT_POSTMORTEM_2026-09.md');
+  const failures = read('lessons/known-failures.yaml');
+
+  assert.match(agents, /known-failures\.yaml/);
+  assert.match(contract, /reproduce → classify → root cause → repair → regression coverage/);
+  assert.match(contract, /CONFIGURATION_ERROR, TEST_FAILURE, COMMAND_FAILURE, HARNESS_DEFECT and PRODUCT_DEFECT/);
+  assert.match(harness, /active locale/);
+  assert.match(mobile, /390×844/);
+  assert.match(visual, /source-asset\/focal-point defect/);
+  assert.match(release, /BLOCKED_BASE_MISMATCH/);
+  assert.match(postmortem, /default-path narrative audit/i);
+  assert.match(failures, /release-base-mismatch/);
+});
