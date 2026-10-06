@@ -130,7 +130,7 @@ function validateYandexContracts(root, skillRoot, errors, sourceMode) {
     errors.push(...snapshotAudit.errors.map((error) => `Yandex snapshot alignment: ${error}`));
   }
 
-  for (const relative of ['config/game-spec.schema.json', 'config/final-gameplay-videos.schema.json', 'config/yandex-external-evidence.schema.json']) {
+  for (const relative of ['config/game-spec.schema.json', 'config/final-gameplay-videos.schema.json', 'config/yandex-external-evidence.schema.json', 'config/yandex-release-evidence.schema.json']) {
     try { readJson(path.join(root, relative)); } catch (error) { errors.push(`invalid JSON schema ${relative}: ${error.message}`); }
   }
   const packageJson = readJson(path.join(root, 'package.json'));
@@ -139,10 +139,14 @@ function validateYandexContracts(root, skillRoot, errors, sourceMode) {
   if (!packageJson.scripts?.['yandex:docs:check']) errors.push('yandex:docs:check script is missing');
   if (!packageJson.scripts?.['yandex:docs:accept-snapshot']) errors.push('yandex:docs:accept-snapshot script is missing');
   if (!packageJson.scripts?.['yandex:media:validate']) errors.push('yandex:media:validate script is missing');
+  if (!packageJson.scripts?.['yandex:release:evidence']) errors.push('yandex:release:evidence script is missing');
   for (const command of ['verify', 'run', 'normalize', 'audit']) {
     if (!packageJson.scripts?.[`yandex:external:${command}`]) errors.push(`yandex:external:${command} script is missing`);
   }
 
+  for (const relative of ['tools/yandex/release-evidence-gate.mjs', 'docs/PRODUCTION_INCIDENT_HARDENING.md']) {
+    if (!fs.existsSync(path.join(root, relative))) errors.push(`Yandex release hardening file is missing: ${relative}`);
+  }
   const providerRegistryFile = path.join(root, 'config', 'yandex-external-evidence-providers.yaml');
   const providerToolFile = path.join(root, 'tools', 'yandex', 'external-evidence.mjs');
   const providerRoot = path.join(root, 'tools', 'yandex', 'external-runtime-provider');
@@ -183,7 +187,10 @@ function validateYandexContracts(root, skillRoot, errors, sourceMode) {
     '20–25 seconds',
     'BLOCK_YANDEX_DOCS_CHANGED_REVIEW_REQUIRED',
     'yandex-doc-snapshot.json',
-    'Optional external Draft runtime evidence'
+    'Optional external Draft runtime evidence',
+    'Aggregated release verdict — P0',
+    'yandex:release:evidence',
+    'PRE_SUBMIT_READY'
   ]) {
     if (!validationSkill.includes(token)) errors.push(`Yandex validation skill token missing: ${token}`);
   }
