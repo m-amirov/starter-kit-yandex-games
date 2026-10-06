@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 export const LOCAL_REQUIRED_GATES = Object.freeze([
@@ -42,6 +44,71 @@ function text(value) {
 function sha(value, length = 40) {
   const pattern = length === 64 ? /^[a-f0-9]{64}$/i : /^[a-f0-9]{7,64}$/i;
   return pattern.test(String(value ?? ''));
+}
+
+function fileSha256(file) {
+  return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+}
+
+export function inspectActualReleaseSource(projectDir, declaredSource = {}) {
+  const root = path.resolve(projectDir);
+  const git = (args) => spawnSync('git', args, { cwd: root, encoding: 'utf8' });
+  const inside = git(['rev-parse', '--is-inside-work-tree']);
+  if (inside.status !== 0 || inside.stdout.trim() !== 'true') {
+    return { available: false, head: null, clean: null, releaseBuildSha256: null, remoteContainsHead: false, reason: 'project is not a Git worktree' };
+  }
+
+  const head = git(['rev-parse', 'HEAD']).stdout.trim();
+  const status = git(['status', '--porcelain=v1', '--untracked-files=all']);
+  const clean = status.status === 0 && status.stdout.trim().length === 0;
+
+  let releaseBuildSha256 = null;
+  let releaseBuildPath = null;
+  let buildReason = null;
+  if (text(declaredSource.releaseBuildPath)) {
+    const candidate = path.resolve(root, declaredSource.releaseBuildPath);
+    const relative = path.relative(root, candidate);
+    if (relative.startsWith('..') || path.isAbsolute(relative)) {
+      buildReason = 'releaseBuildPath escapes project root';
+    } else if (!fs.existsSync(candidate) || !fs.statSync(candidate).isFile()) {
+      buildReason = `release build file does not exist: ${declaredSource.releaseBuildPath}`;
+    } else {
+      releaseBuildPath = relative.replaceAll('\\', '/');
+      releaseBuildSha256 = fileSha256(candidate);
+    }
+  } else {
+    buildReason = 'releaseBuildPath is missing';
+  }
+
+  let remoteContainsHead = null;
+  let remoteRefSha = null;
+  let remoteReason = null;
+  if (text(declaredSource.remoteRef)) {
+    const remoteRef = declaredSource.remoteRef.trim();
+    const resolved = git(['rev-parse', '--verify', `${remoteRef}^{commit}`]);
+    if (resolved.status !== 0) {
+      remoteContainsHead = false;
+      remoteReason = `remote tracking ref cannot be resolved: ${remoteRef}`;
+    } else {
+      remoteRefSha = resolved.stdout.trim();
+      const contained = git(['merge-base', '--is-ancestor', head, remoteRefSha]);
+      remoteContainsHead = contained.status === 0;
+      if (!remoteContainsHead) remoteReason = `current HEAD ${head} is not contained in ${remoteRef}`;
+    }
+  }
+
+  return {
+    available: true,
+    head,
+    clean,
+    releaseBuildPath,
+    releaseBuildSha256,
+    buildReason,
+    remoteRef: declaredSource.remoteRef ?? null,
+    remoteRefSha,
+    remoteContainsHead,
+    remoteReason
+  };
 }
 
 function evidenceComplete(gate, blockers) {
@@ -103,7 +170,7 @@ function gateSpecific(gate, blockers) {
   }
 }
 
-export function evaluateYandexReleaseEvidence(input = {}) {
+export function evaluateYandexReleaseEvidence(input = {}, { actualSource = null } = {}) {
   const blockers = [];
   if (input.schemaVersion !== 1) blockers.push('schemaVersion must equal 1');
   if (!['local-rc', 'pre-submit'].includes(input.phase)) blockers.push('phase must be local-rc or pre-submit');
@@ -112,7 +179,24 @@ export function evaluateYandexReleaseEvidence(input = {}) {
   const sourceHead = input.source?.head;
   if (!sha(sourceHead)) blockers.push('source.head must be a Git commit SHA');
   if (input.source?.clean !== true) blockers.push('release evidence requires a clean source worktree');
+  if (!text(input.source?.releaseBuildPath)) blockers.push('source.releaseBuildPath is required');
   if (!sha(input.source?.releaseBuildSha256, 64)) blockers.push('source.releaseBuildSha256 must be a SHA-256');
+  if (input.phase === 'pre-submit' && !text(input.source?.remoteRef)) blockers.push('pre-submit requires source.remoteRef');
+
+  if (actualSource) {
+    if (actualSource.available !== true) blockers.push(`PROVENANCE_FAILURE: ${actualSource.reason ?? 'actual Git source is unavailable'}`);
+    if (actualSource.available === true && actualSource.head !== sourceHead) {
+      blockers.push(`EVIDENCE_PROVENANCE_MISMATCH source=${sourceHead ?? '(missing)'} actual=${actualSource.head}`);
+    }
+    if (actualSource.available === true && actualSource.clean !== true) blockers.push('PROVENANCE_FAILURE: actual source worktree is dirty');
+    if (actualSource.buildReason) blockers.push(`PROVENANCE_FAILURE: ${actualSource.buildReason}`);
+    if (actualSource.releaseBuildSha256 && actualSource.releaseBuildSha256 !== input.source?.releaseBuildSha256) {
+      blockers.push(`EVIDENCE_PROVENANCE_MISMATCH release artifact SHA-256 declared=${input.source?.releaseBuildSha256 ?? '(missing)'} actual=${actualSource.releaseBuildSha256}`);
+    }
+    if (input.phase === 'pre-submit' && actualSource.remoteContainsHead !== true) {
+      blockers.push(`PROVENANCE_FAILURE: ${actualSource.remoteReason ?? 'current HEAD is not proven on the declared remote tracking ref'}`);
+    }
+  }
 
   const gates = Array.isArray(input.gates) ? input.gates : [];
   const byId = new Map();
@@ -164,6 +248,7 @@ export function evaluateYandexReleaseEvidence(input = {}) {
     phase: input.phase ?? null,
     verdict,
     sourceHead: sourceHead ?? null,
+    actualSource: actualSource ?? null,
     requiredGates: required,
     blockers
   };
@@ -182,7 +267,8 @@ if (invokedDirectly) {
     process.exit(2);
   }
   const input = JSON.parse(fs.readFileSync(path.resolve(file), 'utf8'));
-  const result = evaluateYandexReleaseEvidence(input);
+  const actualSource = inspectActualReleaseSource(process.cwd(), input.source ?? {});
+  const result = evaluateYandexReleaseEvidence(input, { actualSource });
   console.log(JSON.stringify(result, null, 2));
   if (result.verdict === 'BLOCKED_YANDEX_RELEASE_EVIDENCE') process.exitCode = 1;
 }
