@@ -193,7 +193,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "658fb9165bc4d7d26a1f0e021618c36932a6f3441706c180cb685947cfa82455"
+      "sha256": "699f7e2deafe4b4ffb532537de26c7c4143ed9a532d19d75bce402aa25db332a"
     },
     {
       "source": ".codex/skills/product-quality-review/ORIGIN.md",
@@ -241,7 +241,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "c4e844fbc8bb0252947f2237e1ea3b8dd3449721d292faa869c3ccd7f5f3aa4f"
+      "sha256": "12c52b312e9e5f8c469145f5a383b1d050837d97407f798c31e648b40458abbc"
     },
     {
       "source": ".codex/skills/visual-quality-gate/ORIGIN.md",
@@ -273,7 +273,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "7842ce786aa85653479e3357849ea4bad7c7104ad6f74b9c0301a8e91a18806d"
+      "sha256": "d9d12d269370067a48cba5b3826e44fec005211c00dd58a2da102d2d931927d2"
     },
     {
       "source": ".codex/skills/web-game-playtest/ORIGIN.md",
@@ -321,7 +321,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "8e1ed83252674f9c957db5a94dc3d236563928472b58d5e44226e31a4056c06d"
+      "sha256": "13499ae5329dbb0d4f79dfd16510c47680cc76e695bc1ee924abef9a5f5a1cbe"
     },
     {
       "source": "AGENTS.md",
@@ -337,7 +337,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "59d5709508760e569d9ed871e07a66768714c6cecc0629bb01d591ab68d198f9"
+      "sha256": "aad7867386d2ffcb865844fae6cf8ecaca85d0e248cb960ef91c73b863dda155"
     },
     {
       "source": "package.json",
