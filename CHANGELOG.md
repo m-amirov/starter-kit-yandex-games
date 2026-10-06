@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — 2026-10-06
+
+- Consolidated the July–October development failure history into a failure-prevention registry and expanded the known-failures ledger.
+- Added release-base lineage blocking, test/config/harness adjudication, evidence-domain separation, 390×844/full-bleed crop checks, focal-point diagnosis and gameplay-video boundary-frame review.
+- Added contract regression coverage so these rules cannot silently disappear from the Starter Kit.
+
 ## 0.5.9 — 2026-09-30
 
 - Updated the official Yandex Games requirements snapshot and registries after the 29 September 2026 documentation revision.
