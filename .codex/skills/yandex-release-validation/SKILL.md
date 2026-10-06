@@ -44,7 +44,9 @@ independent-review evidence separate. One dimension cannot infer another.
 - `UNKNOWN`, `UNPROVEN`, `NOT_RUN`, `UNAVAILABLE`, `WARN`, and `BLOCKED` are non-PASS.
 - automated PASS requires executed assertions and complete declared coverage;
 - every positive gate is tied to the exact current release source HEAD;
-- release aggregation requires a clean worktree and release-build SHA-256;
+- the aggregator CLI independently verifies actual Git HEAD/dirty state and hashes the actual `source.releaseBuildPath`;
+- release aggregation requires a clean worktree and matching release-build SHA-256;
+- `pre-submit` requires `source.remoteRef`, and current HEAD must be contained by that remote-tracking ref;
 - desktop evidence never satisfies mobile gates;
 - DOM/test success never satisfies visual pixel gates;
 - synthetic/SwiftShader measurements never satisfy hardware performance;
