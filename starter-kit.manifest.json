@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.10",
+  "version": "0.5.11",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -193,7 +193,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "24c8d550c67b8357fb784f961f9712d9f671ddea96670bab2f8d9911538f4649"
+      "sha256": "4695503376d71311eccbb1cadff2eee4729389f46d7d151d7b3658a36c1174e1"
     },
     {
       "source": ".codex/skills/product-quality-review/ORIGIN.md",
@@ -273,7 +273,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "e801478149a68a42851d362b88b551ad09b90dab41f0d1173588a07368e05061"
+      "sha256": "31638101aa97843b0bfa883d07283e3c14e8d13c1e598edc939dc782109d5b10"
     },
     {
       "source": ".codex/skills/web-game-playtest/ORIGIN.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "5a05a296d7afeaa44efd84c0a5653cc6675531f892c6e72967295ad8b98167d2"
+      "sha256": "b158504e5639957920fe22352e71287188e13bac6003083e836baa6b358f539b"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "2c9b50b519c00576a6af9d3031e3ea5e6fbb3375db55256b92c0a7f597f43a0e"
+      "sha256": "d1423c3a24805d755a6543a8a9266d6c1807f4b81fc37daaaaa12da43945797a"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -531,7 +531,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "e892e5a6bf8447fc190e9de0f3d137179a620124f84e057cc0ca5ae95cb724a6"
+      "sha256": "2da849baedaff4885fb7e3c079a8d07587a30c30fb0358d0977e338e1860d497"
     },
     {
       "source": "CHANGELOG.md",
@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "dd0ab3e51288ebd27d7dc847ea77d8342006fceb733ec0be0874f53bb2848418"
+      "sha256": "392d090a6e4086c4607d06e641847c4a1710bc31b8073d739753a69ae6c9a4e2"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -788,7 +788,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "5685c7b8683ac06dfdd4e9a36098394e175619d03c216977d9d51cbdd676c4bc"
+      "sha256": "8745fdc6ad34d431b07f8b0611d917e4e2be8f054e43f3c84a80259a3d413c76"
     },
     {
       "source": "lessons/known-failures.yaml",
@@ -980,7 +980,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "2d1efe826a133287eb81b3a1776f5a7248848ebec0e85c27dfbfbd0cfde821e4"
+      "sha256": "4c127906f16e9fafcc5553dd29e80fb04e967cd88cf61925d0ed8a28a0b436a5"
     },
     {
       "source": "templates/media/HORIZONTAL_GAMEPLAY_VIDEO.md",

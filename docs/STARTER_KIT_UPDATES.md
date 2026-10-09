@@ -146,6 +146,12 @@ Rollback uses Git:
 Dry run performs no writes. Neither init/update status tooling nor dry run
 creates a target-project release ZIP.
 
+## 0.5.11 — human-figure CG anatomy and grounding
+
+The 0.5.11 patch adds a fail-closed **human-figure anatomy, camera and spatial-continuity** gate in the delivered `visual-quality-gate` skill, with a portrait-specific reminder in `mobile-game-ux` and explicit fields in the `SCREENSHOT_VISUAL_GATE` template. For generated character scenes, reviewers must examine actual source pixels and current runtime screenshots for reference-consistent anatomy (including non-compressed legs, plausible head/torso and hands), coherent eye-level/natural perspective where appropriate, and readable contact with the supporting ground plane. A wet quay must not accidentally resemble deep harbor water around the actors.
+
+Prefer a deliberate waist-up or mid-thigh crop when full-body framing produces distortion. No numeric anatomy ratio is imposed on deliberately stylized characters or authentic physical variation. Real visual defects are FAIL/REWORK even with passing DOM/layout tests. Existing mature-project semantic-merge safeguards and project-owned runtime protections remain unchanged.
+
 ## 0.5.10 — multi-character CG fallback
 
 The 0.5.10 patch adds a required art-direction decision to the shipped `visual-quality-gate` and `mobile-game-ux` skills: after two materially distinct failed attempts to fix overlapping character silhouettes and dialogue in a narrative scene, evaluate a unified CG and prefer it when feasible. The screenshot visual gate template now captures actual pixel-level separation and the independent reviewer verdict at 360×640 and the taller portrait viewport.

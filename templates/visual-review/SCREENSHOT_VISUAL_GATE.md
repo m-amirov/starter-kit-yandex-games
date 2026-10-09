@@ -29,6 +29,15 @@ Use only affected states. Enemy work normally includes normal and pressure or at
 - If prior mobile REWORK was reported: fresh current-HEAD before/after captures, role-specific independent reviewer verdict, and remaining findings:
 - If repeated fixes fail: stop under the global three-attempt limit and link `artifacts/ESCALATION_REPORT.md`:
 
+## Human-figure CG anatomy and grounding (when applicable)
+
+- Canonical character references / intentional stylization consulted:
+- Proportions at full-source resolution and current runtime crop: head-to-torso, leg-to-torso, hands/feet, joints and relative scale between people (unintended compression or exaggeration?):
+- Camera level, focal perspective, horizon and consistent relative depth (unintended low-angle / wide-angle distortions?):
+- Ground plane, shoes/contact shadows, quay edge, waterline, foreground occlusion (any false flooded or behind-seawall appearance?):
+- Mobile crop choice and lower dialogue negative space: natural framing without stretching, anatomy clipping, masking or fabricated barriers:
+- Independent image-visible anatomy/perspective/spatial verdict for **360×640**, taller portrait and affected desktop captures (anomalies are **FAIL/REWORK** even with no UI overlap):
+
 ## Visual review verdict
 
 - Verdict: `PASS` / `FAIL` / `EVIDENCE_GAP`
