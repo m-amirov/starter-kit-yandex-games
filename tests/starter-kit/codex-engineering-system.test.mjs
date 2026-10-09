@@ -46,6 +46,27 @@ test('screenshot visual gate is a canonical acceptance barrier', () => {
   assert.match(read('PROJECT_RULES.md'), /SCREENSHOT_VISUAL_GATE/);
 });
 
+test('multi-character CG fallback is a delivered, fail-closed mobile art rule', () => {
+  const visual = read('.codex/skills/visual-quality-gate/SKILL.md');
+  const mobile = read('.codex/skills/mobile-game-ux/SKILL.md');
+  const template = read('templates/visual-review/SCREENSHOT_VISUAL_GATE.md');
+  const manifest = loadManifest(ROOT);
+  const mature = resolveManifestEntries(manifest, loadTargetProfile(ROOT, 'mature-yandex-phaser', { mode: 'update' }), 'update');
+  for (const logicalId of ['skill:visual-quality-gate:SKILL.md', 'skill:mobile-game-ux:SKILL.md', 'managed:screenshot-visual-gate-template']) {
+    assert.ok(mature.some(entry => entry.logicalId === logicalId), `missing mature update delivery: ${logicalId}`);
+  }
+  assert.match(visual, /two materially distinct sprite-position/i);
+  assert.match(visual, /MUST evaluate a unified CG/i);
+  assert.match(visual, /MUST prefer the unified CG/i);
+  assert.match(visual, /360×640/);
+  assert.match(visual, /visible character silhouette pixels/i);
+  assert.match(visual, /Do not bake dialogue, UI, icons/i);
+  assert.match(visual, /ESCALATION_REPORT\.md/);
+  assert.match(mobile, /multi-character dialogue composition and CG fallback/i);
+  assert.match(template, /visible silhouette pixels vs first dialogue glyphs/i);
+  assert.match(template, /independent reviewer verdict/i);
+});
+
 test('concept proof blocks production until manual review', () => {
   const gate = read('.starter-kit/core/CONCEPT_PROOF_GATE.md');
   for (const token of [
