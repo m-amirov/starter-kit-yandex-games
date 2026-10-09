@@ -1,4 +1,4 @@
-# Autonomous Yandex Games Starter Kit 0.5.7
+# Autonomous Yandex Games Starter Kit 0.5.10
 
 Версионируемая engineering/compliance инфраструктура для создания новых игр и
 безопасного обновления существующих зрелых проектов Яндекс Игр.
@@ -100,6 +100,12 @@ decision permits production. `STOP_PROJECT` activates `$project-termination`.
 
 UI/E2E instability is adjudicated through
 `.starter-kit/core/TEST_HARNESS_ADJUDICATION.md` before runtime changes.
+
+## Multi-character scene composition (0.5.10)
+
+The shipped `$visual-quality-gate` and `$mobile-game-ux` skills now require an explicit unified-CG fallback assessment after **two distinct failed mobile sprite-overlap repairs** in a narrative two-character (or group) dialogue scene. Use a single scene-composed CG when suitable instead of accumulating CSS offsets/masks. The artwork must not embed UI, must preserve character identity, and must be separately framed for mobile dialogue-safe space when necessary. Verify **visible silhouette pixels vs dialogue text** in real 360×640 and taller portrait captures. Existing three-attempt escalation and external art-provenance constraints remain in effect.
+
+Mature-project updates deliver this through semantic-merge skills and the managed screenshot gate template. Review conflicts explicitly; do not overwrite project-owned runtime or existing art rules.
 
 ## Screenshot Visual Gate
 
