@@ -20,6 +20,15 @@ Use this compact template at the acceptance boundary of a production-visible pas
 
 Use only affected states. Enemy work normally includes normal and pressure or attack states; include elite/boss when affected. Boss work includes introduction/readability, materially different attacks/phases and crowded combat. Biome work includes environment, ordinary combat, interaction and pressure. UI includes normal, long RU/EN text, interactive and relevant modal/result state.
 
+## Multi-character dialogue / mobile composition (when applicable)
+
+- Characters visible / scene cue / sprite or unified CG mode:
+- Existing sprite overlap rework count and CG-fallback decision (why feasible or why retained sprites):
+- Screenshot visual separation: visible silhouette pixels vs first dialogue glyphs (not only DOM rectangles); record overlap/gap at compact **360×640** and taller portrait viewport:
+- If a unified CG is used: character identity/reference match, landscape/portrait continuity, natural framing, portrait dialogue-safe negative space, no embedded UI/text/icons:
+- If prior mobile REWORK was reported: fresh current-HEAD before/after captures, role-specific independent reviewer verdict, and remaining findings:
+- If repeated fixes fail: stop under the global three-attempt limit and link `artifacts/ESCALATION_REPORT.md`:
+
 ## Visual review verdict
 
 - Verdict: `PASS` / `FAIL` / `EVIDENCE_GAP`

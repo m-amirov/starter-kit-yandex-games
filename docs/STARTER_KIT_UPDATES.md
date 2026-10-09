@@ -146,6 +146,12 @@ Rollback uses Git:
 Dry run performs no writes. Neither init/update status tooling nor dry run
 creates a target-project release ZIP.
 
+## 0.5.10 — multi-character CG fallback
+
+The 0.5.10 patch adds a required art-direction decision to the shipped `visual-quality-gate` and `mobile-game-ux` skills: after two materially distinct failed attempts to fix overlapping character silhouettes and dialogue in a narrative scene, evaluate a unified CG and prefer it when feasible. The screenshot visual gate template now captures actual pixel-level separation and the independent reviewer verdict at 360×640 and the taller portrait viewport.
+
+A mature project's existing visual skills use **semantic merge**, not silent replacement. Run the updater with `--dry-run`, review any generated skill conflicts, then resolve only the reviewed `skill:visual-quality-gate:SKILL.md` and `skill:mobile-game-ux:SKILL.md` entries. The managed gate template updates only from a matching recorded baseline. Product art and runtime remain project-owned; the update does not generate new CG images.
+
 ## Optional external runtime provider
 
 Version 0.5.7 delivers only the managed pinned provider tooling, integrity
