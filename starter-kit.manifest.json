@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "b5362079843800562ab5f25ac546e8d7cd6759282efee0b3be5f907a910dc07f"
+      "sha256": "2c9b50b519c00576a6af9d3031e3ea5e6fbb3375db55256b92c0a7f597f43a0e"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
