@@ -60,6 +60,18 @@ This rule applies to narrative/dialogue scenes with **two or more visible charac
 
 **Anti-pattern:** repeatedly layering `translateY`, sprite masks, gradients and cue-specific overrides to hide the same silhouette/dialogue overlap while the completed screenshot still fails visual review.
 
+## Generated human-figure anatomy, camera and spatial-continuity gate
+
+Applies to any production illustration, CG, character scene, or key art showing recognizably human figures. Before integration or visual acceptance, **MUST inspect the full image** alongside the established character references and the intended in-game crop; clean runtime layout alone does not prove image quality.
+
+- **Reference-consistent anatomy.** Reject unintended enlarged heads/hands/feet, compressed or implausibly short legs relative to the torso, inconsistent shoulder/hip scale, malformed joints, impossible poses, disconnected limbs, or mismatched proportions between people sharing a plane. Use the project's intended art style and character designs as the baseline, not a fixed universal body-height ratio. Deliberate stylization and authentic individual body variation are valid when consistent with the art bible.
+- **Natural perspective.** Reject accidental wide-angle/low-angle distortion that makes heads or upper bodies disproportionately large or legs foreshortened without narrative intent. For grounded cinematic dialogue scenes, prefer a stable human-eye-level perspective and natural-lens framing (approximately 50 mm full-frame equivalent is a useful reference, **not a mandatory numeric camera setting**); all characters must share a coherent camera, horizon, perspective and scale.
+- **Grounding and spatial logic.** The full scene **MUST clearly establish what surface supports each character**: consistent footwear/foot placement, contact shadow, scene scale, quay/walkway edge and waterline. Reject a wet reflective foreground that inadvertently reads as floodwater, a seawall that visually traps the actors in the harbor, inconsistent occlusion, or floating/sinking figures. Wet pavement is allowed when its ground plane remains unmistakable.
+- **Portrait safety without deformation.** Do not shorten anatomy, stretch characters, shift the horizon unnaturally, invent a blocking parapet, or hide anatomy with masks solely to create dialogue space. If full-body portrait staging does not work, **MUST prefer a consciously composed mid-thigh, waist-up or other reference-consistent crop** with natural negative space rather than forcing distorted full-body figures.
+- **Fail-closed art review.** Inspect the generated source *and* fresh current-HEAD runtime screenshots at all affected viewports (including compact **360×640** and the supported taller portrait frame). Explicitly record proportion/reference, camera/perspective, ground/waterline, and UI/text separation verdicts. Any unintended anatomy or spatial-continuity defect is **VISUAL_ACCEPTANCE: FAIL/REWORK**, even if mechanical tests, sprite count, UI overlap and previous Web reviews passed. Reframe or regenerate the art and re-run affected source-bound visual acceptance; do not treat a CSS fix or an old screenshot verdict as a new PASS.
+
+**Anti-pattern:** solving a failed character/ground-plane composition by regenerating a full-body portrait without checking human proportions, perspective and the physically readable supporting surface.
+
 ## Review criteria
 
 - coherent perspective, materials, lighting, outlines and scale;
