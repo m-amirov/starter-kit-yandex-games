@@ -31,6 +31,10 @@ Derived from the useful touch and mobile-performance concepts in `mobile-games-v
 - safe areas do not cover controls;
 - 360×640 remains usable in RU and EN.
 
+## Narrative multi-character mobile safety
+
+For dialogue scenes with two or more visible characters, apply the `$visual-quality-gate` **multi-character dialogue composition and CG fallback** rule. When repeated sprite-framing fixes cannot separate the visible silhouettes from dialogue text, evaluate a unified scene CG with a portrait-safe composition instead of stacking masks or transforms. Verify actual screenshot pixels and readable text at **360×640** and the taller supported portrait viewport; mechanical overflow checks alone cannot pass visual acceptance.
+
 ## Evidence
 
 Run mobile-emulated Chromium plus WebKit where available and record `artifacts/evidence/mobile-ux-review.json`.
