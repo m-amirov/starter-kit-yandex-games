@@ -48,6 +48,18 @@ Record edge-to-edge measurements on all four viewport edges, document/internal s
 
 For games, a new enemy, elite, boss, biome, attack, or Living Arena effect is not production-ready merely because an asset exists, tests pass, collision works, or E2E reaches the state: inspect it in real combat context.
 
+## Multi-character dialogue composition and CG fallback
+
+This rule applies to narrative/dialogue scenes with **two or more visible characters** and a live dialogue/text overlay. It does not require replacing working dynamic sprite staging or apply to unrelated combat formations.
+
+- **Choose the representation at art direction.** Use independently staged sprites when interaction, expression changes or motion requires them. Prefer a unified, scene-specific CG (composite illustration) for a fixed emotional two-shot or group beat when it provides more coherent perspective, lighting and reliable text-safe framing.
+- **Escalate repeated mobile failures.** After two materially distinct sprite-position, cue-only CSS, or mask corrections fail actual-runtime mobile visual review for the same character/text overlap or safe-area root cause, **MUST evaluate a unified CG before another staging tweak**. When it is feasible, matches the art bible, has approved provenance, and preserves the authored beat, **MUST prefer the unified CG** unless a concrete product reason for sprite staging is recorded. This is not permission to exceed the global three-attempt escalation limit: if the third materially distinct attempt fails, stop and file `artifacts/ESCALATION_REPORT.md`.
+- **Unified CG contract.** Preserve character identity and reference continuity, authored cast and scene meaning. Do not bake dialogue, UI, icons, buttons, navigation, counters, captions or overlays into the artwork. Use a landscape and, where necessary, a separately composed portrait version of the same beat. The portrait composition must reserve sufficient natural negative space for the actual runtime dialogue and mobile safe areas; a deliberate waist-up portrait crop is acceptable, but floating cut-outs, harsh bottom truncation and fading character torsos into dialogue are not acceptable substitutes.
+- **Pixel-level acceptance.** In the actual current-HEAD runtime, inspect the relevant desktop and mobile frames, including compact portrait 360×640 and the project's taller portrait target. Verify the **visible character silhouette pixels against the first dialogue glyphs** and UI controls, not just bounding boxes, overflow, mask computed styles or successful screenshot capture. Record screenshot hashes, viewport dimensions, cue/asset mapping, style/reference consistency and independent visual verdict. Any REWORK or missing image provenance remains FAIL/BLOCKED.
+- **Scope and ownership.** A scene-specific CG replacement must not silently change other cues, choices, narrative text, character assets or routes. If production image generation or approved references are unavailable, stop with an evidence-based blocker rather than claiming an invented CG or visual PASS. Follow `$asset-provenance-and-rights` and the project-owned art bible.
+
+**Anti-pattern:** repeatedly layering `translateY`, sprite masks, gradients and cue-specific overrides to hide the same silhouette/dialogue overlap while the completed screenshot still fails visual review.
+
 ## Review criteria
 
 - coherent perspective, materials, lighting, outlines and scale;
