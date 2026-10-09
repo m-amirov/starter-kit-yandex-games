@@ -67,6 +67,28 @@ test('multi-character CG fallback is a delivered, fail-closed mobile art rule', 
   assert.match(template, /independent reviewer verdict/i);
 });
 
+test('generated human CG anatomy and spatial logic gate ships to mature game targets', () => {
+  const visual = read('.codex/skills/visual-quality-gate/SKILL.md');
+  const mobile = read('.codex/skills/mobile-game-ux/SKILL.md');
+  const template = read('templates/visual-review/SCREENSHOT_VISUAL_GATE.md');
+  const manifest = loadManifest(ROOT);
+  const mature = resolveManifestEntries(manifest, loadTargetProfile(ROOT, 'mature-yandex-phaser', { mode: 'update' }), 'update');
+  for (const logicalId of ['skill:visual-quality-gate:SKILL.md', 'skill:mobile-game-ux:SKILL.md', 'managed:screenshot-visual-gate-template']) {
+    assert.ok(mature.some(entry => entry.logicalId === logicalId), `missing mature update delivery: ${logicalId}`);
+  }
+  assert.match(visual, /Generated human-figure anatomy, camera and spatial-continuity gate/);
+  assert.match(visual, /MUST inspect the full image/);
+  assert.match(visual, /compressed or implausibly short legs/);
+  assert.match(visual, /wide-angle\/low-angle distortion/);
+  assert.match(visual, /Grounding and spatial logic/);
+  assert.match(visual, /wet reflective foreground/);
+  assert.match(visual, /MUST prefer a consciously composed mid-thigh/);
+  assert.match(visual, /VISUAL_ACCEPTANCE: FAIL\/REWORK/);
+  assert.match(mobile, /generated human-figure anatomy, camera and spatial-continuity gate/i);
+  assert.match(template, /Human-figure CG anatomy and grounding/);
+  assert.match(template, /false flooded or behind-seawall appearance/);
+});
+
 test('concept proof blocks production until manual review', () => {
   const gate = read('.starter-kit/core/CONCEPT_PROOF_GATE.md');
   for (const token of [
