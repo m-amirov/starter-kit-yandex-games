@@ -1,4 +1,4 @@
-# Autonomous Yandex Games Starter Kit 0.5.10
+# Autonomous Yandex Games Starter Kit 0.5.11
 
 Версионируемая engineering/compliance инфраструктура для создания новых игр и
 безопасного обновления существующих зрелых проектов Яндекс Игр.
@@ -100,6 +100,10 @@ decision permits production. `STOP_PROJECT` activates `$project-termination`.
 
 UI/E2E instability is adjudicated through
 `.starter-kit/core/TEST_HARNESS_ADJUDICATION.md` before runtime changes.
+
+## Human-figure CG anatomy and spatial continuity (0.5.11)
+
+Generated human-character illustrations must pass image-visible review for reference-consistent body proportions, natural camera perspective and a coherent supporting ground plane. A visually clean UI does not excuse unintentionally oversized heads, short-looking legs, forced wide-angle perspective or a false impression that characters stand in harbor water behind a seawall. On mobile, choose an intentional portrait crop rather than distorting anatomy to preserve dialogue space. New checks ship through `$visual-quality-gate`, `$mobile-game-ux` and the managed screenshot gate template; existing Yandex, provenance and independent visual acceptance rules still apply.
 
 ## Multi-character scene composition (0.5.10)
 
