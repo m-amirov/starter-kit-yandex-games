@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "profile": "narrative-game",
+  "enabled": false,
+  "modelPath": "narrative/graph.json",
+  "savesPath": "narrative/save-fixtures.json"
+}
