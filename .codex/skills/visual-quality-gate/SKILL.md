@@ -60,6 +60,10 @@ This rule applies to narrative/dialogue scenes with **two or more visible charac
 
 **Anti-pattern:** repeatedly layering `translateY`, sprite masks, gradients and cue-specific overrides to hide the same silhouette/dialogue overlap while the completed screenshot still fails visual review.
 
+## Narrative visual beat preflight
+
+For illustrated narrative games, compare the actual runtime cue mapping with a separate source-bound story contract using `tools/visual/narrative-scene-contract.mjs`. See `docs/NARRATIVE_SCENE_VISUAL_CONTRACT.md`. A mapping mismatch blocks integration. Metadata agreement never counts as independent pixel review or art acceptance.
+
 ## Prioritized Web High review and bounded rework
 
 - **P0/P1 factual defects first:** wrong actor/speaker identity, actions contradicting dialogue, wrong place/time/essential prop, scene/cue ordering, missing or clipped important subjects, impossible grounding/perspective, unreadable controls or dialogue. Record exact authored cue, actual pixels, player impact, root cause and minimum fix.
