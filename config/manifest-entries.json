@@ -590,7 +590,7 @@
     {
       "source": "config/yandex-doc-snapshot.json",
       "logicalId": "managed:yandex-doc-snapshot",
-      "ownership": "managed",
+      "ownership": "semantic-merge",
       "target": "config/yandex-doc-snapshot.json",
       "modes": [
         "init",
@@ -600,7 +600,7 @@
         "new",
         "mature"
       ],
-      "conflictPolicy": "replace-if-baseline"
+      "conflictPolicy": "semantic-merge"
     },
     {
       "source": "config/game-spec.schema.json",
@@ -728,6 +728,21 @@
       "logicalId": "managed:update-doc",
       "ownership": "managed",
       "target": "docs/STARTER_KIT_UPDATES.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/HEAD_BOUND_RELEASE_EVIDENCE.md",
+      "logicalId": "managed:head-bound-release-evidence-doc",
+      "ownership": "managed",
+      "target": "docs/HEAD_BOUND_RELEASE_EVIDENCE.md",
       "modes": [
         "init",
         "update"
@@ -1189,6 +1204,21 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": "tools/starter-kit/semantic-acceptance.mjs",
+      "logicalId": "managed:tool-semantic-acceptance",
+      "ownership": "managed",
+      "target": "tools/starter-kit/semantic-acceptance.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "tools/starter-kit/status.mjs",
       "logicalId": "managed:tool-status",
       "ownership": "managed",
@@ -1253,6 +1283,36 @@
       "logicalId": "managed:tool-yandex-requirements-audit",
       "ownership": "managed",
       "target": "tools/yandex/requirements-audit.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/sdk-validation.mjs",
+      "logicalId": "managed:tool-yandex-sdk-validation",
+      "ownership": "managed",
+      "target": "tools/yandex/sdk-validation.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/yandex/project-contract-validation.mjs",
+      "logicalId": "managed:tool-yandex-project-contract-validation",
+      "ownership": "managed",
+      "target": "tools/yandex/project-contract-validation.mjs",
       "modes": [
         "init",
         "update"

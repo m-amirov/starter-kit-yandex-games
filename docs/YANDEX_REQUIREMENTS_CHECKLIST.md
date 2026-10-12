@@ -1,7 +1,7 @@
 # Yandex Games Requirements Checklist
 
 Authoritative source: `https://yandex.ru/dev/games/doc/ru/concepts/requirements`\
-Source revision reviewed by this kit: **18 August 2026** (audit: 28 August 2026).\
+Source revision reviewed by this kit: **9 October 2026** (audit: 12 October 2026).\
 Machine-readable registry: `config/yandex-requirements.yaml`.
 
 Controlled upstream watch sources are declared in `config/yandex-doc-sources.yaml`; the reviewed semantic baseline is `config/yandex-doc-snapshot.json`. The watcher follows only official Requirements detail links under `/dev/games/doc/ru/requirements/` and never treats third-party pages as authoritative.
@@ -73,6 +73,7 @@ Every active clause must be represented in `artifacts/evidence/yandex-requiremen
 - Rights for every asset are recorded.
 - The game is original and not a duplicate of another catalog title.
 - Text is correct, truthful, translated and free from prohibited material.
+- Requirement 8.3.5 content review covers pornography, erotic or discriminatory/offensive material and child sexual-abuse material, including AI/deepfake variants, in the game and all promotional media.
 - Icon and cover are dedicated marketing art, not gameplay screenshots.
 - Screenshots show at least 70% real gameplay; videos show at least 70% real gameplay duration.
 - Media has no compression defects, accidental generated text, external frames, rounded outer corners, system UI or Yandex Games UI.

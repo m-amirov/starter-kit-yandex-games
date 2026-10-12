@@ -152,6 +152,8 @@ The 0.5.11 patch adds a fail-closed **human-figure anatomy, camera and spatial-c
 
 Prefer a deliberate waist-up or mid-thigh crop when full-body framing produces distortion. No numeric anatomy ratio is imposed on deliberately stylized characters or authentic physical variation. Real visual defects are FAIL/REWORK even with passing DOM/layout tests. Existing mature-project semantic-merge safeguards and project-owned runtime protections remain unchanged.
 
+The final 0.5.11 hardening consolidation also delivers explicit Yandex SDK bootstrap validation, release-contract drift checks, semantic acceptance for reviewed documentation snapshots, exact HEAD-bound media provenance and failure-memory promotion. These checks remain evidence-only infrastructure and do not overwrite product runtime, authored content or project-owned assets.
+
 ## 0.5.10 — multi-character CG fallback
 
 The 0.5.10 patch adds a required art-direction decision to the shipped `visual-quality-gate` and `mobile-game-ux` skills: after two materially distinct failed attempts to fix overlapping character silhouettes and dialogue in a narrative scene, evaluate a unified CG and prefer it when feasible. The screenshot visual gate template now captures actual pixel-level separation and the independent reviewer verdict at 360×640 and the taller portrait viewport.

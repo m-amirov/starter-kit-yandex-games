@@ -2,8 +2,8 @@ schemaVersion: 1
 source:
   title: Требования к игре — Яндекс Игры
   url: https://yandex.ru/dev/games/doc/ru/concepts/requirements
-  lastModified: '2026-09-29'
-  reviewedAt: '2026-09-30'
+  lastModified: '2026-10-09'
+  reviewedAt: '2026-10-12'
 statuses:
   required: blocks release candidate when applicable and not PASS
   recommended: must be reviewed; unresolved failure is recorded as WARN unless elevated by project rules
@@ -148,7 +148,7 @@ requirements:
   - { id: '8.3.2', enforcement: required, summary: 'Медиаматериалы отражают объект, который иллюстрируют.', applicability: media-assets, verification: visual-product-review }
   - { id: '8.3.3', enforcement: required, summary: 'Медиаматериалы не имеют внешних рамок и скругленных углов.', applicability: marketing, verification: asset-review }
   - { id: '8.3.4', enforcement: required, summary: 'Нет системного UI и UI Яндекс Игр; на иконке/обложке нет игрового интерфейса.', applicability: media-assets, verification: visual-review }
-  - { id: '8.3.5', enforcement: required, summary: 'Нет порнографии, эротики и дискриминационного/оскорбительного контента.', applicability: always, verification: content-review }
+  - { id: '8.3.5', enforcement: required, summary: 'Нет порнографии, эротики, дискриминационного/оскорбительного контента или материалов сексуального насилия над детьми, включая AI/deepfake-материалы.', applicability: always, verification: content-review }
   - { id: '8.3.6', enforcement: required, summary: 'Материалы безопасны, этичны и пригодны для всех возрастов.', applicability: media-assets, verification: content-review }
   - { id: '8.3.7', enforcement: required, summary: 'Иные запрещенные материалы отсутствуют.', applicability: always, verification: content-review }
   - { id: '8.4.1', enforcement: required, summary: 'Ссылки на другие игры встроены через SDK и ведут только в каталог Яндекс Игр.', applicability: cross-promo, verification: sdk-link-review }

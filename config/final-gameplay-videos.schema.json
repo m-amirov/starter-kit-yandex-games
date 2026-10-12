@@ -8,6 +8,8 @@
     "schemaVersion": { "const": 1 },
     "publicationType": { "enum": ["first-publication", "update"] },
     "languageIndependentTextReview": { "$ref": "#/$defs/review" },
+    "sourceHead": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "buildId": { "type": "string", "minLength": 1 },
     "videos": {
       "type": "array",
       "items": {
@@ -32,13 +34,14 @@
           "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
           "manualReview": {
             "type": "object",
-            "required": ["realGameplay", "systemUiAbsent", "yandexUiAbsent", "artificialBlackBarsAbsent", "localeMatchesDraft"],
+            "required": ["realGameplay", "systemUiAbsent", "yandexUiAbsent", "artificialBlackBarsAbsent", "localeMatchesDraft", "openingFrameReady"],
             "properties": {
               "realGameplay": { "$ref": "#/$defs/review" },
               "systemUiAbsent": { "$ref": "#/$defs/review" },
               "yandexUiAbsent": { "$ref": "#/$defs/review" },
               "artificialBlackBarsAbsent": { "$ref": "#/$defs/review" },
-              "localeMatchesDraft": { "$ref": "#/$defs/review" }
+              "localeMatchesDraft": { "$ref": "#/$defs/review" },
+              "openingFrameReady": { "$ref": "#/$defs/review" }
             },
             "additionalProperties": false
           }
