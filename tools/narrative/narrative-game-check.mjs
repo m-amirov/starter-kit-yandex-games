@@ -24,7 +24,10 @@ export function runNarrativeGameProfile(root,profile) {
     return {status:'SKIPPED_OPT_IN_PROFILE',errors:[],reason:'Set enabled=true in a project-owned profile to opt in.'};
   const model=JSON.parse(fs.readFileSync(resolveInside(root,profile.modelPath),'utf8'));
   const saves=JSON.parse(fs.readFileSync(resolveInside(root,profile.savesPath),'utf8'));
-  return checkNarrativeGame(model,saves);
+  const promises=profile.promisesPath===undefined
+    ? undefined
+    : JSON.parse(fs.readFileSync(resolveInside(root,profile.promisesPath),'utf8'));
+  return checkNarrativeGame(model,saves,promises);
 }
 
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){

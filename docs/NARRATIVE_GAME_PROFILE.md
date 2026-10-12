@@ -19,3 +19,41 @@ Coverage: all declared scenes reachable, all endings reachable, finite state-spa
 A passing model is `PASS_DECLARED_NARRATIVE_GRAPH`, **not** proof of a real runtime route or true narrative comprehension. Export input from real source/engine; never simply copy a hand-written model from a sample to manufacture coverage. Combine with CEOS `romance-narrative`, `narrative-dialogue-editor`, `narrative-continuity-engine`, `reader-experience-review` for semantic checks.
 
 No automatic packaging, ZIP creation, network/Web calls or files written by this check.
+
+## Optional story-promise references (future projects only)
+
+The existing `narrative-game` opt-in remains disabled by default. To also check a story-promise ledger, add `"promisesPath": "narrative/story-promises.json"` to the **project-owned enabled** profile. No existing profile requires this field. The path uses the same project-confined realpath checks as graph/save inputs; missing or unsafe paths block rather than falling back.
+
+Schema v1 example:
+
+```json
+{
+  "schemaVersion": 1,
+  "promises": [
+    {
+      "id": "nick-key",
+      "status": "authored",
+      "setup": {"sceneId": "search", "requires": {"route": "nick"}},
+      "payoff": {"sceneId": "nick-end", "requires": {"hasKey": true}}
+    },
+    {
+      "id": "future-thread",
+      "status": "planned"
+    },
+    {
+      "id": "open-ending",
+      "status": "intentionally-open",
+      "setup": {"sceneId": "independent", "requires": {"route": "self"}},
+      "authorDecision": "Consciously unresolved in this route"
+    }
+  ]
+}
+```
+
+`setup` and `payoff` point to existing declared **scene IDs** for `authored`, `runtime-verified` and `intentionally-open` records; guards use exact finite-state keys and values from the narrative model. An authored claim requires a reachable setup-to-payoff path for **every setup state matching its guard**. If only one branch resolves, split into route-conditioned entries or explicitly mark the other route intentionally open. Invalid IDs, invalid guards, dangling scene references or unreachable conditional payoff **BLOCK** the optional check.
+
+Statuses: `planned` can refer to unwritten future material and cannot earn PASS; `unresolved` needs editorial work; `authored` means *declared scene references structurally match*, never that the prose actually delivered the payoff. `runtime-verified` is an external claim and is marked **NOT_VERIFIED** by this validator because model JSON does not attest executed gameplay. `intentionally-open` requires an explicit `authorDecision` and no `payoff`.
+
+The response includes an independent `storyPromises.status`: `SKIPPED_OPTIONAL_STORY_PROMISES`, `PASS_DECLARED_PROMISE_REFERENCES`, `NOT_VERIFIED_PROMISE_EVIDENCE` or `BLOCKED_PROMISE_REFERENCES`. Even when the main result is `PASS_DECLARED_NARRATIVE_GRAPH`, it **never proves artistic quality, emotional credibility, actually authored cues, real runtime saves, or that all planned promises are fulfilled**. For those, use CEOS `romance-narrative`, `narrative-continuity-engine` and `reader-experience-review`.
+
+This feature adds no mandatory release gate, new user questionnaire, art generation, runtime scripts, or changes to existing game content.
