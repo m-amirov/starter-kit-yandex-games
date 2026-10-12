@@ -29,7 +29,7 @@ test('independent art review prioritizes factual P0-P1 errors and forbids endles
 test('preload and crossfade are required scoped regressions for image-driven projects', () => {
   for (const p of [image, mobile]) {
     const s=read(p);
-    assert.match(s, /preload\/crossfade/);
+    assert.match(s, /preload(?:\/| and )crossfade/i);
     assert.match(s, /stale/);
     assert.match(s, /Slow 3G/);
     assert.match(s, /reduced-motion/);

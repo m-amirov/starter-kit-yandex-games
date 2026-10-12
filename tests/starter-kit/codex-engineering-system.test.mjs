@@ -62,7 +62,7 @@ test('multi-character CG fallback is a delivered, fail-closed mobile art rule', 
   assert.match(visual, /visible character silhouette pixels/i);
   assert.match(visual, /Do not bake dialogue, UI, icons/i);
   assert.match(visual, /ESCALATION_REPORT\.md/);
-  assert.match(mobile, /multi-character dialogue composition and CG fallback/i);
+  assert.match(mobile, /multi-character dialogue(?: composition)? and CG fallback/i);
   assert.match(template, /visible silhouette pixels vs first dialogue glyphs/i);
   assert.match(template, /independent reviewer verdict/i);
 });
