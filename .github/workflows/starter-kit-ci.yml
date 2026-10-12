@@ -35,3 +35,58 @@ jobs:
         run: |
           node --check tools/yandex/release-evidence-gate.mjs
           node --check tools/starter-kit/self-test.mjs
+
+      - name: Checkout independent visual-novel integration target
+        uses: actions/checkout@v4
+        with:
+          repository: m-amirov/kiss-at-the-edge-of-the-world
+          ref: 1e775f1fcd5269b2574b5a120a1f4f6f716ebb8c
+          path: .integration-game
+          persist-credentials: false
+      - name: Mature-game updater compatibility dry-run (no target writes)
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import path from 'node:path';
+          import { execFileSync } from 'node:child_process';
+          import { executeUpdate } from './tools/starter-kit/update-engine.mjs';
+
+          const targetRoot = path.resolve('.integration-game');
+          const status = () => execFileSync('git', ['-C', targetRoot, 'status', '--porcelain'], { encoding: 'utf8' });
+          const targetHead = execFileSync('git', ['-C', targetRoot, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+          const before = status();
+          assert.equal(before, '', 'Integration target must start clean');
+          const report = await executeUpdate({
+            sourceRoot: process.cwd(),
+            targetRoot,
+            mode: 'update',
+            dryRun: true
+          });
+          const after = status();
+          assert.equal(after, before, 'Dry-run modified the game worktree');
+          assert.equal(report.dryRun, true);
+          assert.equal(report.fromVersion, '0.5.9');
+          assert.equal(report.toVersion, '0.5.11');
+          assert.equal(report.skillRoot, '.codex/skills');
+          assert.deepEqual(report.forbiddenSecondRoots, []);
+          assert.ok(report.skippedSeeds.length > 0, 'Product-owned seeds must remain excluded');
+          const operations = [...report.created, ...report.updated, ...report.merged, ...report.resolved];
+          const forbidden = operations.filter(({target}) => /^(src\/|public\/|index\.html$|game-spec\.yaml$)/.test(target));
+          assert.deepEqual(forbidden, [], 'Updater must not touch game-owned product files');
+          console.log(JSON.stringify({
+            targetHead,
+            fromVersion: report.fromVersion,
+            toVersion: report.toVersion,
+            profile: report.targetProfile,
+            skillRoot: report.skillRoot,
+            dryRun: report.dryRun,
+            created: report.created.length,
+            updated: report.updated.length,
+            preserved: report.preserved.length,
+            merged: report.merged.length,
+            skippedSeeds: report.skippedSeeds.length,
+            pendingConflicts: report.conflicts.map(c => ({id:c.logicalId, target:c.target, reason:c.reason})),
+            projectOwnedProtected: true,
+            unchangedGitStatus: true
+          }, null, 2));
+          NODE

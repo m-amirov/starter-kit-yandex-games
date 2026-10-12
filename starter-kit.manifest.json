@@ -193,7 +193,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "4695503376d71311eccbb1cadff2eee4729389f46d7d151d7b3658a36c1174e1"
+      "sha256": "e8e8f697f53b7b9bb908c4762f2ea0e3c0adb5840b2ddba4706c513fdfa8176a"
     },
     {
       "source": ".codex/skills/product-quality-review/ORIGIN.md",
@@ -273,7 +273,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "31638101aa97843b0bfa883d07283e3c14e8d13c1e598edc939dc782109d5b10"
+      "sha256": "3ba7439308256729ac7a6b473278f3b05c65247fcb3c1c26f0f16f672aa55dfb"
     },
     {
       "source": ".codex/skills/web-game-playtest/ORIGIN.md",
@@ -739,7 +739,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "fb6f70df330f1471bd7c62e9f29d3cb245f360cb3d27cdb339baedeed71c5fd2"
+      "sha256": "76e9914f668303c1033594accf1e60c8e27abd7dd8242fa886b877719a36b42e"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -980,7 +980,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "4c127906f16e9fafcc5553dd29e80fb04e967cd88cf61925d0ed8a28a0b436a5"
+      "sha256": "155ff088ec9b1f0f2e39e40d09e3f0903dc4d83bacb372351df31ed5d6095fb8"
     },
     {
       "source": "templates/media/HORIZONTAL_GAMEPLAY_VIDEO.md",
@@ -1060,7 +1060,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "a165f3baacabc64255fbd3bd94045977e9b8fe18754880d53f083797bc9be544"
+      "sha256": "c300356b1eaa0cc02509eb289675db152121020412716f15c76d42776a9a2644"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1685,6 +1685,102 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "a93431216676e6bd68034b673f35d620815d5de57f37a9cf6cecbc40a8a74ec7"
+    },
+    {
+      "source": "tools/visual/narrative-scene-contract.mjs",
+      "logicalId": "managed:narrative-scene-contract",
+      "ownership": "managed",
+      "target": "tools/visual/narrative-scene-contract.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "2c4dad6571a095185041b0422accf6f2fed5498491cefe79ed42f683e12439b8"
+    },
+    {
+      "source": "docs/NARRATIVE_SCENE_VISUAL_CONTRACT.md",
+      "logicalId": "managed:narrative-scene-contract-doc",
+      "ownership": "managed",
+      "target": "docs/NARRATIVE_SCENE_VISUAL_CONTRACT.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "855a2f321fc9ad00eaeaf0b6268fc6720bd551f09c9a3617727155d3866cdbb7"
+    },
+    {
+      "source": "tools/narrative/narrative-game-validator.mjs",
+      "logicalId": "managed:narrative-game-validator",
+      "ownership": "managed",
+      "target": "tools/narrative/narrative-game-validator.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "c603dcda6dfe8db67ad2727a29dc0f30f12a1a959a8bb71f24d3a9a0f2c90605"
+    },
+    {
+      "source": "tools/narrative/narrative-game-check.mjs",
+      "logicalId": "managed:narrative-game-profile-cli",
+      "ownership": "managed",
+      "target": "tools/narrative/narrative-game-check.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "aeb9c889eaa70df357c9513dfbb77a34810b151c2d2b5b9029ce53dc3564a9c2"
+    },
+    {
+      "source": "config/optional-profiles/narrative-game.json",
+      "logicalId": "managed:narrative-game-profile-template",
+      "ownership": "managed",
+      "target": "config/optional-profiles/narrative-game.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "92ecc2abcffd976171ab284ed42f5e08220bbc0bab8ce83ae808890ecfff8c0d"
+    },
+    {
+      "source": "docs/NARRATIVE_GAME_PROFILE.md",
+      "logicalId": "managed:narrative-game-profile-doc",
+      "ownership": "managed",
+      "target": "docs/NARRATIVE_GAME_PROFILE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "a4d4a4648e8be4d1a102c5737df46905f3d01511515acaf5bd89ad46756c467c"
     }
   ]
 }

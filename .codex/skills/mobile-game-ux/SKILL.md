@@ -33,11 +33,15 @@ Derived from the useful touch and mobile-performance concepts in `mobile-games-v
 
 ## Narrative multi-character mobile safety
 
-For dialogue scenes with two or more visible characters, apply the `$visual-quality-gate` **multi-character dialogue composition and CG fallback** rule. When repeated sprite-framing fixes cannot separate the visible silhouettes from dialogue text, evaluate a unified scene CG with a portrait-safe composition instead of stacking masks or transforms. Verify actual screenshot pixels and readable text at **360×640** and the taller supported portrait viewport; mechanical overflow checks alone cannot pass visual acceptance.
+For static narrative dialogue scenes, start with a **full-scene CG-first** composition, including intentional portrait-safe framing and negative space for the actual dialogue overlay. Use layered sprites only when meaningful dynamic interaction, pose changes or verified constraints justify them, and record that exception. Apply the `$visual-quality-gate` multi-character dialogue and CG fallback rules: repeated sprite overlap may never be addressed by unlimited CSS masks/offsets. Check the actual silhouette pixels and first dialogue glyphs at **360×640** and the taller portrait viewport; mechanical overflow checks alone cannot pass visual acceptance.
 
 ## Portrait CG human-figure framing
 
 For mobile dialogue CG containing human figures, apply the `$visual-quality-gate` **generated human-figure anatomy, camera and spatial-continuity gate** in addition to dialogue safe-area checks. A clear lower UI zone cannot compensate for shortened legs, oversized heads, perspective distortion or an ambiguous quay/waterline. Prefer a natural deliberate crop when full-body framing causes deformation; inspect source pixels and actual runtime at 360×640 and the taller supported portrait viewport.
+
+## Image-transition reliability (when the game uses CG/background swaps)
+
+Check bounded **preload/crossfade** behavior using the actual mobile runtime, not only a still screenshot: keep the last valid frame on Slow 3G, decode before transition, cancel stale scene loads, handle missing/failed assets gracefully and honor reduced-motion. Verify Back/Next rapid navigation and mobile-memory/request budgets; no blank frame or unintended duplicated dialogue activation. These checks are scoped to image-driven games; do not require a CG transition system for unrelated game genres.
 
 ## Evidence
 

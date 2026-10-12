@@ -29,6 +29,16 @@ Use only affected states. Enemy work normally includes normal and pressure or at
 - If prior mobile REWORK was reported: fresh current-HEAD before/after captures, role-specific independent reviewer verdict, and remaining findings:
 - If repeated fixes fail: stop under the global three-attempt limit and link `artifacts/ESCALATION_REPORT.md`:
 
+## Narrative meaning and Web High repair budget (when applicable)
+
+- Static illustrated beat: unified full-scene CG preferred? Sprite staging exception and authored reason:
+- P0/P1 material findings only: wrong actor/action, location/time/essential props, cue ordering, important clipping, impossible space or unreadable UI; cite authored text and observed pixels:
+- P2 polish impact / P3 subjective advice: P3 alone does not trigger additional generation:
+- Root cause: source art vs stage/mapping vs crop/CSS; smallest verified repair:
+- Rework attempt/candidate count, previous accepted state preserved and escalation decision:
+- Changed and causally affected visual beats only; outstanding independent-review coverage recorded:
+- Image-driven preload/crossfade: decoded next image, Slow 3G last-frame retention, stale cancellation, failure fallback, reduced-motion, memory/request limits; outcome or N/A:
+
 ## Human-figure CG anatomy and grounding (when applicable)
 
 - Canonical character references / intentional stylization consulted:
