@@ -52,14 +52,14 @@ export function checkNarrativeGame(model, saves) {
       const lines=scene.dialogue?.[loc];
       if(!Array.isArray(lines)||!lines.length){fail('MISSING_DIALOGUE',scene.id+':'+loc);continue;}
       for(const [index,line] of lines.entries()){
-        if(!validText(line?.text) || (line.speaker!==null && !chars.has(line.speaker)))
+        if(!validText(line?.text) || (line?.speaker!==null && !chars.has(line?.speaker)))
           fail('INVALID_DIALOGUE_LINE',scene.id+':'+loc+':'+index);
       }
     }
     if(scene.choices){
       if(!Array.isArray(scene.choices)||!scene.choices.length)fail('EMPTY_CHOICES',scene.id);
       const ids=new Set();
-      for(const choice of scene.choices||[]){
+      for(const choice of (Array.isArray(scene.choices)?scene.choices:[])){
         if(!idOK(choice?.id)||ids.has(choice.id))fail('BAD_CHOICE_ID',scene.id);
         ids.add(choice?.id);
         if(!idOK(choice?.to))fail('BAD_CHOICE_TARGET',scene.id);
@@ -78,7 +78,7 @@ export function checkNarrativeGame(model, saves) {
   if(!scenes.has(model.start))fail('START_MISSING');
   for(const scene of scenes.values()){
     if(scene.next&&!scenes.has(scene.next))fail('DANGLING_EDGE',scene.id+'->'+scene.next);
-    for(const c of scene.choices||[])if(c.to&&!scenes.has(c.to))fail('DANGLING_EDGE',scene.id+'->'+c.to);
+    for(const c of (Array.isArray(scene.choices)?scene.choices:[]))if(c?.to&&!scenes.has(c.to))fail('DANGLING_EDGE',scene.id+'->'+c.to);
   }
   if(errors.length)return {status:'BLOCKED_NARRATIVE_GAME',errors,warnings};
   const queue=[{id:model.start,state:initial}], nodes=new Map(), byScene=new Map();
