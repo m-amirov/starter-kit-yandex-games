@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "parserVersion": 2,
-  "reviewedAt": "2026-09-30",
-  "fetchedAt": "2026-09-30T15:48:17.820Z",
+  "reviewedAt": "2026-10-12",
+  "fetchedAt": "2026-10-12T13:26:23.486Z",
   "documents": {
     "requirements": {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/concepts/requirements",
-      "documentLastModified": "29 сентября 2026 года",
-      "metadataHash": "9060c4842e945d8736b70f96fb7dfb77dfb99a57e3c25d8c673191c19977d1f0",
-      "normalizedSemanticSha256": "33767504a8960f24919000275da2530812bf53706cf0dba4488c43969ff9dc2d",
+      "documentLastModified": "9 октября 2026 года",
+      "metadataHash": "78d9501ec147a6d9930265a32509e174edf3b0317dc2c5c315923d18a93502f6",
+      "normalizedSemanticSha256": "5ec32e3f9bfc2b7d1ef930ff36ab2520dc47cecbc26321d54da5bee1ba7fcf79",
       "clauseCount": 157,
       "clauses": [
         {
@@ -890,8 +890,8 @@
         {
           "id": "8.3.5",
           "status": "active",
-          "text": "Не содержат контент, относящийся к порнографии и эротике, изображения предметов, имитирующих половые органы, и/или отсылки к половому акту, материалы, оскорбляющие человека или группу лиц по половому признаку, национальной или религиозной принадлежности. Подробнее.",
-          "textHash": "b604aff8548572d87be66557e353d9a01011ccaa305748cea404bd9f66d8a71b"
+          "text": "Не содержат:",
+          "textHash": "2254c6a4ff4f753eaa97b6a586a3c042e64fa9acef25f9b71283167ccffbf1f1"
         },
         {
           "id": "8.3.6",
@@ -981,14 +981,14 @@
         "https://yandex.ru/dev/games/doc/ru/requirements/8/4/1"
       ],
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     "draft": {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/console/add-new-game/draft",
       "documentLastModified": null,
-      "metadataHash": "53d9c2baff70f3158d9089c17845395f7e18a86e1f1ab4375b251907bb27255d",
-      "normalizedSemanticSha256": "7c2b4585dcdd886684a89a4849b10b8aef8267c80e0687e3b0eac274d4023fb4",
+      "metadataHash": "c77fb3f15d8ae42765429f7021a98fc2c5ac3a41644059b956615fefd0f14871",
+      "normalizedSemanticSha256": "1deec322de26366581ccda36556f22149c44723cdcc45f0c1ade8b9cf1f31455",
       "fields": {
         "archive": {
           "anchors": [
@@ -1205,7 +1205,7 @@
           ],
           "required": false,
           "constraints": {},
-          "textHash": "59f6bc3999ce5e47264b74fa0bfe03a5465c9ed3b166df638ae10212f291a23b"
+          "textHash": "764ac56b4ab7b7993000f95ee5b244db2113761ace61f4dbf8a9a06b72f5bfdb"
         },
         "official:title": {
           "anchors": [
@@ -1213,7 +1213,7 @@
           ],
           "required": true,
           "constraints": {},
-          "textHash": "22dedce8e25a0396d444526b93d0d2fc24aa3f7eb80e80a54647755bebc8a2df"
+          "textHash": "457f7e6fae128da0d28f55fc0acd8d406f32d77c5e4b5cc4026fd103cf83be55"
         },
         "official:seo": {
           "anchors": [
@@ -1296,248 +1296,251 @@
         }
       },
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     "moderation": {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/concepts/moderation",
       "documentLastModified": null,
-      "metadataHash": "6b007d0ae43edf8332bd762113c691c5dd90566470a62bb59b7aa1c011449280",
-      "normalizedSemanticSha256": "245bb3c11c596cc6289c9730a4e81d6ac9df99b22cd76757b97840a4a31f82dc",
+      "metadataHash": "4aef424572f0e7e13e9f342925b424bc171a30de52e1b4c2c68e0c9d3cb16093",
+      "normalizedSemanticSha256": "0be5d6468f5e5a961ee788d82f408fcb6445b41dd9d32be67f9146f034918d24",
       "headings": [
         "Актуализация",
+        "Как сократить ожидание до публикации",
         "Модерация",
         "Ответ модерации",
         "Отказ на модерации",
         "Процесс модерации",
         "Связаться с модерацией",
-        "Чеклист для самопроверки"
+        "Сроки модерации",
+        "Чеклист для самопроверки",
+        "Что влияет на очередность"
       ],
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     }
   },
   "detailPages": [
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/10",
       "documentLastModified": null,
-      "metadataHash": "6e4fc61101cc4b41aa86210e6b74435f39e9916719681e646c5e3beef0d8d80f",
-      "normalizedSemanticSha256": "c80da5aa21e9b13079201afc6d6018d567ad2c207386cc91c04c84f921d79d1f",
+      "metadataHash": "45b8eeaf1ed7e082fb95983f5c9580d5ad9aead239f3179db69f97766e2ced43",
+      "normalizedSemanticSha256": "23ce7ae79538e002efbf0dcd7a21deb4cae8b5e61bf7473a80cfd68091cdfa65",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/12",
       "documentLastModified": null,
-      "metadataHash": "d34c18af911da62e5adcbc842625f31641a2067288a7685f0d64fbd493ebec4b",
-      "normalizedSemanticSha256": "bb91b7702c9c4c1e8a939d0ca8b3172b50ee828be03f23dafc92ebc671684f15",
+      "metadataHash": "c7d7bdb5e369036363cd131344bb12be633e8157d6e1b042a03f1e3f6a3e4c14",
+      "normalizedSemanticSha256": "1fc981e108438cc232ed19085062e7f7e236c7d396aae46c8558e2e17e854bcd",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/13",
       "documentLastModified": null,
-      "metadataHash": "f65a295fbba3f46f7c9940a27b0767c242c0b051506eb90f34003157f2694fa6",
+      "metadataHash": "20c4a8606aeff08f783b7f78083346282b27adee6c7c3e946dc398875dc80b03",
       "normalizedSemanticSha256": "1d963f59679347bbb3527b3b378578777dbb0eb2021bb930855ce0beb09ced6a",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/14",
       "documentLastModified": null,
-      "metadataHash": "c1caf3371571892d9e233b4222d8c3aa3a20e407dd01a7a5ccd6e5ce249523ff",
+      "metadataHash": "0a8d7ea4ab253829d1ca6935a89c83181da670ff1bd69a573599942eb8b9180f",
       "normalizedSemanticSha256": "083f16261e29bfa1e22b42aa87d2e4f0a10c987cee52097a17dfd3fcc35cecd3",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/15",
       "documentLastModified": null,
-      "metadataHash": "cca769963e311fa7cf374e590ebcd996a5c237464eb0f43287085a6ab3cbc2e9",
+      "metadataHash": "95fe37cf8d24c7181c98db7576c883d4c9271edd0f33856cbec9964b7880b354",
       "normalizedSemanticSha256": "7d26c3f75a55f958986dde10c0a604befed0be0c4cb04def043ee11fb9f9463a",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/19",
       "documentLastModified": null,
-      "metadataHash": "0a717ed7eb9693cbbde051189510944ad4799723d2e88747b7a6df488ef2a5ca",
+      "metadataHash": "3418138f30f257cf36850fd41c63bdb2375ae334a16ce931fd1c91d6075ff38f",
       "normalizedSemanticSha256": "671d8cd8f90b5d962ffc199d5376986b185b1bd38c0de050a600b908490c29ed",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/2",
       "documentLastModified": null,
-      "metadataHash": "7e05593f5ca6a85700f4bcab862f909aec3128f26bd446bf4b14474b1e85b918",
-      "normalizedSemanticSha256": "d6f94f5d875911c08cb1e8448d7beb38a0ce1445a5cb9c2f91dc7c154f0b1996",
+      "metadataHash": "3b54f64433a2e71f5ff071f2e65f3fa596d68c053a94909875c8f4d43768a526",
+      "normalizedSemanticSha256": "f45cc2d424ab051ead16bfe8e6ea41f292eb3013d0aec319264f36b67007b1df",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/3",
       "documentLastModified": null,
-      "metadataHash": "b9cc0f32e72e62d4e209c2c660a0965744b1b083dcad943ce6d249bf9fe9fb0a",
-      "normalizedSemanticSha256": "6082a78baf34205a9eacb300e93e9afd1ab2c4779822f7c44b48b79befc9180d",
+      "metadataHash": "2fcd4f110b4fc6e0cceb1080001a99a7c11913e81dfab4d0b49f9cccfe15266a",
+      "normalizedSemanticSha256": "f53deefc5037648605278aceed3528b301da956c5e9a103ff5cc944b93043af5",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/6",
       "documentLastModified": null,
-      "metadataHash": "2db6810aea8716a07a5afcc27a92cdd77dec2c3262f1fd37ea5df145eaf91c05",
-      "normalizedSemanticSha256": "58797319863e9ad1984c1cb37f803bc83a4145242deb07d059d7bbdf973b5589",
+      "metadataHash": "16d62338de833fa027279f9e5a69b850d10a02abb4a262137c586422c4279acb",
+      "normalizedSemanticSha256": "dab48ace24618e2cdab9f6d86a0bdedece94da6074752501f3a7de09c619ad9e",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/6/3",
       "documentLastModified": null,
-      "metadataHash": "6d82540eeeeaf18f84e797c502446ecdea498e0d845de82cdd4c5870f58008be",
-      "normalizedSemanticSha256": "c8fbfd9c0a600b054eb5ba9c1321ae8e4e2f57d302a40a39fff7ee45d4b026ff",
+      "metadataHash": "474d876c32c6470acefe49cecb7371679aa715d97722320a62411f2435dd4d2f",
+      "normalizedSemanticSha256": "1b84b6e3ca961ac71625a8ced835b38ec22e128d5003e16663145d5c4fadfc9e",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/1/9",
       "documentLastModified": null,
-      "metadataHash": "703be66dbba52bb02d4a8010be106537a6c9fe7f5bf74f8beae8702a520e9c75",
+      "metadataHash": "7bf5bc14e6ee8f718ec1566bc90f264379b0b904acd035359e80e8ee6ab7201e",
       "normalizedSemanticSha256": "2378e55026d0ea3ee3e7cf06339fc87dc6b76e3a53d263bdc0ad30226ec01e59",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/2/14",
       "documentLastModified": null,
-      "metadataHash": "0958984fa73e0bf8b923111d65dfa68fa8da11ceb992130848c111c4c17d4f92",
+      "metadataHash": "2de931a005840461a744c6e2d59b8869b2a15391d4b0338658fed28347dcd883",
       "normalizedSemanticSha256": "e52b929521d2efa45c5c7a55592f23267f8670c510682199df144575ad84a5c5",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/2/4",
       "documentLastModified": null,
-      "metadataHash": "35687daa74ce7d4613f0987484bcf1d25c063d5a552c19de115ccc6910fb2837",
+      "metadataHash": "95c55a5dd0b6aeda1f16e80d5915637ddcbb6a75f9cf9d051fd7724e024e2fa0",
       "normalizedSemanticSha256": "0e542dad38b5dd3d79798b11ebba68c7c1640dcc8c9ee65565adeba360e7598f",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/2/7",
       "documentLastModified": null,
-      "metadataHash": "fcccac084d3d16ee539f4cb8c1d4bd4a49f341aa3d4f762bf8966258021f75f5",
+      "metadataHash": "845f7c0e317f8da54046da42af6de9d81447c50963de6658d18189a748626543",
       "normalizedSemanticSha256": "2686d012df503aadecd1b0be83484c3973308f344fa93939c8061997c66990e0",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/2/9",
       "documentLastModified": null,
-      "metadataHash": "db5dec8d795d0f4d9122733c5d2eab477d8212e5ae5727ad710daf235d80c577",
+      "metadataHash": "01809fbd413dcbaf6ff4f37a693814710c57287c499bc91ce8941235612ef370",
       "normalizedSemanticSha256": "44d2c3acda1f7293ce4f691f7b46865b8c3a691f259b3d76d8bf71afa141385d",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/3/6",
       "documentLastModified": null,
-      "metadataHash": "34630e5e76d420f75c99217426073dbfd9519d203ad6005925716f2111036eba",
+      "metadataHash": "2f219cbce8161e7aebd9102d0fa0b814b15d2b33afe26b5df3244590cee6b868",
       "normalizedSemanticSha256": "d999814b5097e28ced4a78c4aa9f4422c45c65898ef6001b1b986e8ffc1342cb",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/4/4",
       "documentLastModified": null,
-      "metadataHash": "957848c870a3e54a271a1d504aee207cd54a3368b2f5d9a43aef0b0fa73bc682",
+      "metadataHash": "0e8707d47ba2ed491a7944e7eaea7b1bf2849ac8f186c4c7131cf5096b07c35a",
       "normalizedSemanticSha256": "5fca98ae38191d59926ab7a5b10d9457eaf45f844452592992958e93272f8787",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/5/1/1/2",
       "documentLastModified": null,
-      "metadataHash": "af7ae7ae79a425b7553b688599f7ad79e93fe7a6f958f0bf0518d63e7c9c3eb7",
+      "metadataHash": "e7b0c754671155f5f17057ed1b1c766fae938a6bad6f5a9478f0e5e986b2b16e",
       "normalizedSemanticSha256": "67f53afedfdcadc1069a47364d891b0b4810879029c09affb6d4e098f51f8fe2",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/5/1/3",
       "documentLastModified": null,
-      "metadataHash": "2f5b9c669a17fe6d279dbc4917e34d80b5468576479be0c1935908a3f2369224",
+      "metadataHash": "d95a787f5a82fda84d14d14e19fd0f6b98784eb8dcdd694b4c2d7f9015a82d81",
       "normalizedSemanticSha256": "f53d4162234702bab3f506fa87dc66671a73aea5358ea39da0ad79bdda5e652c",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/8/2/3",
       "documentLastModified": null,
-      "metadataHash": "48ce91f644ad37dee79ec2eb246fc8a308ef6381dba1dc266c327df98569c195",
+      "metadataHash": "7dbb492943c907fab02e0273d6eb723a8caadf9b56dc8e93441a509923d077a1",
       "normalizedSemanticSha256": "b1c8532e0d6405a11e3b2974c3ced5898f95bfa10ae40cd2e92ed26cbe9a0ced",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/8/3/4",
       "documentLastModified": null,
-      "metadataHash": "350931606c4a6495e757cc3af68462648e84b502354bb496ea93bcec2fa14c3f",
+      "metadataHash": "243a639430b67e395cba5a0f37d20aa03228f3b7520ebc23b84d975419bf8d70",
       "normalizedSemanticSha256": "6568733ffa0184dc6f199d8f5f66a01ecf6c8fa374d1808d51dea9cd82ce6ccb",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/8/3/5",
       "documentLastModified": null,
-      "metadataHash": "999b899e755bab877dc8af41a23130a97472359b02d90c645925cb2709d4cee1",
-      "normalizedSemanticSha256": "acb7e4110d527a733db66adbaa666523bbcdc7d8be3f7eb1ddbd6fa832487abb",
+      "metadataHash": "938d1062cfbbe8eaa0f5c9fb8bd6f88105e7a24eb2fecad788d464b182075b11",
+      "normalizedSemanticSha256": "089760f3c1286cc1d2dca23e4b66a4b5be71ac358af31c1ba6facc528b82722d",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/8/3/6",
       "documentLastModified": null,
-      "metadataHash": "8045a97297ffc2627c835781fcdfca0e06dd2c9ae1ccdc9358accc79a64edee1",
+      "metadataHash": "c0b41a7ee513b9c2f1cee1dbd47a69cc042705144dcddf829ccff12f7fb04de7",
       "normalizedSemanticSha256": "7483985e684ed987a0ceb9612a7f579b2c8c9eb4cf6dc7358a17e3a04245b722",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     },
     {
       "canonicalUrl": "https://yandex.ru/dev/games/doc/ru/requirements/8/4/1",
       "documentLastModified": null,
-      "metadataHash": "3cac1cd25b30ce7bea03e21ce4b12c3a811326dafd850dc88fecf597c1175da1",
+      "metadataHash": "14c978749f64106ade6800d5b7149ed9962834251b111265638072a2bb0f0002",
       "normalizedSemanticSha256": "4e60e6ddf028fc9a847778a50660dbd624df31414150c658389366f0de582b22",
       "parseErrors": [],
-      "fetchedAt": "2026-09-30T15:48:17.820Z",
-      "reviewedAt": "2026-09-19"
+      "fetchedAt": "2026-10-12T13:26:23.486Z",
+      "reviewedAt": "2026-09-30"
     }
   ],
   "registryAlignment": {
-    "requirementsRegistrySha256": "97bd79057de121a53fcf2f41dfa4c75c4a2d81d25f01b1f53e380e5e5b5d47fd",
-    "consoleRegistrySha256": "8e54325ae0f1f969e28063b75e82af87c2bbd51fb50b4f030a1846db2bd879ce"
+    "requirementsRegistrySha256": "2bdc83003adc47e034c859039b59c2cb1fc03a62e1f6fc81554fac76dfa0d1d2",
+    "consoleRegistrySha256": "2c9eba18ab1dcffec29972e9b6314396e32fcfcbce20d138bb7a257d7bda14e3"
   }
 }

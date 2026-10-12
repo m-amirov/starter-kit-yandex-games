@@ -46,6 +46,8 @@ Save only the compact needed evidence: screenshot set, short verdict, checked st
 
 Record edge-to-edge measurements on all four viewport edges, document/internal scroll state, text readability, primary-action overlap, and before/after authored visual-event ids. Coverage must reference a current ledger hash/version; stale or missing ledgers are evidence gaps. Playwright hangs, unavailable browsers and inaccessible captures are `BLOCKED`, not PASS.
 
+For object-fit: cover or equivalent full-bleed media, inspect the actual crop at target viewports and distinguish a global layout defect from a source-asset/focal-point defect before changing shared CSS. Portrait/full-bleed work should include 360×640 and 390×844 when those viewports are within the declared support matrix.
+
 For games, a new enemy, elite, boss, biome, attack, or Living Arena effect is not production-ready merely because an asset exists, tests pass, collision works, or E2E reaches the state: inspect it in real combat context.
 
 ## Multi-character dialogue composition and CG fallback

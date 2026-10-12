@@ -11,9 +11,11 @@ This platform skill implements the highest local compliance layer beneath the cu
 
 Validate the final production build, not only the dev server.
 
+Keep HEAD-bound release evidence tied to the frozen source identity and verify the actual packaged RC ZIP before acceptance.
+
 ## Sources of truth
 
-1. `config/yandex-requirements.yaml` — complete numbered-clause registry for the official requirements revision dated 18 August 2026.
+1. `config/yandex-requirements.yaml` — complete numbered-clause registry for the current official requirements revision.
 2. `config/yandex-console-requirements.yaml` — Console-only rules that have no numbered requirement of their own.
 3. `config/yandex-doc-sources.yaml` and explicitly reviewed `config/yandex-doc-snapshot.json` — canonical upstream sources and semantic baseline.
 4. `docs/YANDEX_REQUIREMENTS_CHECKLIST.md` — operational interpretation.
@@ -101,7 +103,8 @@ For every Draft locale, create a locale-specific video when gameplay contains lo
 3. Do not use a mockup, synthetic animation, dev/debug build or substituted footage. Do not add a game runtime dependency. Dev-only transcoding to MP4 is allowed.
 4. For portrait-only games, a 16:9 composition may combine the real portrait recording with the game's own artwork/background; the gameplay recording itself must remain real and visually primary.
 5. Produce locale-specific files as required, then record locale, path, dimensions, duration, size, reviewed gameplay ratio and SHA-256 in `artifacts/evidence/final-gameplay-videos.json`.
-6. Complete the manual visual-review fields and run media validation before packaging. Keep every promotional MP4 outside the release ZIP.
+6. Inspect the first and last rendered frames for accidental blank/loading/menu/debug/system state and confirm the captured segment represents the intended gameplay state.
+7. Complete the manual visual-review fields and run media validation before packaging. Keep every promotional MP4 outside the release ZIP.
 
 ## Stack Sort Lab moderation regressions — P0
 

@@ -27,6 +27,8 @@ jobs:
         run: npm run test:updater
       - name: Starter Kit self-test
         run: npm run starter-kit:self-test
+      - name: Updater contract self-test
+        run: npm run starter-kit:update-self-test
       - name: Yandex requirement registries
         run: |
           npm run yandex:requirements:audit
@@ -34,6 +36,12 @@ jobs:
       - name: Syntax gate
         run: |
           node --check tools/yandex/release-evidence-gate.mjs
+          node --check tools/yandex/docs-watch.mjs
+          node --check tools/yandex/media-validation.mjs
+          node --check tools/yandex/requirements-audit.mjs
+          node --check tools/yandex/sdk-validation.mjs
+          node --check tools/yandex/project-contract-validation.mjs
+          node --check tools/starter-kit/semantic-acceptance.mjs
           node --check tools/starter-kit/self-test.mjs
 
       - name: Checkout independent visual-novel integration target
@@ -90,3 +98,44 @@ jobs:
             unchangedGitStatus: true
           }, null, 2));
           NODE
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generated manifest drift gate
+        run: |
+          npm run starter-kit:manifest
+          git diff --exit-code -- starter-kit.manifest.json
+      - name: Starter Kit regression tests
+        run: npm run test:updater
+      - name: Starter Kit self-test
+        run: npm run starter-kit:self-test
+      - name: Updater contract self-test
+        run: npm run starter-kit:update-self-test
+
+  package:
+    runs-on: ubuntu-latest
+    needs: [verify, windows]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Package Starter Kit
+        run: npm run starter-kit:package
+      - name: Stage package artifact
+        shell: bash
+        run: |
+          cp ../yandex-games-autonomous-starter-kit-*.zip .
+          cp ../yandex-games-autonomous-starter-kit-*.zip.sha256 .
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: starter-kit-package
+          path: |
+            yandex-games-autonomous-starter-kit-*.zip
+            yandex-games-autonomous-starter-kit-*.zip.sha256

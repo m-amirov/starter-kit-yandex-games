@@ -29,7 +29,9 @@ Derived from the useful touch and mobile-performance concepts in `mobile-games-v
 - browser scroll, overscroll and pull-to-refresh do not interrupt play;
 - portrait ↔ landscape transitions work without reload;
 - safe areas do not cover controls;
-- 360×640 remains usable in RU and EN.
+- 360×640 remains usable in RU and EN;
+- 390×844 is verified for portrait/full-bleed changes that can alter crop, safe-area or action/text composition;
+- every orientation the game actually declares is tested; do not require unsupported orientation transitions.
 
 ## Narrative multi-character mobile safety
 
@@ -44,5 +46,7 @@ For mobile dialogue CG containing human figures, apply the `$visual-quality-gate
 Check bounded **preload/crossfade** behavior using the actual mobile runtime, not only a still screenshot: keep the last valid frame on Slow 3G, decode before transition, cancel stale scene loads, handle missing/failed assets gracefully and honor reduced-motion. Verify Back/Next rapid navigation and mobile-memory/request budgets; no blank frame or unintended duplicated dialogue activation. These checks are scoped to image-driven games; do not require a CG transition system for unrelated game genres.
 
 ## Evidence
+
+For affected full-bleed/responsive surfaces record four-edge coverage, document/internal scroll state, primary-action overlap, text readability and the actual input path. Do not infer crop quality from DOM bounds alone.
 
 Run mobile-emulated Chromium plus WebKit where available and record `artifacts/evidence/mobile-ux-review.json`.

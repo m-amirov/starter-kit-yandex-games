@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.11 — final hardening consolidation
+
+- Consolidated current SDK bootstrap, release-contract, reviewed semantic-acceptance and exact source-lineage protections without lowering the 0.5.11 baseline.
+- Added failure-memory promotion, evidence-domain separation, Windows-oriented verification coverage and opening-frame/locale-distinct gameplay-video checks.
+- Reconciled the 9 October 2026 official Yandex documentation update: requirement 8.3.5 content scope, Draft metadata review, moderation/detail-page snapshot and current source revision.
+
 ## 0.5.9 — 2026-09-30
 
 - Updated the official Yandex Games requirements snapshot and registries after the 29 September 2026 documentation revision.

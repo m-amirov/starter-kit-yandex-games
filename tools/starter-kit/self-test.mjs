@@ -110,14 +110,22 @@ function validatePolicy(root, skillRoot, errors) {
 
 function validateYandexContracts(root, skillRoot, errors, sourceMode) {
   const numbered = fs.readFileSync(path.join(root, 'config', 'yandex-requirements.yaml'), 'utf8');
-  const numberedAudit = auditRequirementRegistryText(numbered, sourceMode ? { reviewedAt: '2026-09-30' } : {});
+  const numberedAudit = auditRequirementRegistryText(numbered, sourceMode ? { reviewedAt: '2026-10-12' } : {});
   errors.push(...numberedAudit.errors.map((error) => `Yandex numbered registry: ${error}`));
 
   const consoleRegistry = fs.readFileSync(path.join(root, 'config', 'yandex-console-requirements.yaml'), 'utf8');
-  const consoleAudit = auditConsoleRegistryText(consoleRegistry, sourceMode ? { reviewedAt: '2026-09-30' } : {});
+  const consoleAudit = auditConsoleRegistryText(consoleRegistry, sourceMode ? { reviewedAt: '2026-10-12' } : {});
   errors.push(...consoleAudit.errors.map((error) => `Yandex Console registry: ${error}`));
 
-  for (const relative of ['config/yandex-doc-sources.yaml', 'config/yandex-doc-snapshot.json', 'tools/yandex/docs-watch.mjs']) {
+  for (const relative of [
+    'config/yandex-doc-sources.yaml',
+    'config/yandex-doc-snapshot.json',
+    'tools/yandex/docs-watch.mjs',
+    'tools/yandex/sdk-validation.mjs',
+    'tools/yandex/project-contract-validation.mjs',
+    'tools/starter-kit/semantic-acceptance.mjs',
+    'docs/HEAD_BOUND_RELEASE_EVIDENCE.md'
+  ]) {
     if (!fs.existsSync(path.join(root, relative))) errors.push(`Yandex documentation watcher file is missing: ${relative}`);
   }
   if (fs.existsSync(path.join(root, 'config', 'yandex-doc-snapshot.json'))) {
@@ -134,6 +142,8 @@ function validateYandexContracts(root, skillRoot, errors, sourceMode) {
     try { readJson(path.join(root, relative)); } catch (error) { errors.push(`invalid JSON schema ${relative}: ${error.message}`); }
   }
   const packageJson = readJson(path.join(root, 'package.json'));
+  if (!packageJson.scripts?.['yandex:sdk:validate']) errors.push('yandex:sdk:validate script is missing');
+  if (!packageJson.scripts?.['yandex:contract:validate']) errors.push('yandex:contract:validate script is missing');
   if (!packageJson.scripts?.['yandex:requirements:audit']) errors.push('yandex:requirements:audit script is missing');
   if (!packageJson.scripts?.['yandex:console:audit']) errors.push('yandex:console:audit script is missing');
   if (!packageJson.scripts?.['yandex:docs:check']) errors.push('yandex:docs:check script is missing');
@@ -217,6 +227,8 @@ let targetStatus;
 if (sourceMode) {
   version = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
   const packageVersion = readJson(path.join(ROOT, 'package.json')).version;
+  const policyVersion = readJson(path.join(ROOT, 'config', 'skill-policy.json')).starterKitVersion;
+  if (policyVersion !== version) errors.push('version mismatch: VERSION=' + version + ', skill-policy=' + policyVersion);
   if (packageVersion !== version) errors.push(`version mismatch: VERSION=${version}, package=${packageVersion}`);
   manifest = loadManifest(ROOT);
   validateManifest(manifest, ROOT);

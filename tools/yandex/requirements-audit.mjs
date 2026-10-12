@@ -74,8 +74,8 @@ export function auditRequirementRegistryText(text, options = {}) {
   if (missing.length) errors.push(`official registry is missing: ${missing.join(', ')}`);
   if (extra.length) errors.push(`official registry has unknown IDs: ${extra.join(', ')}`);
 
-  if (metadataValue(text, 'lastModified') !== '2026-09-29') {
-    errors.push('source.lastModified must be 2026-09-29');
+  if (metadataValue(text, 'lastModified') !== '2026-10-09') {
+    errors.push('source.lastModified must be 2026-10-09');
   }
   if (options.reviewedAt && metadataValue(text, 'reviewedAt') !== options.reviewedAt) {
     errors.push(`source.reviewedAt must be ${options.reviewedAt}`);

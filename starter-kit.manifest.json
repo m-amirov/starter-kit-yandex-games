@@ -193,7 +193,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "e8e8f697f53b7b9bb908c4762f2ea0e3c0adb5840b2ddba4706c513fdfa8176a"
+      "sha256": "9168cda6890b80283eec8d315e63da64c55754dbbb5633cee0b794e651578c47"
     },
     {
       "source": ".codex/skills/product-quality-review/ORIGIN.md",
@@ -241,7 +241,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "c4e844fbc8bb0252947f2237e1ea3b8dd3449721d292faa869c3ccd7f5f3aa4f"
+      "sha256": "6a372dc6a47e49d15afb87e13032548d685a4b4346d8ae270880b106f566e8c6"
     },
     {
       "source": ".codex/skills/visual-quality-gate/ORIGIN.md",
@@ -273,7 +273,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "3ba7439308256729ac7a6b473278f3b05c65247fcb3c1c26f0f16f672aa55dfb"
+      "sha256": "e3272ca53a489aaa08949b2489f7bf4ac01497721a1541fe2f375d9aa5d426b0"
     },
     {
       "source": ".codex/skills/web-game-playtest/ORIGIN.md",
@@ -321,7 +321,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "6c6d528fd9d6733d72e79ab0091f56f48bd2608705fd05252a1d90dc4fc4f69f"
+      "sha256": "b8807124ce512c3f2d5e914f53b8d494863eb80310476bb4967b8d27703c5972"
     },
     {
       "source": "AGENTS.md",
@@ -337,7 +337,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "59d5709508760e569d9ed871e07a66768714c6cecc0629bb01d591ab68d198f9"
+      "sha256": "272fb5973d7fbeb7d58a085c347601d79e3d5d254b7d872f589e47bc05702aef"
     },
     {
       "source": "package.json",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "b158504e5639957920fe22352e71287188e13bac6003083e836baa6b358f539b"
+      "sha256": "d2f495c9f2e3f42325a16bd5a9b29443ac97ecf846182e5e5ce2ec78a54f6a9a"
     },
     {
       "source": "index.html",
@@ -483,7 +483,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "082f8cb09df7fae79ad736f9fa3d995a3cc20a0bf6e607d65cc84262a21b99c8"
+      "sha256": "d560771b3b08fa67f9f525182be0b1dae5079e970fb5a241f361d5357353fcfb"
     },
     {
       "source": ".starter-kit/core/CONCEPT_PROOF_GATE.md",
@@ -515,7 +515,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "6ad653af0f7e606fa09c4873886cfafc46b3fa4b30e6b348d9073dc2e4b315be"
+      "sha256": "3c043ad332675b8fb55003e38923c76507794f4325d9a3128cb7703c5e0a0fe9"
     },
     {
       "source": "VERSION",
@@ -547,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "eec9d6ec477975bd6d082a9c400e8aaef4c59e440cea59dc9fea817973901b64"
+      "sha256": "64366ac3b8665fd4bd3fccef0a58109b7381fc4b3f1e55dbc42770530e8b3aec"
     },
     {
       "source": "README.md",
@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "392d090a6e4086c4607d06e641847c4a1710bc31b8073d739753a69ae6c9a4e2"
+      "sha256": "57e5ba61d0eed8cece8d8cf5f49db6cc2bb622c5145bcba4a485fb4248dd95c1"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -595,7 +595,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "97bd79057de121a53fcf2f41dfa4c75c4a2d81d25f01b1f53e380e5e5b5d47fd"
+      "sha256": "2bdc83003adc47e034c859039b59c2cb1fc03a62e1f6fc81554fac76dfa0d1d2"
     },
     {
       "source": "config/yandex-console-requirements.yaml",
@@ -611,7 +611,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "8e54325ae0f1f969e28063b75e82af87c2bbd51fb50b4f030a1846db2bd879ce"
+      "sha256": "2c9eba18ab1dcffec29972e9b6314396e32fcfcbce20d138bb7a257d7bda14e3"
     },
     {
       "source": "config/yandex-doc-sources.yaml",
@@ -632,7 +632,7 @@
     {
       "source": "config/yandex-doc-snapshot.json",
       "logicalId": "managed:yandex-doc-snapshot",
-      "ownership": "managed",
+      "ownership": "semantic-merge",
       "target": "config/yandex-doc-snapshot.json",
       "modes": [
         "init",
@@ -642,8 +642,8 @@
         "new",
         "mature"
       ],
-      "conflictPolicy": "replace-if-baseline",
-      "sha256": "7d2605723ba7439abeb30d12c7fb6b54776f12ac45f1b1e7f4bec4244d02fb68"
+      "conflictPolicy": "semantic-merge",
+      "sha256": "676ae99721c2d27d5c97056593cceb294fbf09d57cc2d3736adba3984f631dd6"
     },
     {
       "source": "config/game-spec.schema.json",
@@ -675,7 +675,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "8154a6c7564cfe291257739419529ff4f40920ea18838dd3bd785d482a680beb"
+      "sha256": "bc7329a812326d786d09b586db49bc8ba73cf40542b7c2d34834044d93c0c4ae"
     },
     {
       "source": "docs/SKILL_PRECEDENCE.md",
@@ -707,7 +707,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "2bdc3939564b59018de2c3720001f052a3cf24cba24028b16eaf53320428bb85"
+      "sha256": "3ea988044476c9a0bf235347222f89b220a85051aa748b96d81b8469ac255182"
     },
     {
       "source": "docs/YANDEX_REQUIREMENTS_DIFF_2026-07-01_TO_2026-08-18.md",
@@ -739,7 +739,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "76e9914f668303c1033594accf1e60c8e27abd7dd8242fa886b877719a36b42e"
+      "sha256": "d40f352cbfe2afbbc667ab6e61c65144f20c04619278f2d1676c864f8b4876da"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -788,7 +788,23 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "8745fdc6ad34d431b07f8b0611d917e4e2be8f054e43f3c84a80259a3d413c76"
+      "sha256": "aaadb8305b2515952a91038f5b90ffb62a3b7677774995854268afbfa5c05f5d"
+    },
+    {
+      "source": "docs/HEAD_BOUND_RELEASE_EVIDENCE.md",
+      "logicalId": "managed:head-bound-release-evidence-doc",
+      "ownership": "managed",
+      "target": "docs/HEAD_BOUND_RELEASE_EVIDENCE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "91e210a551c7ca735ab17daad967da9e7cfc9e1da6b524a658ddf2d9a5ebf342"
     },
     {
       "source": "lessons/known-failures.yaml",
@@ -804,7 +820,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "362daadd9fcd8639f01d90e0737fa536843fc55aade12794ec53cf5b3b1e851f"
+      "sha256": "98298c4b8f361e09c28b2bc667da71099647e5969faae5050a6baa33577d8075"
     },
     {
       "source": "migrations/0.3.0-yandex-requirements.md",
@@ -1060,7 +1076,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "c300356b1eaa0cc02509eb289675db152121020412716f15c76d42776a9a2644"
+      "sha256": "0529311707356ad9660cd93fbd033ea264e07eeefa984950eac058cee4677b91"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1268,7 +1284,23 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "867d1ced24cf328c222458b61895a63d7dc289340add1ff313bdb9280e7be34e"
+      "sha256": "af3921285ab04c3958cff5f114c07c9f3931115b40830ee4d1a27924c5e462b7"
+    },
+    {
+      "source": "tools/starter-kit/semantic-acceptance.mjs",
+      "logicalId": "managed:tool-semantic-acceptance",
+      "ownership": "managed",
+      "target": "tools/starter-kit/semantic-acceptance.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "60312146a1a45d12c7d0d98d39daea0835774203870eb727fd71305a19b518c7"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -1300,7 +1332,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "8e0868a05fdb4bc6be926fb53bb31643af563bfcfe45adde032e06a148fc322b"
+      "sha256": "9c1e4007dfd7bd3ecf3889f7af6c7bee8bf9904fd966513342fce068886dd3e7"
     },
     {
       "source": "tools/starter-kit/update-engine.mjs",
@@ -1316,7 +1348,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "490af1fe467111c859d55d319f4c931254d28723ef8aaeda1ae0313ae0e785bb"
+      "sha256": "e5a414ffc36d9499cba14a78da46f0a3013c0908daf765f3a468471f60e553ab"
     },
     {
       "source": "tools/starter-kit/update-self-test.mjs",
@@ -1348,7 +1380,39 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "6fc65ef1014b6d363e9607db4454e3ae7ad9a37da54abb5b426f57f23f76adb3"
+      "sha256": "06c6ae4c0bc9b24b1448f2f00a05592e638bd8581fdc95ebef3fbc36f4b98e9b"
+    },
+    {
+      "source": "tools/yandex/sdk-validation.mjs",
+      "logicalId": "managed:tool-yandex-sdk-validation",
+      "ownership": "managed",
+      "target": "tools/yandex/sdk-validation.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "9b6392697ea6a427355e9ac0c67ab949d602a421c1efe88d10e7d814f04d4aa3"
+    },
+    {
+      "source": "tools/yandex/project-contract-validation.mjs",
+      "logicalId": "managed:tool-yandex-project-contract-validation",
+      "ownership": "managed",
+      "target": "tools/yandex/project-contract-validation.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "66d9d1f1496e1671f6e910a3ed0bb232e7c86cc1f103775463dbd37a4fe186be"
     },
     {
       "source": "tools/yandex/docs-watch.mjs",
@@ -1364,7 +1428,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "d0cad57c734e2c8ba4363d6fe1faf330a9ddc61f977d3c2100d6ccfb50dc9a7e"
+      "sha256": "5c2f1cd78e953bdc5df7574399fe77191a02275e2f376adebb350e806fc225a3"
     },
     {
       "source": "tools/yandex/media-validation.mjs",
@@ -1380,7 +1444,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "fc21961b459dfa5a7a66f7bcb2df216b55659d7d923f1fa526dd75360ba970e8"
+      "sha256": "8f449220a1085011c980746997d91eda133adcd4c63fbfd23704a1393542a4bd"
     },
     {
       "source": "config/yandex-external-evidence-providers.yaml",
