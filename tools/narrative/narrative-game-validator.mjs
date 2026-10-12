@@ -2,6 +2,8 @@
  * Optional narrative-game contract validator. It checks the supplied graph/model,
  * not the provenance of a live game export or quality of prose.
  */
+import { checkStoryPromises } from './story-promise-validator.mjs';
+
 const own = (obj,key) => Object.prototype.hasOwnProperty.call(obj,key);
 const validText = s => typeof s === 'string' && s.trim().length > 0;
 const primitive = x => x===null || ['string','number','boolean'].includes(typeof x);
@@ -9,7 +11,7 @@ const idOK = x => validText(x) && /^[A-Za-z0-9_.:-]+$/.test(x);
 const stable = obj => JSON.stringify(obj);
 const MAX_STATES=4096;
 
-export function checkNarrativeGame(model, saves) {
+export function checkNarrativeGame(model, saves, storyPromiseLedger=undefined) {
   const errors=[], warnings=[];
   const fail=(code,scope='')=>errors.push({code,scope});
   if(model?.schemaVersion!==1 || !Array.isArray(model.scenes) || model.scenes.length===0 ||
@@ -143,7 +145,12 @@ export function checkNarrativeGame(model, saves) {
         fail('SAVE_ROUNDTRIP_MISMATCH',where);
     }
   }
-  return {status:errors.length?'BLOCKED_NARRATIVE_GAME':'PASS_DECLARED_NARRATIVE_GRAPH',errors,warnings,
+  const storyPromises=storyPromiseLedger===undefined
+    ? {status:'SKIPPED_OPTIONAL_STORY_PROMISES',errors:[],warnings:[]}
+    : checkStoryPromises(model,storyPromiseLedger,{nodes,byScene});
+  errors.push(...storyPromises.errors);
+  warnings.push(...storyPromises.warnings);
+  return {status:errors.length?'BLOCKED_NARRATIVE_GAME':'PASS_DECLARED_NARRATIVE_GRAPH',errors,warnings,storyPromises,
     coverage:{declaredScenes:scenes.size,reachedScenes:byScene.size,visitedStates:nodes.size,
       declaredEndings:declaredEndings.length,reachedEndings:declaredEndings.filter(x=>byScene.has(x)).length,
       saveFixtures:saves?.samples?.length??0},

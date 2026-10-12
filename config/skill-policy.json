@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "starterKitVersion": "0.5.11",
+  "starterKitVersion": "0.5.12",
   "authorityOrder": [
     "official-yandex-games-requirements",
     "config/yandex-requirements.yaml",

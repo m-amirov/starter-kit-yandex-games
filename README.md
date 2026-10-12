@@ -1,7 +1,15 @@
-# Autonomous Yandex Games Starter Kit 0.5.11
+# Autonomous Yandex Games Starter Kit 0.5.12
 
 Версионируемая engineering/compliance инфраструктура для создания новых игр и
 безопасного обновления существующих зрелых проектов Яндекс Игр.
+
+## Optional future visual-novel story promises
+
+For **future games** that explicitly enable `narrative-game`, an optional
+`promisesPath` verifies scene and state-guard references for material story setups
+and payoffs. Profiles without `promisesPath` behave exactly as before. This is not
+a release gate, a runtime attestation or a judgment about the prose.
+See `docs/NARRATIVE_GAME_PROFILE.md`.
 
 ## Два разных режима
 

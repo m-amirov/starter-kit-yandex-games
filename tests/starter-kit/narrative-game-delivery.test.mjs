@@ -10,6 +10,7 @@ import { loadTargetProfile } from '../../tools/starter-kit/profile.mjs';
 const sources=[
   'tools/narrative/narrative-game-validator.mjs',
   'tools/narrative/narrative-game-check.mjs',
+  'tools/narrative/story-promise-validator.mjs',
   'config/optional-profiles/narrative-game.json',
   'docs/NARRATIVE_GAME_PROFILE.md'
 ];

@@ -146,6 +146,18 @@ Rollback uses Git:
 Dry run performs no writes. Neither init/update status tooling nor dry run
 creates a target-project release ZIP.
 
+## 0.5.12 — opt-in story-promise validation for future games
+
+Adds `tools/narrative/story-promise-validator.mjs`, an optional `promisesPath` in
+project-owned enabled `narrative-game` profiles, and source-bound reference
+validation. The managed profile template stays disabled. No game or runtime files
+are updated automatically. The validator never judges story quality or attests
+actual executed routes; see `docs/NARRATIVE_GAME_PROFILE.md`.
+
+Prior profiles without the new field remain compatible. Run the updater in
+`--dry-run` mode first and resolve any managed/semantic conflicts deliberately.
+See `migrations/0.5.11-to-0.5.12.md`.
+
 ## 0.5.11 — human-figure CG anatomy and grounding
 
 The 0.5.11 patch adds a fail-closed **human-figure anatomy, camera and spatial-continuity** gate in the delivered `visual-quality-gate` skill, with a portrait-specific reminder in `mobile-game-ux` and explicit fields in the `SCREENSHOT_VISUAL_GATE` template. For generated character scenes, reviewers must examine actual source pixels and current runtime screenshots for reference-consistent anatomy (including non-compressed legs, plausible head/torso and hands), coherent eye-level/natural perspective where appropriate, and readable contact with the supporting ground plane. A wet quay must not accidentally resemble deep harbor water around the actors.

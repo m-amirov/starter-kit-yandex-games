@@ -1684,6 +1684,21 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": "tools/narrative/story-promise-validator.mjs",
+      "logicalId": "managed:story-promise-validator",
+      "ownership": "managed",
+      "target": "tools/narrative/story-promise-validator.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "tools/narrative/narrative-game-check.mjs",
       "logicalId": "managed:narrative-game-profile-cli",
       "ownership": "managed",
@@ -1718,6 +1733,21 @@
       "logicalId": "managed:narrative-game-profile-doc",
       "ownership": "managed",
       "target": "docs/NARRATIVE_GAME_PROFILE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.5.11-to-0.5.12.md",
+      "logicalId": "migration:0.5.11-to-0.5.12",
+      "ownership": "managed",
+      "target": "migrations/0.5.11-to-0.5.12.md",
       "modes": [
         "init",
         "update"

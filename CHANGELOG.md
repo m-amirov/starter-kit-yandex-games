@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.12 — optional story-promise references for future narrative games
+
+- Added opt-in `promisesPath` on enabled `narrative-game` profiles. Existing games are unchanged.
+- Validates declared scene references, finite-state guards and route-conditioned setup-to-payoff reachability, while preserving planned/open/unverified status boundaries.
+- Adds fail-closed tests for impossible payoff paths, missing scenes, guards and unauthorized runtime attestation. No new platform or release gates.
+
 ## 0.5.11 — final hardening consolidation
 
 - Consolidated current SDK bootstrap, release-contract, reviewed semantic-acceptance and exact source-lineage protections without lowering the 0.5.11 baseline.
