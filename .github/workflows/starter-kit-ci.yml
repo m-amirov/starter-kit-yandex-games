@@ -43,6 +43,8 @@ jobs:
           node --check tools/yandex/project-contract-validation.mjs
           node --check tools/starter-kit/semantic-acceptance.mjs
           node --check tools/starter-kit/self-test.mjs
+          node --check tools/narrative/story-promise-validator.mjs
+          node --check tools/narrative/narrative-game-validator.mjs
 
       - name: Checkout independent visual-novel integration target
         uses: actions/checkout@v4
@@ -74,7 +76,7 @@ jobs:
           assert.equal(after, before, 'Dry-run modified the game worktree');
           assert.equal(report.dryRun, true);
           assert.equal(report.fromVersion, '0.5.9');
-          assert.equal(report.toVersion, '0.5.11');
+          assert.equal(report.toVersion, '0.5.12');
           assert.equal(report.skillRoot, '.codex/skills');
           assert.deepEqual(report.forbiddenSecondRoots, []);
           assert.ok(report.skippedSeeds.length > 0, 'Product-owned seeds must remain excluded');
