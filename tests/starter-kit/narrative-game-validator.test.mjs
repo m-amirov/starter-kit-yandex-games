@@ -91,3 +91,9 @@ test('choices with same target and effects create a warning',()=>{
  assert.equal(result.status,'PASS_DECLARED_NARRATIVE_GRAPH');
  assert.ok(result.warnings.some(x=>x.code==='SAME_RESULT_CHOICES'));
 });
+
+test('a permanently impossible guarded choice cannot pass route coverage',()=>{
+ const m=model();
+ m.scenes[0].choices[0].requires={route:'nick'};
+ assert.ok(codes(m).includes('UNREACHABLE_CHOICE'));
+});
