@@ -81,7 +81,7 @@ export function checkNarrativeGame(model, saves) {
     for(const c of (Array.isArray(scene.choices)?scene.choices:[]))if(c?.to&&!scenes.has(c.to))fail('DANGLING_EDGE',scene.id+'->'+c.to);
   }
   if(errors.length)return {status:'BLOCKED_NARRATIVE_GAME',errors,warnings};
-  const queue=[{id:model.start,state:initial}], nodes=new Map(), byScene=new Map();
+  const queue=[{id:model.start,state:initial}], nodes=new Map(), byScene=new Map(), visitedChoiceIds=new Set();
   const nodeKey=(id,state)=>id+':'+stable(state);
   while(queue.length){
     const q=queue.shift(),k=nodeKey(q.id,q.state);
@@ -96,6 +96,7 @@ export function checkNarrativeGame(model, saves) {
     const fingerprints=new Map();
     for(const c of choices){
       if(Object.entries(c.requires||{}).some(([key,v])=>q.state[key]!==v))continue;
+      if(scene.choices)visitedChoiceIds.add(q.id+':'+c.id);
       const next=canonicalState({...q.state,...c.effects},q.id+':'+c.id);
       if(!next)continue;
       const target=nodeKey(c.to,next);
@@ -122,6 +123,8 @@ export function checkNarrativeGame(model, saves) {
   if(!declaredEndings.length)fail('NO_ENDINGS');
   for(const id of declaredEndings)if(!byScene.has(id))fail('UNREACHABLE_ENDING',id);
   for(const id of scenes.keys())if(!byScene.has(id))fail('UNREACHABLE_SCENE',id);
+  for(const scene of scenes.values())for(const choice of scene.choices||[])
+    if(!visitedChoiceIds.has(scene.id+':'+choice.id))fail('UNREACHABLE_CHOICE',scene.id+':'+choice.id);
 
   if(saves?.schemaVersion!==1 || !Array.isArray(saves.samples) || saves.samples.length===0)fail('NO_SAVE_FIXTURES');
   else for(const [idx,sample] of saves.samples.entries()){
