@@ -1732,7 +1732,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "0dbc82c63faa944bbc3cab357e57563f59df5ee59ae3121e1e4dfb029bf15fb7"
+      "sha256": "c603dcda6dfe8db67ad2727a29dc0f30f12a1a959a8bb71f24d3a9a0f2c90605"
     },
     {
       "source": "tools/narrative/narrative-game-check.mjs",
