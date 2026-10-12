@@ -59,18 +59,27 @@ export function checkStoryPromises(model,ledger,{nodes,byScene}){
    if(!starts.length){fail('PROMISE_SETUP_UNREACHABLE',where);continue;}
    if(isOpen){checked++;continue;}
    if(!payoff||!scenes.has(payoff.sceneId))continue;
-   const reachesPayoff = start=>{
-     const stack=[start],visited=new Set();
+   // Existence of one payoff path is insufficient: all terminal branches
+   // following a matched setup must pass through a matching payoff.
+   const checkPaths = start=>{
+     const stack=[{key:start,seen:false}],visited=new Set();
+     let foundPayoff=false,missingOnEnding=false;
      while(stack.length){
-       const k=stack.pop();if(visited.has(k))continue;visited.add(k);
-       const n=nodes.get(k);
-       if(n.id===payoff.sceneId&&match(n.state,payoff.requires))return true;
-       stack.push(...n.edges);
+       const {key,seen}=stack.pop(),fingerprint=key+':'+seen;
+       if(visited.has(fingerprint))continue;
+       visited.add(fingerprint);
+       const n=nodes.get(key);
+       const satisfied=seen||(n.id===payoff.sceneId&&match(n.state,payoff.requires));
+       if(satisfied)foundPayoff=true;
+       if(n.ending&&!satisfied)missingOnEnding=true;
+       for(const next of n.edges)stack.push({key:next,seen:satisfied});
      }
-     return false;
+     return {foundPayoff,missingOnEnding};
    };
-   if(starts.some(start=>!reachesPayoff(start)))
-     fail('PROMISE_PAYOFF_UNREACHABLE_ON_ROUTE',where);
+   if(starts.some(start=>{
+     const {foundPayoff,missingOnEnding}=checkPaths(start);
+     return !foundPayoff||missingOnEnding;
+   }))fail('PROMISE_PAYOFF_UNREACHABLE_ON_ROUTE',where);
    else checked++;
    if(setup.sceneId===payoff.sceneId)warn('SAME_SCENE_SETUP_PAYOFF_EDITORIAL_REVIEW',where);
    if(p.status==='runtime-verified'){

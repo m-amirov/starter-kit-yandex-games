@@ -1812,7 +1812,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "ff97fc7ae57a5d451df45ee2aa3469d5e81ed91eeef41a19afa136856ce0fedb"
+      "sha256": "26ba10c3378b0224f5203c4271929d98329112b0aa5e3c90985f937824d760e6"
     },
     {
       "source": "tools/narrative/narrative-game-check.mjs",
@@ -1860,7 +1860,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "3e80ae25627ce584349871e7ebcb59b3b10f6eeddbb8601269f8c35d70629031"
+      "sha256": "d40215002121d9ae2a2c18da4f101e4cdd47f60536f4afeca6b17bb85b65c7e2"
     },
     {
       "source": "migrations/0.5.11-to-0.5.12.md",

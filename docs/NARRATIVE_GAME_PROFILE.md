@@ -50,7 +50,7 @@ Schema v1 example:
 }
 ```
 
-`setup` and `payoff` point to existing declared **scene IDs** for `authored`, `runtime-verified` and `intentionally-open` records; guards use exact finite-state keys and values from the narrative model. An authored claim requires a reachable setup-to-payoff path for **every setup state matching its guard**. If only one branch resolves, split into route-conditioned entries or explicitly mark the other route intentionally open. Invalid IDs, invalid guards, dangling scene references or unreachable conditional payoff **BLOCK** the optional check.
+`setup` and `payoff` point to existing declared **scene IDs** for `authored`, `runtime-verified` and `intentionally-open` records; guards use exact finite-state keys and values from the narrative model. An authored claim requires a payoff on **every reachable terminal path after a setup state matching its guard** (a single successful branch is not sufficient). If only one branch resolves, split into route-conditioned entries or explicitly mark the other route intentionally open. Invalid IDs, invalid guards, dangling scene references or unreachable conditional payoff **BLOCK** the optional check.
 
 Statuses: `planned` can refer to unwritten future material and cannot earn PASS; `unresolved` needs editorial work; `authored` means *declared scene references structurally match*, never that the prose actually delivered the payoff. `runtime-verified` is an external claim and is marked **NOT_VERIFIED** by this validator because model JSON does not attest executed gameplay. `intentionally-open` requires an explicit `authorDecision` and no `payoff`.
 
