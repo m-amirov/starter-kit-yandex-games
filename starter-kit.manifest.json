@@ -1060,7 +1060,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "a165f3baacabc64255fbd3bd94045977e9b8fe18754880d53f083797bc9be544"
+      "sha256": "c300356b1eaa0cc02509eb289675db152121020412716f15c76d42776a9a2644"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
