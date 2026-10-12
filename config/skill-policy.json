@@ -221,5 +221,20 @@
       "topic": "game-design-vs-draft-metadata",
       "rule": "Genre and category recommendations must be justified by actual gameplay and revalidated against Yandex requirement 2.3."
     }
+  ],
+  "optionalProfiles": [
+    {
+      "name": "narrative-game",
+      "enabledByDefault": false,
+      "config": "config/optional-profiles/narrative-game.json",
+      "validator": "tools/narrative/narrative-game-check.mjs",
+      "checks": [
+        "routes",
+        "dialogue",
+        "state",
+        "saves"
+      ],
+      "activation": "explicit game-owned opt-in only"
+    }
   ]
 }
