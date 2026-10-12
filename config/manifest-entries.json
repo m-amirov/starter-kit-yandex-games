@@ -1607,6 +1607,66 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/narrative/narrative-game-validator.mjs",
+      "logicalId": "managed:narrative-game-validator",
+      "ownership": "managed",
+      "target": "tools/narrative/narrative-game-validator.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/narrative/narrative-game-check.mjs",
+      "logicalId": "managed:narrative-game-profile-cli",
+      "ownership": "managed",
+      "target": "tools/narrative/narrative-game-check.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/optional-profiles/narrative-game.json",
+      "logicalId": "managed:narrative-game-profile-template",
+      "ownership": "managed",
+      "target": "config/optional-profiles/narrative-game.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/NARRATIVE_GAME_PROFILE.md",
+      "logicalId": "managed:narrative-game-profile-doc",
+      "ownership": "managed",
+      "target": "docs/NARRATIVE_GAME_PROFILE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
     }
   ]
 }
