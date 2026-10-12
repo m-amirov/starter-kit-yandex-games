@@ -739,7 +739,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "fb6f70df330f1471bd7c62e9f29d3cb245f360cb3d27cdb339baedeed71c5fd2"
+      "sha256": "76e9914f668303c1033594accf1e60c8e27abd7dd8242fa886b877719a36b42e"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -1717,6 +1717,70 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "855a2f321fc9ad00eaeaf0b6268fc6720bd551f09c9a3617727155d3866cdbb7"
+    },
+    {
+      "source": "tools/narrative/narrative-game-validator.mjs",
+      "logicalId": "managed:narrative-game-validator",
+      "ownership": "managed",
+      "target": "tools/narrative/narrative-game-validator.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "0dbc82c63faa944bbc3cab357e57563f59df5ee59ae3121e1e4dfb029bf15fb7"
+    },
+    {
+      "source": "tools/narrative/narrative-game-check.mjs",
+      "logicalId": "managed:narrative-game-profile-cli",
+      "ownership": "managed",
+      "target": "tools/narrative/narrative-game-check.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "aeb9c889eaa70df357c9513dfbb77a34810b151c2d2b5b9029ce53dc3564a9c2"
+    },
+    {
+      "source": "config/optional-profiles/narrative-game.json",
+      "logicalId": "managed:narrative-game-profile-template",
+      "ownership": "managed",
+      "target": "config/optional-profiles/narrative-game.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "92ecc2abcffd976171ab284ed42f5e08220bbc0bab8ce83ae808890ecfff8c0d"
+    },
+    {
+      "source": "docs/NARRATIVE_GAME_PROFILE.md",
+      "logicalId": "managed:narrative-game-profile-doc",
+      "ownership": "managed",
+      "target": "docs/NARRATIVE_GAME_PROFILE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "a4d4a4648e8be4d1a102c5737df46905f3d01511515acaf5bd89ad46756c467c"
     }
   ]
 }
