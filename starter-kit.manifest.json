@@ -273,7 +273,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "74f0a64557029892bfe7128d149f2e6de0f9636c783c66f70715a3eb4b6e417c"
+      "sha256": "3ba7439308256729ac7a6b473278f3b05c65247fcb3c1c26f0f16f672aa55dfb"
     },
     {
       "source": ".codex/skills/web-game-playtest/ORIGIN.md",
@@ -1685,6 +1685,38 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "a93431216676e6bd68034b673f35d620815d5de57f37a9cf6cecbc40a8a74ec7"
+    },
+    {
+      "source": "tools/visual/narrative-scene-contract.mjs",
+      "logicalId": "managed:narrative-scene-contract",
+      "ownership": "managed",
+      "target": "tools/visual/narrative-scene-contract.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "2c4dad6571a095185041b0422accf6f2fed5498491cefe79ed42f683e12439b8"
+    },
+    {
+      "source": "docs/NARRATIVE_SCENE_VISUAL_CONTRACT.md",
+      "logicalId": "managed:narrative-scene-contract-doc",
+      "ownership": "managed",
+      "target": "docs/NARRATIVE_SCENE_VISUAL_CONTRACT.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "855a2f321fc9ad00eaeaf0b6268fc6720bd551f09c9a3617727155d3866cdbb7"
     }
   ]
 }
