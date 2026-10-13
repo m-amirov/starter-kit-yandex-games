@@ -54,6 +54,23 @@ The vertical slice must pass product, visual, feel, mobile, accessibility and pe
 
 ## Engineering cycle
 
+## GitHub-first repository freshness
+
+For Git-backed projects, begin each non-trivial Codex task by verifying the actual worktree root, expected GitHub remote URL, active branch, dirty state and fresh remote HEAD. The **latest verified remote commit** is the reference for shared committed files, but it never authorizes discarding uncommitted work or unpublished local commits.
+
+Prefer CEOS `git-preflight` before reading task-critical documents or editing source:
+
+```powershell
+ceos git-preflight --project . --remote origin --branch main --fetch --json
+# Only on a clean matching main that is strictly behind origin/main:
+ceos git-preflight --project . --remote origin --branch main --fetch --apply --json
+```
+
+Supply `--expect-repo owner/repo` whenever the exact GitHub repository is known. Other intentional branches must be named explicitly. The check does not automatically change branches, stash, clean, reset, rebase or force-push. Dirty, diverged, detached, mismatched-remote or failed-fetch states require explicit safe reconciliation, not a guess that GitHub lacks a file.
+
+Before claiming a requested GitHub document is missing, fetch/check `origin/main` or read the file directly from the verified remote. After authorized work: review in-scope diff, test, commit, re-fetch, safely push and verify remote SHA; keep unrelated changes intact.
+
+
 For every non-trivial task use `$codex-engineering-system`, which routes the work through `$implementation-cycle`: reproduce/define, RED evidence, diagnose, implement, targeted verification, regression, diff/worktree review.
 
 Follow `.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md`: load only relevant skills and files, keep compact `.loop/` checkpoints, use the lowest sufficient reasoning level, run targeted checks during iteration, reuse only fresh same-commit evidence, and reserve full suites for task/release barriers.
