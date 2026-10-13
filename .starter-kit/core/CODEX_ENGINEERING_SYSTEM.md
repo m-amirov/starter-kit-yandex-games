@@ -10,6 +10,11 @@ A trivial task is a deterministic one-file change with no behavioral, build, sav
 
 ## Operating sequence
 
+## Repository preflight barrier
+
+For projects under Git, run the Starter Kit `AGENTS_CORE.md` GitHub-first preflight before step 1 of the engineering cycle. Use `ceos git-preflight --fetch` to discover stale `main`; only `--fetch --apply` with clean same-branch fast-forward may mutate the checkout automatically. A dirty checkout or divergent/unknown GitHub state is not a reason to reset, stash or skip the comparison. Do not claim that a GitHub document does not exist from a stale local clone. Commit/push only if the task authorizes them, and verify the final remote SHA.
+
+
 1. Define the exact scope, protected areas, success token, and smallest evidence needed.
 2. Read the nearest contract, implementation files, and tests first. Expand context only when the current evidence is insufficient.
 3. Use RED evidence or an executable acceptance check where practical.
