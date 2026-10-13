@@ -13,6 +13,17 @@ See `docs/NARRATIVE_GAME_PROFILE.md`.
 
 ## Два разных режима
 
+## GitHub-first Codex workflow
+
+CEOS and Starter Kit now share a fail-closed Git preflight contract. In an installed project, first run:
+
+```powershell
+ceos git-preflight --project . --remote origin --branch main --expect-repo owner/repo --fetch --json
+```
+
+If the result is `BEHIND_FAST_FORWARD_AVAILABLE`, and the checkout is clean and on the intended branch, run the same command with `--apply`. This is **not** a forced pull or a background service. Dirty/diverged/wrong-remote states are preserved and require reconciliation. Re-fetch before authorized push and verify remote SHA. CEOS command availability requires updating the installed CEOS CLI separately; Starter Kit instructions provide a Git-command fallback where it is absent. Mature-project AGENTS changes remain semantic-merge proposals; they are never silently overwritten.
+
+
 Новый проект:
 
 ```powershell
