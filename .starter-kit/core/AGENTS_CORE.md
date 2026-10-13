@@ -4,6 +4,13 @@ This file is managed by the starter kit. Put game-specific rules in `PROJECT_RUL
 
 ## Engineering orchestration
 
+## GitHub-first preflight (mandatory for Git-backed tasks)
+
+Before substantial reading, implementation or CEOS checkpoints, verify exact repository root, expected remote URL, current branch, worktree and a **fresh** upstream HEAD. With CEOS available run `ceos git-preflight --project . --remote origin --branch main --fetch --json` and supply `--expect-repo owner/repo` when known; after a clean exact-branch BEHIND verdict, `--fetch --apply` performs the only allowed automatic fast-forward. If CEOS is absent, use `git remote -v`, `git branch --show-current`, `git status --porcelain`, `git fetch origin main`, and `git rev-list --left-right --count HEAD...origin/main` with the same fail-closed rules.
+
+Never overwrite parallel work: no automatic stash, reset, clean, checkout, rebase, merge on dirty state, force-push, or treating a missing local file as remote absence. Block and report dirty/diverged/remote-mismatch/fetch failure; reconcile safely without destroying the user's files. Before an authorized push, fetch again and verify divergence. GitHub remote freshness is not the same as passing CEOS or game-release gates.
+
+
 Read and obey `.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md`. Use `$codex-engineering-system` for every non-trivial engineering task; it must remain separate from product runtime and release artifacts.
 
 Before producing a campaign, meta-system, procedural modes, or release
