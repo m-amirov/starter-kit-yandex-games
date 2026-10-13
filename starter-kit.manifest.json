@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.12",
+  "version": "0.5.13",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -337,7 +337,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "272fb5973d7fbeb7d58a085c347601d79e3d5d254b7d872f589e47bc05702aef"
+      "sha256": "3e6d4ec28be6a3636836f5c2c9d69c71994b22b2ffa2efdb5c5e85f4f8ca01ff"
     },
     {
       "source": "package.json",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "a4fa7355f58b05b5d0c1a72fc629265f633ab57e9c34d6060ef21d940308f2a9"
+      "sha256": "5e836dc5b3f1a657140840e7b09ab0360835fddfb8b25d1d1deab52174c9373c"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "a3ae46384a9b3fc3d3bd781d19bc48dbbd4175505de7bd1e723fca2031fe996a"
+      "sha256": "b52f5eeaba46342ec7231179350c2f352f15f7e6358c1d675f1cba84b80fdf4c"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -467,7 +467,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "06bea0032f45767b6732c025f2f3ca052b9a5afad18bd7544e053ecb61e63dd0"
+      "sha256": "7d0b24967b73b79b0084f5431f55e8ce4a8dd4c9ac707e0d26b701bc2a76203e"
     },
     {
       "source": ".starter-kit/core/CODEX_ENGINEERING_SYSTEM.md",
@@ -483,7 +483,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "d560771b3b08fa67f9f525182be0b1dae5079e970fb5a241f361d5357353fcfb"
+      "sha256": "730781596359c9234d466afde8e00e1820f2c320d5f70977bc18d7615aa31148"
     },
     {
       "source": ".starter-kit/core/CONCEPT_PROOF_GATE.md",
@@ -531,7 +531,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "c1c410b7d685a169c2916eaaa73554b9ea055d8de191eebc728640a47e7bf35b"
+      "sha256": "ac78687abc64e7bdeacee43884a0ecac5acbc85bb77b280b99ec52593f3f9215"
     },
     {
       "source": "CHANGELOG.md",
@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "22706d06e33ed9adca4e88c632dcd2941ff008c1197060d611bfad79423dbd11"
+      "sha256": "6a558acc6bb7dad114afecc71f3a146705296767378d106655917e1c0c5d2340"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -739,7 +739,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "4cf48db5b0eae00771e5618bbae441863cf76678a56af8101b08ee57b09d522b"
+      "sha256": "191fa4c92098028dff475e4682abd5c0b7b73dfe47b1c5e7d4b94bc8814c98e5"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
