@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "6a558acc6bb7dad114afecc71f3a146705296767378d106655917e1c0c5d2340"
+      "sha256": "36e85dcc7f001a93997e9dc5b08c80b59d28b7507471e763d902103ac5a869ca"
     },
     {
       "source": "MASTER_PROMPT.md",
