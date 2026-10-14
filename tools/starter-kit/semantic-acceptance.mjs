@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { readJson, sha256File, writeJson } from './lib.mjs';
+import { readJson, sha256TextFile, writeJson } from './lib.mjs';
 
 export function recordSemanticAcceptance({ root, logicalId, target }) {
   const stateFile = path.join(root, '.starter-kit', 'state.json');
@@ -30,7 +30,7 @@ export function recordSemanticAcceptance({ root, logicalId, target }) {
   state.semanticAcceptances[logicalId] = {
     target,
     sourceHash: entry.sha256,
-    targetHash: sha256File(targetFile)
+    targetHash: sha256TextFile(targetFile)
   };
   delete state.baseline[logicalId];
   state.conflicts = (state.conflicts ?? []).filter((item) => item.logicalId !== logicalId && item.target !== target);

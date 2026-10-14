@@ -77,6 +77,22 @@ export function sha256File(file) {
   return sha256Buffer(fs.readFileSync(file));
 }
 
+export function normalizeTextEol(text) {
+  return String(text).replace(/\r\n?/g, '\n');
+}
+
+export function sha256Text(text) {
+  return sha256Buffer(Buffer.from(normalizeTextEol(text), 'utf8'));
+}
+
+export function sha256TextBuffer(buffer) {
+  return sha256Text(buffer.toString('utf8'));
+}
+
+export function sha256TextFile(file) {
+  return sha256Text(fs.readFileSync(file, 'utf8'));
+}
+
 function shouldExclude(relative, excludes) {
   const normalized = posix(relative);
   return excludes.some((entry) => normalized === entry || normalized.startsWith(`${entry}/`));
