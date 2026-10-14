@@ -1076,7 +1076,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "be0cff6a1cf6da731c511502ca7e125fd304081de75fff064b91b143c9f9452d"
+      "sha256": "118791dea326dd8aed1df9bd0ca944dda1f94ba878773e840c4c7672e99527ca"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1380,7 +1380,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "06c6ae4c0bc9b24b1448f2f00a05592e638bd8581fdc95ebef3fbc36f4b98e9b"
+      "sha256": "5389f7d59ecc736bf48ee1a39757b2fac36abe1bb91116ab01e73cfd28655705"
     },
     {
       "source": "tools/yandex/sdk-validation.mjs",
@@ -1428,7 +1428,23 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "5c2f1cd78e953bdc5df7574399fe77191a02275e2f376adebb350e806fc225a3"
+      "sha256": "d84ed734b18a0e8ab752ff2ebc44bf17a1ef6ea7ac50dcee6c8c7d3a1a3a82af"
+    },
+    {
+      "source": "tools/yandex/registry-hash.mjs",
+      "logicalId": "managed:tool-yandex-registry-hash",
+      "ownership": "managed",
+      "target": "tools/yandex/registry-hash.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "22db85345c506ef890a5735ac9ea82ca4607a33cfd7a31fa0e554e05a0d135de"
     },
     {
       "source": "tools/yandex/media-validation.mjs",

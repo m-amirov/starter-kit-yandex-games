@@ -10,6 +10,7 @@ import {
   auditRequirementRegistryText,
   evaluateMonetization
 } from '../../tools/yandex/requirements-audit.mjs';
+import { registryTextSha256 } from '../../tools/yandex/registry-hash.mjs';
 import {
   validateGameplayVideos,
   validatePromotionalVideoExclusion
@@ -97,6 +98,27 @@ test('reviewed upstream snapshot aligns with numbered and Console registries', (
   assert.deepEqual(result.errors, []);
   assert.equal(result.snapshotClauseCount, 157);
   assert.equal(result.discoveredDetailPageCount, 24);
+});
+
+test('registry alignment is stable across LF and CRLF checkouts', () => {
+  const requirements = fs.readFileSync(path.join(ROOT, 'config', 'yandex-requirements.yaml'), 'utf8');
+  const consoleRegistry = fs.readFileSync(path.join(ROOT, 'config', 'yandex-console-requirements.yaml'), 'utf8');
+  const snapshot = JSON.parse(fs.readFileSync(path.join(ROOT, 'config', 'yandex-doc-snapshot.json'), 'utf8'));
+  const toCrlf = (text) => text.replace(/\r\n?/g, '\n').replace(/\n/g, '\r\n');
+
+  assert.equal(registryTextSha256(requirements), snapshot.registryAlignment.requirementsRegistrySha256);
+  assert.equal(registryTextSha256(toCrlf(requirements)), snapshot.registryAlignment.requirementsRegistrySha256);
+  assert.equal(registryTextSha256(consoleRegistry), snapshot.registryAlignment.consoleRegistrySha256);
+  assert.equal(registryTextSha256(toCrlf(consoleRegistry)), snapshot.registryAlignment.consoleRegistrySha256);
+
+  const result = auditSnapshotRegistryAlignment({
+    requirementText: toCrlf(requirements),
+    consoleText: toCrlf(consoleRegistry),
+    snapshot,
+    sourceConfig: loadSourceConfig()
+  });
+  assert.equal(result.status, 'PASS');
+  assert.deepEqual(result.errors, []);
 });
 
 test('current content and Draft policy changes are represented in release validation', () => {
