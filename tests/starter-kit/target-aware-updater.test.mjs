@@ -894,6 +894,38 @@ test('resolved mature repeated update is byte-idempotent', async () => {
   }
 });
 
+test('managed target state is stable across CRLF checkouts', async () => {
+  const { parent, target } = tempFixture('empty-new-project');
+  try {
+    await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile: 'new-project', mode: 'init' });
+    const stateFile = path.join(target, '.starter-kit', 'state.json');
+    const state = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+    const managedTargets = [
+      ...Object.values(state.baseline ?? {}).map((item) => item.target),
+      ...Object.values(state.semanticAcceptances ?? {}).map((item) => item.target)
+    ];
+    for (const relative of new Set(managedTargets)) {
+      const file = path.join(target, relative);
+      const content = fs.readFileSync(file, 'utf8').replace(/\r\n?/g, '\n');
+      fs.writeFileSync(file, content.replace(/\n/g, '\r\n'));
+    }
+
+    assert.equal(inspectTargetStatus({ sourceRoot: ROOT, targetRoot: target }).status, 'clean');
+    const repeated = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile: 'new-project',
+      mode: 'update',
+      dryRun: true
+    });
+    assert.equal(repeated.conflicts.length, 0);
+    assert.equal(repeated.created.length, 0);
+    assert.equal(repeated.updated.length, 0);
+  } finally {
+    removeTemp(parent);
+  }
+});
+
 test('status exposes target profile, manifest and ownership data', async () => {
   const { parent, target } = tempFixture('empty-new-project');
   try {

@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-import crypto from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -13,6 +12,7 @@ import {
   resolveExternalEvidenceConflict,
   verifyProviderIntegrity
 } from './external-evidence.mjs';
+import { registryTextSha256 } from './registry-hash.mjs';
 
 export const EXPECTED_REQUIREMENT_IDS = `
 1.1 1.2 1.2.1 1.2.2 1.3 1.4 1.5 1.6
@@ -43,10 +43,6 @@ const EXPECTED_RECOMMENDED_IDS = ['6.1', '6.2', '6.3', '6.4', '6.5', '6.6', '6.7
 
 function metadataValue(text, key) {
   return text.match(new RegExp(`^\\s{2}${key}:\\s*['\"]?([^'\"\\r\\n]+)`, 'm'))?.[1]?.trim();
-}
-
-function textSha256(text) {
-  return crypto.createHash('sha256').update(text).digest('hex');
 }
 
 export function parseRequirementRows(text) {
@@ -158,10 +154,10 @@ export function auditSnapshotRegistryAlignment({ requirementText, consoleText, s
   if (snapshot?.parserVersion !== DOC_PARSER_VERSION) errors.push('Yandex documentation snapshot parser version is stale');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(snapshot?.reviewedAt ?? '')) errors.push('Yandex documentation snapshot reviewedAt is missing or invalid');
   if (!snapshot?.fetchedAt || Number.isNaN(Date.parse(snapshot.fetchedAt))) errors.push('Yandex documentation snapshot fetchedAt is missing or invalid');
-  if (snapshot?.registryAlignment?.requirementsRegistrySha256 !== textSha256(requirementText)) {
+  if (snapshot?.registryAlignment?.requirementsRegistrySha256 !== registryTextSha256(requirementText)) {
     errors.push('authoritative numbered registry changed after snapshot review');
   }
-  if (snapshot?.registryAlignment?.consoleRegistrySha256 !== textSha256(consoleText)) {
+  if (snapshot?.registryAlignment?.consoleRegistrySha256 !== registryTextSha256(consoleText)) {
     errors.push('authoritative Console registry changed after snapshot review');
   }
 

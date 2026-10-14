@@ -1076,7 +1076,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "be0cff6a1cf6da731c511502ca7e125fd304081de75fff064b91b143c9f9452d"
+      "sha256": "118791dea326dd8aed1df9bd0ca944dda1f94ba878773e840c4c7672e99527ca"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1204,7 +1204,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "553bde6e478144e082b90c6bb713f6fbf2ea3be7c1656d8544014f2fbd42bad0"
+      "sha256": "3392a7a6b7e0b4cc791574e315033b2ca0d00a6fb79d7535d43320129be803ff"
     },
     {
       "source": "tools/starter-kit/manifest.mjs",
@@ -1300,7 +1300,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "60312146a1a45d12c7d0d98d39daea0835774203870eb727fd71305a19b518c7"
+      "sha256": "30bd724a05a25773ab398fa17e62a46948b013e55a699b436df9a0c198f5a170"
     },
     {
       "source": "tools/starter-kit/status.mjs",
@@ -1332,7 +1332,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "9c1e4007dfd7bd3ecf3889f7af6c7bee8bf9904fd966513342fce068886dd3e7"
+      "sha256": "35fc083a0a20a5154b45f635cf8a26002f45a1b58628096c465d3de8bc63b676"
     },
     {
       "source": "tools/starter-kit/update-engine.mjs",
@@ -1348,7 +1348,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "e5a414ffc36d9499cba14a78da46f0a3013c0908daf765f3a468471f60e553ab"
+      "sha256": "0847a3f8f303cebb895ed903d5a10e762bffa8f6f49bc3c05c745d1c0a10ebfe"
     },
     {
       "source": "tools/starter-kit/update-self-test.mjs",
@@ -1380,7 +1380,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "06c6ae4c0bc9b24b1448f2f00a05592e638bd8581fdc95ebef3fbc36f4b98e9b"
+      "sha256": "5389f7d59ecc736bf48ee1a39757b2fac36abe1bb91116ab01e73cfd28655705"
     },
     {
       "source": "tools/yandex/sdk-validation.mjs",
@@ -1428,7 +1428,23 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "5c2f1cd78e953bdc5df7574399fe77191a02275e2f376adebb350e806fc225a3"
+      "sha256": "d84ed734b18a0e8ab752ff2ebc44bf17a1ef6ea7ac50dcee6c8c7d3a1a3a82af"
+    },
+    {
+      "source": "tools/yandex/registry-hash.mjs",
+      "logicalId": "managed:tool-yandex-registry-hash",
+      "ownership": "managed",
+      "target": "tools/yandex/registry-hash.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "22db85345c506ef890a5735ac9ea82ca4607a33cfd7a31fa0e554e05a0d135de"
     },
     {
       "source": "tools/yandex/media-validation.mjs",

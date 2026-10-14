@@ -1339,6 +1339,21 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": "tools/yandex/registry-hash.mjs",
+      "logicalId": "managed:tool-yandex-registry-hash",
+      "ownership": "managed",
+      "target": "tools/yandex/registry-hash.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "tools/yandex/media-validation.mjs",
       "logicalId": "managed:tool-yandex-media-validation",
       "ownership": "managed",
