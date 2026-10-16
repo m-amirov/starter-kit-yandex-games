@@ -976,6 +976,31 @@ test('explicit managed resolution replaces only a drifted baseline-managed file'
   }
 });
 
+test('explicit managed resolution can adopt an existing managed file without a baseline', async () => {
+  const { parent, target } = tempFixture('empty-new-project');
+  try {
+    await executeUpdate({ sourceRoot: ROOT, targetRoot: target, profile: 'new-project', mode: 'init' });
+    const managed = path.join(target, '.starter-kit', 'core', 'CODEX_ENGINEERING_SYSTEM.md');
+    fs.appendFileSync(managed, '\nexisting managed file without recorded baseline\n');
+    const stateFile = path.join(target, '.starter-kit', 'state.json');
+    const state = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+    delete state.baseline['managed:codex-engineering-system-core'];
+    fs.writeFileSync(stateFile, `${JSON.stringify(state, null, 2)}\n`);
+    const result = await executeUpdate({
+      sourceRoot: ROOT,
+      targetRoot: target,
+      profile: 'new-project',
+      mode: 'update',
+      resolveManaged: ['managed:codex-engineering-system-core']
+    });
+    assert.equal(result.conflicts.length, 0);
+    assert.equal(result.resolved.some((item) => item.resolution === 'accept-explicit-managed'), true);
+    assert.equal(sha256File(managed), sha256File(path.join(ROOT, '.starter-kit', 'core', 'CODEX_ENGINEERING_SYSTEM.md')));
+  } finally {
+    removeTemp(parent);
+  }
+});
+
 test('status detects a forbidden second skill root', async () => {
   const { parent, target } = tempFixture('empty-new-project');
   try {
