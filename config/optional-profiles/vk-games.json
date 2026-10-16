@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "profile": "vk-games",
+  "enabled": false,
+  "contractPath": "platform/vk-games.contract.json",
+  "evidencePath": "artifacts/evidence/vk-games-runtime.json"
+}
