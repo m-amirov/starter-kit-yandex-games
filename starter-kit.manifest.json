@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.13",
+  "version": "0.5.14",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "5e836dc5b3f1a657140840e7b09ab0360835fddfb8b25d1d1deab52174c9373c"
+      "sha256": "e8e64e10d46d0e0a6fc97c0eaae39ca2238487ca0629fa59896a8cf615e678eb"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "b52f5eeaba46342ec7231179350c2f352f15f7e6358c1d675f1cba84b80fdf4c"
+      "sha256": "6a4b79574e54bc7994f678951ab02841c5d7c8252bb8730851e67d475d1ba642"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -531,7 +531,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "ac78687abc64e7bdeacee43884a0ecac5acbc85bb77b280b99ec52593f3f9215"
+      "sha256": "83264200d8334df61109845d12614d0b0e225458ddf4d761cc68522c61a1f625"
     },
     {
       "source": "CHANGELOG.md",
@@ -547,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "91288a78c77ea6f00396004864d32004501ab8556b2fd6ddcbaae0db9282686d"
+      "sha256": "ecddcabc113ae36d3725d12e10a3f13e77d1af2266e7a4886358c47266565db1"
     },
     {
       "source": "README.md",
@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "36e85dcc7f001a93997e9dc5b08c80b59d28b7507471e763d902103ac5a869ca"
+      "sha256": "6c8e317571e1247d7ad0d60b8e618ca1befb4d730205fa630385e89df385686c"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -739,7 +739,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "191fa4c92098028dff475e4682abd5c0b7b73dfe47b1c5e7d4b94bc8814c98e5"
+      "sha256": "169220c1c1f619874b31ec382d87d3ebd907bb303146ffa95c0c7a5abb558f81"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -1076,7 +1076,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "118791dea326dd8aed1df9bd0ca944dda1f94ba878773e840c4c7672e99527ca"
+      "sha256": "c92564dc8675474b5295352047bae77f42571a5b87b4922514a7740ecb3859fd"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1893,6 +1893,102 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "0d72e86d41331356d8485d7cf28a7bca4ca8b44a461a21f5ff030fab5eda29b8"
+    },
+    {
+      "source": "config/optional-profiles/vk-games.json",
+      "logicalId": "managed:vk-games-profile-template",
+      "ownership": "managed",
+      "target": "config/optional-profiles/vk-games.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "b1798e5f74e4e8b6a825bd6f7ad7f2debd0aa0b9cc4f8bf0af51addca7d7ede8"
+    },
+    {
+      "source": "tools/vk/vk-games-check.mjs",
+      "logicalId": "managed:vk-games-check",
+      "ownership": "managed",
+      "target": "tools/vk/vk-games-check.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "c459f2ae1ae407b408bf5f9175debb15974aeead1162ff1985e8b2d4e99a1798"
+    },
+    {
+      "source": "templates/platform/vk-bridge-adapter.mjs",
+      "logicalId": "managed:vk-games-adapter-reference",
+      "ownership": "managed",
+      "target": "templates/platform/vk-bridge-adapter.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "adb99a5bbb619bfde735489f628840cdb026636761398ebdaebb0bca574e366c"
+    },
+    {
+      "source": "templates/platform/vk-games.contract.example.json",
+      "logicalId": "managed:vk-games-contract-example",
+      "ownership": "managed",
+      "target": "templates/platform/vk-games.contract.example.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "84afe853240a4d6294e2a9ff584fa5d53c506a9fe2c59976789b260c9a87ab54"
+    },
+    {
+      "source": "docs/VK_GAMES_PROFILE.md",
+      "logicalId": "managed:vk-games-profile-doc",
+      "ownership": "managed",
+      "target": "docs/VK_GAMES_PROFILE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "39c7b5bb063e7df547c195190b00789a623984d877d16a92009dff84e8b48df9"
+    },
+    {
+      "source": "migrations/0.5.13-to-0.5.14.md",
+      "logicalId": "migration:0.5.13-to-0.5.14",
+      "ownership": "managed",
+      "target": "migrations/0.5.13-to-0.5.14.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "d0f25f441683f5692ccfbdf177ea3188484b32d5608c649c91c2ec30e70438e2"
     }
   ]
 }

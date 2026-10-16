@@ -1,3 +1,10 @@
+## 0.5.14 — 2026-10-16
+
+- Add disabled-by-default VK Games profile for VKontakte and Odnoklassniki (not VK Play).
+- Reference injected VK Bridge adapter for lifecycle, conservative storage round-trip and safe ad boundaries.
+- Independent VK contract validator and fail-closed git HEAD/build SHA/runtime matrix release gate.
+- Manifest delivery, regression coverage and migration docs; no automatic mature game runtime edits.
+
 # Changelog
 
 ## 0.5.12 — optional story-promise references for future narrative games
