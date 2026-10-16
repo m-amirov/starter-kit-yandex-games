@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "starterKitVersion": "0.5.13",
+  "starterKitVersion": "0.5.14",
   "authorityOrder": [
     "official-yandex-games-requirements",
     "config/yandex-requirements.yaml",
@@ -235,6 +235,20 @@
         "saves"
       ],
       "activation": "explicit game-owned opt-in only"
+    },
+    {
+      "name": "vk-games",
+      "enabledByDefault": false,
+      "config": "config/optional-profiles/vk-games.json",
+      "validator": "tools/vk/vk-games-check.mjs",
+      "checks": [
+        "vk-build-isolation",
+        "bridge-init",
+        "ads",
+        "saves",
+        "real-client-runtime-evidence"
+      ],
+      "activation": "explicit game-owned opt-in; independent from Yandex release"
     }
   ]
 }
