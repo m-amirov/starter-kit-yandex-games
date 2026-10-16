@@ -72,7 +72,7 @@ test('bad policy and SDK mixing fail closed', (t) => {
 test('unsafe traversal and symlink paths are rejected', (t) => {
   const { root, profile } = fixture(t);
   assert.throws(() => runVkGamesProfile(root, { ...profile, contractPath: '../secret.json' }), /Unsafe profile path/);
-  fs.symlinkSync(path.join(root, 'platform'), path.join(root, 'linked'));
+  fs.symlinkSync(path.join(root, 'platform'), path.join(root, 'linked'), process.platform === 'win32' ? 'junction' : 'dir');
   assert.throws(() => runVkGamesProfile(root, { ...profile, contractPath: 'linked/vk-games.contract.json' }), /Unsafe profile path/);
 });
 
