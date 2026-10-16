@@ -1,7 +1,7 @@
 {
   "name": "yandex-games-autonomous-starter-kit",
   "private": true,
-  "version": "0.5.13",
+  "version": "0.5.14",
   "type": "module",
   "starterKit": {
     "targetScripts": [
@@ -19,7 +19,8 @@
       "yandex:external:run",
       "yandex:external:normalize",
       "yandex:external:audit",
-      "yandex:release:evidence"
+      "yandex:release:evidence",
+      "vk:validate"
     ]
   },
   "scripts": {
@@ -43,6 +44,7 @@
     "skills:validate": "node tools/starter-kit/self-test.mjs",
     "yandex:release:evidence": "node tools/yandex/release-evidence-gate.mjs",
     "yandex:sdk:validate": "node tools/yandex/sdk-validation.mjs",
-    "yandex:contract:validate": "node tools/yandex/project-contract-validation.mjs"
+    "yandex:contract:validate": "node tools/yandex/project-contract-validation.mjs",
+    "vk:validate": "node tools/vk/vk-games-check.mjs"
   }
 }
