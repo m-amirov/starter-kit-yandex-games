@@ -1348,7 +1348,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "0847a3f8f303cebb895ed903d5a10e762bffa8f6f49bc3c05c745d1c0a10ebfe"
+      "sha256": "898fb1ec6442b2e023f95256f88a2d62dad9047ee117f14f9e11b0bf99194363"
     },
     {
       "source": "tools/starter-kit/update-self-test.mjs",
