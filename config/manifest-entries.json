@@ -1772,6 +1772,96 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "config/optional-profiles/vk-games.json",
+      "logicalId": "managed:vk-games-profile-template",
+      "ownership": "managed",
+      "target": "config/optional-profiles/vk-games.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/vk/vk-games-check.mjs",
+      "logicalId": "managed:vk-games-check",
+      "ownership": "managed",
+      "target": "tools/vk/vk-games-check.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "templates/platform/vk-bridge-adapter.mjs",
+      "logicalId": "managed:vk-games-adapter-reference",
+      "ownership": "managed",
+      "target": "templates/platform/vk-bridge-adapter.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "templates/platform/vk-games.contract.example.json",
+      "logicalId": "managed:vk-games-contract-example",
+      "ownership": "managed",
+      "target": "templates/platform/vk-games.contract.example.json",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/VK_GAMES_PROFILE.md",
+      "logicalId": "managed:vk-games-profile-doc",
+      "ownership": "managed",
+      "target": "docs/VK_GAMES_PROFILE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.5.13-to-0.5.14.md",
+      "logicalId": "migration:0.5.13-to-0.5.14",
+      "ownership": "managed",
+      "target": "migrations/0.5.13-to-0.5.14.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
     }
   ]
 }
