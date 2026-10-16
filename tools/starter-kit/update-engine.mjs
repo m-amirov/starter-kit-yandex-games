@@ -336,8 +336,12 @@ function processEntry(context) {
     return;
   }
 
-  if (baseline && explicitManagedResolution && !semantic) {
-    report.resolved.push({ logicalId: entry.logicalId, target: entry.target, resolution: 'replace-managed-drift' });
+  if (explicitManagedResolution && !semantic) {
+    report.resolved.push({
+      logicalId: entry.logicalId,
+      target: entry.target,
+      resolution: baseline ? 'replace-managed-drift' : 'accept-explicit-managed'
+    });
     if (!dryRun) {
       copySource(sourceRoot, targetRoot, entry, context.profile);
       removeConflictFiles(targetRoot, manifest.version, entry.target);
