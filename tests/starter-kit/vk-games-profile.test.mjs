@@ -48,6 +48,7 @@ test('vk-games is inactive by default and delivered to new and mature targets wi
     assert.ok(!resolved.some((e) => sources.includes(e.source) && /^(src|public)\//.test(e.target)));
   }
   assert.equal(runVkGamesProfile(ROOT, template).status, 'SKIPPED_OPT_IN_PROFILE');
+  assert.equal(runVkGamesProfile(ROOT, template, { release: true }).reason, 'PROFILE_DISABLED_FOR_RELEASE');
 });
 
 test('static contract can PASS but never approves a VK release', (t) => {
@@ -55,6 +56,7 @@ test('static contract can PASS but never approves a VK release', (t) => {
   const result = runVkGamesProfile(root, profile);
   assert.equal(result.status, 'PASS_VK_STATIC_CONTRACT');
   assert.equal(result.releaseReady, false);
+  assert.match(result.bundleSha256, /^[a-f0-9]{64}$/);
   assert.equal(runVkGamesProfile(root, profile, { release: true }).reason, 'RUNTIME_EVIDENCE_MISSING');
 });
 
@@ -130,8 +132,17 @@ test('fake runtime evidence without git commit cannot claim release PASS', (t) =
   const { root, profile } = fixture(t);
   fs.mkdirSync(path.join(root, 'artifacts/evidence'), { recursive: true });
   fs.writeFileSync(path.join(root, profile.evidencePath), JSON.stringify({
-    schemaVersion: 1, sourceHead: '0'.repeat(40), buildSha256: '0'.repeat(64),
+    schemaVersion: 1, sourceHead: '0'.repeat(40), bundleSha256: '0'.repeat(64),
     capturedAt: '2026-10-16T00:00:00Z', clients: []
   }));
   assert.equal(runVkGamesProfile(root, profile, { release: true }).reason, 'GIT_HEAD_UNVERIFIED');
+});
+
+test('bundle SHA and SDK isolation cover external JS, not only entry HTML', (t) => {
+  const { root, profile } = fixture(t);
+  const initial = runVkGamesProfile(root, profile).bundleSha256;
+  fs.writeFileSync(path.join(root, 'dist/vk/game.js'), 'console.log("game");');
+  assert.notEqual(runVkGamesProfile(root, profile).bundleSha256, initial);
+  fs.writeFileSync(path.join(root, 'dist/vk/game.js'), 'YaGames.init()');
+  assert.equal(runVkGamesProfile(root, profile).reason, 'YANDEX_SDK_IN_VK_BUILD');
 });

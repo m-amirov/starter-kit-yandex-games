@@ -17,5 +17,6 @@
     "mode": "vk-bridge",
     "maxBytes": 3800
   },
-  "yandexSdkIncluded": false
+  "yandexSdkIncluded": false,
+  "bundleDir": "dist/vk"
 }

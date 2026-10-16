@@ -1924,7 +1924,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "df02c3a45b75b90752467bd52cc5507f2cf15cb73f1be5ab42e3069de237f5cd"
+      "sha256": "c459f2ae1ae407b408bf5f9175debb15974aeead1162ff1985e8b2d4e99a1798"
     },
     {
       "source": "templates/platform/vk-bridge-adapter.mjs",
@@ -1956,7 +1956,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "6790fbf399ec3ba0f346b67ea108765bb8b7cc55f8b37e7e1a7c10b2cca36248"
+      "sha256": "84afe853240a4d6294e2a9ff584fa5d53c506a9fe2c59976789b260c9a87ab54"
     },
     {
       "source": "docs/VK_GAMES_PROFILE.md",
@@ -1972,7 +1972,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "b62e5f8f938b91b1e2112fa29abc7aaad3a787574cee481c53a10a263ce3c08b"
+      "sha256": "39c7b5bb063e7df547c195190b00789a623984d877d16a92009dff84e8b48df9"
     },
     {
       "source": "migrations/0.5.13-to-0.5.14.md",

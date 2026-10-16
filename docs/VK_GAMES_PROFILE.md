@@ -20,7 +20,7 @@ Official references (review for policy/API changes before submission):
 
 1. Install a reviewed and pinned version of @vkontakte/vk-bridge in the target game, not Starter Kit. Upstream v2.x warns about incompatible 3.x changes.
 2. Copy templates/platform/vk-bridge-adapter.mjs into a game-owned VK module (example: src/platform/vk-games.mjs) and inject the imported VK Bridge singleton. Wire pause/resume to game and audio lifecycle. Build a *separate* VK HTML entry. Never bundle both SDKs.
-3. Copy templates/platform/vk-games.contract.example.json to platform/vk-games.contract.json and update actual buildFile, adapterFile, distributions, and policies.
+3. Copy templates/platform/vk-games.contract.example.json to platform/vk-games.contract.json and update actual buildFile, bundleDir, adapterFile, distributions, and policies.
 4. Explicitly set enabled=true in the **game-owned** config/optional-profiles/vk-games.json. Never flip this template globally for all games.
 5. Build the VK target and run the static validator:
 
@@ -42,7 +42,7 @@ Expected runtime evidence path: artifacts/evidence/vk-games-runtime.json, exampl
 {
   "schemaVersion": 1,
   "sourceHead": "40-character actual game git commit",
-  "buildSha256": "64-character SHA-256 of the actual VK HTML entry",
+  "bundleSha256": "64-character SHA-256 of the actual VK HTML entry",
   "capturedAt": "2026-10-16T10:00:00Z",
   "clients": [
     {
@@ -63,7 +63,7 @@ Expected runtime evidence path: artifacts/evidence/vk-games-runtime.json, exampl
 }
 ~~~
 
-For distribution vk, required client rows are vk-web, vk-android, vk-ios. For ok, required rows are ok-web, ok-android, ok-ios. Include ALL rows applicable to the selected distributions. Every check must derive from real client behavior, not mocks. The checker binds evidence to current game git HEAD and VK HTML SHA256, and rejects stale, missing or incomplete data. A self-written JSON is not provider attestation; review the underlying video/network/log evidence independently.
+For distribution vk, required client rows are vk-web, vk-android, vk-ios. For ok, required rows are ok-web, ok-android, ok-ios. Include ALL rows applicable to the selected distributions. Every check must derive from real client behavior, not mocks. The checker binds evidence to current game git HEAD and VK bundle tree SHA256, and rejects stale, missing or incomplete data. A self-written JSON is not provider attestation; review the underlying video/network/log evidence independently.
 
 ## Ads and storage safety
 
