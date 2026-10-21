@@ -1862,6 +1862,51 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/production-art/wardrobe-visual-gate.mjs",
+      "logicalId": "managed:wardrobe-visual-gate",
+      "ownership": "managed",
+      "target": "tools/production-art/wardrobe-visual-gate.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "docs/WARDROBE_VISUAL_ACCEPTANCE.md",
+      "logicalId": "managed:wardrobe-visual-acceptance-doc",
+      "ownership": "managed",
+      "target": "docs/WARDROBE_VISUAL_ACCEPTANCE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "migrations/0.5.14-to-0.5.15.md",
+      "logicalId": "migration:0.5.14-to-0.5.15",
+      "ownership": "managed",
+      "target": "migrations/0.5.14-to-0.5.15.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
     }
   ]
 }
