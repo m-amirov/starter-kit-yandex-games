@@ -80,7 +80,7 @@ jobs:
           assert.equal(after, before, 'Dry-run modified the game worktree');
           assert.equal(report.dryRun, true);
           assert.equal(report.fromVersion, '0.5.9');
-          assert.equal(report.toVersion, '0.5.14');
+          assert.equal(report.toVersion, '0.5.15');
           assert.equal(report.skillRoot, '.codex/skills');
           assert.deepEqual(report.forbiddenSecondRoots, []);
           assert.ok(report.skippedSeeds.length > 0, 'Product-owned seeds must remain excluded');
