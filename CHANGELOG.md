@@ -1,3 +1,9 @@
+## 0.5.15 — 2026-10-21
+
+- Add the optional `WARDROBE_VISUAL_ACCEPTANCE_V1` contract to Starter Kit's disabled-by-default `narrative-game` profile.
+- Ship reusable original/runtime portrait-landscape visual gate with exact-HEAD SHA-256 evidence checks, independent DEV Web High raw/receipt binding, canonical character identity checks, wardrobe continuity and justified outfit reuse.
+- Regression tests and documentation; no implicit browser operations, release-pass promotion, old art invalidation or mandatory CEOS orchestration.
+
 ## 0.5.14 — 2026-10-16
 
 - Add disabled-by-default VK Games profile for VKontakte and Odnoklassniki (not VK Play).
