@@ -3,5 +3,11 @@
   "profile": "narrative-game",
   "enabled": false,
   "modelPath": "narrative/graph.json",
-  "savesPath": "narrative/save-fixtures.json"
+  "savesPath": "narrative/save-fixtures.json",
+  "wardrobeVisualAcceptance": {
+    "enabled": false,
+    "ruleId": "WARDROBE_VISUAL_ACCEPTANCE_V1",
+    "contractDoc": "docs/WARDROBE_VISUAL_ACCEPTANCE.md",
+    "gate": "tools/production-art/wardrobe-visual-gate.mjs"
+  }
 }

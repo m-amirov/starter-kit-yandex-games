@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "updaterSchemaVersion": 2,
-  "version": "0.5.14",
+  "version": "0.5.15",
   "entries": [
     {
       "source": ".codex/skills/asset-provenance-and-rights/SKILL.md",
@@ -353,7 +353,7 @@
         "mature"
       ],
       "conflictPolicy": "structural-merge",
-      "sha256": "e8e64e10d46d0e0a6fc97c0eaae39ca2238487ca0629fa59896a8cf615e678eb"
+      "sha256": "bce73fdb98dba28757c30ab9fc322b92e0e9f0de38720edcc6fb8776dcf3c94e"
     },
     {
       "source": "index.html",
@@ -437,7 +437,7 @@
         "new"
       ],
       "conflictPolicy": "create-only",
-      "sha256": "6a4b79574e54bc7994f678951ab02841c5d7c8252bb8730851e67d475d1ba642"
+      "sha256": "6d9b5b84284f77953db54f7c11e1abaa3c334704cbe78f0392169cbeb90596f1"
     },
     {
       "source": "tests/e2e/yandex-moderation.spec.ts",
@@ -531,7 +531,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "83264200d8334df61109845d12614d0b0e225458ddf4d761cc68522c61a1f625"
+      "sha256": "af81c23fb81225f05f01087f1a1d2a3ecc642e0b2b1a5827d542938131d7595c"
     },
     {
       "source": "CHANGELOG.md",
@@ -547,7 +547,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "ecddcabc113ae36d3725d12e10a3f13e77d1af2266e7a4886358c47266565db1"
+      "sha256": "8e9c4d9a78de67641482e7d4ccaf91c84c8534d2ce01bf16a5b44d57c3181618"
     },
     {
       "source": "README.md",
@@ -563,7 +563,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "6c8e317571e1247d7ad0d60b8e618ca1befb4d730205fa630385e89df385686c"
+      "sha256": "3ff68b348b8fd9c3c76eb9f13bff860a9ff19370aa9f4405e5d451bb9415c6b0"
     },
     {
       "source": "MASTER_PROMPT.md",
@@ -739,7 +739,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "169220c1c1f619874b31ec382d87d3ebd907bb303146ffa95c0c7a5abb558f81"
+      "sha256": "2a485819536435836ae611716db595c3cb7a264662efa080976fa1918c4948bd"
     },
     {
       "source": "docs/EXTERNAL_SKILL_SOURCES.md",
@@ -1076,7 +1076,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "c92564dc8675474b5295352047bae77f42571a5b87b4922514a7740ecb3859fd"
+      "sha256": "550dfd8f336c13f5737db217631e89d573b40b8b75b1ba5e81817ba535e655db"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1860,7 +1860,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "92ecc2abcffd976171ab284ed42f5e08220bbc0bab8ce83ae808890ecfff8c0d"
+      "sha256": "d40beac262e41cc386b9c987cdb67ddd74f8239a17416bfc96b4ff24497bcc53"
     },
     {
       "source": "docs/NARRATIVE_GAME_PROFILE.md",
@@ -1876,7 +1876,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "d40215002121d9ae2a2c18da4f101e4cdd47f60536f4afeca6b17bb85b65c7e2"
+      "sha256": "b2397f848598466df8f2c9394a6a4b905411cc3e3ab33230ecc962b78e68c774"
     },
     {
       "source": "migrations/0.5.11-to-0.5.12.md",
@@ -1989,6 +1989,54 @@
       ],
       "conflictPolicy": "replace-if-baseline",
       "sha256": "d0f25f441683f5692ccfbdf177ea3188484b32d5608c649c91c2ec30e70438e2"
+    },
+    {
+      "source": "tools/production-art/wardrobe-visual-gate.mjs",
+      "logicalId": "managed:wardrobe-visual-gate",
+      "ownership": "managed",
+      "target": "tools/production-art/wardrobe-visual-gate.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "9f11aac49f4efcf61d57eb3ad916e8cd34be164502372a9e641355d7d8800fe8"
+    },
+    {
+      "source": "docs/WARDROBE_VISUAL_ACCEPTANCE.md",
+      "logicalId": "managed:wardrobe-visual-acceptance-doc",
+      "ownership": "managed",
+      "target": "docs/WARDROBE_VISUAL_ACCEPTANCE.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "184ff4c278756bf5d79e28ad1040f0849b9bd89ee80f2cbe933bb8398ef4206c"
+    },
+    {
+      "source": "migrations/0.5.14-to-0.5.15.md",
+      "logicalId": "migration:0.5.14-to-0.5.15",
+      "ownership": "managed",
+      "target": "migrations/0.5.14-to-0.5.15.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "a476c599ff6987b91cb9a2f187ce617d2b6564b6b9449d58d2e314be93d0fdba"
     }
   ]
 }
