@@ -57,3 +57,21 @@ Statuses: `planned` can refer to unwritten future material and cannot earn PASS;
 The response includes an independent `storyPromises.status`: `SKIPPED_OPTIONAL_STORY_PROMISES`, `PASS_DECLARED_PROMISE_REFERENCES`, `NOT_VERIFIED_PROMISE_EVIDENCE` or `BLOCKED_PROMISE_REFERENCES`. Even when the main result is `PASS_DECLARED_NARRATIVE_GRAPH`, it **never proves artistic quality, emotional credibility, actually authored cues, real runtime saves, or that all planned promises are fulfilled**. For those, use CEOS `romance-narrative`, `narrative-continuity-engine` and `reader-experience-review`.
 
 This feature adds no mandatory release gate, new user questionnaire, art generation, runtime scripts, or changes to existing game content.
+
+## Optional independent wardrobe pixel validation
+
+After explicitly enabling `narrative-game` in a **project-owned**
+`config/narrative-game.local.json`, you may enable
+`wardrobeVisualAcceptance.enabled:true` for art-heavy visual novels.
+It is opt-in and does **not** create a release gate or run Web/CEOS automatically.
+
+The reusable, source-HEAD-bound `WARDROBE_VISUAL_ACCEPTANCE_V1` contract
+requires attached original/runtime portrait and landscape image pixels,
+canonical character references and actual independent reviewer observations
+of appearance, costume, cross-format consistency, neighboring-scene continuity
+and unjustified garment reuse. Its separate CLI verifies SHA-256,
+provenance and the Web receipt/raw response chain. Static briefs alone
+cannot earn an artistic PASS. See `docs/WARDROBE_VISUAL_ACCEPTANCE.md`.
+
+For existing accepted EP1/EP2 artwork, keep historical receipts and
+original PNGs unchanged; this additional contract is prospective.
