@@ -24,6 +24,31 @@ For projects under Git, run the Starter Kit `AGENTS_CORE.md` GitHub-first prefli
 7. Record a compact checkpoint, inspect the final diff/worktree, and stop when the success token is satisfied.
 8. Escalate after three materially different failed attempts for the same root cause.
 
+## Autonomous continuation and recovery (CEOS 0.6 Phase 03)
+
+The installed CEOS `continue` command remains the single host-directed
+continuation path. It may select one next action, restore persisted progress,
+or report a bounded recovery decision; it must not create a second workflow
+engine, invoke host-native tools from Node, grant permission, or infer a PASS.
+
+Technical recovery state is separate from artistic repair cycles and image
+candidate budgets. A timeout, transport failure or rate limit may be retried
+only within the persisted finite retry budget and after rechecking scope,
+source HEAD, capability evidence and the last checkpoint. Repeating the same
+operation requires a stable operation identity or result verification;
+unknown external outcomes are blocked. `PASS_WITH_NOTES`, artistic REWORK,
+provenance/SHA-256 mismatch, source-bound drift, missing evidence and expired
+capability authorization never trigger automatic image generation or
+acceptance.
+
+Every recovery result exposes a machine-readable category:
+`AUTO_RECOVERABLE`, `WAIT_EXTERNAL`, `NEEDS_USER_ACTION` or `HARD_BLOCKED`,
+with `reasonCode`, `nextAction` and saved-state details. A fresh capability
+challenge is a host pre-operation, not a grant of permission; generation still
+requires the current run/session/turn attestation and existing provenance
+gates. Historical receipts, accepted pixels, V2/V3 art contracts, Candidate
+Ledger and owner exceptions remain immutable.
+
 ## Token and context economy
 
 ### Context loading

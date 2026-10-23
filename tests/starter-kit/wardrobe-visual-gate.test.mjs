@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { validateWardrobeVisualAcceptance, buildWardrobeWebReviewAddendum, WARDROBE_VISUAL_RULE } from '../../tools/production-art/wardrobe-visual-gate.mjs';
+import { validateWardrobeVisualAcceptance, buildWardrobeWebReviewAddendum, WARDROBE_VISUAL_RULE, NARRATIVE_ART_ACCEPTANCE_V3 } from '../../tools/production-art/wardrobe-visual-gate.mjs';
 
 const HEAD = 'a'.repeat(40);
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
@@ -56,7 +56,7 @@ test('independent original/runtime wardrobe evidence passes only with exact SHA 
   const f = fixture(); t.after(() => fs.rmSync(f.dir, { recursive: true, force: true }));
   const result = validateWardrobeVisualAcceptance(f.args());
   assert.equal(result.status, 'PASS_WARDROBE_VISUAL_ACCEPTANCE');
-  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.errors, [], JSON.stringify(result.errors));
 });
 
 test('rejects fabricated PASS when no reviewer wardrobe assessments exist', t => {
@@ -113,4 +113,64 @@ test('review instructions demand real observations and justify contextual contin
   assert.match(msg, /repeated outfit/);
   assert.match(msg, /wardrobeAssessments/);
   assert.match(msg, /silver streaks/);
+});
+
+function v3Fixture() {
+  const f = fixture();
+  f.packet.ruleId = NARRATIVE_ART_ACCEPTANCE_V3;
+  f.raw.artAcceptanceProfile = NARRATIVE_ART_ACCEPTANCE_V3;
+  f.raw.status = 'PASS_WITH_NOTES';
+  f.raw.unresolved = [];
+  f.raw.findings = [{ id: 'minor-buttons', severity: 'P2', status: 'OPEN', observation: 'Small button shape differs without changing the story or character readability.' }];
+  f.raw.requiredCast = ['giulia'];
+  f.raw.wardrobeAssessments = [{
+    characterId: 'giulia',
+    identityObservation: text,
+    wardrobeObservation: text,
+    actionObservation: text,
+    identityStatus: 'PASS', wardrobeStatus: 'PASS', storyActionStatus: 'PASS', dualFormatStatus: 'PASS',
+    evidenceRefs: f.raw.visualEvidence.map(item => item.ref)
+  }];
+  f.receipt.status = 'PASS_WITH_NOTES';
+  f.receipt.artAcceptanceProfile = NARRATIVE_ART_ACCEPTANCE_V3;
+  f.receipt.requiredCast = f.raw.requiredCast;
+  f.receipt.wardrobeAssessments = f.raw.wardrobeAssessments;
+  f.receipt.findings = f.raw.findings;
+  f.receipt.unresolved = [];
+  f.receipt.transport.responseSha256 = sha(JSON.stringify(f.raw));
+  return f;
+}
+
+test('V3 returns one PASS_WITH_NOTES verdict and keeps wardrobe nested', t => {
+  const f = v3Fixture(); t.after(() => fs.rmSync(f.dir, { recursive: true, force: true }));
+  const result = validateWardrobeVisualAcceptance(f.args());
+  assert.equal(result.status, 'PASS_WITH_NOTES');
+  assert.equal(result.unifiedVerdict, 'PASS_WITH_NOTES');
+  assert.equal(result.wardrobeVerdict, 'NESTED_IN_UNIFIED_ART_REVIEW');
+  assert.equal(result.accepted, true, JSON.stringify(result.errors));
+  assert.deepEqual(result.errors, []);
+});
+
+test('V3 keeps a material identity/wardrobe contradiction as REWORK', t => {
+  const f = v3Fixture(); t.after(() => fs.rmSync(f.dir, { recursive: true, force: true }));
+  const finding = {
+    id: 'wrong-giulia', severity: 'P1', status: 'OPEN', characterId: 'giulia',
+    impactCode: 'WRONG_CHARACTER', authoredCue: 'Giulia enters and speaks to the player.',
+    observation: 'A different person is visible in the supplied original and runtime pixels.',
+    playerImpact: 'The player cannot identify the intended character in this story beat.',
+    evidenceRef: 'portrait-original', actualPixelsReceived: true
+  };
+  f.raw.status = 'REWORK';
+  f.raw.findings = [finding];
+  f.raw.unresolved = [finding.id];
+  f.raw.wardrobeAssessments[0].identityStatus = 'REWORK';
+  f.receipt.status = 'REWORK';
+  f.receipt.findings = f.raw.findings;
+  f.receipt.unresolved = f.raw.unresolved;
+  f.receipt.wardrobeAssessments = f.raw.wardrobeAssessments;
+  f.receipt.transport.responseSha256 = sha(JSON.stringify(f.raw));
+  const result = validateWardrobeVisualAcceptance(f.args());
+  assert.equal(result.status, 'REWORK');
+  assert.equal(result.accepted, false);
+  assert.ok(result.errors.includes('REVIEW_REQUIRES_REWORK'));
 });

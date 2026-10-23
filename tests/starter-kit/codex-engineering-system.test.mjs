@@ -31,6 +31,20 @@ test('token economy contract forbids repeated broad verification during iteratio
   assert.match(contract, /Do not repeat a green check/);
 });
 
+test('starter contract preserves CEOS 0.6 bounded continuation boundaries', () => {
+  const contract = read('.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md');
+  for (const token of [
+    'Autonomous continuation and recovery',
+    'AUTO_RECOVERABLE',
+    'WAIT_EXTERNAL',
+    'NEEDS_USER_ACTION',
+    'HARD_BLOCKED',
+    'Technical recovery state is separate from artistic repair cycles',
+    'unknown external outcomes are blocked',
+    'challenge is a host pre-operation'
+  ]) assert.match(contract, new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'));
+});
+
 test('screenshot visual gate is a canonical acceptance barrier', () => {
   const contract = read('.starter-kit/core/CODEX_ENGINEERING_SYSTEM.md');
   const visual = read('.codex/skills/visual-quality-gate/SKILL.md');
