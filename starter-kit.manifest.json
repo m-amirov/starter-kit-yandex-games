@@ -483,7 +483,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "730781596359c9234d466afde8e00e1820f2c320d5f70977bc18d7615aa31148"
+      "sha256": "0285825bcb6ebe0316b0429e5873c9faf09adb33824a40dc2712c5204349cc8e"
     },
     {
       "source": ".starter-kit/core/CONCEPT_PROOF_GATE.md",
