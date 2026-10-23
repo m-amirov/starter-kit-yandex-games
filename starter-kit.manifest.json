@@ -1076,7 +1076,7 @@
         "mature"
       ],
       "conflictPolicy": "semantic-merge",
-      "sha256": "550dfd8f336c13f5737db217631e89d573b40b8b75b1ba5e81817ba535e655db"
+      "sha256": "c0501b3c3410e9cde4f4bdf7404a0064cfd4d0d4047257f6ab28de6bf7274317"
     },
     {
       "source": "config/starter-kit-manifest.schema.json",
@@ -1860,7 +1860,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "d40beac262e41cc386b9c987cdb67ddd74f8239a17416bfc96b4ff24497bcc53"
+      "sha256": "c92cfcd953cc422db849a53f626fbb134e0efd118caf0f85a58dc9d3d290d34b"
     },
     {
       "source": "docs/NARRATIVE_GAME_PROFILE.md",
@@ -1876,7 +1876,23 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "b2397f848598466df8f2c9394a6a4b905411cc3e3ab33230ecc962b78e68c774"
+      "sha256": "46ac2664c8b601f01310f69afeb2be6ccc911489816c2ef410b23fd167e7440b"
+    },
+    {
+      "source": "docs/NARRATIVE_ART_ACCEPTANCE_V3.md",
+      "logicalId": "managed:narrative-art-acceptance-v3-doc",
+      "ownership": "managed",
+      "target": "docs/NARRATIVE_ART_ACCEPTANCE_V3.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "afbf4e882b44e468840ac8d6964eb0a697164fe65d93411a4035190a04e4d637"
     },
     {
       "source": "migrations/0.5.11-to-0.5.12.md",
@@ -2004,7 +2020,23 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "9f11aac49f4efcf61d57eb3ad916e8cd34be164502372a9e641355d7d8800fe8"
+      "sha256": "daeed92078177ba06bdbb01934a40d22cf40ab647f9c5d66c6f0871b42b3e58f"
+    },
+    {
+      "source": "tools/production-art/narrative-art-acceptance-v3.mjs",
+      "logicalId": "managed:narrative-art-acceptance-v3",
+      "ownership": "managed",
+      "target": "tools/production-art/narrative-art-acceptance-v3.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline",
+      "sha256": "8f7498e4ae2261a90518432db1be5217e2ec41b136968f02c86f75b13f9eee25"
     },
     {
       "source": "docs/WARDROBE_VISUAL_ACCEPTANCE.md",
@@ -2020,7 +2052,7 @@
         "mature"
       ],
       "conflictPolicy": "replace-if-baseline",
-      "sha256": "184ff4c278756bf5d79e28ad1040f0849b9bd89ee80f2cbe933bb8398ef4206c"
+      "sha256": "066e74b4aa2b5336b5cd309c7d01e2a6fedcbab6c1b9594df2c5abceb99d4375"
     },
     {
       "source": "migrations/0.5.14-to-0.5.15.md",

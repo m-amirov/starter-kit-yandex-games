@@ -3,8 +3,10 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { NARRATIVE_ART_ACCEPTANCE_V3, validateArtReviewV3, isArtV3Accepted } from './narrative-art-acceptance-v3.mjs';
 
 export const WARDROBE_VISUAL_RULE = 'WARDROBE_VISUAL_ACCEPTANCE_V1';
+export { NARRATIVE_ART_ACCEPTANCE_V3 };
 const SHA = /^[a-f0-9]{64}$/i;
 const HEAD = /^[a-f0-9]{40}$/i;
 const FORMAT_ROLES = ['portraitOriginal', 'portraitRuntime', 'landscapeOriginal', 'landscapeRuntime'];
@@ -37,14 +39,83 @@ function safeRead(projectDir, relative, errors, label) {
 
 function extractRawReviewerJson(raw) {
   const text = String(raw).trim();
-  try { return JSON.parse(text); } catch {}
+  const parseCandidate = candidate => {
+    try { return JSON.parse(candidate); } catch {}
+    const normalized = candidate.replace(/(?<!\\)\\([\[\]_])/g, '$1');
+    if (normalized === candidate) return null;
+    try { return JSON.parse(normalized); } catch { return null; }
+  };
+  const direct = parseCandidate(text);
+  if (direct) return direct;
   const match = /^```(?:json)?\s*([\s\S]*?)\s*```$/i.exec(text);
-  if (match) { try { return JSON.parse(match[1]); } catch {} }
+  if (match) return parseCandidate(match[1]);
   return null;
+}
+
+function validateNarrativeV3Acceptance({ packet, receipt, rawResponse, projectDir, actualHead } = {}) {
+  const errors = [];
+  const request = packet?.request;
+  const head = request?.sourceHead;
+  if (!packet || packet.schemaVersion !== 1 || packet.ruleId !== NARRATIVE_ART_ACCEPTANCE_V3) errors.push('INVALID_V3_PACKET');
+  if (!HEAD.test(String(head ?? '')) || (actualHead && head !== actualHead)) errors.push('SOURCE_HEAD_MISMATCH');
+  if (!narrativeText(request?.context)) errors.push('SOURCE_CONTEXT_MISSING');
+  const images = Array.isArray(request?.images) ? request.images : [];
+  if (images.length < 2 || images.length > 10) errors.push('IMAGE_COUNT_INVALID');
+  const byRef = new Map();
+  let hasOriginal = false;
+  let hasRuntime = false;
+  for (const image of images) {
+    if (!image || typeof image.ref !== 'string' || byRef.has(image.ref) || !['original', 'runtime'].includes(image.kind)) {
+      errors.push('INVALID_IMAGE_REF');
+      continue;
+    }
+    byRef.set(image.ref, image);
+    hasOriginal ||= image.kind === 'original';
+    hasRuntime ||= image.kind === 'runtime';
+    if (!SHA.test(String(image.sha256 ?? ''))) errors.push(`IMAGE_SHA_INVALID:${image.ref}`);
+    if (projectDir) {
+      const bytes = safeRead(projectDir, image.path, errors, `IMAGE:${image.ref}`);
+      if (bytes && sha256(bytes) !== image.sha256?.toLowerCase()) errors.push(`IMAGE_SHA_MISMATCH:${image.ref}`);
+      if (bytes && image.path?.toLowerCase().endsWith('.png') && !bytes.subarray(0, 8).equals(Buffer.from('89504e470d0a1a0a', 'hex'))) errors.push(`PNG_SIGNATURE_INVALID:${image.ref}`);
+    }
+  }
+  if (!hasOriginal || !hasRuntime) errors.push('ORIGINAL_AND_RUNTIME_PIXELS_REQUIRED');
+  const raw = extractRawReviewerJson(rawResponse);
+  if (!raw || raw.artAcceptanceProfile !== NARRATIVE_ART_ACCEPTANCE_V3 || raw.sourceHead !== head || raw.status !== receipt?.status || raw.actualPixelsReceived !== true) errors.push('RAW_V3_REVIEW_MISSING_OR_DIVERGENT');
+  if (!receipt || receipt.phase !== 'acceptance' || receipt.artAcceptanceProfile !== NARRATIVE_ART_ACCEPTANCE_V3 || receipt.actualPixelsReceived !== true) errors.push('INDEPENDENT_V3_REVIEW_MISSING');
+  if (receipt?.sourceHead !== head || receipt?.transport?.actualProjectHead !== head) errors.push('REVIEW_HEAD_MISMATCH');
+  if (receipt?.transport?.provider !== 'codex-chatgpt-web-dev' || receipt.transport.mode !== 'browser-only' || receipt.transport.stableBridgeUsed !== false || receipt.transport.submitted !== true || receipt.transport.attachmentAccepted !== true || !receipt.transport.transportTraceId) errors.push('WEB_TRANSPORT_NOT_ATTESTED');
+  if (!SHA.test(String(receipt?.transport?.responseSha256 ?? '')) || receipt.transport.responseSha256 !== sha256(String(rawResponse ?? ''))) errors.push('RAW_RESPONSE_SHA_MISMATCH');
+  const reviewed = raw ? validateArtReviewV3(raw) : { ok: false, errors: ['raw V3 response unavailable'] };
+  if (!reviewed.ok) errors.push(...reviewed.errors.map(error => `V3_REVIEW_INVALID:${error}`));
+  const receivedRefs = new Set(receipt?.receivedEvidenceRefs ?? []);
+  const pixels = new Map((receipt?.visualEvidence ?? []).map(item => [item.ref, item]));
+  const rawPixels = new Map((raw?.visualEvidence ?? []).map(item => [item.ref, item]));
+  for (const [ref, image] of byRef) {
+    const evidence = pixels.get(ref);
+    if (!receivedRefs.has(ref) || !evidence || evidence.sha256 !== image.sha256 || evidence.path !== image.path || !narrativeText(evidence.observation)) errors.push(`PIXEL_OBSERVATION_MISSING:${ref}`);
+    if (JSON.stringify(rawPixels.get(ref) ?? null) !== JSON.stringify(evidence ?? null)) errors.push(`RAW_PIXEL_OBSERVATIONS_DIVERGE:${ref}`);
+  }
+  if (JSON.stringify(receipt?.requiredCast ?? null) !== JSON.stringify(raw?.requiredCast ?? null) || JSON.stringify(receipt?.wardrobeAssessments ?? null) !== JSON.stringify(raw?.wardrobeAssessments ?? null)) errors.push('V3_UNIFIED_RECEIPT_DIVERGES_FROM_RAW');
+  if (receipt?.status === 'REWORK') errors.push('REVIEW_REQUIRES_REWORK');
+  return {
+    ruleId: NARRATIVE_ART_ACCEPTANCE_V3,
+    artAcceptanceProfile: NARRATIVE_ART_ACCEPTANCE_V3,
+    status: receipt?.status ?? 'BLOCKED',
+    unifiedVerdict: receipt?.status ?? 'BLOCKED',
+    wardrobeVerdict: 'NESTED_IN_UNIFIED_ART_REVIEW',
+    errors: [...new Set(errors)],
+    sceneId: request?.sceneId ?? null,
+    sourceHead: head ?? null,
+    accepted: errors.length === 0 && isArtV3Accepted(receipt?.status)
+  };
 }
 
 // Authored briefs cannot substitute for independent pixel observations.
 export function validateWardrobeVisualAcceptance({ packet, receipt, rawResponse, projectDir, actualHead } = {}) {
+  if (packet?.ruleId === NARRATIVE_ART_ACCEPTANCE_V3 || receipt?.artAcceptanceProfile === NARRATIVE_ART_ACCEPTANCE_V3) {
+    return validateNarrativeV3Acceptance({ packet, receipt, rawResponse, projectDir, actualHead });
+  }
   const errors = [];
   if (!packet || packet.schemaVersion !== 1 || packet.ruleId !== WARDROBE_VISUAL_RULE) errors.push('INVALID_PACKET');
   const request = packet?.request;

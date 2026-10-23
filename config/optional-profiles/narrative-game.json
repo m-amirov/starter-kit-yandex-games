@@ -4,10 +4,17 @@
   "enabled": false,
   "modelPath": "narrative/graph.json",
   "savesPath": "narrative/save-fixtures.json",
+  "artAcceptance": {
+    "enabled": false,
+    "profile": "NARRATIVE_ART_ACCEPTANCE_V3",
+    "contractDoc": "docs/NARRATIVE_ART_ACCEPTANCE_V3.md",
+    "gate": "tools/production-art/wardrobe-visual-gate.mjs"
+  },
   "wardrobeVisualAcceptance": {
     "enabled": false,
     "ruleId": "WARDROBE_VISUAL_ACCEPTANCE_V1",
     "contractDoc": "docs/WARDROBE_VISUAL_ACCEPTANCE.md",
-    "gate": "tools/production-art/wardrobe-visual-gate.mjs"
+    "gate": "tools/production-art/wardrobe-visual-gate.mjs",
+    "legacyCompatibility": true
   }
 }

@@ -65,7 +65,10 @@ After explicitly enabling `narrative-game` in a **project-owned**
 `wardrobeVisualAcceptance.enabled:true` for art-heavy visual novels.
 It is opt-in and does **not** create a release gate or run Web/CEOS automatically.
 
-The reusable, source-HEAD-bound `WARDROBE_VISUAL_ACCEPTANCE_V1` contract
+New visual reviews use the reusable, source-HEAD-bound
+`NARRATIVE_ART_ACCEPTANCE_V3` contract. Its `wardrobeAssessments` are nested
+evidence in one independent verdict; they do not create a duplicate wardrobe
+veto. The historical `WARDROBE_VISUAL_ACCEPTANCE_V1` contract
 requires attached original/runtime portrait and landscape image pixels,
 canonical character references and actual independent reviewer observations
 of appearance, costume, cross-format consistency, neighboring-scene continuity

@@ -1759,6 +1759,21 @@
       "conflictPolicy": "replace-if-baseline"
     },
     {
+      "source": "docs/NARRATIVE_ART_ACCEPTANCE_V3.md",
+      "logicalId": "managed:narrative-art-acceptance-v3-doc",
+      "ownership": "managed",
+      "target": "docs/NARRATIVE_ART_ACCEPTANCE_V3.md",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
       "source": "migrations/0.5.11-to-0.5.12.md",
       "logicalId": "migration:0.5.11-to-0.5.12",
       "ownership": "managed",
@@ -1868,6 +1883,21 @@
       "logicalId": "managed:wardrobe-visual-gate",
       "ownership": "managed",
       "target": "tools/production-art/wardrobe-visual-gate.mjs",
+      "modes": [
+        "init",
+        "update"
+      ],
+      "projectTypes": [
+        "new",
+        "mature"
+      ],
+      "conflictPolicy": "replace-if-baseline"
+    },
+    {
+      "source": "tools/production-art/narrative-art-acceptance-v3.mjs",
+      "logicalId": "managed:narrative-art-acceptance-v3",
+      "ownership": "managed",
+      "target": "tools/production-art/narrative-art-acceptance-v3.mjs",
       "modes": [
         "init",
         "update"

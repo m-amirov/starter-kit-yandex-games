@@ -13,7 +13,9 @@ const sources=[
   'tools/narrative/story-promise-validator.mjs',
   'config/optional-profiles/narrative-game.json',
   'docs/NARRATIVE_GAME_PROFILE.md',
+  'docs/NARRATIVE_ART_ACCEPTANCE_V3.md',
   'docs/WARDROBE_VISUAL_ACCEPTANCE.md',
+  'tools/production-art/narrative-art-acceptance-v3.mjs',
   'tools/production-art/wardrobe-visual-gate.mjs'
 ];
 test('narrative-game is shipped but opt-in in new and mature projects',()=>{
@@ -24,6 +26,9 @@ test('narrative-game is shipped but opt-in in new and mature projects',()=>{
   assert.equal(template.enabled,false);
   assert.equal(template.wardrobeVisualAcceptance.enabled,false);
   assert.equal(template.wardrobeVisualAcceptance.ruleId,'WARDROBE_VISUAL_ACCEPTANCE_V1');
+  assert.equal(template.wardrobeVisualAcceptance.legacyCompatibility,true);
+  assert.equal(template.artAcceptance.profile,'NARRATIVE_ART_ACCEPTANCE_V3');
+  assert.equal(template.artAcceptance.enabled,false);
   assert.deepEqual(optional.checks,['routes','dialogue','state','saves']);
   const manifest=loadManifest(ROOT);
   for(const source of sources){

@@ -1,4 +1,8 @@
-# WARDROBE_VISUAL_ACCEPTANCE_V1 (optional narrative-game contract)
+# WARDROBE_VISUAL_ACCEPTANCE_V1 (legacy compatibility contract)
+
+New narrative art reviews use `NARRATIVE_ART_ACCEPTANCE_V3`; see
+`docs/NARRATIVE_ART_ACCEPTANCE_V3.md`. V1 remains available only to validate
+historical receipts and must not create a second artistic veto for a V3 review.
 
 This reusable Starter Kit contract extends the **optional** `narrative-game` profile.
 The managed template `config/optional-profiles/narrative-game.json` remains disabled
